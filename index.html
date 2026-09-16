@@ -99,7 +99,7 @@ body{
 .msg{margin-top:12px;padding:11px 13px;border-radius:11px;font-size:13px;font-weight:700;display:none;text-align:center}
 .msg.err{display:block;background:rgba(255,0,60,.14)!important;border:1px solid rgba(255,0,60,.5);color:#ff7d96!important}
 .msg.ok{display:block;background:rgba(0,255,136,.12)!important;border:1px solid rgba(0,255,136,.5);color:#6affb8!important}
-header{position:sticky;top:0;z-index:100;display:flex;align-items:center;gap:12px;
+header{position:sticky;top:0;z-index:100;display:flex;align-items:center;gap:10px;
   padding:12px 14px;background:rgba(6,8,22,.9)!important;backdrop-filter:blur(14px);
   -webkit-backdrop-filter:blur(14px);
   border-bottom:1px solid var(--line);box-shadow:0 0 26px rgba(0,240,255,.18)}
@@ -124,6 +124,94 @@ header{position:sticky;top:0;z-index:100;display:flex;align-items:center;gap:12p
   background:linear-gradient(90deg,rgba(0,255,136,.16),rgba(0,240,255,.16))!important;
   border:1px solid rgba(0,255,136,.45);font-weight:900;font-size:12.5px;color:#6affb8!important;
   box-shadow:0 0 18px rgba(0,255,136,.32)}
+
+/* ============ MUSIC PLAYER ============ */
+.music-wrap{position:relative;width:42px;height:42px;flex:0 0 auto;z-index:120}
+.music-ring{
+  position:absolute;inset:-3px;border-radius:50%;
+  background:conic-gradient(from 0deg,
+    #ff0000,#ff7f00,#ffff00,#00ff00,#00ffff,#0000ff,#8b00ff,#ff0000);
+  animation:spinRainbow 3s linear infinite;
+  z-index:0;filter:blur(.3px);
+  box-shadow:0 0 14px rgba(255,0,224,.5)
+}
+.music-ring::after{
+  content:'';position:absolute;inset:2px;border-radius:50%;
+  background:#05060f
+}
+@keyframes spinRainbow{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+.music-btn{
+  position:relative;z-index:2;
+  width:42px;height:42px;border-radius:50%;
+  background:radial-gradient(circle at 40% 35%,#1a1e4a,#05060f);
+  border:none;cursor:pointer;font-size:17px;color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  padding:0;transition:.2s;
+  -webkit-appearance:none
+}
+.music-btn:active{transform:scale(.92)}
+.music-btn.playing{animation:pulseMusic 1.2s infinite}
+@keyframes pulseMusic{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+
+.music-panel{
+  position:absolute;top:56px;right:0;width:min(280px,86vw);
+  background:linear-gradient(160deg,rgba(15,18,40,.98),rgba(8,10,25,.98));
+  border:1px solid rgba(0,240,255,.4);border-radius:16px;padding:12px;
+  box-shadow:0 8px 40px rgba(0,0,0,.9),0 0 40px rgba(0,240,255,.2);
+  display:none;z-index:200;
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  animation:musicSlide .25s ease
+}
+.music-panel.show{display:block}
+@keyframes musicSlide{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+.music-title{
+  font-size:12px;font-weight:900;letter-spacing:1px;margin-bottom:8px;
+  text-align:center;padding-bottom:8px;border-bottom:1px solid rgba(0,240,255,.18);
+  background:linear-gradient(90deg,#ff0000,#ff7f00,#ffff00,#00ff00,#00ffff,#0000ff,#8b00ff);
+  background-size:300% 100%;-webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+  animation:shine 3s linear infinite
+}
+.music-item{
+  display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:10px;
+  cursor:pointer;font-size:12.5px;font-weight:700;color:#bfe0f5!important;
+  margin-bottom:5px;border:1px solid transparent;transition:.18s;
+  background:rgba(0,0,0,.4)!important
+}
+.music-item:active{transform:scale(.98)}
+.music-item.sel{
+  background:linear-gradient(90deg,rgba(0,240,255,.22),rgba(255,0,224,.15))!important;
+  border-color:rgba(0,240,255,.6);color:#fff!important;
+  box-shadow:0 0 16px rgba(0,240,255,.35)
+}
+.music-item .mi-ico{
+  width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:11px;flex:0 0 auto;
+  background:linear-gradient(135deg,var(--neon1),var(--neon2));
+  color:#001018
+}
+.music-item.sel .mi-ico{background:linear-gradient(135deg,var(--neon4),var(--neon1))}
+.music-item .mi-name{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.music-item .mi-check{font-size:14px;color:var(--neon4);opacity:0}
+.music-item.sel .mi-check{opacity:1}
+.music-play{
+  width:100%;padding:11px;border-radius:11px;cursor:pointer;
+  font-weight:900;font-size:13px;letter-spacing:.5px;color:#001018!important;
+  background:linear-gradient(90deg,var(--neon4),var(--neon1));
+  border:none;margin-top:6px;font-family:inherit;
+  box-shadow:0 0 20px rgba(0,255,136,.5);transition:.2s;
+  -webkit-appearance:none
+}
+.music-play:active{transform:scale(.97)}
+.music-play.playing{
+  background:linear-gradient(90deg,#ff0055,#ff7a00)!important;
+  box-shadow:0 0 20px rgba(255,0,85,.6)
+}
+.music-note{
+  text-align:center;font-size:10.5px;color:#7fa8c9!important;margin-top:7px;
+  letter-spacing:.3px
+}
+
 .overlay{position:fixed;inset:0;background:rgba(0,0,0,.65)!important;backdrop-filter:blur(3px);
   -webkit-backdrop-filter:blur(3px);z-index:200;opacity:0;pointer-events:none;transition:.3s}
 .overlay.show{opacity:1;pointer-events:auto}
@@ -248,8 +336,8 @@ main{padding:16px 14px 90px;max-width:1180px;margin:0 auto;background:transparen
 .note-warn{margin-top:12px;padding:11px;border-radius:12px;font-size:12px;font-weight:700;
   background:rgba(255,230,0,.1)!important;border:1px solid rgba(255,230,0,.45);color:#ffe600!important;text-align:center}
 @media(max-width:520px){.plan{flex-wrap:wrap}.plan .buy{width:100%}
-  main{padding:14px 11px 90px}.astat{grid-template-columns:repeat(2,1fr)}}
-/* FORCE DARK MODE PREVENTION - Safari iOS */
+  main{padding:14px 11px 90px}.astat{grid-template-columns:repeat(2,1fr)}
+  .bal-chip{padding:7px 10px;font-size:11.5px}}
 @media (prefers-color-scheme: light){
   html,body{background:#05060f!important;color:#e9f6ff!important}
 }
@@ -306,6 +394,33 @@ main{padding:16px 14px 90px;max-width:1180px;margin:0 auto;background:transparen
       <h1>SHOP All SẢN PHẨM FF – FFMAX</h1>
       <p>HỖ TRỢ ADR🤖 và IOS📱</p>
     </div>
+
+    <!-- MUSIC PLAYER -->
+    <div class="music-wrap">
+      <div class="music-ring"></div>
+      <button class="music-btn" id="musicBtn" onclick="toggleMusicPanel(event)">🎵</button>
+      <div class="music-panel" id="musicPanel" onclick="event.stopPropagation()">
+        <div class="music-title">🎵 CHỌN NHẠC NỀN</div>
+        <div class="music-item" data-idx="0" onclick="selectTrack(0)">
+          <span class="mi-ico">♪</span>
+          <span class="mi-name">Thích thì đến Remix</span>
+          <span class="mi-check">✓</span>
+        </div>
+        <div class="music-item" data-idx="1" onclick="selectTrack(1)">
+          <span class="mi-ico">♪</span>
+          <span class="mi-name">Remix</span>
+          <span class="mi-check">✓</span>
+        </div>
+        <div class="music-item" data-idx="2" onclick="selectTrack(2)">
+          <span class="mi-ico">♪</span>
+          <span class="mi-name">Cute Remix</span>
+          <span class="mi-check">✓</span>
+        </div>
+        <button class="music-play" id="musicPlayBtn" onclick="togglePlay()">▶ PHÁT NHẠC</button>
+        <div class="music-note" id="musicNote">Chọn 1 bài rồi nhấn phát</div>
+      </div>
+    </div>
+
     <div class="bal-chip">💰 <span id="hdrBal">0đ</span></div>
   </header>
   <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
@@ -493,7 +608,7 @@ main{padding:16px 14px 90px;max-width:1180px;margin:0 auto;background:transparen
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 
 <script>
-/* ============ CONFIG FIREBASE (GIỮ NGUYÊN - KHÔNG MẤT) ============ */
+/* ============ CONFIG FIREBASE (GIỮ NGUYÊN) ============ */
 var firebaseConfig = {
   apiKey: "AIzaSyBobP39gLfYvClCCNFIszIGc2LdeUFeI7w",
   authDomain: "shop-all-ff-ff-max.firebaseapp.com",
@@ -509,7 +624,7 @@ var db = firebase.database();
 
 var DB={users:{},deposits:[],orders:[],reviews:[],ready:false};
 
-/* ============ SAO BĂNG ============ */
+/* ============ SAO BĂNG TRẮNG ============ */
 (function(){
   var c=document.getElementById('stars'),x=c.getContext('2d');
   var W,H,stars=[],meteors=[];
@@ -517,24 +632,24 @@ var DB={users:{},deposits:[],orders:[],reviews:[],ready:false};
   resize();addEventListener('resize',resize);
   for(var i=0;i<420;i++){stars.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.5+.25,
     a:Math.random(),s:Math.random()*.02+.004,
-    col:['#ffffff','#00f0ff','#ff00e0','#ffe600','#00ff88'][Math.floor(Math.random()*5)]})}
+    col:['#ffffff','#ffffff','#ffffff','#ffffff','#ffffff'][Math.floor(Math.random()*5)]})}
   function spawnMeteor(){
     if(meteors.length<9&&Math.random()<.35){meteors.push({x:Math.random()*W*1.3-W*.15,y:-60,
       len:Math.random()*160+90,sp:Math.random()*9+7,ang:Math.PI/3.5+(Math.random()*.28-.14),
-      col:['#00f0ff','#ff00e0','#ffe600','#00ff88','#ff3d00'][Math.floor(Math.random()*5)]})}
+      col:'#ffffff'})}
     setTimeout(spawnMeteor,Math.random()*420+150);
   }
   spawnMeteor();
   function loop(){
     x.clearRect(0,0,W,H);
     for(var i=0;i<stars.length;i++){var s=stars[i];s.a+=s.s;if(s.a>1||s.a<0)s.s*=-1;
-      x.globalAlpha=Math.abs(s.a)*.85;x.fillStyle=s.col;x.beginPath();x.arc(s.x,s.y,s.r,0,7);x.fill()}
+      x.globalAlpha=Math.abs(s.a)*.9;x.fillStyle=s.col;x.beginPath();x.arc(s.x,s.y,s.r,0,7);x.fill()}
     x.globalAlpha=1;
     for(var j=meteors.length-1;j>=0;j--){var m=meteors[j];
       var tx=m.x-Math.cos(m.ang)*m.len,ty=m.y-Math.sin(m.ang)*m.len;
       var g=x.createLinearGradient(m.x,m.y,tx,ty);
-      g.addColorStop(0,m.col);g.addColorStop(.35,m.col+'99');g.addColorStop(1,'transparent');
-      x.strokeStyle=g;x.lineWidth=2.4;x.lineCap='round';x.shadowBlur=18;x.shadowColor=m.col;
+      g.addColorStop(0,'#ffffff');g.addColorStop(.35,'rgba(255,255,255,.6)');g.addColorStop(1,'transparent');
+      x.strokeStyle=g;x.lineWidth=2.4;x.lineCap='round';x.shadowBlur=18;x.shadowColor='#ffffff';
       x.beginPath();x.moveTo(m.x,m.y);x.lineTo(tx,ty);x.stroke();x.shadowBlur=0;
       m.x+=Math.cos(m.ang)*m.sp;m.y+=Math.sin(m.ang)*m.sp;
       if(m.y>H+220||m.x>W+300)meteors.splice(j,1)}
@@ -542,6 +657,116 @@ var DB={users:{},deposits:[],orders:[],reviews:[],ready:false};
   }
   loop();
 })();
+
+/* ============ NHẠC NỀN ============ */
+var TRACKS=[
+  {name:'Thích thì đến Remix', src:'https://raw.githubusercontent.com/proxyvipivn/SHOP-STORE-ALL-FF/refs/heads/main/Thích%20thì%20đến.mp3.mp3'},
+  {name:'Remix', src:'https://raw.githubusercontent.com/proxyvipivn/SHOP-STORE-ALL-FF/refs/heads/main/Remix.mp3%20.mp3'},
+  {name:'Cute Remix', src:'https://raw.githubusercontent.com/proxyvipivn/SHOP-STORE-ALL-FF/refs/heads/main/cute.mp3.mp3'}
+];
+var bgMusic=null;
+var currentTrackIdx=-1;
+var musicPlaying=false;
+
+function initMusic(){
+  bgMusic=new Audio();
+  bgMusic.loop=false;
+  bgMusic.volume=0.6;
+  bgMusic.preload='auto';
+  bgMusic.addEventListener('ended',function(){
+    // Tự động phát bài kế tiếp
+    if(currentTrackIdx>=0 && currentTrackIdx<TRACKS.length-1){
+      selectTrack(currentTrackIdx+1);
+      bgMusic.play().then(function(){musicPlaying=true;updateMusicUI()}).catch(function(){});
+    } else {
+      musicPlaying=false;updateMusicUI();
+    }
+  });
+  bgMusic.addEventListener('play',function(){musicPlaying=true;updateMusicUI()});
+  bgMusic.addEventListener('pause',function(){musicPlaying=false;updateMusicUI()});
+  bgMusic.addEventListener('error',function(){
+    toast('⚠️ Không tải được nhạc. Kiểm tra lại link!',true);
+    musicPlaying=false;updateMusicUI();
+  });
+}
+
+function toggleMusicPanel(e){
+  if(e) e.stopPropagation();
+  var panel=document.getElementById('musicPanel');
+  panel.classList.toggle('show');
+}
+
+function selectTrack(idx){
+  if(idx<0||idx>=TRACKS.length) return;
+  currentTrackIdx=idx;
+  var items=document.querySelectorAll('.music-item');
+  for(var i=0;i<items.length;i++){
+    items[i].classList.toggle('sel', Number(items[i].getAttribute('data-idx'))===idx);
+  }
+  // Load track mới
+  if(bgMusic){
+    var wasPlaying=musicPlaying;
+    bgMusic.pause();
+    bgMusic.src=TRACKS[idx].src;
+    bgMusic.load();
+    document.getElementById('musicNote').textContent='Đã chọn: '+TRACKS[idx].name;
+    if(wasPlaying){
+      bgMusic.play().then(function(){musicPlaying=true;updateMusicUI()}).catch(function(){});
+    }
+  }
+}
+
+function togglePlay(){
+  if(currentTrackIdx<0){
+    // Nếu chưa chọn bài nào, chọn bài đầu tiên
+    selectTrack(0);
+  }
+  if(!bgMusic){
+    toast('⚠️ Trình duyệt không hỗ trợ nhạc',true);return;
+  }
+  if(musicPlaying){
+    bgMusic.pause();
+    musicPlaying=false;
+    updateMusicUI();
+  } else {
+    // Đảm bảo src đã được set
+    if(!bgMusic.src && currentTrackIdx>=0){
+      bgMusic.src=TRACKS[currentTrackIdx].src;
+    }
+    bgMusic.play().then(function(){
+      musicPlaying=true;
+      updateMusicUI();
+      toast('🎵 Đang phát: '+TRACKS[currentTrackIdx].name);
+    }).catch(function(e){
+      toast('⚠️ Không phát được: '+e.message,true);
+    });
+  }
+}
+
+function updateMusicUI(){
+  var btn=document.getElementById('musicBtn');
+  var playBtn=document.getElementById('musicPlayBtn');
+  if(musicPlaying){
+    btn.classList.add('playing');
+    playBtn.classList.add('playing');
+    playBtn.textContent='⏸ TẠM DỪNG';
+    btn.textContent='🎶';
+  } else {
+    btn.classList.remove('playing');
+    playBtn.classList.remove('playing');
+    playBtn.textContent='▶ PHÁT NHẠC';
+    btn.textContent='🎵';
+  }
+}
+
+// Đóng panel khi bấm ra ngoài
+document.addEventListener('click',function(e){
+  var panel=document.getElementById('musicPanel');
+  var wrap=document.querySelector('.music-wrap');
+  if(panel && panel.classList.contains('show') && wrap && !wrap.contains(e.target)){
+    panel.classList.remove('show');
+  }
+});
 
 /* ============ STORAGE ============ */
 var K={U:'users',D:'deposits',O:'orders',R:'reviews'};
@@ -1097,6 +1322,7 @@ function sendKey(id){
 
 /* ============ START ============ */
 runLoading();
+initMusic();
 </script>
 </body>
 </html>
