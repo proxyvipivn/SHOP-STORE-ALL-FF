@@ -18,9 +18,9 @@ body{font-family:'Segoe UI',system-ui,-apple-system,Roboto,sans-serif;background
 ::-webkit-scrollbar-track{background:#0a0d1f}
 ::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--n1),var(--n2));border-radius:8px}
 
-/* LOADING */
-#loading{position:fixed;inset:0;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;padding:24px;text-align:center;background:radial-gradient(circle at 50% 40%,#0b1030 0,#05060f 70%)!important}
-#loading.hide{display:none!important}
+/* LOADING - TỰ ĐỘNG ẨN SAU 3S BẰNG CSS */
+#loading{position:fixed;inset:0;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;padding:24px;text-align:center;background:radial-gradient(circle at 50% 40%,#0b1030 0,#05060f 70%)!important;animation:autoHide .5s ease 3s forwards}
+@keyframes autoHide{to{opacity:0;visibility:hidden;pointer-events:none}}
 .load-logo{font-size:clamp(20px,5.5vw,38px);font-weight:900;letter-spacing:2px;background:linear-gradient(90deg,var(--n1),var(--n2),var(--n3),var(--n1));background-size:300% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:shine 3s linear infinite;filter:drop-shadow(0 0 18px rgba(0,240,255,.55))}
 @keyframes shine{to{background-position:300% 0}}
 .load-sub{color:#8fb6d6;font-size:clamp(12px,3.2vw,15px);letter-spacing:1px}
@@ -28,7 +28,6 @@ body{font-family:'Segoe UI',system-ui,-apple-system,Roboto,sans-serif;background
 .load-bar-wrap{width:min(560px,92vw);height:22px;border-radius:30px;position:relative;background:rgba(255,255,255,.06);border:1px solid var(--line);overflow:hidden;box-shadow:0 0 24px rgba(0,240,255,.28)}
 .load-bar{height:100%;width:0;border-radius:30px;background:linear-gradient(90deg,#00ff88,#00f0ff,#ff00e0,#ffe600);background-size:300% 100%;animation:shine 2s linear infinite;box-shadow:0 0 22px rgba(0,240,255,.9);transition:width .28s ease}
 .load-pct{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;color:#fff;text-shadow:0 0 6px #000}
-.load-tap{font-size:11px;color:#5f87a8;margin-top:8px}
 
 /* AUTH */
 #auth{display:none;min-height:100vh;align-items:center;justify-content:center;padding:20px}
@@ -62,8 +61,8 @@ header{position:sticky;top:0;z-index:100;display:flex;align-items:center;gap:10p
 .burger.open span:nth-child(2){opacity:0}
 .burger.open span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
 .brand{flex:1;min-width:0}
-.brand h1{font-size:clamp(11px,3.2vw,15px);font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;background:linear-gradient(90deg,var(--n1),var(--n3),var(--n2));background-size:200% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation8:shine 4s linear infinite}
-.brand p{font-size:10px;color:#7fac9;margin-top:2px}
+.brand h1{font-size:clamp(11px,3.2vw,15px);font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;background:linear-gradient(90deg,var(--n1),var(--n3),var(--n2));background-size:200% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:shine 4s linear infinite}
+.brand p{font-size:10px;color:#7fa8c9;margin-top:2px}
 .bal-chip{display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:30px;flex:0 0 auto;background:linear-gradient(90deg,rgba(0,255,136,.16),rgba(0,240,255,.16));border:1px solid rgba(0,255,136,.45);font-weight:900;font-size:12.5px;color:#6affb8}
 
 /* MUSIC */
@@ -71,7 +70,7 @@ header{position:sticky;top:0;z-index:100;display:flex;align-items:center;gap:10p
 .music-ring{position:absolute;inset:-3px;border-radius:50%;background:conic-gradient(from 0deg,#ff9eb5,#ffc0cb,#ffd6e0,#ffb6c1,#ff8fb1,#ffc0cb,#ff9eb5);animation:spin 3s linear infinite;z-index:0;filter:blur(.3px);box-shadow:0 0 14px rgba(255,182,193,.7)}
 .music-ring::after{content:'';position:absolute;inset:2px;border-radius:50%;background:#05060f}
 @keyframes spin{to{transform:rotate(360deg)}}
-.music-btn{position:relative;z-index:2;width:42px;height:42px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#1a1e4a,#05060f);border:none;cursor:pointer;font-size:17px;color:#fff;display:flex;align-items:center;justify-content:center;padding:0;overflow:hidden;-webkit-appearance:none}
+.music-btn{position:relative;z-index:2;width:42px;height:42px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#1a1e4a,#05060f);border:none;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:center;padding:0;overflow:hidden;-webkit-appearance:none}
 .music-btn img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block}
 .music-btn.playing{animation:pulse 1.2s infinite}
 @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
@@ -124,9 +123,9 @@ main{padding:16px 14px 90px;max-width:1180px;margin:0 auto}
 .plans{display:flex;flex-direction:column;gap:7px}
 .plan{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:9px 11px;border-radius:11px;background:rgba(0,0,0,.42);border:1px solid rgba(0,240,255,.18)}
 .plan .lb{font-size:12.2px;font-weight:700;color:#cfe9ff}
-.plan .pr{font-size:12.4px;font-weight:900;color:var(--n3);white-space:nowrap}
-.plan .buy{padding:7px 11px;border-radius:9px;border:none;cursor:pointer;font-weight:900;font-size:11px;background:linear-gradient(90deg,var(--n4),var(--n1));color:#001018;font-family:inherit}
-.subtabs{display:flex;gap:8px;margin-bottom:13px;flex-wrap:wrap}
+.plan .pr{font-size:12.4px;font-weight:900;color:}
+var(--n3);white-space:nowrap}
+.plan .buy{padding:7px 11px;border-radius:9px;border:none;cursor:pointer;font-weight:900;font-size:11px;background:linear-gradient(90deg,var(--n4),var(--n1));color:#001018;font-family:inherit.subtabs{display:flex;gap:8px;margin-bottom:13px;flex-wrap:wrap}
 .subtab{padding:9px 15px;border-radius:30px;cursor:pointer;font-size:12.4px;font-weight:800;background:rgba(0,0,0,.4);border:1px solid var(--line);color:#8fb6d6}
 .subtab.active{background:linear-gradient(90deg,var(--n1),var(--n2));color:#001018;border-color:transparent}
 .item{padding:12px;border-radius:14px;background:rgba(0,0,0,.36);border:1px solid rgba(0,240,255,.16);margin-bottom:9px;font-size:12.4px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center}
@@ -175,11 +174,7 @@ main{padding:16px 14px 90px;max-width:1180px;margin:0 auto}
   <div class="load-logo">SHOP ALL SẢN PHẨM FF – FFMAX</div>
   <div class="load-sub">HỖ TRỢ ADR🤖 và IOS📱</div>
   <div class="load-status" id="loadStatus">Đang xác thực web...</div>
-  <div class="load-bar-wrap">
-    <div class="load-bar" id="loadBar"></div>
-    <div class="load-pct" id="loadPct">0%</div>
-  </div>
-  <div class="load-tap">Nhấn vào màn hình để bỏ qua</div>
+  <div class="load-bar-wrap"><div class="load-bar" id="loadBar"></div><div class="load-pct" id="loadPct">0%</div></div>
 </div>
 
 <div id="auth" class="screen">
@@ -191,8 +186,8 @@ main{padding:16px 14px 90px;max-width:1180px;margin:0 auto}
       <div class="tab" id="tabReg" onclick="switchTab('reg')">Đăng ký</div>
     </div>
     <div id="formLogin">
-      <div class="field"><label>Tên tài khoản</label><input id="lgUser" placeholder="Nhập tên tài khoản" autocomplete="username"></div>
-      <div class="field"><label>Mật khẩu</label><input id="lgPass" type="password" placeholder="Nhập mật khẩu" autocomplete="current-password"></div>
+      <div class="field"><label>Tên tài khoản</label><input id="lgUser" placeholder="Nhập tên tài khoản"></div>
+      <div class="field"><label>Mật khẩu</label><input id="lgPass" type="password" placeholder="Nhập mật khẩu"></div>
       <button class="btn" onclick="doLogin()">🔓 ĐĂNG NHẬP</button>
     </div>
     <div id="formReg" style="display:none">
@@ -245,13 +240,11 @@ main{padding:16px 14px 90px;max-width:1180px;margin:0 auto}
   <main>
     <div class="page" id="page-account">
       <div class="page-title">👤 Tài khoản</div>
-      <div class="panel">
-        <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
-          <div style="flex:1;min-width:180px"><div style="font-size:12px;color:#8fb6d6">Tên người đăng ký</div><div style="font-size:19px;font-weight:900;color:var(--n4)" id="acName">-</div></div>
-          <div style="text-align:right"><div style="font-size:12px;color:#8fb6d6">Số IB</div><div style="font-size:19px;font-weight:900;color:var(--n3)" id="acIb">-</div></div>
-          <button class="btn sm ghost" onclick="openAdminGate()">⚙️</button>
-        </div>
-      </div>
+      <div class="panel"><div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+        <div style="flex:1;min-width:180px"><div style="font-size:12px;color:#8fb6d6">Tên người đăng ký</div><div style="font-size:19px;font-weight:900;color:var(--n4)" id="acName">-</div></div>
+        <div style="text-align:right"><div style="font-size:12px;color:#8fb6d6">Số IB</div><div style="font-size:19px;font-weight:900;color:var(--n3)" id="acIb">-</div></div>
+        <button class="btn sm ghost" onclick="openAdminGate()">⚙️</button>
+      </div></div>
       <div class="astat" style="grid-template-columns:repeat(3,1fr)">
         <div><b id="acDep">0đ</b><span>TỔNG NẠP</span></div>
         <div><b id="acSpent">0đ</b><span>TỔNG CHI</span></div>
@@ -350,49 +343,20 @@ main{padding:16px 14px 90px;max-width:1180px;margin:0 auto}
 
 <div id="toast"></div>
 
-<!-- ========== LOADING SCRIPT (CHẠY ĐỘC LẬP, KHÔNG PHỤ THUỘC GÌ) ========== -->
+<!-- LOADING % UPDATE (chạy độc lập, nếu lỗi cũng không sao) -->
 <script>
 (function(){
-  var p=0, done=false;
-  var bar=document.getElementById('loadBar');
-  var pct=document.getElementById('loadPct');
-  var st=document.getElementById('loadStatus');
-  var msgs=['Đang xác thực web','Đang tải web','Xác thực tài khoản','Đang load','Chuẩn bị mở web','Hoàn tất! Đang vào shop'];
-  
-  function hideLoading(){
-    if(done) return;
-    done=true;
-    window.__loadingDone=true;
-    var el=document.getElementById('loading');
-    if(el) el.style.display='none';
-    if(typeof window.__startApp==='function'){
-      try{ window.__startApp(); }catch(e){ console.error(e); }
-    } else {
-      // Firebase chưa load kịp → hiện login luôn
-      var a=document.getElementById('auth');
-      if(a) a.style.display='flex';
-    }
-  }
-  window.__hideLoading=hideLoading;
-  
-  var iv=setInterval(function(){
-    p+=3;
-    if(p>100) p=100;
-    if(bar) bar.style.width=p+'%';
-    if(pct) pct.textContent=p+'%';
-    if(st){
-      var idx=Math.min(Math.floor(p/18),5);
-      st.textContent=msgs[idx]+'...';
-    }
-    if(p>=100){ clearInterval(iv); setTimeout(hideLoading,500); }
-  },70);
-  
-  // Fallback 1: Tự ẩn sau 4 giây dù có lỗi gì
-  setTimeout(hideLoading, 4000);
-  
-  // Fallback 2: Bấm vào loading là ẩn ngay
-  var el=document.getElementById('loading');
-  if(el) el.addEventListener('click', hideLoading);
+  try{
+    var p=0,bar=document.getElementById('loadBar'),pct=document.getElementById('loadPct'),st=document.getElementById('loadStatus');
+    var msgs=['Đang xác thực web','Đang tải web','Xác thực tài khoản','Đang load','Chuẩn bị mở web','Hoàn tất! Đang vào shop'];
+    var iv=setInterval(function(){
+      p+=3; if(p>100)p=100;
+      if(bar)bar.style.width=p+'%';
+      if(pct)pct.textContent=p+'%';
+      if(st)st.textContent=msgs[Math.min(Math.floor(p/18),5)]+'...';
+      if(p>=100)clearInterval(iv);
+    },70);
+  }catch(e){}
 })();
 </script>
 
@@ -400,9 +364,8 @@ main{padding:16px 14px 90px;max-width:1180px;margin:0 auto}
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 
-<!-- ========== MAIN APP ========== -->
+<!-- MAIN APP -->
 <script>
-(function(){
 try{
 
 var firebaseConfig={
@@ -416,88 +379,90 @@ var firebaseConfig={
 };
 
 var db=null;
-if(typeof firebase!=='undefined'&&firebase.initializeApp){
-  try{ firebase.initializeApp(firebaseConfig); db=firebase.database(); }
-  catch(e){ console.error('Firebase init:',e); }
-}
+try{
+  if(typeof firebase!=='undefined'&&firebase.initializeApp){
+    firebase.initializeApp(firebaseConfig);
+    db=firebase.database();
+  }
+}catch(e){console.error('Firebase init:',e)}
 
 var DB={users:{},deposits:[],orders:[],reviews:[]};
 var CUR=null, stars=0, histMode='dep';
 var ADMIN_PASS='ADMIN104738HACKALL';
 var IMG='https://raw.githubusercontent.com/proxyvipivn/Shop-blox-fruit-/main/';
 
-/* ===== SAO BĂNG TRẮNG ===== */
+/* SAO BĂNG TRẮNG */
 (function(){
-  var c=document.getElementById('stars'),x=c.getContext('2d');
-  var W,H,stars=[],meteors=[];
-  function resize(){W=c.width=innerWidth;H=c.height=innerHeight}
-  resize();addEventListener('resize',resize);
-  for(var i=0;i<500;i++){stars.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.6+.3,a:Math.random(),s:Math.random()*.022+.005})}
-  function spawn(){
-    if(meteors.length<22&&Math.random()<.85){
-      meteors.push({x:Math.random()*W*1.3-W*.15,y:-60,len:Math.random()*180+100,sp:Math.random()*11+8,ang:Math.PI/3.5+(Math.random()*.32-.16)});
+  try{
+    var c=document.getElementById('stars'),x=c.getContext('2d');
+    var W,H,stars=[],meteors=[];
+    function resize(){W=c.width=innerWidth;H=c.height=innerHeight}
+    resize();addEventListener('resize',resize);
+    for(var i=0;i<500;i++)stars.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.6+.3,a:Math.random(),s:Math.random()*.022+.005});
+    function spawn(){
+      if(meteors.length<22&&Math.random()<.85){
+        meteors.push({x:Math.random()*W*1.3-W*.15,y:-60,len:Math.random()*180+100,sp:Math.random()*11+8,ang:Math.PI/3.5+(Math.random()*.32-.16)});
+      }
+      setTimeout(spawn,Math.random()*180+60);
     }
-    setTimeout(spawn,Math.random()*180+60);
-  }
-  spawn();
-  function loop(){
-    x.clearRect(0,0,W,H);
-    for(var i=0;i<stars.length;i++){var s=stars[i];s.a+=s.s;if(s.a>1||s.a<0)s.s*=-1;
-      x.globalAlpha=Math.abs(s.a)*.95;x.fillStyle='#fff';x.beginPath();x.arc(s.x,s.y,s.r,0,7);x.fill()}
-    x.globalAlpha=1;
-    for(var j=meteors.length-1;j>=0;j--){var m=meteors[j];
-      var tx=m.x-Math.cos(m.ang)*m.len,ty=m.y-Math.sin(m.ang)*m.len;
-      var g=x.createLinearGradient(m.x,m.y,tx,ty);
-      g.addColorStop(0,'#fff');g.addColorStop(.35,'rgba(255,255,255,.65)');g.addColorStop(1,'transparent');
-      x.strokeStyle=g;x.lineWidth=2.6;x.lineCap='round';x.shadowBlur=20;x.shadowColor='#fff';
-      x.beginPath();x.moveTo(m.x,m.y);x.lineTo(tx,ty);x.stroke();x.shadowBlur=0;
-      m.x+=Math.cos(m.ang)*m.sp;m.y+=Math.sin(m.ang)*m.sp;
-      if(m.y>H+220||m.x>W+300)meteors.splice(j,1)}
-    requestAnimationFrame(loop);
-  }
-  loop();
+    spawn();
+    function loop(){
+      x.clearRect(0,0,W,H);
+      for(var i=0;i<stars.length;i++){var s=stars[i];s.a+=s.s;if(s.a>1||s.a<0)s.s*=-1;
+        x.globalAlpha=Math.abs(s.a)*.95;x.fillStyle='#fff';x.beginPath();x.arc(s.x,s.y,s.r,0,7);x.fill()}
+      x.globalAlpha=1;
+      for(var j=meteors.length-1;j>=0;j--){var m=meteors[j];
+        var tx=m.x-Math.cos(m.ang)*m.len,ty=m.y-Math.sin(m.ang)*m.len;
+        var g=x.createLinearGradient(m.x,m.y,tx,ty);
+        g.addColorStop(0,'#fff');g.addColorStop(.35,'rgba(255,255,255,.65)');g.addColorStop(1,'transparent');
+        x.strokeStyle=g;x.lineWidth=2.6;x.lineCap='round';x.shadowBlur=20;x.shadowColor='#fff';
+        x.beginPath();x.moveTo(m.x,m.y);x.lineTo(tx,ty);x.stroke();x.shadowBlur=0;
+        m.x+=Math.cos(m.ang)*m.sp;m.y+=Math.sin(m.ang)*m.sp;
+        if(m.y>H+220||m.x>W+300)meteors.splice(j,1)}
+      requestAnimationFrame(loop);
+    }
+    loop();
+  }catch(e){}
 })();
 
-/* ===== NHẠC ===== */
+/* NHẠC */
 var TRACKS=[
   {name:'Remix 1',src:'https://raw.githubusercontent.com/proxyvipivn/SHOP-STORE-ALL-FF/refs/heads/main/Remix2.mp3.mp3'},
   {name:'Remix 2',src:'https://raw.githubusercontent.com/proxyvipivn/SHOP-STORE-ALL-FF/refs/heads/main/Remix.mp3%20.mp3'},
   {name:'Cute Remix',src:'https://raw.githubusercontent.com/proxyvipivn/SHOP-STORE-ALL-FF/refs/heads/main/cute.mp3.mp3'}
 ];
 var bgMusic=null,curTrack=-1,playing=false;
-function initMusic(){
-  try{
-    bgMusic=new Audio();
-    bgMusic.volume=.6;bgMusic.preload='auto';
-    bgMusic.addEventListener('ended',function(){
-      if(curTrack>=0&&curTrack<TRACKS.length-1){selectTrack(curTrack+1);bgMusic.play().then(function(){playing=true;upMusicUI()}).catch(function(){})}
-      else{playing=false;upMusicUI()}
-    });
-    bgMusic.addEventListener('play',function(){playing=true;upMusicUI()});
-    bgMusic.addEventListener('pause',function(){playing=false;upMusicUI()});
-    bgMusic.addEventListener('error',function(){toast('⚠️ Không tải được nhạc',true);playing=false;upMusicUI()});
-  }catch(e){console.error(e)}
-}
+try{
+  bgMusic=new Audio();
+  bgMusic.volume=.6;bgMusic.preload='auto';
+  bgMusic.addEventListener('ended',function(){
+    if(curTrack>=0&&curTrack<TRACKS.length-1){selectTrack(curTrack+1);bgMusic.play().then(function(){playing=true;upMusicUI()}).catch(function(){})}
+    else{playing=false;upMusicUI()}
+  });
+  bgMusic.addEventListener('play',function(){playing=true;upMusicUI()});
+  bgMusic.addEventListener('pause',function(){playing=false;upMusicUI()});
+  bgMusic.addEventListener('error',function(){toast('⚠️ Không tải được nhạc',true);playing=false;upMusicUI()});
+}catch(e){console.error(e)}
 function toggleMusicPanel(e){if(e)e.stopPropagation();document.getElementById('musicPanel').classList.toggle('show')}
 function selectTrack(i){
   if(i<0||i>=TRACKS.length)return;
   curTrack=i;
   var items=document.querySelectorAll('.music-item');
-  for(var k=0;k<items.length;k++) items[k].classList.toggle('sel',Number(items[k].getAttribute('data-idx'))===i);
+  for(var k=0;k<items.length;k++)items[k].classList.toggle('sel',Number(items[k].getAttribute('data-idx'))===i);
   if(bgMusic){
     var was=playing;
     bgMusic.pause();bgMusic.src=TRACKS[i].src;bgMusic.load();
     document.getElementById('musicNote').textContent='Đã chọn: '+TRACKS[i].name;
-    if(was) bgMusic.play().then(function(){playing=true;upMusicUI()}).catch(function(){});
+    if(was)bgMusic.play().then(function(){playing=true;upMusicUI()}).catch(function(){});
   }
 }
 function togglePlay(){
-  if(curTrack<0) selectTrack(0);
+  if(curTrack<0)selectTrack(0);
   if(!bgMusic){toast('⚠️ Trình duyệt không hỗ trợ',true);return}
   if(playing){bgMusic.pause();playing=false;upMusicUI()}
   else{
-    if(!bgMusic.src&&curTrack>=0) bgMusic.src=TRACKS[curTrack].src;
-    bgMusic.play().then(function(){playing=true;upMusicUI();toast('🎵 Đang phát: '+TRACKS[curTrack].name)}).catch(function(e){toast('⚠️ Không phát được',true)});
+    if(!bgMusic.src&&curTrack>=0)bgMusic.src=TRACKS[curTrack].src;
+    bgMusic.play().then(function(){playing=true;upMusicUI();toast('🎵 Đang phát: '+TRACKS[curTrack].name)}).catch(function(){toast('⚠️ Không phát được',true)});
   }
 }
 function upMusicUI(){
@@ -507,10 +472,10 @@ function upMusicUI(){
 }
 document.addEventListener('click',function(e){
   var p=document.getElementById('musicPanel'),w=document.querySelector('.music-wrap');
-  if(p&&p.classList.contains('show')&&w&&!w.contains(e.target)) p.classList.remove('show');
+  if(p&&p.classList.contains('show')&&w&&!w.contains(e.target))p.classList.remove('show');
 });
 
-/* ===== HELPERS ===== */
+/* HELPERS */
 function fmt(n){return Number(n||0).toLocaleString('vi-VN')+'đ'}
 function rand(len){var s='';for(var i=0;i<len;i++)s+=(Math.floor(Math.random()*9)+1);return s}
 function now(){return Date.now()}
@@ -524,13 +489,13 @@ function toast(msg,err){
 function getS(){try{return JSON.parse(localStorage.getItem('ff_session'))}catch(e){return null}}
 function setS(v){try{if(v)localStorage.setItem('ff_session',JSON.stringify(v));else localStorage.removeItem('ff_session')}catch(e){}}
 
-/* ===== FIREBASE SYNC ===== */
+/* FIREBASE SYNC */
 function setupListeners(){
   if(!db)return;
-  db.ref('users').on('value',function(s){DB.users=s.val()||{};if(CUR)upUI();if(document.getElementById('adminPanel').style.display==='block')renderAdmin();});
-  db.ref('deposits').on('value',function(s){DB.deposits=s.val()||[];if(CUR&&document.getElementById('page-history').classList.contains('active'))renderHist();if(document.getElementById('adminPanel').style.display==='block')renderAdmin();});
-  db.ref('orders').on('value',function(s){DB.orders=s.val()||[];if(CUR){upUI();if(document.getElementById('page-history').classList.contains('active'))renderHist()}if(document.getElementById('adminPanel').style.display==='block')renderAdmin();});
-  db.ref('reviews').on('value',function(s){DB.reviews=s.val()||[];if(document.getElementById('adminPanel').style.display==='block')renderAdmin();});
+  db.ref('users').on('value',function(s){DB.users=s.val()||{};if(CUR)upUI();if(document.getElementById('adminPanel').style.display==='block')renderAdmin()});
+  db.ref('deposits').on('value',function(s){DB.deposits=s.val()||[];if(CUR&&document.getElementById('page-history').classList.contains('active'))renderHist();if(document.getElementById('adminPanel').style.display==='block')renderAdmin()});
+  db.ref('orders').on('value',function(s){DB.orders=s.val()||[];if(CUR){upUI();if(document.getElementById('page-history').classList.contains('active'))renderHist()}if(document.getElementById('adminPanel').style.display==='block')renderAdmin()});
+  db.ref('reviews').on('value',function(s){DB.reviews=s.val()||[];if(document.getElementById('adminPanel').style.display==='block')renderAdmin()});
 }
 if(db){
   db.ref('/').once('value').then(function(s){
@@ -540,7 +505,7 @@ if(db){
   }).catch(function(e){console.error(e);setupListeners()});
 }
 
-/* ===== AUTH ===== */
+/* AUTH */
 function switchTab(t){
   var l=t==='login';
   document.getElementById('tabLogin').classList.toggle('active',l);
@@ -552,38 +517,30 @@ function switchTab(t){
 function aMsg(t,ok){var m=document.getElementById('authMsg');m.textContent=t;m.className='msg '+(ok?'ok':'err')}
 function bootAuth(){
   var s=getS();
-  if(s&&s.user&&s.exp>now()&&DB.users[s.user]){
-    document.getElementById('auth').style.display='none';
-    enterApp(s.user);return;
-  }
+  if(s&&s.user&&s.exp>now()&&DB.users[s.user]){document.getElementById('auth').style.display='none';enterApp(s.user);return}
   if(s)setS(null);
   document.getElementById('auth').style.display='flex';
 }
 function doRegister(){
-  var u=document.getElementById('rgUser').value.trim();
-  var p=document.getElementById('rgPass').value;
-  var p2=document.getElementById('rgPass2').value;
+  var u=document.getElementById('rgUser').value.trim(),p=document.getElementById('rgPass').value,p2=document.getElementById('rgPass2').value;
   if(!u||!p)return aMsg('⚠️ Vui lòng nhập đầy đủ');
   if(u.length<3)return aMsg('⚠️ Tên tài khoản phải từ 3 ký tự');
   if(p.length<4)return aMsg('⚠️ Mật khẩu phải từ 4 ký tự');
   if(p!==p2)return aMsg('⚠️ Mật khẩu nhập lại không khớp');
-  if(!db)return aMsg('❌ Chưa kết nối máy chủ');
+  if(!db)return aMsg('❌ Chưa kết nối máy chủ. Thử lại sau!');
   db.ref('users/'+u).once('value').then(function(s){
     if(s.exists()){aMsg('❌ Tên tài khoản "'+u+'" đã được đăng ký!');return}
     db.ref('users/'+u).set({password:p,ib:Math.floor(Math.random()*9)+1,balance:0,totalDeposit:0,totalSpent:0,createdAt:now()}).then(function(){
       aMsg('✅ Đăng ký thành công!',true);
-      document.getElementById('rgUser').value='';
-      document.getElementById('rgPass').value='';
-      document.getElementById('rgPass2').value='';
+      document.getElementById('rgUser').value='';document.getElementById('rgPass').value='';document.getElementById('rgPass2').value='';
       setTimeout(function(){switchTab('login')},1100);
     }).catch(function(e){aMsg('❌ Lỗi: '+e.message)});
   }).catch(function(e){aMsg('❌ Lỗi: '+e.message)});
 }
 function doLogin(){
-  var u=document.getElementById('lgUser').value.trim();
-  var p=document.getElementById('lgPass').value;
+  var u=document.getElementById('lgUser').value.trim(),p=document.getElementById('lgPass').value;
   if(!u||!p)return aMsg('⚠️ Vui lòng nhập đầy đủ');
-  if(!db)return aMsg('❌ Chưa kết nối máy chủ');
+  if(!db)return aMsg('❌ Chưa kết nối máy chủ. Thử lại sau!');
   db.ref('users/'+u).once('value').then(function(s){
     var user=s.val();
     if(!user)return aMsg('❌ Tài khoản không tồn tại!');
@@ -592,8 +549,7 @@ function doLogin(){
     aMsg('✅ Đăng nhập thành công!',true);
     setTimeout(function(){
       document.getElementById('auth').style.display='none';
-      document.getElementById('lgUser').value='';
-      document.getElementById('lgPass').value='';
+      document.getElementById('lgUser').value='';document.getElementById('lgPass').value='';
       document.getElementById('authMsg').className='msg';
       enterApp(u);
     },520);
@@ -610,7 +566,7 @@ function logout(){
   toast('👋 Đã đăng xuất');
 }
 
-/* ===== APP ===== */
+/* APP */
 function enterApp(user){
   CUR=user;
   document.getElementById('auth').style.display='none';
@@ -650,7 +606,7 @@ function navigate(p){
   if(p==='account')upUI();
 }
 
-/* ===== PRODUCTS ===== */
+/* PRODUCTS */
 var IOS=[
  {name:'TROLL MODZ IOS ADR',img:IMG+'IMG_8158.jpeg',desc:'Antiban 80-90%\nSiêu bá\nTải app để cài',plans:[{l:'1 Giờ',p:10000},{l:'1 Ngày',p:25000},{l:'7 Ngày',p:100000},{l:'30 Ngày',p:170000}]},
  {name:'PROXY IOS IPA',img:IMG+'IMG_8160.jpeg',desc:'Antiban 90%\nNhiều chức năng khác nhau\nCần esgin để cài',plans:[{l:'1 Ngày',p:20000},{l:'7 Ngày',p:60000},{l:'30 Ngày',p:150000},{l:'Vĩnh viễn',p:360000}]},
@@ -693,7 +649,7 @@ window.__buy=function(name,plan,price){
   });
 };
 
-/* ===== QR & CARD ===== */
+/* QR */
 function createQR(){
   var amt=Number(document.getElementById('qrAmount').value);
   if(!amt||amt<5000)return toast('⚠️ Tối thiểu 5.000đ',true);
@@ -716,12 +672,11 @@ function submitCard(){
   var d={id:rand(8),user:CUR,type:'CARD',amount:amt,receive:RATE[amt]||0,cardType:type,cardCode:code,cardSeri:seri,status:'wait',createdAt:now()};
   DB.deposits.unshift(d);
   if(db)db.ref('deposits').set(DB.deposits);
-  document.getElementById('cardCode').value='';
-  document.getElementById('cardSeri').value='';
+  document.getElementById('cardCode').value='';document.getElementById('cardSeri').value='';
   toast('✅ Đã gửi thẻ! Admin đang xử lý');
 }
 
-/* ===== HISTORY ===== */
+/* HISTORY */
 function switchHist(m){
   histMode=m;
   var t=document.querySelectorAll('.subtab');
@@ -767,7 +722,7 @@ function renderAcOrders(){
   box.innerHTML=h;
 }
 
-/* ===== REVIEW ===== */
+/* REVIEW */
 (function(){
   var s=document.querySelectorAll('#starPick span');
   for(var i=0;i<s.length;i++){(function(el){
@@ -784,16 +739,15 @@ function sendReview(){
   DB.reviews.unshift({id:rand(6),user:CUR,stars:stars,text:text,createdAt:now()});
   if(db)db.ref('reviews').set(DB.reviews);
   document.getElementById('rvText').value='';
-  var s=stars;stars=0;
+  stars=0;
   var all=document.querySelectorAll('#starPick span');
   for(var i=0;i<all.length;i++)all[i].classList.remove('on');
   toast('🎉 Cảm ơn bạn đã gửi đánh giá!');
 }
 
-/* ===== SUPPORT ===== */
 function openLink(u){window.open(u,'_blank')}
 
-/* ===== ADMIN GATE ===== */
+/* ADMIN GATE */
 function openAdminGate(){
   document.getElementById('adminModal').classList.add('show');
   document.getElementById('adminPass').value='';
@@ -806,11 +760,11 @@ function checkAdmin(){
   var m=document.getElementById('adminMsg');
   if(v!==ADMIN_PASS){m.textContent='❌ Mật khẩu không đúng!';m.className='msg err';return}
   m.textContent='✅ OK!';m.className='msg ok';
-  setTimeout(function(){closeAdminGate();document.getElementById('adminPanel').style.display='block';renderAdmin();},450);
+  setTimeout(function(){closeAdminGate();document.getElementById('adminPanel').style.display='block';renderAdmin()},450);
 }
 function closeAdminPanel(){document.getElementById('adminPanel').style.display='none'}
 
-/* ===== ADMIN RENDER ===== */
+/* ADMIN RENDER */
 function renderAdmin(){
   var uk=Object.keys(DB.users);
   document.getElementById('stUsers').textContent=uk.length;
@@ -819,14 +773,12 @@ function renderAdmin(){
   var wo=0;for(var j=0;j<DB.orders.length;j++)if(DB.orders[j].status==='wait')wo++;
   document.getElementById('stOrd').textContent=wo;
   document.getElementById('stRv').textContent=DB.reviews.length;
-
   var h1='';
   if(!uk.length)h1='<div class="empty">Chưa có ai đăng ký</div>';
   else for(var a=0;a<uk.length;a++){var n=uk[a],u=DB.users[n];
     h1+='<div class="item"><div class="l"><b>👤 '+n+'</b><small>🔑 MK: <b style="color:#ff00e0">'+u.password+'</b></small><small>🔢 IB: <b style="color:#ffe600">'+u.ib+'</b></small><small>💰 '+fmt(u.balance)+' • Nạp: '+fmt(u.totalDeposit)+' • Chi: '+fmt(u.totalSpent)+'</small><small>🕐 '+timeStr(u.createdAt)+'</small></div></div>';
   }
   document.getElementById('adUsers').innerHTML=h1;
-
   var h2='';
   if(!DB.deposits.length)h2='<div class="empty">Chưa có yêu cầu nạp</div>';
   else for(var b=0;b<DB.deposits.length;b++){var d=DB.deposits[b];
@@ -838,7 +790,6 @@ function renderAdmin(){
     h2+='<div class="item"><div class="l"><b>👤 '+d.user+' — Mã đơn '+d.id+'</b><small>'+info+'</small><small>🕐 '+timeStr(d.createdAt)+'</small></div>'+bd+'</div>';
   }
   document.getElementById('adDeps').innerHTML=h2;
-
   var h3='';
   if(!DB.orders.length)h3='<div class="empty">Chưa có đơn hàng</div>';
   else for(var c=0;c<DB.orders.length;c++){var o=DB.orders[c],bd2;
@@ -847,7 +798,6 @@ function renderAdmin(){
     h3+='<div class="item"><div class="l"><b>👤 '+o.user+' — '+o.name+'</b><small>Gói: '+o.plan+' • '+fmt(o.price)+'</small><small>Mã đơn: '+o.id+' • '+timeStr(o.createdAt)+'</small></div>'+bd2+'</div>';
   }
   document.getElementById('adOrds').innerHTML=h3;
-
   var h4='';
   if(!DB.reviews.length)h4='<div class="empty">Chưa có đánh giá</div>';
   else for(var e=0;e<DB.reviews.length;e++){var r=DB.reviews[e];
@@ -856,20 +806,17 @@ function renderAdmin(){
   document.getElementById('adRevs').innerHTML=h4;
 }
 
-/* ===== ADMIN ACTIONS ===== */
 window.__appr=function(id){
   if(!db)return toast('❌ Chưa kết nối',true);
   db.ref('deposits').once('value').then(function(s){
-    var deps=s.val()||[];
-    var d=null;for(var i=0;i<deps.length;i++)if(deps[i].id===id)d=deps[i];
+    var deps=s.val()||[],d=null;
+    for(var i=0;i<deps.length;i++)if(deps[i].id===id)d=deps[i];
     if(!d||d.status!=='wait')return;
-    d.status='done';
-    db.ref('deposits').set(deps);
+    d.status='done';db.ref('deposits').set(deps);
     db.ref('users/'+d.user).once('value').then(function(us){
       var u=us.val();if(!u)return;
       var add=d.type==='QR'?d.amount:d.receive;
-      u.balance=(u.balance||0)+add;
-      u.totalDeposit=(u.totalDeposit||0)+add;
+      u.balance=(u.balance||0)+add;u.totalDeposit=(u.totalDeposit||0)+add;
       db.ref('users/'+d.user).set(u);
       toast('✅ Đã xác nhận nạp cho '+d.user);
     });
@@ -890,16 +837,15 @@ window.__sendk=function(id){
   if(!key)return toast('⚠️ Nhập key trước',true);
   if(!db)return;
   db.ref('orders').once('value').then(function(s){
-    var ords=s.val()||[];
-    var o=null;for(var i=0;i<ords.length;i++)if(ords[i].id===id)o=ords[i];
+    var ords=s.val()||[],o=null;
+    for(var i=0;i<ords.length;i++)if(ords[i].id===id)o=ords[i];
     if(!o)return;
-    o.key=key;o.status='done';
-    db.ref('orders').set(ords);
+    o.key=key;o.status='done';db.ref('orders').set(ords);
     toast('🔑 Đã gửi key cho '+o.user);
   });
 };
 
-/* ===== MENU BINDING ===== */
+/* MENU BINDING */
 (function(){
   var lis=document.querySelectorAll('#menuList li[data-page]');
   for(var i=0;i<lis.length;i++){(function(li){
@@ -907,31 +853,17 @@ window.__sendk=function(id){
   })(lis[i])}
 })();
 
-/* ===== START APP ===== */
-window.__startApp=function(){
-  try{
-    bootAuth();
-    initMusic();
-  }catch(e){
-    console.error('startApp:',e);
-    var a=document.getElementById('auth');
-    if(a)a.style.display='flex';
-  }
-};
-if(window.__loadingDone){
-  window.__startApp();
-}
+/* START */
+bootAuth();
+initMusic();
 
 }catch(err){
-  console.error('LỖI KHỞI TẠO:',err);
-  var l=document.getElementById('loading');
-  if(l)l.style.display='none';
-  var a=document.getElementById('auth');
-  if(a)a.style.display='flex';
+  console.error('LỖI:',err);
+  document.getElementById('loading').style.display='none';
+  document.getElementById('auth').style.display='flex';
   var m=document.getElementById('authMsg');
   if(m){m.textContent='⚠️ Lỗi tải web. Vui lòng tải lại trang.';m.className='msg err';}
 }
-})();
 </script>
 </body>
 </html>
