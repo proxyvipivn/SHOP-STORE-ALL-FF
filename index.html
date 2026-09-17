@@ -70,23 +70,15 @@ body {
   z-index: 2;
 }
 
-/* ============================================================
-   SCROLLBAR
-   ============================================================ */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-::-webkit-scrollbar-track {
-  background: #0a0d1f;
-}
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: #0a0d1f; }
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(180deg, var(--neon1), var(--neon2));
   border-radius: 8px;
 }
 
 /* ============================================================
-   LOADING - TỰ ĐỘNG ẨN SAU 3 GIÂY BẰNG CSS
+   LOADING
    ============================================================ */
 #loading {
   position: fixed;
@@ -105,11 +97,7 @@ body {
 }
 
 @keyframes autoHide {
-  to {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-  }
+  to { opacity: 0; visibility: hidden; pointer-events: none; }
 }
 
 .load-logo {
@@ -126,9 +114,7 @@ body {
   filter: drop-shadow(0 0 18px rgba(0, 240, 255, 0.55));
 }
 
-@keyframes shine {
-  to { background-position: 300% 0; }
-}
+@keyframes shine { to { background-position: 300% 0; } }
 
 .load-sub {
   color: #8fb6d6 !important;
@@ -180,7 +166,7 @@ body {
 }
 
 /* ============================================================
-   AUTH (ĐĂNG NHẬP / ĐĂNG KÝ)
+   AUTH
    ============================================================ */
 #auth {
   display: none;
@@ -256,9 +242,7 @@ body {
   border-color: rgba(255, 255, 255, 0.3);
 }
 
-.field {
-  margin-bottom: 13px;
-}
+.field { margin-bottom: 13px; }
 
 .field label {
   display: block;
@@ -325,14 +309,8 @@ body {
   -webkit-appearance: none;
 }
 
-.btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 0 34px rgba(0, 240, 255, 0.85);
-}
-
-.btn:active {
-  transform: scale(0.98);
-}
+.btn:hover { transform: translateY(-2px); box-shadow: 0 0 34px rgba(0, 240, 255, 0.85); }
+.btn:active { transform: scale(0.98); }
 
 .btn.pink {
   background: linear-gradient(90deg, var(--neon2), #ff7a00) !important;
@@ -352,12 +330,7 @@ body {
   box-shadow: none;
 }
 
-.btn.sm {
-  width: auto;
-  padding: 9px 14px;
-  font-size: 12.5px;
-  border-radius: 10px;
-}
+.btn.sm { width: auto; padding: 9px 14px; font-size: 12.5px; border-radius: 10px; }
 
 .msg {
   margin-top: 12px;
@@ -426,22 +399,11 @@ header {
   transition: 0.25s;
 }
 
-.burger.open span:nth-child(1) {
-  transform: translateY(7.5px) rotate(45deg);
-}
+.burger.open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+.burger.open span:nth-child(2) { opacity: 0; }
+.burger.open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
 
-.burger.open span:nth-child(2) {
-  opacity: 0;
-}
-
-.burger.open span:nth-child(3) {
-  transform: translateY(-7.5px) rotate(-45deg);
-}
-
-.brand {
-  flex: 1;
-  min-width: 0;
-}
+.brand { flex: 1; min-width: 0; }
 
 .brand h1 {
   font-size: clamp(11px, 3.2vw, 15px);
@@ -545,13 +507,8 @@ header {
   display: block;
 }
 
-.music-btn:active {
-  transform: scale(0.92);
-}
-
-.music-btn.playing {
-  animation: pulseMusic 1.2s infinite;
-}
+.music-btn:active { transform: scale(0.92); }
+.music-btn.playing { animation: pulseMusic 1.2s infinite; }
 
 @keyframes pulseMusic {
   0%, 100% { transform: scale(1); }
@@ -575,9 +532,7 @@ header {
   animation: musicSlide 0.25s ease;
 }
 
-.music-panel.show {
-  display: block;
-}
+.music-panel.show { display: block; }
 
 @keyframes musicSlide {
   from { opacity: 0; transform: translateY(-8px); }
@@ -613,9 +568,7 @@ header {
   background: rgba(0, 0, 0, 0.4) !important;
 }
 
-.music-item:active {
-  transform: scale(0.98);
-}
+.music-item:active { transform: scale(0.98); }
 
 .music-item.sel {
   background: linear-gradient(90deg, rgba(255, 182, 193, 0.22), rgba(255, 105, 180, 0.15)) !important;
@@ -655,9 +608,7 @@ header {
   opacity: 0;
 }
 
-.music-item.sel .mi-check {
-  opacity: 1;
-}
+.music-item.sel .mi-check { opacity: 1; }
 
 .music-play {
   width: 100%;
@@ -677,9 +628,7 @@ header {
   -webkit-appearance: none;
 }
 
-.music-play:active {
-  transform: scale(0.97);
-}
+.music-play:active { transform: scale(0.97); }
 
 .music-play.playing {
   background: linear-gradient(90deg, #ff0055, #ff7a00) !important;
@@ -709,10 +658,7 @@ header {
   transition: 0.3s;
 }
 
-.overlay.show {
-  opacity: 1;
-  pointer-events: auto;
-}
+.overlay.show { opacity: 1; pointer-events: auto; }
 
 .sidebar {
   position: fixed;
@@ -732,9 +678,7 @@ header {
   color: #e9f6ff !important;
 }
 
-.sidebar.open {
-  transform: translateX(0);
-}
+.sidebar.open { transform: translateX(0); }
 
 .side-head {
   padding: 20px 18px;
@@ -769,19 +713,10 @@ header {
   line-height: 1.7;
 }
 
-.side-user b {
-  color: var(--neon4) !important;
-  font-size: 13.5px;
-}
+.side-user b { color: var(--neon4) !important; font-size: 13.5px; }
+.side-user .ib { color: var(--neon3) !important; }
 
-.side-user .ib {
-  color: var(--neon3) !important;
-}
-
-.menu {
-  list-style: none;
-  padding: 6px 10px 26px;
-}
+.menu { list-style: none; padding: 6px 10px 26px; }
 
 .menu li {
   display: flex;
@@ -819,9 +754,7 @@ header {
   transform: translateX(3px);
 }
 
-.menu li:hover::before {
-  opacity: 1;
-}
+.menu li:hover::before { opacity: 1; }
 
 .menu li.active {
   background: linear-gradient(90deg, rgba(0, 240, 255, 0.2), rgba(255, 0, 224, 0.12)) !important;
@@ -830,16 +763,9 @@ header {
   box-shadow: 0 0 20px rgba(0, 240, 255, 0.25);
 }
 
-.menu li.active::before {
-  opacity: 1;
-}
+.menu li.active::before { opacity: 1; }
 
-.menu .ico {
-  font-size: 17px;
-  width: 22px;
-  text-align: center;
-  flex: 0 0 auto;
-}
+.menu .ico { font-size: 17px; width: 22px; text-align: center; flex: 0 0 auto; }
 
 /* ============================================================
    MAIN
@@ -851,14 +777,8 @@ main {
   background: transparent !important;
 }
 
-.page {
-  display: none;
-  animation: fadeUp 0.38s ease;
-}
-
-.page.active {
-  display: block;
-}
+.page { display: none; animation: fadeUp 0.38s ease; }
+.page.active { display: block; }
 
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(16px); }
@@ -890,24 +810,13 @@ main {
   border-radius: 18px;
   padding: 16px;
   margin-bottom: 14px;
-  box-shadow: 0 0 28px rgba(0, 240, 255, 0.12), inset 0 0 30px rgba(0, 0, 0, 0.35);
-  color: #e9f6ff !important;
+  box-shadow: 0 0 28px rgba(0, 240,  padding255, 0.12), inset 0 0 30px rgba(0, 0, 0, 0.35);
+  color: #:e9f6ff !important;
 }
 
-.panel.gold {
-  border-color: rgba(255, 230, 0, 0.42);
-  box-shadow: 0 0 28px rgba(255, 230, 0, 0.16);
-}
-
-.panel.pink {
-  border-color: rgba(255, 0, 224, 0.42);
-  box-shadow: 0 0 28px rgba(255, 0, 224, 0.16);
-}
-
-.panel.green {
-  border-color: rgba(0, 255, 136, 0.42);
-  box-shadow: 0 0 28px rgba(0, 255, 136, 0.16);
-}
+.panel.gold { border-color: rgba(255, 230, 0, 0.42); box-shadow : 0 0 28px rgba(255, 230, 0, 0.16); }
+.panel.pink { border-color:7 rgba(255, 0, 224, 0.42); box-shadow: 0 0 28px rgba(255, 0, 224, 0.16); }
+.panel.green { border-color: rgba(0, 255, 136, 0.42); box-shadow: 0 0 28px rgba(0, 255, 136, 0.16); }
 
 .sec-title {
   font-size: 14.5px;
@@ -956,9 +865,7 @@ main {
   background: #0a0d1f !important;
 }
 
-.prod-body {
-  padding: 13px;
-}
+.prod-body { padding: 13px; }
 
 .prod-name {
   font-size: 14.5px;
@@ -979,11 +886,7 @@ main {
   white-space: pre-line;
 }
 
-.plans {
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-}
+.plans { display: flex; flex-direction: column; gap: 7px; }
 
 .plan {
   display: flex;
@@ -997,16 +900,9 @@ main {
   transition: 0.22s;
 }
 
-.plan:hover {
-  border-color: var(--neon4);
-  box-shadow: 0 0 16px rgba(0, 255, 136, 0.3);
-}
+.plan:hover { border-color: var(--neon4); box-shadow: 0 0 16px rgba(0, 255, 136, 0.3); }
 
-.plan .lb {
-  font-size: 12.2px;
-  font-weight: 700;
-  color: #cfe9ff !important;
-}
+.plan .lb { font-size: 12.2px; font-weight: 700; color: #cfe9ff !important; }
 
 .plan .pr {
   font-size: 12.4px;
@@ -1017,7 +913,7 @@ main {
 }
 
 .plan .buy {
-  padding: 7px 11px;
+ px 11px;
   border-radius: 9px;
   border: none;
   cursor: pointer;
@@ -1029,17 +925,9 @@ main {
   font-family: inherit;
 }
 
-.plan .buy:hover {
-  box-shadow: 0 0 18px rgba(0, 255, 136, 0.7);
-  transform: scale(1.06);
-}
+.plan .buy:hover { box-shadow: 0 0 18px rgba(0, 255, 136, 0.7); transform: scale(1.06); }
 
-.subtabs {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 13px;
-  flex-wrap: wrap;
-}
+.subtabs { display: flex; gap: 8px; margin-bottom: 13px; flex-wrap: wrap; }
 
 .subtab {
   padding: 9px 15px;
@@ -1075,23 +963,9 @@ main {
   color: #e9f6ff !important;
 }
 
-.item .l {
-  flex: 1;
-  min-width: 180px;
-}
-
-.item .l b {
-  color: var(--neon1) !important;
-  font-size: 13px;
-  display: block;
-  margin-bottom: 4px;
-}
-
-.item .l small {
-  color: #8fb6d6 !important;
-  display: block;
-  line-height: 1.6;
-}
+.item .l { flex: 1; min-width: 180px; }
+.item .l b { color: var(--neon1) !important; font-size: 13px; display: block; margin-bottom: 4px; }
+.item .l small { color: #8fb6d6 !important; display: block; line-height: 1.6; }
 
 .badge {
   padding: 5px 11px;
@@ -1145,9 +1019,7 @@ main {
   -webkit-backdrop-filter: blur(8px);
 }
 
-#adminModal.show {
-  display: flex;
-}
+#adminModal.show { display: flex; }
 
 #adminPanel {
   display: none;
@@ -1189,11 +1061,7 @@ main {
   color: transparent;
 }
 
-.admin-body {
-  padding: 16px 14px 70px;
-  max-width: 1180px;
-  margin: 0 auto;
-}
+.admin-body { padding: 16px 14px 70px; max-width: 1180px; margin: 0 auto; }
 
 .astat {
   display: grid;
@@ -1219,11 +1087,7 @@ main {
   text-shadow: 0 0 14px rgba(255, 230, 0, 0.6);
 }
 
-.astat span {
-  font-size: 10.6px;
-  color: #c9a8e0 !important;
-  letter-spacing: 0.5px;
-}
+.astat span { font-size: 10.6px; color: #c9a8e0 !important; letter-spacing: 0.5px; }
 
 /* ============================================================
    REVIEW STARS
@@ -1238,10 +1102,7 @@ main {
   user-select: none;
 }
 
-.stars-pick span {
-  transition: 0.18s;
-  filter: grayscale(1) opacity(0.4);
-}
+.stars-pick span { transition: 0.18s; filter: grayscale(1) opacity(0.4); }
 
 .stars-pick span.on {
   filter: none;
@@ -1270,9 +1131,7 @@ main {
   text-align: center;
 }
 
-#toast.show {
-  transform: translateX(-50%) translateY(0);
-}
+#toast.show { transform: translateX(-50%) translateY(0); }
 
 #toast.err {
   background: linear-gradient(90deg, #ff0055, #ff7a00) !important;
@@ -1283,10 +1142,7 @@ main {
 /* ============================================================
    QR
    ============================================================ */
-.qr-box {
-  text-align: center;
-  padding: 8px;
-}
+.qr-box { text-align: center; padding: 8px; }
 
 .qr-box img {
   width: min(290px, 82vw);
@@ -1299,30 +1155,28 @@ main {
 .bank-info {
   margin-top: 14px;
   font-size: 13px;
-  line-height: 2;
+  line-height": 2;
   text-align: left;
   background: rgba(0, 0, 0, 0.42) !important;
-  padding: 14px;
+  padding: 14 onclickpx;
   border-radius: 14px;
   border: 1px solid var(--line);
   color: #e9f6ff !important;
 }
 
-.bank-info b {
-  color: var(--neon3) !important;
-}
+.bank="-info b { color: var(--neon3) !important; }
 
 .bank-info .hl {
   color: var(--neon4) !important;
-  font-weight: 900;
+  font-weightswitch: 900;
   font-size: 15px;
   letter-spacing: 1px;
 }
 
 .note-warn {
-  margin-top: 12px;
+  margin-top:Tab 12px;
   padding: 11px;
-  border-radius: 12px;
+  border-radius: 12('px;
   font-size: 12px;
   font-weight: 700;
   background: rgba(255, 230, 0, 0.1) !important;
@@ -1343,10 +1197,7 @@ main {
 }
 
 @media (prefers-color-scheme: light) {
-  html, body {
-    background: #05060f !important;
-    color: #e9f6ff !important;
-  }
+  html, body { background: #05060f !important; color: #e9f6ff !important; }
 }
 </style>
 </head>
@@ -1354,9 +1205,7 @@ main {
 
 <canvas id="stars"></canvas>
 
-<!-- ============================================================
-     LOADING SCREEN
-     ============================================================ -->
+<!-- LOADING -->
 <div id="loading">
   <div class="load-logo">SHOP ALL SẢN PHẨM FF – FFMAX</div>
   <div class="load-sub">HỖ TRỢ ADR🤖 và IOS📱</div>
@@ -1367,19 +1216,15 @@ main {
   </div>
 </div>
 
-<!-- ============================================================
-     AUTH SCREEN
-     ============================================================ -->
+<!-- AUTH -->
 <div id="auth" class="screen">
   <div class="auth-box">
     <div class="auth-title">SHOP ALL SẢN PHẨM FF – FFMAX</div>
     <div class="auth-sub">HỖ TRỢ ADR🤖 và IOS📱</div>
-
     <div class="tabs">
-      <div class="tab active" id="tabLogin" onclick="switchTab('login')">Đăng nhập</div>
+      <div class="tab active" id="tabLoginlogin')">Đăng nhập</div>
       <div class="tab" id="tabReg" onclick="switchTab('reg')">Đăng ký</div>
     </div>
-
     <div id="formLogin">
       <div class="field">
         <label>Tên tài khoản</label>
@@ -1391,7 +1236,6 @@ main {
       </div>
       <button class="btn" onclick="doLogin()">🔓 ĐĂNG NHẬP</button>
     </div>
-
     <div id="formReg" style="display:none">
       <div class="field">
         <label>Tên tài khoản</label>
@@ -1407,14 +1251,11 @@ main {
       </div>
       <button class="btn pink" onclick="doRegister()">📝 ĐĂNG KÝ</button>
     </div>
-
     <div class="msg" id="authMsg"></div>
   </div>
 </div>
 
-<!-- ============================================================
-     MAIN APP
-     ============================================================ -->
+<!-- APP -->
 <div id="app" class="screen" style="display:none">
   <header>
     <div class="burger" id="burger" onclick="toggleMenu()">
@@ -1425,7 +1266,6 @@ main {
       <p>HỖ TRỢ ADR🤖 và IOS📱</p>
     </div>
 
-    <!-- MUSIC PLAYER -->
     <div class="music-wrap">
       <div class="music-ring"></div>
       <button class="music-btn" id="musicBtn" onclick="toggleMusicPanel(event)">
@@ -1479,7 +1319,7 @@ main {
   </aside>
 
   <main>
-    <!-- ===== TÀI KHOẢN ===== -->
+    <!-- TÀI KHOẢN -->
     <div class="page" id="page-account">
       <div class="page-title">👤 Tài khoản</div>
       <div class="panel">
@@ -1506,7 +1346,7 @@ main {
       </div>
     </div>
 
-    <!-- ===== NẠP TIỀN ===== -->
+    <!-- NẠP TIỀN -->
     <div class="page" id="page-deposit">
       <div class="page-title">💳 Nạp tiền + Thẻ Car</div>
 
@@ -1559,7 +1399,7 @@ main {
       </div>
     </div>
 
-    <!-- ===== LỊCH SỬ ===== -->
+    <!-- LỊCH SỬ -->
     <div class="page" id="page-history">
       <div class="page-title">📜 Lịch sử All</div>
       <div class="subtabs">
@@ -1570,13 +1410,13 @@ main {
       <div class="panel" id="histBox"></div>
     </div>
 
-    <!-- ===== HACK IOS ===== -->
+    <!-- HACK IOS -->
     <div class="page" id="page-hackios">
       <div class="page-title">📱 HACK - All IOS</div>
       <div class="grid" id="iosGrid"></div>
     </div>
 
-    <!-- ===== HACK ADR ===== -->
+    <!-- HACK ADR -->
     <div class="page" id="page-hackadr">
       <div class="page-title">🤖 HACK - All ADR + FREE</div>
       <div class="panel green">
@@ -1594,7 +1434,7 @@ main {
       </div>
     </div>
 
-    <!-- ===== ESGIN ===== -->
+    <!-- ESGIN -->
     <div class="page" id="page-esgin">
       <div class="page-title">🔑 Esgin = IOS</div>
       <div class="grid" id="esginGrid"></div>
@@ -1604,15 +1444,12 @@ main {
           Tải app cho iOS gọi tắt là <b style="color:#ffe600">IPA</b>. Khi có Esgin sẽ hỗ trợ được rất nhiều cho người dùng,
           kể cả hack FF và hỗ trợ nhiều app khác khi có IPA.<br><br>
           <b style="color:#00ff88">Phần không bảo hành và có bảo hành:</b> Khi có bảo hành, Esgin lỗi hoặc không dùng được
-          vui lòng liên hệ để được đổi Esgin mới — <b style="color:#ff00e0">lỗi 1 đổi 1</b>.<br><br>
-          Cách mua cũng giống chỗ hack, nhưng khi mua xong sẽ thông báo
-          <b style="color:#ffe600">"Chức mừng bạn đã mua hàng thành công 🎉"</b>.
-          Vui lòng qua phần <b style="color:#00f0ff">Hỗ trợ</b> để nhận.
+          vui lòng liên hệ để được đổi Esgin mới — <b style="color:#ff00e0">lỗi 1 đổi 1</b>.
         </div>
       </div>
     </div>
 
-    <!-- ===== HỖ TRỢ ===== -->
+    <!-- HỖ TRỢ -->
     <div class="page" id="page-support">
       <div class="page-title">📞 Hỗ trợ</div>
       <div class="panel pink">
@@ -1627,7 +1464,7 @@ main {
       </div>
     </div>
 
-    <!-- ===== GT HACK ===== -->
+    <!-- GT HACK -->
     <div class="page" id="page-guide">
       <div class="page-title">⚡ GT HACK IOS + ADR</div>
       <div class="panel gold">
@@ -1642,7 +1479,7 @@ main {
       </div>
     </div>
 
-    <!-- ===== ĐÁNH GIÁ ===== -->
+    <!-- ĐÁNH GIÁ -->
     <div class="page" id="page-review">
       <div class="page-title">⭐ Đánh giá</div>
       <div class="panel gold">
@@ -1664,9 +1501,7 @@ main {
   </main>
 </div>
 
-<!-- ============================================================
-     ADMIN MODAL
-     ============================================================ -->
+<!-- ADMIN MODAL -->
 <div id="adminModal">
   <div class="auth-box" style="border-color:rgba(255,0,224,.5);box-shadow:0 0 50px rgba(255,0,224,.35)">
     <div class="auth-title" style="background:linear-gradient(90deg,#ff00e0,#ffe600);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">
@@ -1683,9 +1518,7 @@ main {
   </div>
 </div>
 
-<!-- ============================================================
-     ADMIN PANEL
-     ============================================================ -->
+<!-- ADMIN PANEL -->
 <div id="adminPanel">
   <div class="admin-head">
     <h2>⚙️ BẢNG ĐIỀU KHIỂN ADMIN</h2>
@@ -1723,9 +1556,7 @@ main {
 
 <div id="toast"></div>
 
-<!-- ============================================================
-     LOADING % SCRIPT (chạy độc lập, không phụ thuộc gì)
-     ============================================================ -->
+<!-- LOADING % SCRIPT -->
 <script>
 (function () {
   try {
@@ -1751,25 +1582,17 @@ main {
         var idx = Math.min(Math.floor(p / 18), 5);
         st.textContent = msgs[idx] + '...';
       }
-      if (p >= 100) {
-        clearInterval(iv);
-      }
+      if (p >= 100) clearInterval(iv);
     }, 70);
-  } catch (e) {
-    console.error('Loading error:', e);
-  }
+  } catch (e) {}
 })();
 </script>
 
-<!-- ============================================================
-     FIREBASE SDK
-     ============================================================ -->
+<!-- FIREBASE SDK -->
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 
-<!-- ============================================================
-     MAIN APP SCRIPT
-     ============================================================ -->
+<!-- MAIN APP -->
 <script>
 try {
 
@@ -1830,7 +1653,6 @@ try {
       resize();
       addEventListener('resize', resize);
 
-      // Tạo 500 ngôi sao trắng
       for (var i = 0; i < 500; i++) {
         stars.push({
           x: Math.random() * W,
@@ -1841,7 +1663,6 @@ try {
         });
       }
 
-      // Tạo sao băng trắng liên tục (nhiều)
       function spawnMeteor() {
         if (meteors.length < 22 && Math.random() < 0.85) {
           meteors.push({
@@ -1860,7 +1681,6 @@ try {
       function loop() {
         x.clearRect(0, 0, W, H);
 
-        // Vẽ sao
         for (var i = 0; i < stars.length; i++) {
           var s = stars[i];
           s.a += s.s;
@@ -1874,7 +1694,6 @@ try {
 
         x.globalAlpha = 1;
 
-        // Vẽ sao băng trắng
         for (var j = meteors.length - 1; j >= 0; j--) {
           var m = meteors[j];
           var tx = m.x - Math.cos(m.ang) * m.len;
@@ -1899,9 +1718,7 @@ try {
           m.x += Math.cos(m.ang) * m.sp;
           m.y += Math.sin(m.ang) * m.sp;
 
-          if (m.y > H + 220 || m.x > W + 300) {
-            meteors.splice(j, 1);
-          }
+          if (m.y > H + 220 || m.x > W + 300) meteors.splice(j, 1);
         }
 
         requestAnimationFrame(loop);
@@ -1954,15 +1771,8 @@ try {
         }
       });
 
-      bgMusic.addEventListener('play', function () {
-        playing = true;
-        upMusicUI();
-      });
-
-      bgMusic.addEventListener('pause', function () {
-        playing = false;
-        upMusicUI();
-      });
+      bgMusic.addEventListener('play', function () { playing = true; upMusicUI(); });
+      bgMusic.addEventListener('pause', function () { playing = false; upMusicUI(); });
 
       bgMusic.addEventListener('error', function () {
         toast('⚠️ Không tải được nhạc. Kiểm tra lại link!', true);
@@ -2020,10 +1830,7 @@ try {
       playing = false;
       upMusicUI();
     } else {
-      if (!bgMusic.src && curTrack >= 0) {
-        bgMusic.src = TRACKS[curTrack].src;
-      }
-
+      if (!bgMusic.src && curTrack >= 0) bgMusic.src = TRACKS[curTrack].src;
       bgMusic.play().then(function () {
         playing = true;
         upMusicUI();
@@ -2049,21 +1856,16 @@ try {
     }
   }
 
-  // Đóng panel nhạc khi bấm ra ngoài
   document.addEventListener('click', function (e) {
     var p = document.getElementById('musicPanel');
     var w = document.querySelector('.music-wrap');
-    if (p && p.classList.contains('show') && w && !w.contains(e.target)) {
-      p.classList.remove('show');
-    }
+    if (p && p.classList.contains('show') && w && !w.contains(e.target)) p.classList.remove('show');
   });
 
   /* ==========================================================
      HÀM TIỆN ÍCH
      ========================================================== */
-  function fmt(n) {
-    return Number(n || 0).toLocaleString('vi-VN') + 'đ';
-  }
+  function fmt(n) { return Number(n || 0).toLocaleString('vi-VN') + 'đ'; }
 
   function rand(len) {
     var s = '';
@@ -2071,13 +1873,9 @@ try {
     return s;
   }
 
-  function now() {
-    return Date.now();
-  }
+  function now() { return Date.now(); }
 
-  function timeStr(t) {
-    return new Date(t).toLocaleString('vi-VN');
-  }
+  function timeStr(t) { return new Date(t).toLocaleString('vi-VN'); }
 
   var toastT;
   function toast(msg, err) {
@@ -2085,17 +1883,12 @@ try {
     t.textContent = msg;
     t.className = err ? 'show err' : 'show';
     clearTimeout(toastT);
-    toastT = setTimeout(function () {
-      t.className = '';
-    }, 3200);
+    toastT = setTimeout(function () { t.className = ''; }, 3500);
   }
 
   function getS() {
-    try {
-      return JSON.parse(localStorage.getItem('ff_session'));
-    } catch (e) {
-      return null;
-    }
+    try { return JSON.parse(localStorage.getItem('ff_session')); }
+    catch (e) { return null; }
   }
 
   function setS(v) {
@@ -2138,7 +1931,6 @@ try {
     });
   }
 
-  // Load dữ liệu ban đầu
   if (db) {
     db.ref('/').once('value').then(function (s) {
       var d = s.val() || {};
@@ -2171,13 +1963,21 @@ try {
     m.className = 'msg ' + (ok ? 'ok' : 'err');
   }
 
+  /* ==========================================================
+     KIỂM TRA PHIÊN ĐĂNG NHẬP (12 GIỜ)
+     ========================================================== */
   function bootAuth() {
     var s = getS();
+
+    // Nếu có phiên đăng nhập còn hạn (< 12 giờ) → vào thẳng nick
     if (s && s.user && s.exp > now() && DB.users[s.user]) {
       document.getElementById('auth').style.display = 'none';
+      document.getElementById('app').style.display = 'block';
       enterApp(s.user);
       return;
     }
+
+    // Phiên hết hạn hoặc không có → yêu cầu đăng nhập lại
     if (s) setS(null);
     document.getElementById('auth').style.display = 'flex';
   }
@@ -2211,9 +2011,7 @@ try {
         document.getElementById('rgUser').value = '';
         document.getElementById('rgPass').value = '';
         document.getElementById('rgPass2').value = '';
-        setTimeout(function () {
-          switchTab('login');
-        }, 1100);
+        setTimeout(function () { switchTab('login'); }, 1100);
       }).catch(function (e) {
         aMsg('❌ Lỗi: ' + e.message);
       });
@@ -2235,7 +2033,10 @@ try {
       if (!user) return aMsg('❌ Tài khoản không tồn tại!');
       if (user.password !== p) return aMsg('❌ Mật khẩu không đúng!');
 
-      setS({ user: u, exp: now() + 12 * 60 * 60 * 1000 });
+      // LƯU PHIÊN 12 GIỜ — tải lại trang vẫn vào thẳng nick
+      var sessionExp = now() + 12 * 60 * 60 * 1000;
+      setS({ user: u, exp: sessionExp });
+
       aMsg('✅ Đăng nhập thành công!', true);
 
       setTimeout(function () {
@@ -2243,6 +2044,7 @@ try {
         document.getElementById('lgUser').value = '';
         document.getElementById('lgPass').value = '';
         document.getElementById('authMsg').className = 'msg';
+        document.getElementById('app').style.display = 'block';
         enterApp(u);
       }, 520);
     }).catch(function (e) {
@@ -2273,9 +2075,7 @@ try {
     navigate('account');
   }
 
-  function uObj() {
-    return DB.users[CUR] || {};
-  }
+  function uObj() { return DB.users[CUR] || {}; }
 
   function upUI() {
     var u = uObj();
@@ -2433,6 +2233,9 @@ try {
       '</div>';
   }
 
+  /* ==========================================================
+     MUA HÀNG
+     ========================================================== */
   window.__buy = function (name, plan, price) {
     var u = uObj();
 
@@ -2472,7 +2275,9 @@ try {
       db.ref('orders').set(o);
 
       upUI();
-      toast('🎉 Chức mừng bạn đã mua hàng thành công! Chờ 1-5 phút để admin xử lý.');
+
+      // THÔNG BÁO MUA HÀNG THÀNH CÔNG
+      toast('🎉 Chức mừng bạn đã mua hàng thành công! Vui lòng liên hệ phần hỗ trợ để nhận.');
     }).catch(function (e) {
       toast('❌ Lỗi: ' + e.message, true);
     });
@@ -2736,9 +2541,7 @@ try {
   /* ==========================================================
      LINKS
      ========================================================== */
-  function openLink(u) {
-    window.open(u, '_blank');
-  }
+  function openLink(u) { window.open(u, '_blank'); }
 
   /* ==========================================================
      ADMIN GATE
@@ -2747,9 +2550,7 @@ try {
     document.getElementById('adminModal').classList.add('show');
     document.getElementById('adminPass').value = '';
     document.getElementById('adminMsg').className = 'msg';
-    setTimeout(function () {
-      document.getElementById('adminPass').focus();
-    }, 120);
+    setTimeout(function () { document.getElementById('adminPass').focus(); }, 120);
   }
 
   function closeAdminGate() {
@@ -2830,7 +2631,6 @@ try {
     } else {
       for (var b = 0; b < DB.deposits.length; b++) {
         var d = DB.deposits[b];
-
         var info = d.type === 'QR'
           ? '🏦 QR — Nội dung: <b style="color:#ffe600">' + d.code + '</b> — Số tiền: <b style="color:#00ff88">' + fmt(d.amount) + '</b>'
           : '💳 Thẻ ' + d.cardType + ' — Mệnh giá ' + fmt(d.amount) + ' → nhận <b style="color:#00ff88">' + fmt(d.receive) + '</b><br>Mã thẻ: <b style="color:#ff00e0">' + d.cardCode + '</b> • Seri: <b style="color:#ff00e0">' + d.cardSeri + '</b>';
@@ -2999,13 +2799,10 @@ try {
 
 } catch (err) {
   console.error('LỖI KHỞI TẠO:', err);
-
   var l = document.getElementById('loading');
   if (l) l.style.display = 'none';
-
   var a = document.getElementById('auth');
   if (a) a.style.display = 'flex';
-
   var m = document.getElementById('authMsg');
   if (m) {
     m.textContent = '⚠️ Lỗi tải web. Vui lòng tải lại trang.';
