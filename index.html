@@ -43,12 +43,9 @@ html, body {
   background: #05060f !important;
 }
 
-/* ============================================================
-   BODY VỚI ẢNH NỀN 3D CHUYỂN ĐỘNG (RÕ HƠN)
-   ============================================================ */
 body {
   font-family: 'Segoe UI', system-ui, -apple-system, Roboto, sans-serif;
-  background: #05060f !important;
+  background: transparent !important;
   color: #e9f6ff !important;
   min-height: 100vh;
   overflow-x: hidden;
@@ -57,57 +54,30 @@ body {
   position: relative;
 }
 
-/* ===== ẢNH NỀN 3D — RÕ HƠN, ZOOM + XOAY NHẸ ===== */
-body::before {
-  content: '';
-  position: fixed;
-  top: -80px;
-  left: -80px;
-  right: -80px;
-  bottom: -80px;
-  z-index: -3;
-  background: url('https://raw.githubusercontent.com/proxyvipivn/Shop-blox-fruit-/main/IMG_8190.jpeg') center center / cover no-repeat;
-  animation: bg3D 30s ease-in-out infinite;
-  pointer-events: none;
-  will-change: transform;
-  transform-origin: center center;
-  /* Tăng độ sáng/tương phản cho ảnh rõ hơn */
-  filter: brightness(1.1) contrast(1.05);
-}
-
-/* Lớp phủ mờ NHẸ để thấy ảnh rõ hơn nhưng vẫn đọc được chữ */
-body::after {
-  content: '';
+/* ============================================================
+   ẢNH NỀN — THU NHỎ VỪA MÀN HÌNH, THẤY TOÀN BỘ ẢNH
+   ============================================================ */
+#bg-wallpaper {
   position: fixed;
   inset: 0;
-  z-index: -2;
-  background: linear-gradient(180deg,
-    rgba(5, 6, 15, 0.25) 0%,
-    rgba(5, 6, 15, 0.4) 50%,
-    rgba(5, 6, 15, 0.6) 100%);
+  z-index: -3;
+  background-image: url('https://raw.githubusercontent.com/proxyvipivn/Shop-blox-fruit-/main/IMG_8190.jpeg');
+  background-color: #0a0d1f;
+  background-position: center center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   pointer-events: none;
 }
 
-@keyframes bg3D {
-  0%, 100% {
-    transform: scale(1.02) translate(0, 0) rotate(0deg);
-  }
-  25% {
-    transform: scale(1.12) translate(-1%, -1.5%) rotate(0.5deg);
-  }
-  50% {
-    transform: scale(1.18) translate(1%, -2%) rotate(-0.5deg);
-  }
-  75% {
-    transform: scale(1.12) translate(-1.5%, 1%) rotate(0.5deg);
-  }
-}
-
-/* CANVAS SAO BĂNG — TRONG SUỐT, NẰM TRÊN ẢNH */
+/* ============================================================
+   CANVAS SAO BĂNG + SAO LUNG LINH
+   NẰM TRÊN TẤT CẢ (z-index 9990)
+   ============================================================ */
 #stars {
   position: fixed;
   inset: 0;
-  z-index: 0;
+  z-index: 9990;
   pointer-events: none;
   background: transparent !important;
 }
@@ -118,7 +88,7 @@ body::after {
 }
 
 ::-webkit-scrollbar { width: 8px; height: 8px; }
-::-webkit-scrollbar-track { background: #0a0d1f; }
+::-webkit-scrollbar-track { background: rgba(10, 13, 31, 0.6); }
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(180deg, var(--neon1), var(--neon2));
   border-radius: 8px;
@@ -225,16 +195,16 @@ body::after {
 
 .auth-box {
   width: min(430px, 94vw);
-  background: var(--card) !important;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: rgba(15, 18, 40, 0.5) !important;
+  backdrop-filter: blur(16px) saturate(1.3);
+  -webkit-backdrop-filter: blur(16px) saturate(1.3);
   border: 1px solid var(--line);
   border-radius: 22px;
   padding: 26px 22px;
   box-shadow:
     0 0 40px rgba(0, 240, 255, 0.22),
     0 0 90px rgba(255, 0, 224, 0.13),
-    inset 0 0 40px rgba(0, 0, 0, 0.5);
+    inset 0 0 40px rgba(0, 0, 0, 0.35);
   color: #e9f6ff !important;
 }
 
@@ -331,7 +301,7 @@ body::after {
 .field textarea:focus {
   border-color: var(--neon1);
   box-shadow: 0 0 0 3px rgba(0, 240, 255, 0.14), 0 0 18px rgba(0, 240, 255, 0.3);
-  background: rgba(0, 0, 0, 0.7) !important;
+  background: rgba(0, 0, 0, 0.75) !important;
 }
 
 .field select option {
@@ -391,20 +361,20 @@ body::after {
 
 .msg.err {
   display: block;
-  background: rgba(255, 0, 60, 0.14) !important;
+  background: rgba(255, 0, 60, 0.2) !important;
   border: 1px solid rgba(255, 0, 60, 0.5);
   color: #ff7d96 !important;
 }
 
 .msg.ok {
   display: block;
-  background: rgba(0, 255, 136, 0.12) !important;
+  background: rgba(0, 255, 136, 0.18) !important;
   border: 1px solid rgba(0, 255, 136, 0.5);
   color: #6affb8 !important;
 }
 
 /* ============================================================
-   HEADER
+   HEADER (có backdrop-filter → ảnh nền mờ phía sau)
    ============================================================ */
 header {
   position: sticky;
@@ -414,9 +384,9 @@ header {
   align-items: center;
   gap: 10px;
   padding: 12px 14px;
-  background: rgba(6, 8, 22, 0.85) !important;
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  background: rgba(6, 8, 22, 0.55) !important;
+  backdrop-filter: blur(18px) saturate(1.4);
+  -webkit-backdrop-filter: blur(18px) saturate(1.4);
   border-bottom: 1px solid var(--line);
   box-shadow: 0 0 26px rgba(0, 240, 255, 0.18);
 }
@@ -483,6 +453,8 @@ header {
   border-radius: 30px;
   flex: 0 0 auto;
   background: linear-gradient(90deg, rgba(0, 255, 136, 0.16), rgba(0, 240, 255, 0.16)) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(0, 255, 136, 0.45);
   font-weight: 900;
   font-size: 12.5px;
@@ -567,15 +539,15 @@ header {
   top: 56px;
   right: 0;
   width: min(280px, 86vw);
-  background: linear-gradient(160deg, rgba(15, 18, 40, 0.98), rgba(8, 10, 25, 0.98));
+  background: rgba(15, 18, 40, 0.75) !important;
+  backdrop-filter: blur(18px) saturate(1.4);
+  -webkit-backdrop-filter: blur(18px) saturate(1.4);
   border: 1px solid rgba(255, 182, 193, 0.5);
   border-radius: 16px;
   padding: 12px;
   box-shadow: 0 8px 40px rgba(0, 0, 0, 0.9), 0 0 40px rgba(255, 182, 193, 0.25);
   display: none;
   z-index: 200;
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
   animation: musicSlide 0.25s ease;
 }
 
@@ -696,9 +668,9 @@ header {
 .overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.65) !important;
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
+  background: rgba(0, 0, 0, 0.6) !important;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   z-index: 200;
   opacity: 0;
   pointer-events: none;
@@ -714,9 +686,9 @@ header {
   height: 100%;
   width: min(310px, 84vw);
   z-index: 201;
-  background: linear-gradient(180deg, rgba(10, 14, 36, 0.98), rgba(7, 9, 26, 0.98)) !important;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: rgba(10, 14, 36, 0.75) !important;
+  backdrop-filter: blur(22px) saturate(1.4);
+  -webkit-backdrop-filter: blur(22px) saturate(1.4);
   border-right: 1px solid var(--line);
   transform: translateX(-105%);
   transition: 0.32s cubic-bezier(0.3, 0.8, 0.3, 1);
@@ -755,7 +727,7 @@ header {
   margin: 14px;
   padding: 13px;
   border-radius: 14px;
-  background: rgba(0, 0, 0, 0.5) !important;
+  background: rgba(0, 0, 0, 0.4) !important;
   border: 1px solid var(--line);
   font-size: 12px;
   color: #9fc9e6 !important;
@@ -842,25 +814,26 @@ main {
   display: flex;
   align-items: center;
   gap: 9px;
-  background: text linear-gradient(90deg, var(--neon1), var(--neon3), var(--neon2));
+  background: linear-gradient(90deg, var(--neon1), var(--neon3), var(--neon2));
   background-size: 200% 100%;
-  -;
-webkit-background-clip: text;
-  background-clip:  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
   color: transparent;
   animation: shine 4s linear infinite;
   filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.9));
 }
 
+/* PANEL — backdrop-filter để làm mờ ảnh nền phía sau */
 .panel {
-  background: rgba(15, 18, 40, 0.75) !important;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(15, 18, 40, 0.45) !important;
+  backdrop-filter: blur(16px) saturate(1.3);
+  -webkit-backdrop-filter: blur(16px) saturate(1.3);
   border: 1px solid var(--line);
   border-radius: 18px;
   padding: 16px;
   margin-bottom: 14px;
-  box-shadow: 0 0 28px rgba(0, 240, 255, 0.12), inset 0 0 30px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 0 28px rgba(0, 240, 255, 0.12), inset 0 0 30px rgba(0, 0, 0, 0.2);
   color: #e9f6ff !important;
 }
 
@@ -881,7 +854,7 @@ webkit-background-clip: text;
 
 .hint {
   font-size: 12px;
-  color: #8fb6d6 !important;
+  color: #c8ddf0 !important;
   line-height: 1.65;
 }
 
@@ -891,8 +864,11 @@ webkit-background-clip: text;
   gap: 14px;
 }
 
+/* PRODUCT — backdrop-filter mờ ảnh nền */
 .prod {
-  background: linear-gradient(160deg, rgba(20, 24, 55, 0.9), rgba(10, 12, 30, 0.9)) !important;
+  background: rgba(15, 18, 40, 0.55) !important;
+  backdrop-filter: blur(16px) saturate(1.3);
+  -webkit-backdrop-filter: blur(16px) saturate(1.3);
   border: 1px solid var(--line);
   border-radius: 18px;
   overflow: hidden;
@@ -930,7 +906,7 @@ webkit-background-clip: text;
 
 .prod-desc {
   font-size: 11.6px;
-  color: #8fb6d6 !important;
+  color: #a8c4d8 !important;
   line-height: 1.6;
   margin-bottom: 11px;
   white-space: pre-line;
@@ -945,7 +921,9 @@ webkit-background-clip: text;
   gap: 8px;
   padding: 9px 11px;
   border-radius: 11px;
-  background: rgba(0, 0, 0, 0.5) !important;
+  background: rgba(0, 0, 0, 0.45) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border: 1px solid rgba(0, 240, 255, 0.18);
   transition: 0.22s;
 }
@@ -986,6 +964,8 @@ webkit-background-clip: text;
   font-size: 12.4px;
   font-weight: 800;
   background: rgba(0, 0, 0, 0.5) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border: 1px solid var(--line);
   color: #8fb6d6 !important;
   transition: 0.22s;
@@ -1001,7 +981,9 @@ webkit-background-clip: text;
 .item {
   padding: 12px;
   border-radius: 14px;
-  background: rgba(0, 0, 0, 0.5) !important;
+  background: rgba(0, 0, 0, 0.45) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(0, 240, 255, 0.16);
   margin-bottom: 9px;
   font-size: 12.4px;
@@ -1015,7 +997,7 @@ webkit-background-clip: text;
 
 .item .l { flex: 1; min-width: 180px; }
 .item .l b { color: var(--neon1) !important; font-size: 13px; display: block; margin-bottom: 4px; }
-.item .l small { color: #8fb6d6 !important; display: block; line-height: 1.6; }
+.item .l small { color: #a8c4d8 !important; display: block; line-height: 1.6; }
 
 .badge {
   padding: 5px 11px;
@@ -1027,21 +1009,21 @@ webkit-background-clip: text;
 }
 
 .badge.wait {
-  background: rgba(255, 230, 0, 0.15) !important;
+  background: rgba(255, 230, 0, 0.2) !important;
   border: 1px solid rgba(255, 230, 0, 0.6);
   color: #ffe600 !important;
   box-shadow: 0 0 14px rgba(255, 230, 0, 0.3);
 }
 
 .badge.done {
-  background: rgba(0, 255, 136, 0.15) !important;
+  background: rgba(0, 255, 136, 0.2) !important;
   border: 1px solid rgba(0, 255, 136, 0.6);
   color: #6affb8 !important;
   box-shadow: 0 0 14px rgba(0, 255, 136, 0.3);
 }
 
 .badge.cancel {
-  background: rgba(255, 0, 60, 0.15) !important;
+  background: rgba(255, 0, 60, 0.2) !important;
   border: 1px solid rgba(255, 0, 60, 0.6);
   color: #ff7d96 !important;
 }
@@ -1049,7 +1031,7 @@ webkit-background-clip: text;
 .empty {
   text-align: center;
   padding: 32px 14px;
-  color: #5f87a8 !important;
+  color: #8ba7bd !important;
   font-size: 13px;
 }
 
@@ -1092,9 +1074,9 @@ webkit-background-clip: text;
   align-items: center;
   gap: 12px;
   padding: 13px 14px;
-  background: rgba(10, 0, 25, 0.94) !important;
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  background: rgba(10, 0, 25, 0.9) !important;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
   border-bottom: 1px solid rgba(255, 0, 224, 0.4);
   box-shadow: 0 0 30px rgba(255, 0, 224, 0.25);
 }
@@ -1207,7 +1189,9 @@ webkit-background-clip: text;
   font-size: 13px;
   line-height: 2;
   text-align: left;
-  background: rgba(0, 0, 0, 0.6) !important;
+  background: rgba(0, 0, 0, 0.55) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   padding: 14px;
   border-radius: 14px;
   border: 1px solid var(--line);
@@ -1230,6 +1214,8 @@ webkit-background-clip: text;
   font-size: 12px;
   font-weight: 700;
   background: rgba(255, 230, 0, 0.15) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 230, 0, 0.45);
   color: #ffe600 !important;
   text-align: center;
@@ -1253,6 +1239,10 @@ webkit-background-clip: text;
 </head>
 <body>
 
+<!-- ẢNH NỀN -->
+<div id="bg-wallpaper"></div>
+
+<!-- CANVAS SAO BĂNG + SAO LUNG LINH (nằm trên tất cả) -->
 <canvas id="stars"></canvas>
 
 <!-- LOADING -->
@@ -1685,15 +1675,15 @@ try {
   var IMG = 'https://raw.githubusercontent.com/proxyvipivn/Shop-blox-fruit-/main/';
 
   /* ==========================================================
-     SAO BĂNG ĐẸP — ĐUÔI DÀI, HẠT SÁNG, GLOW MẠNH
+     SAO BĂNG NHANH ĐẸP + SAO LUNG LINH NHẸ
      ========================================================== */
   (function () {
     try {
       var c = document.getElementById('stars');
       var x = c.getContext('2d');
       var W, H;
+      var starList = [];
       var meteors = [];
-      var sparkles = [];
 
       function resize() {
         W = c.width = innerWidth;
@@ -1703,20 +1693,31 @@ try {
       resize();
       addEventListener('resize', resize);
 
-      /* Tạo sao băng đẹp hơn */
+      /* SAO LUNG LINH NHẸ — 80 ngôi sao nhỏ, lấp lánh từ từ */
+      for (var i = 0; i < 80; i++) {
+        starList.push({
+          x: Math.random() * W,
+          y: Math.random() * H,
+          r: Math.random() * 1.1 + 0.4,
+          baseAlpha: Math.random() * 0.4 + 0.4,
+          phase: Math.random() * Math.PI * 2,
+          speed: Math.random() * 0.02 + 0.01
+        });
+      }
+
+      /* SAO BĂNG — ít hơn (max 6), nhanh hơn, đẹp hơn */
       function spawnMeteor() {
-        if (meteors.length < 22 && Math.random() < 0.9) {
+        if (meteors.length < 6 && Math.random() < 0.7) {
           meteors.push({
-            x: Math.random() * W * 1.3 - W * 0.15,
-            y: -80,
-            len: Math.random() * 250 + 160,      // đuôi dài hơn
-            sp: Math.random() * 14 + 10,           // nhanh hơn
+            x: Math.random() * W * 1.4 - W * 0.2,
+            y: -100,
+            len: Math.random() * 220 + 180,
+            sp: Math.random() * 12 + 18,      // TỐC ĐỘ NHANH: 18-30
             ang: Math.PI / 3.5 + (Math.random() * 0.32 - 0.16),
-            width: Math.random() * 1.4 + 2.2,      // độ dày khác nhau
-            life: 1
+            width: Math.random() * 1.2 + 2
           });
         }
-        setTimeout(spawnMeteor, Math.random() * 120 + 40);
+        setTimeout(spawnMeteor, Math.random() * 500 + 400);  // spawn chậm hơn
       }
 
       spawnMeteor();
@@ -1724,24 +1725,41 @@ try {
       function loop() {
         x.clearRect(0, 0, W, H);
 
-        /* Vẽ sao băng đẹp */
+        /* ==== VẼ SAO LUNG LINH NHẸ ==== */
+        for (var i = 0; i < starList.length; i++) {
+          var s = starList[i];
+          s.phase += s.speed;
+          var alpha = s.baseAlpha * (0.4 + 0.6 * (Math.sin(s.phase) * 0.5 + 0.5));
+
+          x.globalAlpha = alpha;
+          x.shadowBlur = 4;
+          x.shadowColor = 'rgba(255, 255, 255, 0.5)';
+          x.fillStyle = '#ffffff';
+          x.beginPath();
+          x.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+          x.fill();
+        }
+        x.globalAlpha = 1;
+        x.shadowBlur = 0;
+
+        /* ==== VẼ SAO BĂNG ==== */
         for (var j = meteors.length - 1; j >= 0; j--) {
           var m = meteors[j];
           var tx = m.x - Math.cos(m.ang) * m.len;
           var ty = m.y - Math.sin(m.ang) * m.len;
 
-          /* ĐUÔI SAO BĂNG — gradient trắng sáng */
+          /* Đuôi gradient đẹp */
           var g = x.createLinearGradient(m.x, m.y, tx, ty);
           g.addColorStop(0, '#ffffff');
-          g.addColorStop(0.15, 'rgba(200, 240, 255, 0.9)');
-          g.addColorStop(0.4, 'rgba(150, 200, 255, 0.55)');
-          g.addColorStop(0.7, 'rgba(100, 160, 255, 0.2)');
+          g.addColorStop(0.18, 'rgba(220, 240, 255, 0.95)');
+          g.addColorStop(0.45, 'rgba(150, 200, 255, 0.5)');
+          g.addColorStop(0.75, 'rgba(100, 160, 255, 0.15)');
           g.addColorStop(1, 'transparent');
 
           x.strokeStyle = g;
           x.lineWidth = m.width;
           x.lineCap = 'round';
-          x.shadowBlur = 25;
+          x.shadowBlur = 20;
           x.shadowColor = '#ffffff';
           x.beginPath();
           x.moveTo(m.x, m.y);
@@ -1749,33 +1767,21 @@ try {
           x.stroke();
           x.shadowBlur = 0;
 
-          /* ĐẦU SAO BĂNG — hạt sáng tròn */
-          var headGrad = x.createRadialGradient(m.x, m.y, 0, m.x, m.y, 8);
-          headGrad.addColorStop(0, '#ffffff');
-          headGrad.addColorStop(0.4, 'rgba(255, 255, 255, 0.9)');
-          headGrad.addColorStop(1, 'rgba(150, 200, 255, 0)');
-          x.fillStyle = headGrad;
+          /* Đầu sao băng — hạt sáng */
+          var hg = x.createRadialGradient(m.x, m.y, 0, m.x, m.y, 7);
+          hg.addColorStop(0, '#ffffff');
+          hg.addColorStop(0.4, 'rgba(255, 255, 255, 0.85)');
+          hg.addColorStop(1, 'rgba(150, 200, 255, 0)');
+          x.fillStyle = hg;
           x.beginPath();
-          x.arc(m.x, m.y, 8, 0, Math.PI * 2);
+          x.arc(m.x, m.y, 7, 0, Math.PI * 2);
           x.fill();
-
-          /* HẠT SÁNG NHỎ Ở ĐUÔI */
-          for (var k = 0; k < 3; k++) {
-            var t = 0.2 + Math.random() * 0.5;
-            var px = m.x - Math.cos(m.ang) * m.len * t;
-            var py = m.y - Math.sin(m.ang) * m.len * t;
-            x.fillStyle = 'rgba(255, 255, 255, ' + (0.3 + Math.random() * 0.5) + ')';
-            x.beginPath();
-            x.arc(px + (Math.random() - 0.5) * 6, py + (Math.random() - 0.5) * 6,
-                  Math.random() * 1.5 + 0.5, 0, Math.PI * 2);
-            x.fill();
-          }
 
           /* Di chuyển */
           m.x += Math.cos(m.ang) * m.sp;
           m.y += Math.sin(m.ang) * m.sp;
 
-          if (m.y > H + 250 || m.x > W + 350) meteors.splice(j, 1);
+          if (m.y > H + 300 || m.x > W + 400) meteors.splice(j, 1);
         }
 
         requestAnimationFrame(loop);
@@ -1783,7 +1789,7 @@ try {
 
       loop();
     } catch (e) {
-      console.error('Meteors error:', e);
+      console.error('Stars error:', e);
     }
   })();
 
