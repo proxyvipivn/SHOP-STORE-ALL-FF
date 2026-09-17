@@ -15,9 +15,7 @@
   --neon2: #ff00e0;
   --neon3: #ffe600;
   --neon4: #00ff88;
-  --bg: #05060f;
-  --card: rgba(15, 18, 40, 0.72);
-  --line: rgba(0, 240, 255, 0.4);
+  --line: rgba(0, 240, 255, 0.5);
 }
 
 html, body {
@@ -40,7 +38,7 @@ html, body {
 body {
   font-family: 'Segoe UI', system-ui, -apple-system, Roboto, sans-serif;
   background: transparent !important;
-  color: #e9f6ff !important;
+  color: #ffffff !important;
   min-height: 100vh;
   overflow-x: hidden;
   -webkit-text-size-adjust: 100%;
@@ -49,12 +47,12 @@ body {
 }
 
 /* ============================================================
-   ẢNH NỀN — PHỦ KÍN, RÕ NÉT, KHÔNG BỊ MỜ
+   ẢNH NỀN — RÕ NÉT, PHỦ KÍN
    ============================================================ */
 #bg-wallpaper {
   position: fixed;
   inset: 0;
-  z-index: -3;
+  z-index: -10;
   background-image: url('https://raw.githubusercontent.com/proxyvipivn/Shop-blox-fruit-/main/IMG_8190.jpeg');
   background-color: #05060f;
   background-position: center center;
@@ -62,12 +60,10 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   pointer-events: none;
-  image-rendering: -webkit-optimize-contrast;
-  image-rendering: crisp-edges;
 }
 
 /* ============================================================
-   CANVAS SAO BĂNG + SAO LUNG LINH (NẰM TRÊN TẤT CẢ)
+   CANVAS SAO — NẰM TRÊN TẤT CẢ
    ============================================================ */
 #stars {
   position: fixed;
@@ -177,7 +173,7 @@ body {
 }
 
 /* ============================================================
-   AUTH — CẦN BLUR ĐỂ ĐỌC FORM
+   AUTH
    ============================================================ */
 #auth {
   display: none;
@@ -189,17 +185,16 @@ body {
 
 .auth-box {
   width: min(430px, 94vw);
-  background: rgba(10, 14, 30, 0.7) !important;
-  backdrop-filter: blur(20px) saturate(1.3);
-  -webkit-backdrop-filter: blur(20px) saturate(1.3);
-  border: 1px solid var(--line);
+  background: rgba(8, 12, 28, 0.35) !important;
+  backdrop-filter: blur(20px) saturate(1.4);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  border: 1px solid rgba(0, 240, 255, 0.5);
   border-radius: 22px;
   padding: 26px 22px;
   box-shadow:
-    0 0 40px rgba(0, 240, 255, 0.22),
-    0 0 90px rgba(255, 0, 224, 0.13),
-    inset 0 0 40px rgba(0, 0, 0, 0.4);
-  color: #e9f6ff !important;
+    0 0 40px rgba(0, 240, 255, 0.3),
+    inset 0 0 40px rgba(0, 0, 0, 0.2);
+  color: #ffffff !important;
 }
 
 .auth-title {
@@ -217,17 +212,17 @@ body {
 
 .auth-sub {
   text-align: center;
-  color: #a8c4d8 !important;
+  color: #d0e4f5 !important;
   font-size: 12px;
   margin-bottom: 18px;
-  letter-spacing: 0.5px;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
 }
 
 .tabs {
   display: flex;
   gap: 8px;
   margin-bottom: 18px;
-  background: rgba(0, 0, 0, 0.4) !important;
+  background: rgba(0, 0, 0, 0.45) !important;
   padding: 5px;
   border-radius: 14px;
 }
@@ -240,7 +235,7 @@ body {
   cursor: pointer;
   font-weight: 800;
   font-size: 14px;
-  color: #a8c4d8 !important;
+  color: #b8d0e0 !important;
   transition: 0.25s;
   border: 1px solid transparent;
   background: transparent !important;
@@ -258,9 +253,10 @@ body {
 .field label {
   display: block;
   font-size: 12px;
-  color: #b8d0e0 !important;
+  color: #d0e4f5 !important;
   margin-bottom: 6px;
   font-weight: 700;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
 }
 
 .field input,
@@ -367,7 +363,7 @@ body {
 }
 
 /* ============================================================
-   HEADER — NỀN TRONG SUỐT, CHỈ BLUR NHẸ
+   HEADER — KÍNH MỜ NHẸ
    ============================================================ */
 header {
   position: sticky;
@@ -377,10 +373,10 @@ header {
   align-items: center;
   gap: 10px;
   padding: 12px 14px;
-  background: rgba(6, 8, 22, 0.5) !important;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--line);
+  background: rgba(8, 12, 28, 0.3) !important;
+  backdrop-filter: blur(14px) saturate(1.4);
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
+  border-bottom: 1px solid rgba(0, 240, 255, 0.4);
   box-shadow: 0 0 26px rgba(0, 240, 255, 0.25);
 }
 
@@ -395,7 +391,9 @@ header {
   gap: 5px;
   cursor: pointer;
   flex: 0 0 auto;
-  background: linear-gradient(135deg, rgba(0, 240, 255, 0.2), rgba(255, 0, 224, 0.2)) !important;
+  background: rgba(8, 12, 28, 0.4) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border: 1px solid var(--line);
   transition: 0.22s;
 }
@@ -429,15 +427,15 @@ header {
   -webkit-text-fill-color: transparent;
   color: transparent;
   animation: shine 4s linear infinite;
-  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.9));
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 1)) drop-shadow(0 0 12px rgba(0, 240, 255, 0.3));
 }
 
 .brand p {
   font-size: 10px;
-  color: #b8d0e0 !important;
+  color: #e0ecf5 !important;
   letter-spacing: 0.4px;
   margin-top: 2px;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 1);
 }
 
 .bal-chip {
@@ -447,13 +445,15 @@ header {
   padding: 8px 12px;
   border-radius: 30px;
   flex: 0 0 auto;
-  background: linear-gradient(90deg, rgba(0, 255, 136, 0.25), rgba(0, 240, 255, 0.25)) !important;
-  border: 1px solid rgba(0, 255, 136, 0.55);
+  background: rgba(0, 255, 136, 0.2) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 255, 136, 0.6);
   font-weight: 900;
   font-size: 12.5px;
   color: #6affb8 !important;
   box-shadow: 0 0 18px rgba(0, 255, 136, 0.4);
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 1);
 }
 
 /* ============================================================
@@ -533,13 +533,13 @@ header {
   top: 56px;
   right: 0;
   width: min(280px, 86vw);
-  background: rgba(10, 14, 30, 0.85) !important;
-  backdrop-filter: blur(20px) saturate(1.4);
-  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  background: rgba(8, 12, 28, 0.55) !important;
+  backdrop-filter: blur(24px) saturate(1.5);
+  -webkit-backdrop-filter: blur(24px) saturate(1.5);
   border: 1px solid rgba(255, 182, 193, 0.6);
   border-radius: 16px;
   padding: 12px;
-  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.9), 0 0 40px rgba(255, 182, 193, 0.3);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.8), 0 0 40px rgba(255, 182, 193, 0.3);
   display: none;
   z-index: 200;
   animation: musicSlide 0.25s ease;
@@ -574,7 +574,7 @@ header {
   cursor: pointer;
   font-size: 12.5px;
   font-weight: 700;
-  color: #bfe0f5 !important;
+  color: #d0e4f5 !important;
   margin-bottom: 5px;
   border: 1px solid transparent;
   transition: 0.18s;
@@ -651,8 +651,9 @@ header {
 .music-note {
   text-align: center;
   font-size: 10.5px;
-  color: #b8d0e0 !important;
+  color: #d0e4f5 !important;
   margin-top: 7px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
 }
 
 /* ============================================================
@@ -661,7 +662,7 @@ header {
 .overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.7) !important;
+  background: rgba(0, 0, 0, 0.65) !important;
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   z-index: 200;
@@ -679,16 +680,16 @@ header {
   height: 100%;
   width: min(310px, 84vw);
   z-index: 201;
-  background: rgba(8, 12, 28, 0.85) !important;
-  backdrop-filter: blur(20px) saturate(1.4);
-  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  background: rgba(6, 10, 24, 0.5) !important;
+  backdrop-filter: blur(24px) saturate(1.5);
+  -webkit-backdrop-filter: blur(24px) saturate(1.5);
   border-right: 1px solid var(--line);
   transform: translateX(-105%);
-  transition: 0.32s cubic-bezier(0.3, 0.8, 0.3, 1);
+  transition: 0.32s cubic-bezier( 0.3, 0.8, 0.3, 1);
   display: flex;
   flex-direction: column;
-  box-shadow: 8px 0 50px rgba(0, 0, 0, 0.85);
-  overflow-y: auto;
+  overflow box-shadow: 8px 0 50px rgba(0, 0, 0, 0.85);
+-y: auto;
   color: #e9f6ff !important;
 }
 
@@ -708,12 +709,14 @@ header {
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 1));
 }
 
 .side-head p {
   font-size: 11px;
-  color: #b8d0e0 !important;
+  color: #d0e4f5 !important;
   margin-top: 4px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
 }
 
 .side-user {
@@ -723,8 +726,9 @@ header {
   background: rgba(0, 0, 0, 0.4) !important;
   border: 1px solid var(--line);
   font-size: 12px;
-  color: #c8ddf0 !important;
+  color: #d0e4f5 !important;
   line-height: 1.7;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
 }
 
 .side-user b { color: #ffffff !important; font-size: 13.5px; }
@@ -742,12 +746,13 @@ header {
   cursor: pointer;
   font-size: 13.6px;
   font-weight: 700;
-  color: #c8ddf0 !important;
+  color: #d0e4f5 !important;
   transition: 0.22s;
   border: 1px solid transparent;
   position: relative;
   overflow: hidden;
-  background: rgba(0, 0, 0, 0.2) !important;
+  background: rgba(0, 0, 0, 0.15) !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
 }
 
 .menu li::before {
@@ -772,7 +777,7 @@ header {
 
 .menu li.active {
   background: linear-gradient(90deg, rgba(0, 240, 255, 0.3), rgba(255, 0, 224, 0.2)) !important;
-  border-color: rgba(0, 240, 255, 0.6);
+  border-color: rgba(0, 240, 255, 0.7);
   color: #fff !important;
   box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
 }
@@ -814,54 +819,57 @@ main {
   -webkit-text-fill-color: transparent;
   color: transparent;
   animation: shine 4s linear infinite;
-  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 1));
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 1)) drop-shadow(0 0 14px rgba(0, 240, 255, 0.4));
 }
 
-/* PANEL — NỀN TRONG SUỐT, CHỈ CÓ VIỀN SÁNG, KHÔNG BLUR */
+/* ============================================================
+   PANEL — KÍNH MỜ NHẸ, ẢNH NỀN HIỆN RÕ QUA
+   ============================================================ */
 .panel {
-  background: rgba(8, 12, 28, 0.35) !important;
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
-  border: 1px solid var(--line);
+  background: rgba(8, 12, 28, 0.22) !important;
+  backdrop-filter: blur(6px) saturate(1.2);
+  -webkit-backdrop-filter: blur(6px) saturate(1.2);
+  border: 1px solid rgba(0, 240, 255, 0.4);
   border-radius: 18px;
   padding: 16px;
   margin-bottom: 14px;
   box-shadow:
-    0 0 28px rgba(0, 240, 255, 0.2),
-    inset 0 0 30px rgba(0, 0, 0, 0.15);
+    0 4px 20px rgba(0, 0, 0, 0.3),
+    0 0 24px rgba(0, 240, 255, 0.15),
+    inset 0 0 30px rgba(0, 0, 0, 0.08);
   color: #e9f6ff !important;
 }
 
 .panel.gold {
   border-color: rgba(255, 230, 0, 0.55);
-  box-shadow: 0 0 28px rgba(255, 230, 0, 0.25), inset 0 0 30px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), 0 0 24px rgba(255, 230, 0, 0.2), inset 0 0 30px rgba(0, 0, 0, 0.08);
 }
 
 .panel.pink {
   border-color: rgba(255, 0, 224, 0.55);
-  box-shadow: 0 0 28px rgba(255, 0, 224, 0.25), inset 0 0 30px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), 0 0 24px rgba(255, 0, 224, 0.2), inset 0 0 30px rgba(0, 0, 0, 0.08);
 }
 
 .panel.green {
   border-color: rgba(0, 255, 136, 0.55);
-  box-shadow: 0 0 28px rgba(0, 255, 136, 0.25), inset 0 0 30px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), 0 0 24px rgba(0, 255, 136, 0.2), inset 0 0 30px rgba(0, 0, 0, 0.08);
 }
 
 .sec-title {
   font-size: 14.5px;
   font-weight: 900;
   margin-bottom: 11px;
-  color: #dff3ff !important;
+  color: #ffffff !important;
   letter-spacing: 0.5px;
   display: flex;
   align-items: center;
   gap: 8px;
-  text-shadow: 0 2px 6px rgba(0, 0, 0, 1);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 1), 0 0 12px rgba(0, 240, 255, 0.3);
 }
 
 .hint {
   font-size: 12px;
-  color: #c8ddf0 !important;
+  color: #e0ecf5 !important;
   line-height: 1.65;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
 }
@@ -872,23 +880,23 @@ main {
   gap: 14px;
 }
 
-/* PRODUCT — NỀN TRONG SUỐT NHẸ */
+/* PRODUCT — KÍNH MỜ NHẸ */
 .prod {
-  background: rgba(8, 12, 28, 0.4) !important;
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
+  background: rgba(8, 12, 28, 0.25) !important;
+  backdrop-filter: blur(6px) saturate(1.2);
+  -webkit-backdrop-filter: blur(6px) saturate(1.2);
   border: 1px solid var(--line);
   border-radius: 18px;
   overflow: hidden;
   transition: 0.28s;
   position: relative;
-  box-shadow: 0 0 22px rgba(0, 240, 255, 0.15);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), 0 0 22px rgba(0, 240, 255, 0.15);
 }
 
 .prod:hover {
   transform: translateY(-5px);
-  border-color: rgba(0, 240, 255, 0.75);
-  box-shadow: 0 0 40px rgba(0, 240, 255, 0.45), 0 0 70px rgba(255, 0, 224, 0.25);
+  border-color: rgba(0, 240, 255, 0.8);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5), 0 0 40px rgba(0, 240, 255, 0.5), 0 0 70px rgba(255, 0, 224, 0.3);
 }
 
 .prod img {
@@ -910,12 +918,12 @@ main {
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
-  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 1));
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 1)) drop-shadow(0 0 12px rgba(0, 240, 255, 0.4));
 }
 
 .prod-desc {
   font-size: 11.6px;
-  color: #c8ddf0 !important;
+  color: #e0ecf5 !important;
   line-height: 1.6;
   margin-bottom: 11px;
   white-space: pre-line;
@@ -931,14 +939,16 @@ main {
   gap: 8px;
   padding: 9px 11px;
   border-radius: 11px;
-  background: rgba(0, 0, 0, 0.45) !important;
-  border: 1px solid rgba(0, 240, 255, 0.25);
+  background: rgba(0, 0, 0, 0.5) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(0, 240, 255, 0.3);
   transition: 0.22s;
 }
 
 .plan:hover { border-color: var(--neon4); box-shadow: 0 0 16px rgba(0, 255, 136, 0.4); }
 
-.plan .lb { font-size: 12.2px; font-weight: 700; color: #cfe9ff !important; }
+.plan .lb { font-size: 12.2px; font-weight: 700; color: #ffffff !important; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9); }
 
 .plan .pr {
   font-size: 12.4px;
@@ -972,9 +982,12 @@ main {
   font-size: 12.4px;
   font-weight: 800;
   background: rgba(0, 0, 0, 0.55) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border: 1px solid var(--line);
-  color: #b8d0e0 !important;
+  color: #d0e4f5 !important;
   transition: 0.22s;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
 }
 
 .subtab.active {
@@ -982,13 +995,16 @@ main {
   color: #001018 !important;
   box-shadow: 0 0 20px rgba(0, 240, 255, 0.6);
   border-color: transparent;
+  text-shadow: none;
 }
 
 .item {
   padding: 12px;
   border-radius: 14px;
-  background: rgba(0, 0, 0, 0.45) !important;
-  border: 1px solid rgba(0, 240, 255, 0.25);
+  background: rgba(0, 0, 0, 0.5) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(0, 240, 255, 0.3);
   margin-bottom: 9px;
   font-size: 12.4px;
   display: flex;
@@ -996,7 +1012,7 @@ main {
   gap: 10px;
   flex-wrap: wrap;
   align-items: center;
-  color: #e9f6ff !important;
+  color: #ffffff !important;
 }
 
 .item .l { flex: 1; min-width: 180px; }
@@ -1005,10 +1021,10 @@ main {
   font-size: 13px;
   display: block;
   margin-bottom: 4px;
-  text-shadow: 0 0 10px rgba(0, 240, 255, 0.4), 0 1px 3px rgba(0, 0, 0, 0.9);
+  text-shadow: 0 0 10px rgba(0, 240, 255, 0.5), 0 1px 3px rgba(0, 0, 0, 0.9);
 }
 .item .l small {
-  color: #c8ddf0 !important;
+  color: #e0ecf5 !important;
   display: block;
   line-height: 1.6;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
@@ -1024,29 +1040,32 @@ main {
 }
 
 .badge.wait {
-  background: rgba(255, 230, 0, 0.25) !important;
-  border: 1px solid rgba(255, 230, 0, 0.7);
+  background: rgba(255, 230, 0, 0.3) !important;
+  border: 1px solid rgba(255, 230, 0, 0.8);
   color: #ffe600 !important;
-  box-shadow: 0 0 14px rgba(255, 230, 0, 0.4);
+  box-shadow: 0 0 14px rgba(255, 230, 0, 0.5);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
 }
 
 .badge.done {
-  background: rgba(0, 255, 136, 0.25) !important;
-  border: 1px solid rgba(0, 255, 136, 0.7);
+  background: rgba(0, 255, 136, 0.3) !important;
+  border: 1px solid rgba(0, 255, 136, 0.8);
   color: #6affb8 !important;
-  box-shadow: 0 0 14px rgba(0, 255, 136, 0.4);
+  box-shadow: 0 0 14px rgba(0, 255, 136, 0.5);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
 }
 
 .badge.cancel {
-  background: rgba(255, 0, 60, 0.25) !important;
-  border: 1px solid rgba(255, 0, 60, 0.7);
+  background: rgba(255, 0, 60, 0.3) !important;
+  border: 1px solid rgba(255, 0, 60, 0.8);
   color: #ff7d96 !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
 }
 
 .empty {
   text-align: center;
   padding: 32px 14px;
-  color: #a8c4d8 !important;
+  color: #d0e4f5 !important;
   font-size: 13px;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
 }
@@ -1206,10 +1225,12 @@ main {
   line-height: 2;
   text-align: left;
   background: rgba(0, 0, 0, 0.55) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   padding: 14px;
   border-radius: 14px;
   border: 1px solid var(--line);
-  color: #e9f6ff !important;
+  color: #ffffff !important;
 }
 
 .bank-info b { color: var(--neon3) !important; }
@@ -1227,10 +1248,13 @@ main {
   border-radius: 12px;
   font-size: 12px;
   font-weight: 700;
-  background: rgba(255, 230, 0, 0.18) !important;
-  border: 1px solid rgba(255, 230, 0, 0.5);
+  background: rgba(255, 230, 0, 0.2) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 230, 0, 0.6);
   color: #ffe600 !important;
   text-align: center;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
 }
 
 /* ============================================================
@@ -1245,19 +1269,15 @@ main {
 }
 
 @media (prefers-color-scheme: light) {
-  html, body { background: #05060f !important; color: #e9f6ff !important; }
+  html, body { background: #05060f !important; color: #ffffff !important; }
 }
 </style>
 </head>
 <body>
 
-<!-- ẢNH NỀN -->
 <div id="bg-wallpaper"></div>
-
-<!-- CANVAS SAO BĂNG + SAO LUNG LINH -->
 <canvas id="stars"></canvas>
 
-<!-- LOADING -->
 <div id="loading">
   <div class="load-logo">SHOP ALL SẢN PHẨM FF – FFMAX</div>
   <div class="load-sub">HỖ TRỢ ADR🤖 và IOS📱</div>
@@ -1268,7 +1288,6 @@ main {
   </div>
 </div>
 
-<!-- AUTH -->
 <div id="auth" class="screen">
   <div class="auth-box">
     <div class="auth-title">SHOP ALL SẢN PHẨM FF – FFMAX</div>
@@ -1278,46 +1297,24 @@ main {
       <div class="tab" id="tabReg" onclick="switchTab('reg')">Đăng ký</div>
     </div>
     <div id="formLogin">
-      <div class="field">
-        <label>Tên tài khoản</label>
-        <input id="lgUser" placeholder="Nhập tên tài khoản" autocomplete="username">
-      </div>
-      <div class="field">
-        <label>Mật khẩu</label>
-        <input id="lgPass" type="password" placeholder="Nhập mật khẩu" autocomplete="current-password">
-      </div>
+      <div class="field"><label>Tên tài khoản</label><input id="lgUser" placeholder="Nhập tên tài khoản" autocomplete="username"></div>
+      <div class="field"><label>Mật khẩu</label><input id="lgPass" type="password" placeholder="Nhập mật khẩu" autocomplete="current-password"></div>
       <button class="btn" onclick="doLogin()">🔓 ĐĂNG NHẬP</button>
     </div>
     <div id="formReg" style="display:none">
-      <div class="field">
-        <label>Tên tài khoản</label>
-        <input id="rgUser" placeholder="Nhập tên tài khoản" autocomplete="off">
-      </div>
-      <div class="field">
-        <label>Mật khẩu</label>
-        <input id="rgPass" type="password" placeholder="Nhập mật khẩu" autocomplete="new-password">
-      </div>
-      <div class="field">
-        <label>Nhập lại mật khẩu</label>
-        <input id="rgPass2" type="password" placeholder="Nhập lại mật khẩu" autocomplete="new-password">
-      </div>
+      <div class="field"><label>Tên tài khoản</label><input id="rgUser" placeholder="Nhập tên tài khoản" autocomplete="off"></div>
+      <div class="field"><label>Mật khẩu</label><input id="rgPass" type="password" placeholder="Nhập mật khẩu" autocomplete="new-password"></div>
+      <div class="field"><label>Nhập lại mật khẩu</label><input id="rgPass2" type="password" placeholder="Nhập lại mật khẩu" autocomplete="new-password"></div>
       <button class="btn pink" onclick="doRegister()">📝 ĐĂNG KÝ</button>
     </div>
     <div class="msg" id="authMsg"></div>
   </div>
 </div>
 
-<!-- APP -->
 <div id="app" class="screen" style="display:none">
   <header>
-    <div class="burger" id="burger" onclick="toggleMenu()">
-      <span></span><span></span><span></span>
-    </div>
-    <div class="brand">
-      <h1>SHOP All SẢN PHẨM FF – FFMAX</h1>
-      <p>HỖ TRỢ ADR🤖 và IOS📱</p>
-    </div>
-
+    <div class="burger" id="burger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+    <div class="brand"><h1>SHOP All SẢN PHẨM FF – FFMAX</h1><p>HỖ TRỢ ADR🤖 và IOS📱</p></div>
     <div class="music-wrap">
       <div class="music-ring"></div>
       <button class="music-btn" id="musicBtn" onclick="toggleMusicPanel(event)">
@@ -1325,36 +1322,18 @@ main {
       </button>
       <div class="music-panel" id="musicPanel" onclick="event.stopPropagation()">
         <div class="music-title">🎵 CHỌN NHẠC NỀN</div>
-        <div class="music-item" data-idx="0" onclick="selectTrack(0)">
-          <span class="mi-ico">♪</span>
-          <span class="mi-name">Remix 1</span>
-          <span class="mi-check">✓</span>
-        </div>
-        <div class="music-item" data-idx="1" onclick="selectTrack(1)">
-          <span class="mi-ico">♪</span>
-          <span class="mi-name">Remix 2</span>
-          <span class="mi-check">✓</span>
-        </div>
-        <div class="music-item" data-idx="2" onclick="selectTrack(2)">
-          <span class="mi-ico">♪</span>
-          <span class="mi-name">Cute Remix</span>
-          <span class="mi-check">✓</span>
-        </div>
+        <div class="music-item" data-idx="0" onclick="selectTrack(0)"><span class="mi-ico">♪</span><span class="mi-name">Remix 1</span><span class="mi-check">✓</span></div>
+        <div class="music-item" data-idx="1" onclick="selectTrack(1)"><span class="mi-ico">♪</span><span class="mi-name">Remix 2</span><span class="mi-check">✓</span></div>
+        <div class="music-item" data-idx="2" onclick="selectTrack(2)"><span class="mi-ico">♪</span><span class="mi-name">Cute Remix</span><span class="mi-check">✓</span></div>
         <button class="music-play" id="musicPlayBtn" onclick="togglePlay()">▶ PHÁT NHẠC</button>
         <div class="music-note" id="musicNote">Chọn 1 bài rồi nhấn phát</div>
       </div>
     </div>
-
     <div class="bal-chip">💰 <span id="hdrBal">0đ</span></div>
   </header>
-
   <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
-
   <aside class="sidebar" id="sidebar">
-    <div class="side-head">
-      <h2>⚡ MENU SHOP</h2>
-      <p>HỖ TRỢ ADR🤖 và IOS📱</p>
-    </div>
+    <div class="side-head"><h2>⚡ MENU SHOP</h2><p>HỖ TRỢ ADR🤖 và IOS📱</p></div>
     <div class="side-user" id="sideUser"></div>
     <ul class="menu" id="menuList">
       <li data-page="account"><span class="ico">👤</span> Tài khoản</li>
@@ -1369,21 +1348,20 @@ main {
       <li onclick="logout()"><span class="ico">🚪</span> Đăng xuất</li>
     </ul>
   </aside>
-
   <main>
     <div class="page" id="page-account">
       <div class="page-title">👤 Tài khoản</div>
       <div class="panel">
         <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
           <div style="flex:1;min-width:180px">
-            <div style="font-size:12px;color:#b8d0e0;text-shadow:0 1px 3px rgba(0,0,0,.9)">Tên người đăng ký</div>
+            <div style="font-size:12px;color:#d0e4f5;text-shadow:0 1px 3px rgba(0,0,0,.9)">Tên người đăng ký</div>
             <div style="font-size:19px;font-weight:900;color:#ffffff;text-shadow:0 2px 6px rgba(0,0,0,1)" id="acName">-</div>
           </div>
           <div style="text-align:right">
-            <div style="font-size:12px;color:#b8d0e0;text-shadow:0 1px 3px rgba(0,0,0,.9)">Số IB</div>
+            <div style="font-size:12px;color:#d0e4f5;text-shadow:0 1px 3px rgba(0,0,0,.9)">Số IB</div>
             <div style="font-size:19px;font-weight:900;color:var(--neon3);text-shadow:0 0 10px rgba(255,230,0,.6),0 2px 6px rgba(0,0,0,1)" id="acIb">-</div>
           </div>
-          <button class="btn sm ghost" onclick="openAdminGate()" title="Cài đặt">⚙️</button>
+          <button class="btn sm ghost" onclick="openAdminGate()">⚙️</button>
         </div>
       </div>
       <div class="astat" style="grid-template-columns:repeat(3,1fr)">
@@ -1391,33 +1369,22 @@ main {
         <div><b id="acSpent">0đ</b><span>TỔNG CHI</span></div>
         <div><b id="acBal">0đ</b><span>SỐ DƯ</span></div>
       </div>
-      <div class="panel green">
-        <div class="sec-title">🧾 Đơn mua</div>
-        <div id="acOrders"></div>
-      </div>
+      <div class="panel green"><div class="sec-title">🧾 Đơn mua</div><div id="acOrders"></div></div>
     </div>
 
     <div class="page" id="page-deposit">
       <div class="page-title">💳 Nạp tiền + Thẻ Car</div>
-
       <div class="panel gold">
         <div class="sec-title">🏦 PHẦN 1 — TẠO MÃ QR</div>
-        <div class="hint" style="margin-bottom:10px">
-          Tối thiểu <b style="color:#ffe600">5.000đ</b> — Tối đa <b style="color:#ffe600">5.000.000đ</b>
-        </div>
-        <div class="field">
-          <label>Số tiền muốn nạp (VNĐ)</label>
-          <input id="qrAmount" type="number" placeholder="Ví dụ: 50000" min="5000" max="5000000">
-        </div>
+        <div class="hint" style="margin-bottom:10px">Tối thiểu <b style="color:#ffe600">5.000đ</b> — Tối đa <b style="color:#ffe600">5.000.000đ</b></div>
+        <div class="field"><label>Số tiền muốn nạp (VNĐ)</label><input id="qrAmount" type="number" placeholder="Ví dụ: 50000" min="5000" max="5000000"></div>
         <button class="btn gold" onclick="createQR()">📷 TẠO MÃ QR</button>
         <div id="qrResult" style="margin-top:16px"></div>
       </div>
-
       <div class="panel pink">
         <div class="sec-title">💳 PHẦN 2 — NẠP THẺ CAR</div>
         <div class="hint" style="margin-bottom:10px">Thẻ car phải chịu phí chiết khấu</div>
-        <div class="field">
-          <label>Chọn mệnh giá</label>
+        <div class="field"><label>Chọn mệnh giá</label>
           <select id="cardAmt">
             <option value="10000">10.000đ → nhận 5.000đ</option>
             <option value="20000">20.000đ → nhận 15.000đ</option>
@@ -1427,24 +1394,11 @@ main {
             <option value="500000">500.000đ → nhận 450.000đ</option>
           </select>
         </div>
-        <div class="field">
-          <label>Chọn loại thẻ</label>
-          <select id="cardType">
-            <option>Viettel</option>
-            <option>Mobifone</option>
-            <option>Garena</option>
-            <option>Vinaphone</option>
-            <option>Zing</option>
-          </select>
+        <div class="field"><label>Chọn loại thẻ</label>
+          <select id="cardType"><option>Viettel</option><option>Mobifone</option><option>Garena</option><option>Vinaphone</option><option>Zing</option></select>
         </div>
-        <div class="field">
-          <label>Nhập Mã thẻ</label>
-          <input id="cardCode" placeholder="Nhập mã thẻ...">
-        </div>
-        <div class="field">
-          <label>Nhập Seri</label>
-          <input id="cardSeri" placeholder="Nhập seri...">
-        </div>
+        <div class="field"><label>Nhập Mã thẻ</label><input id="cardCode" placeholder="Nhập mã thẻ..."></div>
+        <div class="field"><label>Nhập Seri</label><input id="cardSeri" placeholder="Nhập seri..."></div>
         <button class="btn pink" onclick="submitCard()">✅ XÁC NHẬN THẺ</button>
       </div>
     </div>
@@ -1468,17 +1422,9 @@ main {
       <div class="page-title">🤖 HACK - All ADR + FREE</div>
       <div class="panel green">
         <div class="sec-title">🔥 KHO HACK ADR + FREE</div>
-        <div class="hint">
-          Rất nhiều Hack vừa có bản để mua và có cả bản <b style="color:#00ff88">FREE</b>.<br>
-          Muốn mua hoặc dùng free vui lòng liên hệ phần <b style="color:#00f0ff">Hỗ trợ 📞</b>.<br><br>
-          ⚠️ <b style="color:#ffe600">Lưu ý:</b> Hack ADR ít khi được free vì làm khó và tốn nhiều thời gian,
-          nhưng khi mua nhiều sẽ được giảm giá.
-        </div>
+        <div class="hint">Rất nhiều Hack vừa có bản để mua và có cả bản <b style="color:#00ff88">FREE</b>.<br>Muốn mua hoặc dùng free vui lòng liên hệ phần <b style="color:#00f0ff">Hỗ trợ 📞</b>.<br><br>⚠️ <b style="color:#ffe600">Lưu ý:</b> Hack ADR ít khi được free vì làm khó và tốn nhiều thời gian, nhưng khi mua nhiều sẽ được giảm giá.</div>
       </div>
-      <div class="panel">
-        <div class="sec-title">📞 LIÊN HỆ NGAY</div>
-        <button class="btn" onclick="navigate('support')">➡️ QUA PHẦN HỖ TRỢ</button>
-      </div>
+      <div class="panel"><div class="sec-title">📞 LIÊN HỆ NGAY</div><button class="btn" onclick="navigate('support')">➡️ QUA PHẦN HỖ TRỢ</button></div>
     </div>
 
     <div class="page" id="page-esgin">
@@ -1486,41 +1432,19 @@ main {
       <div class="grid" id="esginGrid"></div>
       <div class="panel gold">
         <div class="sec-title">📖 Tác dụng của Esgin</div>
-        <div class="hint">
-          Tải app cho iOS gọi tắt là <b style="color:#ffe600">IPA</b>. Khi có Esgin sẽ hỗ trợ được rất nhiều cho người dùng,
-          kể cả hack FF và hỗ trợ nhiều app khác khi có IPA.<br><br>
-          <b style="color:#00ff88">Phần không bảo hành và có bảo hành:</b> Khi có bảo hành, Esgin lỗi hoặc không dùng được
-          vui lòng liên hệ để được đổi Esgin mới — <b style="color:#ff00e0">lỗi 1 đổi 1</b>.
-        </div>
+        <div class="hint">Tải app cho iOS gọi tắt là <b style="color:#ffe600">IPA</b>. Khi có Esgin sẽ hỗ trợ được rất nhiều cho người dùng, kể cả hack FF và hỗ trợ nhiều app khác khi có IPA.<br><br><b style="color:#00ff88">Phần không bảo hành và có bảo hành:</b> Khi có bảo hành, Esgin lỗi hoặc không dùng được vui lòng liên hệ để được đổi Esgin mới — <b style="color:#ff00e0">lỗi 1 đổi 1</b>.</div>
       </div>
     </div>
 
     <div class="page" id="page-support">
       <div class="page-title">📞 Hỗ trợ</div>
-      <div class="panel pink">
-        <div class="sec-title">🎵 PHẦN 1 — TIKTOK</div>
-        <div class="hint" style="margin-bottom:11px">www.tiktok.com/@trungsangcaythue</div>
-        <button class="btn pink" onclick="openLink('https://www.tiktok.com/@trungsangcaythue')">🎵 MỞ TIKTOK</button>
-      </div>
-      <div class="panel green">
-        <div class="sec-title">💬 PHẦN 2 — ZALO</div>
-        <div class="hint" style="margin-bottom:11px">Zalo: <b style="color:#00ff88">0372822927</b></div>
-        <button class="btn" onclick="openLink('https://zalo.me/0372822927')">💬 MỞ ZALO</button>
-      </div>
+      <div class="panel pink"><div class="sec-title">🎵 PHẦN 1 — TIKTOK</div><div class="hint" style="margin-bottom:11px">www.tiktok.com/@trungsangcaythue</div><button class="btn pink" onclick="openLink('https://www.tiktok.com/@trungsangcaythue')">🎵 MỞ TIKTOK</button></div>
+      <div class="panel green"><div class="sec-title">💬 PHẦN 2 — ZALO</div><div class="hint" style="margin-bottom:11px">Zalo: <b style="color:#00ff88">0372822927</b></div><button class="btn" onclick="openLink('https://zalo.me/0372822927')">💬 MỞ ZALO</button></div>
     </div>
 
     <div class="page" id="page-guide">
       <div class="page-title">⚡ GT HACK IOS + ADR</div>
-      <div class="panel gold">
-        <div class="hint">
-          Hack ADR ít khi được free vì làm khó và tốn nhiều thời gian nhưng khi mua nhiều sẽ được giảm giá.<br><br>
-          <b style="color:#ff3d00">Lưu ý quan trọng:</b> Hack chắc chắn sẽ ban và tùy lúc ban,
-          chứ không có hack nào là antiban 100% cả.<br><br>
-          Hack ADR thì sẽ được free nhiều vì nó không như iOS dễ và tiện lợi, và giá sẽ mềm hơn iOS.<br><br>
-          <b style="color:#ff3d00">Lưu ý quan trọng:</b> Hack chắc chắn sẽ ban và tùy lúc ban,
-          chứ không có hack nào là antiban 100% cả.
-        </div>
-      </div>
+      <div class="panel gold"><div class="hint">Hack ADR ít khi được free vì làm khó và tốn nhiều thời gian nhưng khi mua nhiều sẽ được giảm giá.<br><br><b style="color:#ff3d00">Lưu ý quan trọng:</b> Hack chắc chắn sẽ ban và tùy lúc ban, chứ không có hack nào là antiban 100% cả.<br><br>Hack ADR thì sẽ được free nhiều vì nó không như iOS dễ và tiện lợi, và giá sẽ mềm hơn iOS.<br><br><b style="color:#ff3d00">Lưu ý quan trọng:</b> Hack chắc chắn sẽ ban và tùy lúc ban, chứ không có hack nào là antiban 100% cả.</div></div>
     </div>
 
     <div class="page" id="page-review">
@@ -1528,16 +1452,9 @@ main {
       <div class="panel gold">
         <div class="sec-title">Chọn số sao (1 - 5 ⭐)</div>
         <div class="stars-pick" id="starPick">
-          <span data-s="1">⭐</span>
-          <span data-s="2">⭐</span>
-          <span data-s="3">⭐</span>
-          <span data-s="4">⭐</span>
-          <span data-s="5">⭐</span>
+          <span data-s="1">⭐</span><span data-s="2">⭐</span><span data-s="3">⭐</span><span data-s="4">⭐</span><span data-s="5">⭐</span>
         </div>
-        <div class="field">
-          <label>Mô tả trải nghiệm của bạn</label>
-          <textarea id="rvText" rows="4" placeholder="Nhập cảm nhận của bạn về shop..."></textarea>
-        </div>
+        <div class="field"><label>Mô tả trải nghiệm của bạn</label><textarea id="rvText" rows="4" placeholder="Nhập cảm nhận..."></textarea></div>
         <button class="btn gold" onclick="sendReview()">🚀 GỬI ĐÁNH GIÁ</button>
       </div>
     </div>
@@ -1546,14 +1463,9 @@ main {
 
 <div id="adminModal">
   <div class="auth-box" style="border-color:rgba(255,0,224,.5);box-shadow:0 0 50px rgba(255,0,224,.35)">
-    <div class="auth-title" style="background:linear-gradient(90deg,#ff00e0,#ffe600);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">
-      🔐 XÁC THỰC QUẢN TRỊ
-    </div>
+    <div class="auth-title" style="background:linear-gradient(90deg,#ff00e0,#ffe600);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">🔐 XÁC THỰC QUẢN TRỊ</div>
     <div class="auth-sub">Khu vực đặc biệt — Chỉ dành cho Admin</div>
-    <div class="field">
-      <label>Nhập mật khẩu Admin</label>
-      <input id="adminPass" type="password" placeholder="••••••••••••">
-    </div>
+    <div class="field"><label>Nhập mật khẩu Admin</label><input id="adminPass" type="password" placeholder="••••••••••••"></div>
     <button class="btn pink" onclick="checkAdmin()">🔓 TRUY CẬP</button>
     <button class="btn ghost" style="margin-top:9px" onclick="closeAdminGate()">✖ Đóng</button>
     <div class="msg" id="adminMsg"></div>
@@ -1561,10 +1473,7 @@ main {
 </div>
 
 <div id="adminPanel">
-  <div class="admin-head">
-    <h2>⚙️ BẢNG ĐIỀU KHIỂN ADMIN</h2>
-    <button class="btn sm pink" onclick="closeAdminPanel()">✖ Thoát</button>
-  </div>
+  <div class="admin-head"><h2>⚙️ BẢNG ĐIỀU KHIỂN ADMIN</h2><button class="btn sm pink" onclick="closeAdminPanel()">✖ Thoát</button></div>
   <div class="admin-body">
     <div class="astat">
       <div><b id="stUsers">0</b><span>NGƯỜI ĐĂNG KÝ</span></div>
@@ -1572,26 +1481,10 @@ main {
       <div><b id="stOrd">0</b><span>ĐƠN CHỜ XỬ LÝ</span></div>
       <div><b id="stRv">0</b><span>ĐÁNH GIÁ</span></div>
     </div>
-
-    <div class="panel pink">
-      <div class="sec-title">👥 Lịch sử người đăng ký</div>
-      <div id="adUsers"></div>
-    </div>
-
-    <div class="panel gold">
-      <div class="sec-title">💰 Duyệt nạp tiền (QR & Thẻ Car)</div>
-      <div id="adDeps"></div>
-    </div>
-
-    <div class="panel green">
-      <div class="sec-title">🛒 Đơn hàng — Gửi Key</div>
-      <div id="adOrds"></div>
-    </div>
-
-    <div class="panel">
-      <div class="sec-title">⭐ Đánh giá khách hàng</div>
-      <div id="adRevs"></div>
-    </div>
+    <div class="panel pink"><div class="sec-title">👥 Lịch sử người đăng ký</div><div id="adUsers"></div></div>
+    <div class="panel gold"><div class="sec-title">💰 Duyệt nạp tiền</div><div id="adDeps"></div></div>
+    <div class="panel green"><div class="sec-title">🛒 Đơn hàng — Gửi Key</div><div id="adOrds"></div></div>
+    <div class="panel"><div class="sec-title">⭐ Đánh giá khách hàng</div><div id="adRevs"></div></div>
   </div>
 </div>
 
@@ -1604,24 +1497,13 @@ main {
     var bar = document.getElementById('loadBar');
     var pct = document.getElementById('loadPct');
     var st = document.getElementById('loadStatus');
-    var msgs = [
-      'Đang xác thực web',
-      'Đang tải web',
-      'Xác thực tài khoản',
-      'Đang load',
-      'Chuẩn bị mở web',
-      'Hoàn tất! Đang vào shop'
-    ];
-
+    var msgs = ['Đang xác thực web','Đang tải web','Xác thực tài khoản','Đang load','Chuẩn bị mở web','Hoàn tất! Đang vào shop'];
     var iv = setInterval(function () {
       p += 3;
       if (p > 100) p = 100;
       if (bar) bar.style.width = p + '%';
       if (pct) pct.textContent = p + '%';
-      if (st) {
-        var idx = Math.min(Math.floor(p / 18), 5);
-        st.textContent = msgs[idx] + '...';
-      }
+      if (st) st.textContent = msgs[Math.min(Math.floor(p / 18), 5)] + '...';
       if (p >= 100) clearInterval(iv);
     }, 70);
   } catch (e) {}
@@ -1659,37 +1541,25 @@ try {
   var ADMIN_PASS = 'ADMIN104738HACKALL';
   var IMG = 'https://raw.githubusercontent.com/proxyvipivn/Shop-blox-fruit-/main/';
 
-  /* ===== SAO BĂNG + SAO LUNG LINH ===== */
   (function () {
     try {
       var c = document.getElementById('stars');
       var x = c.getContext('2d');
-      var W, H;
-      var starList = [];
-      var meteors = [];
-
+      var W, H, starList = [], meteors = [];
       function resize() { W = c.width = innerWidth; H = c.height = innerHeight; }
-      resize();
-      addEventListener('resize', resize);
+      resize(); addEventListener('resize', resize);
 
-      for (var i = 0; i < 80; i++) {
-        starList.push({
-          x: Math.random() * W,
-          y: Math.random() * H,
-          r: Math.random() * 1.1 + 0.4,
-          baseAlpha: Math.random() * 0.4 + 0.4,
-          phase: Math.random() * Math.PI * 2,
-          speed: Math.random() * 0.02 + 0.01
-        });
-      }
+      for (var i = 0; i < 80; i++) starList.push({
+        x: Math.random() * W, y: Math.random() * H, r: Math.random() * 1.1 + 0.4,
+        baseAlpha: Math.random() * 0.4 + 0.4, phase: Math.random() * Math.PI * 2,
+        speed: Math.random() * 0.02 + 0.01
+      });
 
       function spawnMeteor() {
         if (meteors.length < 6 && Math.random() < 0.7) {
           meteors.push({
-            x: Math.random() * W * 1.4 - W * 0.2,
-            y: -100,
-            len: Math.random() * 220 + 180,
-            sp: Math.random() * 12 + 18,
+            x: Math.random() * W * 1.4 - W * 0.2, y: -100,
+            len: Math.random() * 220 + 180, sp: Math.random() * 12 + 18,
             ang: Math.PI / 3.5 + (Math.random() * 0.32 - 0.16),
             width: Math.random() * 1.2 + 2
           });
@@ -1700,67 +1570,47 @@ try {
 
       function loop() {
         x.clearRect(0, 0, W, H);
-
         for (var i = 0; i < starList.length; i++) {
           var s = starList[i];
           s.phase += s.speed;
           var alpha = s.baseAlpha * (0.4 + 0.6 * (Math.sin(s.phase) * 0.5 + 0.5));
           x.globalAlpha = alpha;
-          x.shadowBlur = 4;
-          x.shadowColor = 'rgba(255, 255, 255, 0.5)';
+          x.shadowBlur = 4; x.shadowColor = 'rgba(255, 255, 255, 0.5)';
           x.fillStyle = '#ffffff';
-          x.beginPath();
-          x.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-          x.fill();
+          x.beginPath(); x.arc(s.x, s.y, s.r, 0, Math.PI * 2); x.fill();
         }
-        x.globalAlpha = 1;
-        x.shadowBlur = 0;
+        x.globalAlpha = 1; x.shadowBlur = 0;
 
         for (var j = meteors.length - 1; j >= 0; j--) {
           var m = meteors[j];
           var tx = m.x - Math.cos(m.ang) * m.len;
           var ty = m.y - Math.sin(m.ang) * m.len;
-
           var g = x.createLinearGradient(m.x, m.y, tx, ty);
           g.addColorStop(0, '#ffffff');
           g.addColorStop(0.18, 'rgba(220, 240, 255, 0.95)');
           g.addColorStop(0.45, 'rgba(150, 200, 255, 0.5)');
           g.addColorStop(0.75, 'rgba(100, 160, 255, 0.15)');
           g.addColorStop(1, 'transparent');
-
-          x.strokeStyle = g;
-          x.lineWidth = m.width;
-          x.lineCap = 'round';
-          x.shadowBlur = 20;
-          x.shadowColor = '#ffffff';
-          x.beginPath();
-          x.moveTo(m.x, m.y);
-          x.lineTo(tx, ty);
-          x.stroke();
+          x.strokeStyle = g; x.lineWidth = m.width; x.lineCap = 'round';
+          x.shadowBlur = 20; x.shadowColor = '#ffffff';
+          x.beginPath(); x.moveTo(m.x, m.y); x.lineTo(tx, ty); x.stroke();
           x.shadowBlur = 0;
-
           var hg = x.createRadialGradient(m.x, m.y, 0, m.x, m.y, 7);
           hg.addColorStop(0, '#ffffff');
           hg.addColorStop(0.4, 'rgba(255, 255, 255, 0.85)');
           hg.addColorStop(1, 'rgba(150, 200, 255, 0)');
           x.fillStyle = hg;
-          x.beginPath();
-          x.arc(m.x, m.y, 7, 0, Math.PI * 2);
-          x.fill();
-
+          x.beginPath(); x.arc(m.x, m.y, 7, 0, Math.PI * 2); x.fill();
           m.x += Math.cos(m.ang) * m.sp;
           m.y += Math.sin(m.ang) * m.sp;
-
           if (m.y > H + 300 || m.x > W + 400) meteors.splice(j, 1);
         }
-
         requestAnimationFrame(loop);
       }
       loop();
     } catch (e) { console.error('Stars error:', e); }
   })();
 
-  /* ===== NHẠC ===== */
   var TRACKS = [
     { name: 'Remix 1', src: 'https://raw.githubusercontent.com/proxyvipivn/SHOP-STORE-ALL-FF/refs/heads/main/Remix2.mp3.mp3' },
     { name: 'Remix 2', src: 'https://raw.githubusercontent.com/proxyvipivn/SHOP-STORE-ALL-FF/refs/heads/main/Remix.mp3%20.mp3' },
@@ -1771,9 +1621,7 @@ try {
 
   function initMusic() {
     try {
-      bgMusic = new Audio();
-      bgMusic.volume = 0.6;
-      bgMusic.preload = 'auto';
+      bgMusic = new Audio(); bgMusic.volume = 0.6; bgMusic.preload = 'auto';
       bgMusic.addEventListener('ended', function () {
         if (curTrack >= 0 && curTrack < TRACKS.length - 1) {
           selectTrack(curTrack + 1);
@@ -1783,7 +1631,7 @@ try {
       bgMusic.addEventListener('play', function () { playing = true; upMusicUI(); });
       bgMusic.addEventListener('pause', function () { playing = false; upMusicUI(); });
       bgMusic.addEventListener('error', function () { toast('⚠️ Không tải được nhạc.', true); playing = false; upMusicUI(); });
-    } catch (e) { console.error(e); }
+    } catch (e) {}
   }
 
   function toggleMusicPanel(e) {
@@ -1799,9 +1647,7 @@ try {
     for (var k = 0; k < items.length; k++) items[k].classList.toggle('sel', Number(items[k].getAttribute('data-idx')) === i);
     if (bgMusic) {
       var wasPlaying = playing;
-      bgMusic.pause();
-      bgMusic.src = TRACKS[i].src;
-      bgMusic.load();
+      bgMusic.pause(); bgMusic.src = TRACKS[i].src; bgMusic.load();
       var note = document.getElementById('musicNote');
       if (note) note.textContent = 'Đã chọn: ' + TRACKS[i].name;
       if (wasPlaying) bgMusic.play().then(function () { playing = true; upMusicUI(); }).catch(function () {});
@@ -1830,7 +1676,6 @@ try {
     if (p && p.classList.contains('show') && w && !w.contains(e.target)) p.classList.remove('show');
   });
 
-  /* ===== HELPERS ===== */
   function fmt(n) { return Number(n || 0).toLocaleString('vi-VN') + 'đ'; }
   function rand(len) { var s = ''; for (var i = 0; i < len; i++) s += (Math.floor(Math.random() * 9) + 1); return s; }
   function now() { return Date.now(); }
@@ -2023,8 +1868,7 @@ try {
     db.ref('users/' + CUR).once('value').then(function (s) {
       var f = s.val(); if (!f) return;
       if ((f.balance || 0) < price) { toast('❌ Số dư không đủ!', true); return; }
-      f.balance -= price;
-      f.totalSpent = (f.totalSpent || 0) + price;
+      f.balance -= price; f.totalSpent = (f.totalSpent || 0) + price;
       db.ref('users/' + CUR).set(f);
       var o = DB.orders.slice();
       o.unshift({ id: rand(8), user: CUR, name: name, plan: plan, price: price, status: 'wait', key: '', createdAt: now() });
@@ -2043,8 +1887,7 @@ try {
     var d = { id: rand(8), user: CUR, type: 'QR', amount: amt, code: code, status: 'wait', createdAt: now() };
     DB.deposits.unshift(d);
     if (db) db.ref('deposits').set(DB.deposits);
-    document.getElementById('qrResult').innerHTML =
-      '<div class="qr-box"><img src="' + IMG + 'IMG_8134.jpeg" alt="QR"><div class="bank-info">🏦 Ngân hàng: <b>MBBANK</b><br>💳 Số tài khoản: <b>0372822927</b><br>👤 Tên: <b>TRAN TRUNG SANG</b><br>💰 Số tiền: <b class="hl">' + fmt(amt) + '</b><br>📝 Nội dung CK: <b class="hl">' + code + '</b><br>🧾 Mã đơn: <b>' + d.id + '</b></div><div class="note-warn">⚠️ LƯU Ý: Chuyển khoản ĐÚNG nội dung "' + code + '"<br>Admin sẽ xác nhận và cộng tiền vào tài khoản.</div></div>';
+    document.getElementById('qrResult').innerHTML = '<div class="qr-box"><img src="' + IMG + 'IMG_8134.jpeg" alt="QR"><div class="bank-info">🏦 Ngân hàng: <b>MBBANK</b><br>💳 Số tài khoản: <b>0372822927</b><br>👤 Tên: <b>TRAN TRUNG SANG</b><br>💰 Số tiền: <b class="hl">' + fmt(amt) + '</b><br>📝 Nội dung CK: <b class="hl">' + code + '</b><br>🧾 Mã đơn: <b>' + d.id + '</b></div><div class="note-warn">⚠️ LƯU Ý: Chuyển khoản ĐÚNG nội dung "' + code + '"<br>Admin sẽ xác nhận và cộng tiền vào tài khoản.</div></div>';
     toast('✅ Đã tạo mã QR!');
   }
 
@@ -2138,8 +1981,7 @@ try {
     var text = document.getElementById('rvText').value.trim();
     DB.reviews.unshift({ id: rand(6), user: CUR, stars: stars, text: text, createdAt: now() });
     if (db) db.ref('reviews').set(DB.reviews);
-    document.getElementById('rvText').value = '';
-    stars = 0;
+    document.getElementById('rvText').value = ''; stars = 0;
     var all = document.querySelectorAll('#starPick span');
     for (var i = 0; i < all.length; i++) all[i].classList.remove('on');
     toast('🎉 Cảm ơn bạn đã gửi đánh giá!');
@@ -2222,8 +2064,7 @@ try {
       d.status = 'done';
       db.ref('deposits').set(deps);
       db.ref('users/' + d.user).once('value').then(function (us) {
-        var u = us.val();
-        if (!u) return;
+        var u = us.val(); if (!u) return;
         var add = d.type === 'QR' ? d.amount : d.receive;
         u.balance = (u.balance || 0) + add;
         u.totalDeposit = (u.totalDeposit || 0) + add;
@@ -2253,8 +2094,7 @@ try {
       var o = null;
       for (var i = 0; i < ords.length; i++) if (ords[i].id === id) o = ords[i];
       if (!o) return;
-      o.key = key;
-      o.status = 'done';
+      o.key = key; o.status = 'done';
       db.ref('orders').set(ords);
       toast('🔑 Đã gửi key cho ' + o.user);
     });
