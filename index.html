@@ -75,15 +75,11 @@ body {
   border-radius: 8px;
 }
 
-/* ============================================================
-   LOADING
-   ============================================================ */
+/* LOADING */
 #loading {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
   z-index: 9999;
   display: flex;
   flex-direction: column;
@@ -156,10 +152,8 @@ body {
 
 .load-pct {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -169,9 +163,7 @@ body {
   text-shadow: 0 0 6px #000, 0 0 10px #000;
 }
 
-/* ============================================================
-   AUTH
-   ============================================================ */
+/* AUTH */
 #auth {
   display: none;
   min-height: 100vh;
@@ -360,9 +352,7 @@ body {
   color: #6affb8 !important;
 }
 
-/* ============================================================
-   HEADER
-   ============================================================ */
+/* HEADER */
 header {
   position: sticky;
   top: 0;
@@ -447,9 +437,7 @@ header {
   box-shadow: 0 0 18px rgba(0, 255, 136, 0.32);
 }
 
-/* ============================================================
-   MUSIC PLAYER
-   ============================================================ */
+/* MUSIC */
 .music-wrap {
   position: relative;
   width: 42px;
@@ -460,10 +448,7 @@ header {
 
 .music-ring {
   position: absolute;
-  top: -3px;
-  left: -3px;
-  right: -3px;
-  bottom: -3px;
+  top: -3px; left: -3px; right: -3px; bottom: -3px;
   border-radius: 50%;
   background: conic-gradient(from 0deg,
     #ff9eb5, #ffc0cb, #ffd6e0, #ffb6c1, #ff8fb1, #ffc0cb, #ff9eb5);
@@ -476,10 +461,7 @@ header {
 .music-ring::after {
   content: '';
   position: absolute;
-  top: 2px;
-  left: 2px;
-  right: 2px;
-  bottom: 2px;
+  top: 2px; left: 2px; right: 2px; bottom: 2px;
   border-radius: 50%;
   background: #05060f;
 }
@@ -653,13 +635,10 @@ header {
   letter-spacing: 0.3px;
 }
 
-/* ============================================================
-   OVERLAY — CHE TOÀN MÀN HÌNH, KHÔNG BLUR
-   ============================================================ */
+/* OVERLAY */
 .overlay {
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 0; left: 0;
   width: 100vw;
   height: 100vh;
   background: rgba(0, 0, 0, 0.72) !important;
@@ -676,9 +655,7 @@ header {
   pointer-events: auto;
 }
 
-/* ============================================================
-   SIDEBAR — NẰM TRÊN OVERLAY
-   ============================================================ */
+/* SIDEBAR */
 .sidebar {
   position: fixed;
   top: 0;
@@ -734,6 +711,7 @@ header {
 
 .side-user b { color: #ffffff !important; font-size: 13.5px; }
 .side-user .ib { color: var(--neon3) !important; }
+.side-user .dc { color: var(--neon2) !important; }
 
 .menu { list-style: none; padding: 6px 10px 26px; }
 
@@ -758,9 +736,7 @@ header {
 .menu li::before {
   content: '';
   position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
+  left: 0; top: 0; bottom: 0;
   width: 3px;
   background: linear-gradient(180deg, var(--neon1), var(--neon2));
   opacity: 0;
@@ -786,9 +762,7 @@ header {
 
 .menu .ico { font-size: 17px; width: 22px; text-align: center; flex: 0 0 auto; }
 
-/* ============================================================
-   MAIN
-   ============================================================ */
+/* MAIN */
 main {
   padding: 16px 14px 90px;
   max-width: 1180px;
@@ -913,6 +887,7 @@ main {
   background: rgba(0, 0, 0, 0.55) !important;
   border: 1px solid rgba(0, 240, 255, 0.18);
   transition: 0.22s;
+  flex-wrap: wrap;
 }
 
 .plan:hover { border-color: var(--neon4); box-shadow: 0 0 16px rgba(0, 255, 136, 0.3); }
@@ -925,6 +900,41 @@ main {
   color: var(--neon3) !important;
   white-space: nowrap;
   text-shadow: 0 0 10px rgba(255, 230, 0, 0.5);
+}
+
+.plan .pr-original {
+  font-size: 11px;
+  font-weight: 700;
+  color: #ff7d96;
+  text-decoration: line-through;
+  white-space: nowrap;
+  opacity: 0.85;
+}
+
+.plan .pr-final {
+  font-size: 13px;
+  font-weight: 900;
+  color: #00ff88;
+  white-space: nowrap;
+  text-shadow: 0 0 10px rgba(0, 255, 136, 0.6);
+}
+
+.plan .pr-discount-badge {
+  font-size: 10px;
+  font-weight: 900;
+  padding: 2px 6px;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #ff00e0, #ff7a00);
+  color: #fff;
+  white-space: nowrap;
+  box-shadow: 0 0 10px rgba(255, 0, 224, 0.5);
+}
+
+.plan .price-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
 }
 
 .plan .buy {
@@ -941,6 +951,28 @@ main {
 }
 
 .plan .buy:hover { box-shadow: 0 0 18px rgba(0, 255, 136, 0.7); transform: scale(1.06); }
+
+/* DISCOUNT BANNER */
+.discount-banner {
+  margin-bottom: 14px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: linear-gradient(90deg, rgba(255, 0, 224, 0.2), rgba(255, 122, 0, 0.2)) !important;
+  border: 1px solid rgba(255, 0, 224, 0.6);
+  color: #fff;
+  font-weight: 800;
+  font-size: 13px;
+  text-align: center;
+  box-shadow: 0 0 24px rgba(255, 0, 224, 0.4);
+  animation: pulseDiscount 2s ease-in-out infinite;
+}
+
+@keyframes pulseDiscount {
+  0%, 100% { box-shadow: 0 0 24px rgba(255, 0, 224, 0.4); }
+  50% { box-shadow: 0 0 40px rgba(255, 0, 224, 0.75); }
+}
+
+.discount-banner b { color: #ffe600; font-size: 15px; }
 
 .subtabs { display: flex; gap: 8px; margin-bottom: 13px; flex-wrap: wrap; }
 
@@ -982,7 +1014,7 @@ main {
 .item .l b { color: var(--neon1) !important; font-size: 13px; display: block; margin-bottom: 4px; }
 .item .l small { color: #8fb6d6 !important; display: block; line-height: 1.6; }
 
-/* KEY DISPLAY WITH COPY BUTTON */
+/* KEY WITH COPY */
 .key-row {
   display: flex;
   align-items: center;
@@ -1065,15 +1097,11 @@ main {
   font-size: 13px;
 }
 
-/* ============================================================
-   ADMIN MODAL
-   ============================================================ */
+/* ADMIN MODAL */
 #adminModal {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
   z-index: 9997;
   display: none;
   align-items: center;
@@ -1086,16 +1114,12 @@ main {
 
 #adminModal.show { display: flex; }
 
-/* ============================================================
-   ADMIN PANEL
-   ============================================================ */
+/* ADMIN PANEL */
 #adminPanel {
   display: none;
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
   z-index: 9998;
   overflow-y: auto;
   background:
@@ -1222,9 +1246,85 @@ main {
   gap: 6px;
 }
 
-/* ============================================================
-   REVIEW STARS
-   ============================================================ */
+/* DISCOUNT EDITOR (ADMIN) */
+.discount-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 11px;
+  background: rgba(0, 0, 0, 0.5) !important;
+  border: 1px solid rgba(255, 0, 224, 0.4);
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+.discount-row .dc-info {
+  flex: 1;
+  min-width: 140px;
+  font-size: 12px;
+}
+.discount-row .dc-info b {
+  color: #ff9eb5;
+  font-size: 13px;
+  display: block;
+  margin-bottom: 3px;
+}
+.discount-row .dc-info small {
+  color: #c9a8e0;
+  font-size: 11px;
+}
+.discount-row .dc-input {
+  width: 90px;
+  padding: 8px 10px;
+  border-radius: 9px;
+  background: rgba(0, 0, 0, 0.6) !important;
+  border: 1px solid rgba(255, 0, 224, 0.6);
+  color: #ff9eb5 !important;
+  -webkit-text-fill-color: #ff9eb5 !important;
+  font-size: 13px;
+  font-family: inherit;
+  font-weight: 900;
+  text-align: right;
+  outline: none;
+}
+.discount-row .dc-input:focus {
+  border-color: #ff00e0;
+  box-shadow: 0 0 0 3px rgba(255, 0, 224, 0.2);
+}
+.discount-row .dc-save {
+  padding: 8px 14px;
+  border-radius: 9px;
+  border: none;
+  cursor: pointer;
+  font-weight: 900;
+  font-size: 11.5px;
+  background: linear-gradient(90deg, #ff00e0, #ff7a00);
+  color: #fff;
+  font-family: inherit;
+  transition: 0.2s;
+}
+.discount-row .dc-save:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 16px rgba(255, 0, 224, 0.7);
+}
+.discount-row .dc-reset {
+  padding: 8px 12px;
+  border-radius: 9px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  font-weight: 900;
+  font-size: 11px;
+  background: transparent;
+  color: #c9a8e0;
+  font-family: inherit;
+  transition: 0.2s;
+}
+.discount-row .dc-reset:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* REVIEW STARS */
 .stars-pick {
   display: flex;
   gap: 8px;
@@ -1243,9 +1343,7 @@ main {
   text-shadow: 0 0 20px rgba(255, 230, 0, 0.9);
 }
 
-/* ============================================================
-   TOAST
-   ============================================================ */
+/* TOAST */
 #toast {
   position: fixed;
   left: 50%;
@@ -1272,9 +1370,7 @@ main {
   box-shadow: 0 0 34px rgba(255, 0, 85, 0.8);
 }
 
-/* ============================================================
-   QR
-   ============================================================ */
+/* QR */
 .qr-box { text-align: center; padding: 8px; }
 
 .qr-box img {
@@ -1318,9 +1414,6 @@ main {
   text-align: center;
 }
 
-/* ============================================================
-   RESPONSIVE
-   ============================================================ */
 @media (max-width: 520px) {
   .plan { flex-wrap: wrap; }
   .plan .buy { width: 100%; }
@@ -1328,6 +1421,7 @@ main {
   .astat { grid-template-columns: repeat(2, 1fr); }
   .bal-chip { padding: 7px 10px; font-size: 11.5px; }
   .price-row .pr-input { width: 100px; }
+  .discount-row .dc-input { width: 70px; }
 }
 
 @media (prefers-color-scheme: light) {
@@ -1429,9 +1523,10 @@ main {
   </header>
 
   <main>
-    <!-- ===== TÀI KHOẢN ===== -->
+    <!-- TÀI KHOẢN -->
     <div class="page" id="page-account">
       <div class="page-title">👤 Tài khoản</div>
+      <div id="discountBannerAcc"></div>
       <div class="panel">
         <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
           <div style="flex:1;min-width:180px">
@@ -1456,7 +1551,7 @@ main {
       </div>
     </div>
 
-    <!-- ===== NẠP TIỀN ===== -->
+    <!-- NẠP TIỀN -->
     <div class="page" id="page-deposit">
       <div class="page-title">💳 Nạp tiền + Thẻ Car</div>
       <div class="panel gold">
@@ -1501,7 +1596,7 @@ main {
       </div>
     </div>
 
-    <!-- ===== LỊCH SỬ ===== -->
+    <!-- LỊCH SỬ -->
     <div class="page" id="page-history">
       <div class="page-title">📜 Lịch sử All</div>
       <div class="subtabs">
@@ -1512,13 +1607,14 @@ main {
       <div class="panel" id="histBox"></div>
     </div>
 
-    <!-- ===== HACK IOS ===== -->
+    <!-- HACK IOS -->
     <div class="page" id="page-hackios">
       <div class="page-title">📱 HACK - All IOS</div>
+      <div id="discountBannerIos"></div>
       <div class="grid" id="iosGrid"></div>
     </div>
 
-    <!-- ===== HACK ADR ===== -->
+    <!-- HACK ADR -->
     <div class="page" id="page-hackadr">
       <div class="page-title">🤖 HACK - All ADR + FREE</div>
       <div class="panel green">
@@ -1536,9 +1632,10 @@ main {
       </div>
     </div>
 
-    <!-- ===== ESGIN ===== -->
+    <!-- ESGIN -->
     <div class="page" id="page-esgin">
       <div class="page-title">🔑 Esgin = IOS</div>
+      <div id="discountBannerEsgin"></div>
       <div class="grid" id="esginGrid"></div>
       <div class="panel gold">
         <div class="sec-title">📖 Tác dụng của Esgin</div>
@@ -1551,7 +1648,7 @@ main {
       </div>
     </div>
 
-    <!-- ===== HỖ TRỢ ===== -->
+    <!-- HỖ TRỢ -->
     <div class="page" id="page-support">
       <div class="page-title">📞 Hỗ trợ</div>
       <div class="panel pink">
@@ -1566,7 +1663,7 @@ main {
       </div>
     </div>
 
-    <!-- ===== GT HACK ===== -->
+    <!-- GT HACK -->
     <div class="page" id="page-guide">
       <div class="page-title">⚡ GT HACK IOS + ADR</div>
       <div class="panel gold">
@@ -1581,7 +1678,7 @@ main {
       </div>
     </div>
 
-    <!-- ===== ĐÁNH GIÁ ===== -->
+    <!-- ĐÁNH GIÁ -->
     <div class="page" id="page-review">
       <div class="page-title">⭐ Đánh giá</div>
       <div class="panel gold">
@@ -1603,9 +1700,6 @@ main {
   </main>
 </div>
 
-<!-- ============================================================
-     OVERLAY + SIDEBAR — ĐẶT NGOÀI #app
-     ============================================================ -->
 <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
 
 <aside class="sidebar" id="sidebar">
@@ -1628,7 +1722,6 @@ main {
   </ul>
 </aside>
 
-<!-- ADMIN MODAL -->
 <div id="adminModal">
   <div class="auth-box" style="border-color:rgba(255,0,224,.5);box-shadow:0 0 50px rgba(255,0,224,.35)">
     <div class="auth-title" style="background:linear-gradient(90deg,#ff00e0,#ffe600);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">
@@ -1645,7 +1738,6 @@ main {
   </div>
 </div>
 
-<!-- ADMIN PANEL -->
 <div id="adminPanel">
   <div class="admin-head">
     <h2>⚙️ BẢNG ĐIỀU KHIỂN ADMIN</h2>
@@ -1663,6 +1755,12 @@ main {
       <div class="sec-title">💵 Chỉnh giá sản phẩm</div>
       <div class="hint" style="margin-bottom:10px">Chỉ Admin mới chỉnh được giá. Nhập giá mới → nhấn 💾 LƯU. Giá sẽ cập nhật ngay cho tất cả người dùng.</div>
       <div id="adPrices"></div>
+    </div>
+
+    <div class="panel pink">
+      <div class="sec-title">💸 Giảm giá riêng cho từng người đăng ký</div>
+      <div class="hint" style="margin-bottom:10px">Nhập % giảm giá (0-100) → nhấn 💾 LƯU. Người dùng đó sẽ thấy giá giảm khi mua hàng.</div>
+      <div id="adDiscounts"></div>
     </div>
 
     <div class="panel pink">
@@ -1686,7 +1784,6 @@ main {
 
 <div id="toast"></div>
 
-<!-- LOADING % SCRIPT -->
 <script>
 (function () {
   try {
@@ -1718,11 +1815,9 @@ main {
 })();
 </script>
 
-<!-- FIREBASE SDK -->
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 
-<!-- MAIN APP -->
 <script>
 try {
 
@@ -1742,9 +1837,7 @@ try {
       firebase.initializeApp(firebaseConfig);
       db = firebase.database();
     }
-  } catch (e) {
-    console.error('Firebase init error:', e);
-  }
+  } catch (e) { console.error('Firebase init error:', e); }
 
   var DB = {
     users: {},
@@ -1759,7 +1852,7 @@ try {
   var ADMIN_PASS = 'ADMIN104738HACKALL';
   var IMG = 'https://raw.githubusercontent.com/proxyvipivn/Shop-blox-fruit-/main/';
 
-  /* ===== SẢN PHẨM GỐC ===== */
+  /* ===== SẢN PHẨM ===== */
   var IOS = [
     {
       name: 'TROLL MODZ IOS ADR',
@@ -1825,7 +1918,24 @@ try {
     return fallbackPrice;
   }
 
-  /* ===== 300 SAO LUNG LINH + SAO BĂNG ===== */
+  /* Lấy % giảm giá của user hiện tại */
+  function getMyDiscount() {
+    if (!CUR) return 0;
+    var u = DB.users[CUR] || {};
+    var d = Number(u.discount);
+    if (isNaN(d) || d < 0) return 0;
+    if (d > 100) return 100;
+    return d;
+  }
+
+  /* Áp dụng giảm giá */
+  function applyDiscount(price) {
+    var d = getMyDiscount();
+    if (d <= 0) return price;
+    return Math.round(price * (100 - d) / 100);
+  }
+
+  /* ===== 300 SAO ===== */
   (function () {
     try {
       var c = document.getElementById('stars');
@@ -1933,7 +2043,7 @@ try {
     } catch (e) {}
   })();
 
-  /* ===== NHẠC NỀN ===== */
+  /* ===== NHẠC ===== */
   var TRACKS = [
     { name: 'Remix 1', src: 'https://raw.githubusercontent.com/proxyvipivn/SHOP-STORE-ALL-FF/refs/heads/main/Remix2.mp3.mp3' },
     { name: 'Remix 2', src: 'https://raw.githubusercontent.com/proxyvipivn/SHOP-STORE-ALL-FF/refs/heads/main/Remix.mp3%20.mp3' },
@@ -2066,7 +2176,12 @@ try {
 
     db.ref('users').on('value', function (s) {
       DB.users = s.val() || {};
-      if (CUR) upUI();
+      if (CUR) {
+        upUI();
+        renderDiscountBanner();
+        renderIOS();
+        renderEsgin();
+      }
       if (document.getElementById('adminPanel').style.display === 'block') renderAdmin();
     });
 
@@ -2160,6 +2275,7 @@ try {
         balance: 0,
         totalDeposit: 0,
         totalSpent: 0,
+        discount: 0,
         createdAt: now()
       }).then(function () {
         aMsg('✅ Đăng ký thành công! Hãy đăng nhập ngay.', true);
@@ -2214,6 +2330,9 @@ try {
     document.getElementById('auth').style.display = 'none';
     document.getElementById('app').style.display = 'block';
     upUI();
+    renderDiscountBanner();
+    renderIOS();
+    renderEsgin();
     navigate('account');
   }
 
@@ -2222,10 +2341,14 @@ try {
   function upUI() {
     var u = uObj();
     document.getElementById('hdrBal').textContent = fmt(u.balance);
+
+    var dc = getMyDiscount();
+    var dcText = dc > 0 ? '<br><span class="dc">💸 Giảm giá: -' + dc + '%</span>' : '';
+
     document.getElementById('sideUser').innerHTML =
       '👤 <b>' + CUR + '</b><br>' +
       '<span class="ib">🔢 Số IB: ' + u.ib + '</span><br>' +
-      '💰 Số dư: <b>' + fmt(u.balance) + '</b>';
+      '💰 Số dư: <b>' + fmt(u.balance) + '</b>' + dcText;
 
     document.getElementById('acName').textContent = CUR;
     document.getElementById('acIb').textContent = u.ib;
@@ -2233,6 +2356,18 @@ try {
     document.getElementById('acSpent').textContent = fmt(u.totalSpent);
     document.getElementById('acBal').textContent = fmt(u.balance);
     renderAcOrders();
+  }
+
+  function renderDiscountBanner() {
+    var dc = getMyDiscount();
+    var html = '';
+    if (dc > 0) {
+      html = '<div class="discount-banner">💸 Bạn đang có <b>GIẢM GIÁ ' + dc + '%</b> cho tất cả sản phẩm! 🎉</div>';
+    }
+    ['discountBannerAcc', 'discountBannerIos', 'discountBannerEsgin'].forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) el.innerHTML = html;
+    });
   }
 
   function toggleMenu() {
@@ -2260,7 +2395,20 @@ try {
     if (p === 'account') upUI();
   }
 
-  /* ===== RENDER SẢN PHẨM ===== */
+  /* ===== RENDER SẢN PHẨM (CÓ GIẢM GIÁ) ===== */
+  function renderPriceHTML(basePrice) {
+    var dc = getMyDiscount();
+    if (dc > 0) {
+      var finalPrice = applyDiscount(basePrice);
+      return '<div class="price-group">' +
+        '<span class="pr-original">' + fmt(basePrice) + '</span>' +
+        '<span class="pr-final">' + fmt(finalPrice) + '</span>' +
+        '<span class="pr-discount-badge">-' + dc + '%</span>' +
+        '</div>';
+    }
+    return '<span class="pr">' + fmt(basePrice) + '</span>';
+  }
+
   function renderIOS() {
     var h = '';
     for (var i = 0; i < IOS.length; i++) {
@@ -2269,10 +2417,11 @@ try {
       for (var j = 0; j < pr.plans.length; j++) {
         var p = pr.plans[j];
         var realPrice = getPrice(pr.name, p.l, p.p);
+        var finalPrice = applyDiscount(realPrice);
         pl += '<div class="plan">' +
           '<span class="lb">' + p.l + '</span>' +
-          '<span class="pr">' + fmt(realPrice) + '</span>' +
-          '<button class="buy" onclick="window.__buy(\'' + pr.name + '\',\'' + p.l + '\',' + realPrice + ')">MUA</button>' +
+          renderPriceHTML(realPrice) +
+          '<button class="buy" onclick="window.__buy(\'' + pr.name + '\',\'' + p.l + '\',' + finalPrice + ',' + realPrice + ')">MUA</button>' +
           '</div>';
       }
       h += '<div class="prod">' +
@@ -2293,10 +2442,11 @@ try {
       var g = ESGIN[i];
       var label = g.name + ' - ' + g.desc;
       var realPrice = getPrice('ESGIN = IOS', label, g.price);
+      var finalPrice = applyDiscount(realPrice);
       pl += '<div class="plan">' +
         '<span class="lb">' + g.name + ' — ' + g.desc + '</span>' +
-        '<span class="pr">' + fmt(realPrice) + '</span>' +
-        '<button class="buy" onclick="window.__buy(\'ESGIN = IOS\',\'' + label + '\',' + realPrice + ')">MUA</button>' +
+        renderPriceHTML(realPrice) +
+        '<button class="buy" onclick="window.__buy(\'ESGIN = IOS\',\'' + label + '\',' + finalPrice + ',' + realPrice + ')">MUA</button>' +
         '</div>';
     }
     document.getElementById('esginGrid').innerHTML =
@@ -2310,11 +2460,18 @@ try {
       '</div>';
   }
 
-  /* ===== MUA HÀNG ===== */
-  window.__buy = function (name, plan, price) {
+  /* ===== MUA HÀNG (CÓ GIẢM GIÁ) ===== */
+  window.__buy = function (name, plan, finalPrice, originalPrice) {
     var u = uObj();
-    if ((u.balance || 0) < price) {
-      toast('❌ Bạn cần nạp thêm tiền để mua! Thiếu ' + fmt(price - (u.balance || 0)), true);
+    var priceToUse = finalPrice;
+
+    /* Nếu client gọi cũ không có finalPrice, tính lại */
+    if (typeof finalPrice !== 'number' || finalPrice <= 0) {
+      priceToUse = applyDiscount(originalPrice || finalPrice);
+    }
+
+    if ((u.balance || 0) < priceToUse) {
+      toast('❌ Bạn cần nạp thêm tiền để mua! Thiếu ' + fmt(priceToUse - (u.balance || 0)), true);
       return;
     }
     if (!db) return toast('❌ Chưa kết nối máy chủ', true);
@@ -2322,12 +2479,12 @@ try {
     db.ref('users/' + CUR).once('value').then(function (s) {
       var f = s.val();
       if (!f) return;
-      if ((f.balance || 0) < price) {
+      if ((f.balance || 0) < priceToUse) {
         toast('❌ Số dư không đủ! Vui lòng nạp thêm.', true);
         return;
       }
-      f.balance -= price;
-      f.totalSpent = (f.totalSpent || 0) + price;
+      f.balance -= priceToUse;
+      f.totalSpent = (f.totalSpent || 0) + priceToUse;
       db.ref('users/' + CUR).set(f);
 
       var o = DB.orders.slice();
@@ -2336,7 +2493,9 @@ try {
         user: CUR,
         name: name,
         plan: plan,
-        price: price,
+        price: priceToUse,
+        originalPrice: originalPrice || priceToUse,
+        discount: getMyDiscount(),
         status: 'wait',
         key: '',
         createdAt: now()
@@ -2511,11 +2670,17 @@ try {
             ? '<span class="badge done">HOÀN THÀNH</span>'
             : '<span class="badge wait">ĐANG XỬ LÝ</span>';
 
+          var priceLine = 'Giá: <b style="color:#ffe600">' + fmt(oo.price) + '</b>';
+          if (oo.originalPrice && oo.originalPrice > oo.price) {
+            priceLine = 'Giá gốc: <span style="text-decoration:line-through;color:#ff7d96">' + fmt(oo.originalPrice) + '</span> → Giá sau giảm: <b style="color:#00ff88">' + fmt(oo.price) + '</b>' +
+              (oo.discount ? ' <span class="pr-discount-badge">-' + oo.discount + '%</span>' : '');
+          }
+
           h += '<div class="item">' +
             '<div class="l">' +
             '<b>' + oo.name + '</b>' +
             '<small>Gói: ' + oo.plan + '</small>' +
-            '<small>Giá: <b style="color:#ffe600">' + fmt(oo.price) + '</b></small>' +
+            '<small>' + priceLine + '</small>' +
             '<small>Mã đơn: ' + oo.id + ' • 🕐 ' + timeStr(oo.createdAt) + '</small>' +
             '</div>' + bb +
             '</div>';
@@ -2683,6 +2848,71 @@ try {
     }).catch(function (e) { toast('❌ Lỗi lưu giá: ' + e.message, true); });
   };
 
+  /* ===== RENDER BẢNG GIẢM GIÁ USER ===== */
+  function renderDiscounts() {
+    var box = document.getElementById('adDiscounts');
+    if (!box) return;
+    var uk = Object.keys(DB.users);
+    if (!uk.length) {
+      box.innerHTML = '<div class="empty">Chưa có người đăng ký</div>';
+      return;
+    }
+    var h = '';
+    for (var i = 0; i < uk.length; i++) {
+      var n = uk[i];
+      var u = DB.users[n];
+      var dc = Number(u.discount) || 0;
+      var dcText = dc > 0
+        ? '<span style="color:#00ff88;font-weight:900">- ' + dc + '%</span>'
+        : '<span style="color:#666">Chưa có giảm giá</span>';
+      h += '<div class="discount-row">' +
+        '<div class="dc-info">' +
+        '<b>👤 ' + n + '</b>' +
+        '<small>Giảm giá hiện tại: ' + dcText + '</small>' +
+        '</div>' +
+        '<input class="dc-input" type="number" id="dc_' + n + '" value="' + dc + '" min="0" max="100" step="1" placeholder="%">' +
+        '<button class="dc-save" onclick="window.__saveDiscount(\'' + n.replace(/'/g, "\\'") + '\')">💾 LƯU</button>' +
+        '<button class="dc-reset" onclick="window.__resetDiscount(\'' + n.replace(/'/g, "\\'") + '\')">✖ XOÁ</button>' +
+        '</div>';
+    }
+    box.innerHTML = h;
+  }
+
+  window.__saveDiscount = function (userName) {
+    var inp = document.getElementById('dc_' + userName);
+    if (!inp) return;
+    var val = Number(inp.value);
+    if (isNaN(val) || val < 0) return toast('⚠️ % giảm giá không hợp lệ!', true);
+    if (val > 100) {
+      val = 100;
+      inp.value = 100;
+    }
+    if (!db) return toast('❌ Chưa kết nối máy chủ', true);
+    if (!DB.users[userName]) return toast('❌ Không tìm thấy user!', true);
+
+    var u = DB.users[userName];
+    u.discount = val;
+    db.ref('users/' + userName).set(u).then(function () {
+      toast('✅ Đã đặt giảm giá ' + val + '% cho ' + userName);
+      renderDiscounts();
+    }).catch(function (e) {
+      toast('❌ Lỗi: ' + e.message, true);
+    });
+  };
+
+  window.__resetDiscount = function (userName) {
+    if (!db) return;
+    if (!DB.users[userName]) return;
+    var u = DB.users[userName];
+    u.discount = 0;
+    db.ref('users/' + userName).set(u).then(function () {
+      toast('✖ Đã xoá giảm giá của ' + userName);
+      renderDiscounts();
+    }).catch(function (e) {
+      toast('❌ Lỗi: ' + e.message, true);
+    });
+  };
+
   /* ===== ADMIN RENDER ===== */
   function renderAdmin() {
     var uk = Object.keys(DB.users);
@@ -2703,6 +2933,7 @@ try {
     document.getElementById('stRv').textContent = DB.reviews.length;
 
     renderPrices();
+    renderDiscounts();
 
     var h1 = '';
     if (!uk.length) {
@@ -2711,12 +2942,14 @@ try {
       for (var a = 0; a < uk.length; a++) {
         var n = uk[a];
         var u = DB.users[n];
+        var dc = Number(u.discount) || 0;
+        var dcText = dc > 0 ? ' • 💸 Giảm: <b style="color:#ff9eb5">' + dc + '%</b>' : '';
         h1 += '<div class="item">' +
           '<div class="l">' +
           '<b>👤 ' + n + '</b>' +
           '<small>🔑 Mật khẩu: <b style="color:#ff00e0">' + u.password + '</b></small>' +
           '<small>🔢 Số IB: <b style="color:#ffe600">' + u.ib + '</b></small>' +
-          '<small>💰 Số dư: <b style="color:#00ff88">' + fmt(u.balance) + '</b> • Tổng nạp: ' + fmt(u.totalDeposit) + ' • Tổng chi: ' + fmt(u.totalSpent) + '</small>' +
+          '<small>💰 Số dư: <b style="color:#00ff88">' + fmt(u.balance) + '</b> • Tổng nạp: ' + fmt(u.totalDeposit) + ' • Tổng chi: ' + fmt(u.totalSpent) + dcText + '</small>' +
           '<small>🕐 Đăng ký: ' + timeStr(u.createdAt) + '</small>' +
           '</div>' +
           '</div>';
@@ -2773,10 +3006,16 @@ try {
           bd2 = '<div><span class="badge done">HOÀN THÀNH</span>' +
             '<div style="font-size:11.5px;color:#6affb8;margin-top:6px">🔑 ' + o.key + '</div></div>';
         }
+
+        var priceInfo = 'Giá: <b style="color:#ffe600">' + fmt(o.price) + '</b>';
+        if (o.originalPrice && o.originalPrice > o.price) {
+          priceInfo = 'Giá gốc: <span style="text-decoration:line-through;color:#ff7d96">' + fmt(o.originalPrice) + '</span> → <b style="color:#00ff88">' + fmt(o.price) + '</b> <span class="pr-discount-badge">-' + (o.discount || 0) + '%</span>';
+        }
+
         h3 += '<div class="item">' +
           '<div class="l">' +
           '<b>👤 ' + o.user + ' — ' + o.name + '</b>' +
-          '<small>Gói: ' + o.plan + ' • Giá: <b style="color:#ffe600">' + fmt(o.price) + '</b></small>' +
+          '<small>Gói: ' + o.plan + ' • ' + priceInfo + '</small>' +
           '<small>Mã đơn: ' + o.id + ' • 🕐 ' + timeStr(o.createdAt) + '</small>' +
           '</div>' + bd2 +
           '</div>';
