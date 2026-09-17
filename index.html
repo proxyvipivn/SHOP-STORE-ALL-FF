@@ -44,7 +44,7 @@ html, body {
 }
 
 /* ============================================================
-   BODY VỚI ẢNH NỀN 3D CHUYỂN ĐỘNG
+   BODY VỚI ẢNH NỀN 3D CHUYỂN ĐỘNG (RÕ HƠN)
    ============================================================ */
 body {
   font-family: 'Segoe UI', system-ui, -apple-system, Roboto, sans-serif;
@@ -57,50 +57,53 @@ body {
   position: relative;
 }
 
-/* ===== ẢNH NỀN 3D — ZOOM + XOAY NHẸ LIÊN TỤC ===== */
+/* ===== ẢNH NỀN 3D — RÕ HƠN, ZOOM + XOAY NHẸ ===== */
 body::before {
   content: '';
   position: fixed;
-  top: -60px;
-  left: -60px;
-  right: -60px;
-  bottom: -60px;
-  z-index: -2;
+  top: -80px;
+  left: -80px;
+  right: -80px;
+  bottom: -80px;
+  z-index: -3;
   background: url('https://raw.githubusercontent.com/proxyvipivn/Shop-blox-fruit-/main/IMG_8190.jpeg') center center / cover no-repeat;
   animation: bg3D 30s ease-in-out infinite;
   pointer-events: none;
   will-change: transform;
   transform-origin: center center;
+  /* Tăng độ sáng/tương phản cho ảnh rõ hơn */
+  filter: brightness(1.1) contrast(1.05);
 }
 
-/* Lớp phủ mờ để chữ dễ đọc */
+/* Lớp phủ mờ NHẸ để thấy ảnh rõ hơn nhưng vẫn đọc được chữ */
 body::after {
   content: '';
   position: fixed;
   inset: 0;
-  z-index: -1;
+  z-index: -2;
   background: linear-gradient(180deg,
-    rgba(5, 6, 15, 0.35) 0%,
-    rgba(5, 6, 15, 0.6) 50%,
-    rgba(5, 6, 15, 0.75) 100%);
+    rgba(5, 6, 15, 0.25) 0%,
+    rgba(5, 6, 15, 0.4) 50%,
+    rgba(5, 6, 15, 0.6) 100%);
   pointer-events: none;
 }
 
 @keyframes bg3D {
   0%, 100% {
-    transform: scale(1) translate(0, 0) rotate(0deg);
+    transform: scale(1.02) translate(0, 0) rotate(0deg);
   }
   25% {
-    transform: scale(1.08) translate(-1%, -1.5%) rotate(0.4deg);
+    transform: scale(1.12) translate(-1%, -1.5%) rotate(0.5deg);
   }
   50% {
-    transform: scale(1.15) translate(1%, -2%) rotate(-0.4deg);
+    transform: scale(1.18) translate(1%, -2%) rotate(-0.5deg);
   }
   75% {
-    transform: scale(1.08) translate(-1.5%, 1%) rotate(0.4deg);
+    transform: scale(1.12) translate(-1.5%, 1%) rotate(0.5deg);
   }
 }
 
+/* CANVAS SAO BĂNG — TRONG SUỐT, NẰM TRÊN ẢNH */
 #stars {
   position: fixed;
   inset: 0;
@@ -411,7 +414,7 @@ header {
   align-items: center;
   gap: 10px;
   padding: 12px 14px;
-  background: rgba(6, 8, 22, 0.9) !important;
+  background: rgba(6, 8, 22, 0.85) !important;
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--line);
@@ -839,18 +842,18 @@ main {
   display: flex;
   align-items: center;
   gap: 9px;
-  background: linear-gradient(90deg, var(--neon1), var(--neon3), var(--neon2));
+  background: text linear-gradient(90deg, var(--neon1), var(--neon3), var(--neon2));
   background-size: 200% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -;
+webkit-background-clip: text;
+  background-clip:  -webkit-text-fill-color: transparent;
   color: transparent;
   animation: shine 4s linear infinite;
   filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.9));
 }
 
 .panel {
-  background: rgba(15, 18, 40, 0.85) !important;
+  background: rgba(15, 18, 40, 0.75) !important;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--line);
@@ -889,7 +892,7 @@ main {
 }
 
 .prod {
-  background: linear-gradient(160deg, rgba(20, 24, 55, 0.95), rgba(10, 12, 30, 0.95)) !important;
+  background: linear-gradient(160deg, rgba(20, 24, 55, 0.9), rgba(10, 12, 30, 0.9)) !important;
   border: 1px solid var(--line);
   border-radius: 18px;
   overflow: hidden;
@@ -942,7 +945,7 @@ main {
   gap: 8px;
   padding: 9px 11px;
   border-radius: 11px;
-  background: rgba(0, 0, 0, 0.55) !important;
+  background: rgba(0, 0, 0, 0.5) !important;
   border: 1px solid rgba(0, 240, 255, 0.18);
   transition: 0.22s;
 }
@@ -998,7 +1001,7 @@ main {
 .item {
   padding: 12px;
   border-radius: 14px;
-  background: rgba(0, 0, 0, 0.55) !important;
+  background: rgba(0, 0, 0, 0.5) !important;
   border: 1px solid rgba(0, 240, 255, 0.16);
   margin-bottom: 9px;
   font-size: 12.4px;
@@ -1682,7 +1685,7 @@ try {
   var IMG = 'https://raw.githubusercontent.com/proxyvipivn/Shop-blox-fruit-/main/';
 
   /* ==========================================================
-     CHỈ SAO BĂNG — KHÔNG CÒN SAO LẤP LÁNH
+     SAO BĂNG ĐẸP — ĐUÔI DÀI, HẠT SÁNG, GLOW MẠNH
      ========================================================== */
   (function () {
     try {
@@ -1690,6 +1693,7 @@ try {
       var x = c.getContext('2d');
       var W, H;
       var meteors = [];
+      var sparkles = [];
 
       function resize() {
         W = c.width = innerWidth;
@@ -1699,17 +1703,20 @@ try {
       resize();
       addEventListener('resize', resize);
 
+      /* Tạo sao băng đẹp hơn */
       function spawnMeteor() {
-        if (meteors.length < 22 && Math.random() < 0.85) {
+        if (meteors.length < 22 && Math.random() < 0.9) {
           meteors.push({
             x: Math.random() * W * 1.3 - W * 0.15,
-            y: -60,
-            len: Math.random() * 180 + 100,
-            sp: Math.random() * 11 + 8,
-            ang: Math.PI / 3.5 + (Math.random() * 0.32 - 0.16)
+            y: -80,
+            len: Math.random() * 250 + 160,      // đuôi dài hơn
+            sp: Math.random() * 14 + 10,           // nhanh hơn
+            ang: Math.PI / 3.5 + (Math.random() * 0.32 - 0.16),
+            width: Math.random() * 1.4 + 2.2,      // độ dày khác nhau
+            life: 1
           });
         }
-        setTimeout(spawnMeteor, Math.random() * 180 + 60);
+        setTimeout(spawnMeteor, Math.random() * 120 + 40);
       }
 
       spawnMeteor();
@@ -1717,20 +1724,24 @@ try {
       function loop() {
         x.clearRect(0, 0, W, H);
 
+        /* Vẽ sao băng đẹp */
         for (var j = meteors.length - 1; j >= 0; j--) {
           var m = meteors[j];
           var tx = m.x - Math.cos(m.ang) * m.len;
           var ty = m.y - Math.sin(m.ang) * m.len;
 
+          /* ĐUÔI SAO BĂNG — gradient trắng sáng */
           var g = x.createLinearGradient(m.x, m.y, tx, ty);
           g.addColorStop(0, '#ffffff');
-          g.addColorStop(0.35, 'rgba(255,255,255,0.65)');
+          g.addColorStop(0.15, 'rgba(200, 240, 255, 0.9)');
+          g.addColorStop(0.4, 'rgba(150, 200, 255, 0.55)');
+          g.addColorStop(0.7, 'rgba(100, 160, 255, 0.2)');
           g.addColorStop(1, 'transparent');
 
           x.strokeStyle = g;
-          x.lineWidth = 2.6;
+          x.lineWidth = m.width;
           x.lineCap = 'round';
-          x.shadowBlur = 20;
+          x.shadowBlur = 25;
           x.shadowColor = '#ffffff';
           x.beginPath();
           x.moveTo(m.x, m.y);
@@ -1738,10 +1749,33 @@ try {
           x.stroke();
           x.shadowBlur = 0;
 
+          /* ĐẦU SAO BĂNG — hạt sáng tròn */
+          var headGrad = x.createRadialGradient(m.x, m.y, 0, m.x, m.y, 8);
+          headGrad.addColorStop(0, '#ffffff');
+          headGrad.addColorStop(0.4, 'rgba(255, 255, 255, 0.9)');
+          headGrad.addColorStop(1, 'rgba(150, 200, 255, 0)');
+          x.fillStyle = headGrad;
+          x.beginPath();
+          x.arc(m.x, m.y, 8, 0, Math.PI * 2);
+          x.fill();
+
+          /* HẠT SÁNG NHỎ Ở ĐUÔI */
+          for (var k = 0; k < 3; k++) {
+            var t = 0.2 + Math.random() * 0.5;
+            var px = m.x - Math.cos(m.ang) * m.len * t;
+            var py = m.y - Math.sin(m.ang) * m.len * t;
+            x.fillStyle = 'rgba(255, 255, 255, ' + (0.3 + Math.random() * 0.5) + ')';
+            x.beginPath();
+            x.arc(px + (Math.random() - 0.5) * 6, py + (Math.random() - 0.5) * 6,
+                  Math.random() * 1.5 + 0.5, 0, Math.PI * 2);
+            x.fill();
+          }
+
+          /* Di chuyển */
           m.x += Math.cos(m.ang) * m.sp;
           m.y += Math.sin(m.ang) * m.sp;
 
-          if (m.y > H + 220 || m.x > W + 300) meteors.splice(j, 1);
+          if (m.y > H + 250 || m.x > W + 350) meteors.splice(j, 1);
         }
 
         requestAnimationFrame(loop);
@@ -1890,7 +1924,6 @@ try {
      ========================================================== */
   function fmt(n) { return Number(n || 0).toLocaleString('vi-VN') + 'đ'; }
 
-  /* Hàm tạo chuỗi số ngẫu nhiên từ 1-9 */
   function rand(len) {
     var s = '';
     for (var i = 0; i < len; i++) s += (Math.floor(Math.random() * 9) + 1);
@@ -2018,7 +2051,6 @@ try {
         return;
       }
 
-      /* SỐ IB: 7 CHỮ SỐ RANDOM 1-9 */
       db.ref('users/' + u).set({
         password: p,
         ib: rand(7),
