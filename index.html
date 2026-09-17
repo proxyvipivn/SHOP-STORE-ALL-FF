@@ -9,9 +9,6 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>SHOP ALL SẢN PHẨM FF – FFMAX</title>
 <style>
-/* ============================================================
-   BIẾN MÀU TOÀN CỤC
-   ============================================================ */
 :root{
   color-scheme: dark;
   --neon1: #00f0ff;
@@ -23,9 +20,6 @@
   --line: rgba(0, 240, 255, 0.28);
 }
 
-/* ============================================================
-   RESET & CƠ BẢN
-   ============================================================ */
 html, body {
   color-scheme: dark !important;
   -webkit-color-scheme: dark !important;
@@ -60,8 +54,11 @@ body {
 
 #stars {
   position: fixed;
-  inset: 0;
-  z-index: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9000;
   pointer-events: none;
   background: transparent !important;
 }
@@ -83,7 +80,10 @@ body {
    ============================================================ */
 #loading {
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   z-index: 9999;
   display: flex;
   flex-direction: column;
@@ -156,7 +156,10 @@ body {
 
 .load-pct {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -457,7 +460,10 @@ header {
 
 .music-ring {
   position: absolute;
-  inset: -3px;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
   border-radius: 50%;
   background: conic-gradient(from 0deg,
     #ff9eb5, #ffc0cb, #ffd6e0, #ffb6c1, #ff8fb1, #ffc0cb, #ff9eb5);
@@ -470,7 +476,10 @@ header {
 .music-ring::after {
   content: '';
   position: absolute;
-  inset: 2px;
+  top: 2px;
+  left: 2px;
+  right: 2px;
+  bottom: 2px;
   border-radius: 50%;
   background: #05060f;
 }
@@ -645,38 +654,45 @@ header {
 }
 
 /* ============================================================
-   SIDEBAR
+   OVERLAY — CHE TOÀN MÀN HÌNH, KHÔNG BLUR
    ============================================================ */
 .overlay {
   position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.65) !important;
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
-  z-index: 200;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.72) !important;
+  z-index: 9995;
   opacity: 0;
-  pointer-events:  none;
-  transition: 0.3s;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
-.overlay.show { opacity: 1; pointer-events: auto; }
+.overlay.show {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
 
+/* ============================================================
+   SIDEBAR — NẰM TRÊN OVERLAY
+   ============================================================ */
 .sidebar {
   position: fixed;
   top: 0;
   left: 0;
-  height: 100%;
-  width: min(310px, 84vw color);
-  z-index: 201;
-  background: linear-gradient(180deg, rgba(10, 14, 36, 0:.98), rgba(7, 9, 26, 0.98)) !important;
-  backdrop-filter: blur(10 #px);
-  -webkit-backdrop-filter: blur(10px);
+  width: min(310px, 84vw);
+  height: 100vh;
+  z-index: 9996;
+  background: linear-gradient(180deg, rgba(10, 14, 36, 0.99), rgba(7, 9, 26, 0.99)) !important;
   border-right: 1px solid var(--line);
-  transform9: translateX(-105%);
-  transition: 0.32s cubic-bezier(0.3, 0.8fc, 0.3, 1);
+  transform: translateX(-105%);
+  transition: transform 0.32s cubic-bezier(0.3, 0.8, 0.3, 1);
   display: flex;
   flex-direction: column;
-  box-shadow: 8px 0 50px rgba(0, 0, 0, 0.85);
+  box-shadow: 8px 0 50px rgba(0, 0, 0, 0.95);
   overflow-y: auto;
   color: #e9f6ff !important;
 }
@@ -712,7 +728,7 @@ header {
   background: rgba(0, 0, 0, 0.4) !important;
   border: 1px solid var(--line);
   font-size: 12px;
-9e6 !important;
+  color: #9fc9e6 !important;
   line-height: 1.7;
 }
 
@@ -780,13 +796,8 @@ main {
   background: transparent !important;
 }
 
-.page { display: none; animation: fadeUp 0.38s ease; }
+.page { display: none; }
 .page.active { display: block; }
-
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(16px); }
-  to { opacity: 1; transform: none; }
-}
 
 .page-title {
   font-size: clamp(17px, 4.6vw, 23px);
@@ -1011,9 +1022,7 @@ main {
   box-shadow: 0 0 18px rgba(0, 240, 255, 0.6);
   transform: scale(1.05);
 }
-.copy-btn:active {
-  transform: scale(0.92);
-}
+.copy-btn:active { transform: scale(0.92); }
 .copy-btn.copied {
   background: linear-gradient(135deg, rgba(0, 255, 136, 0.5), rgba(0, 255, 136, 0.3)) !important;
   border-color: #00ff88;
@@ -1057,12 +1066,15 @@ main {
 }
 
 /* ============================================================
-   ADMIN
+   ADMIN MODAL
    ============================================================ */
 #adminModal {
   position: fixed;
-  inset: 0;
-  z-index: 500;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9997;
   display: none;
   align-items: center;
   justify-content: center;
@@ -1074,11 +1086,17 @@ main {
 
 #adminModal.show { display: flex; }
 
+/* ============================================================
+   ADMIN PANEL
+   ============================================================ */
 #adminPanel {
   display: none;
   position: fixed;
-  inset: 0;
-  z-index: 600;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9998;
   overflow-y: auto;
   background:
     radial-gradient(circle at 20% 10%, #1a0033, transparent 50%),
@@ -1142,7 +1160,7 @@ main {
 
 .astat span { font-size: 10.6px; color: #c9a8e0 !important; letter-spacing: 0.5px; }
 
-/* PRICE EDITOR IN ADMIN */
+/* PRICE EDITOR */
 .price-row {
   display: flex;
   align-items: center;
@@ -1155,21 +1173,9 @@ main {
   margin-bottom: 7px;
   flex-wrap: wrap;
 }
-.price-row .pr-info {
-  flex: 1;
-  min-width: 150px;
-  font-size: 12px;
-}
-.price-row .pr-info b {
-  color: #ffe600;
-  font-size: 12.8px;
-  display: block;
-  margin-bottom: 3px;
-}
-.price-row .pr-info small {
-  color: #c9a8e0;
-  font-size: 11px;
-}
+.price-row .pr-info { flex: 1; min-width: 150px; font-size: 12px; }
+.price-row .pr-info b { color: #ffe600; font-size: 12.8px; display: block; margin-bottom: 3px; }
+.price-row .pr-info small { color: #c9a8e0; font-size: 11px; }
 .price-row .pr-input {
   width: 120px;
   padding: 8px 10px;
@@ -1204,7 +1210,6 @@ main {
   transform: scale(1.05);
   box-shadow: 0 0 16px rgba(255, 230, 0, 0.6);
 }
-
 .price-group-title {
   font-size: 13px;
   font-weight: 900;
@@ -1334,9 +1339,7 @@ main {
 
 <canvas id="stars"></canvas>
 
-<!-- ============================================================
-     LOADING
-     ============================================================ -->
+<!-- LOADING -->
 <div id="loading">
   <div class="load-logo">SHOP ALL SẢN PHẨM FF – FFMAX</div>
   <div class="load-sub">HỖ TRỢ ADR🤖 và IOS📱</div>
@@ -1347,9 +1350,7 @@ main {
   </div>
 </div>
 
-<!-- ============================================================
-     AUTH
-     ============================================================ -->
+<!-- AUTH -->
 <div id="auth" class="screen">
   <div class="auth-box">
     <div class="auth-title">SHOP ALL SẢN PHẨM FF – FFMAX</div>
@@ -1388,9 +1389,7 @@ main {
   </div>
 </div>
 
-<!-- ============================================================
-     APP
-     ============================================================ -->
+<!-- APP -->
 <div id="app" class="screen" style="display:none">
   <header>
     <div class="burger" id="burger" onclick="toggleMenu()">
@@ -1428,28 +1427,6 @@ main {
     </div>
     <div class="bal-chip">💰 <span id="hdrBal">0đ</span></div>
   </header>
-
-  <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
-
-  <aside class="sidebar" id="sidebar">
-    <div class="side-head">
-      <h2>⚡ MENU SHOP</h2>
-      <p>HỖ TRỢ ADR🤖 và IOS📱</p>
-    </div>
-    <div class="side-user" id="sideUser"></div>
-    <ul class="menu" id="menuList">
-      <li data-page="account"><span class="ico">👤</span> Tài khoản</li>
-      <li data-page="deposit"><span class="ico">💳</span> Nạp tiền + Thẻ Car</li>
-      <li data-page="history"><span class="ico">📜</span> Lịch sử All</li>
-      <li data-page="hackios"><span class="ico">📱</span> HACK - All IOS</li>
-      <li data-page="hackadr"><span class="ico">🤖</span> HACK - All ADR + FREE</li>
-      <li data-page="esgin"><span class="ico">🔑</span> Esgin = IOS</li>
-      <li data-page="support"><span class="ico">📞</span> Hỗ trợ</li>
-      <li data-page="guide"><span class="ico">⚡</span> GT HACK IOS + ADR</li>
-      <li data-page="review"><span class="ico">⭐</span> Đánh giá</li>
-      <li onclick="logout()"><span class="ico">🚪</span> Đăng xuất</li>
-    </ul>
-  </aside>
 
   <main>
     <!-- ===== TÀI KHOẢN ===== -->
@@ -1627,8 +1604,31 @@ main {
 </div>
 
 <!-- ============================================================
-     ADMIN MODAL
+     OVERLAY + SIDEBAR — ĐẶT NGOÀI #app
      ============================================================ -->
+<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+
+<aside class="sidebar" id="sidebar">
+  <div class="side-head">
+    <h2>⚡ MENU SHOP</h2>
+    <p>HỖ TRỢ ADR🤖 và IOS📱</p>
+  </div>
+  <div class="side-user" id="sideUser"></div>
+  <ul class="menu" id="menuList">
+    <li data-page="account"><span class="ico">👤</span> Tài khoản</li>
+    <li data-page="deposit"><span class="ico">💳</span> Nạp tiền + Thẻ Car</li>
+    <li data-page="history"><span class="ico">📜</span> Lịch sử All</li>
+    <li data-page="hackios"><span class="ico">📱</span> HACK - All IOS</li>
+    <li data-page="hackadr"><span class="ico">🤖</span> HACK - All ADR + FREE</li>
+    <li data-page="esgin"><span class="ico">🔑</span> Esgin = IOS</li>
+    <li data-page="support"><span class="ico">📞</span> Hỗ trợ</li>
+    <li data-page="guide"><span class="ico">⚡</span> GT HACK IOS + ADR</li>
+    <li data-page="review"><span class="ico">⭐</span> Đánh giá</li>
+    <li onclick="logout()"><span class="ico">🚪</span> Đăng xuất</li>
+  </ul>
+</aside>
+
+<!-- ADMIN MODAL -->
 <div id="adminModal">
   <div class="auth-box" style="border-color:rgba(255,0,224,.5);box-shadow:0 0 50px rgba(255,0,224,.35)">
     <div class="auth-title" style="background:linear-gradient(90deg,#ff00e0,#ffe600);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">
@@ -1645,9 +1645,7 @@ main {
   </div>
 </div>
 
-<!-- ============================================================
-     ADMIN PANEL
-     ============================================================ -->
+<!-- ADMIN PANEL -->
 <div id="adminPanel">
   <div class="admin-head">
     <h2>⚙️ BẢNG ĐIỀU KHIỂN ADMIN</h2>
@@ -1661,7 +1659,6 @@ main {
       <div><b id="stRv">0</b><span>ĐÁNH GIÁ</span></div>
     </div>
 
-    <!-- ===== CHỈNH GIÁ SẢN PHẨM ===== -->
     <div class="panel gold">
       <div class="sec-title">💵 Chỉnh giá sản phẩm</div>
       <div class="hint" style="margin-bottom:10px">Chỉ Admin mới chỉnh được giá. Nhập giá mới → nhấn 💾 LƯU. Giá sẽ cập nhật ngay cho tất cả người dùng.</div>
@@ -1689,9 +1686,7 @@ main {
 
 <div id="toast"></div>
 
-<!-- ============================================================
-     LOADING % SCRIPT
-     ============================================================ -->
+<!-- LOADING % SCRIPT -->
 <script>
 (function () {
   try {
@@ -1723,21 +1718,14 @@ main {
 })();
 </script>
 
-<!-- ============================================================
-     FIREBASE SDK
-     ============================================================ -->
+<!-- FIREBASE SDK -->
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 
-<!-- ============================================================
-     MAIN APP
-     ============================================================ -->
+<!-- MAIN APP -->
 <script>
 try {
 
-  /* ==========================================================
-     CONFIG FIREBASE
-     ========================================================== */
   var firebaseConfig = {
     apiKey: "AIzaSyBobP39gLfYvClCCNFIszIGc2LdeUFeI7w",
     authDomain: "shop-all-ff-ff-max.firebaseapp.com",
@@ -1758,9 +1746,6 @@ try {
     console.error('Firebase init error:', e);
   }
 
-  /* ==========================================================
-     BIẾN TOÀN CỤC
-     ========================================================== */
   var DB = {
     users: {},
     deposits: [],
@@ -1774,9 +1759,7 @@ try {
   var ADMIN_PASS = 'ADMIN104738HACKALL';
   var IMG = 'https://raw.githubusercontent.com/proxyvipivn/Shop-blox-fruit-/main/';
 
-  /* ==========================================================
-     DỮ LIỆU SẢN PHẨM GỐC (giá sẽ lấy từ DB nếu có)
-     ========================================================== */
+  /* ===== SẢN PHẨM GỐC ===== */
   var IOS = [
     {
       name: 'TROLL MODZ IOS ADR',
@@ -1829,15 +1812,10 @@ try {
     { name: 'GÓI 3', price: 300000, desc: 'Bảo hành 300 ngày' }
   ];
 
-  /* ==========================================================
-     TẠO KEY CHO GIÁ TRÊN FIREBASE
-     ========================================================== */
   function priceKey(productName, planLabel) {
-    // Thay ký tự không hợp lệ Firebase: . # $ [ ] /
     return (productName + '||' + planLabel).replace(/[.#$\[\]\/]/g, '_');
   }
 
-  /* Lấy giá từ DB, nếu không có thì dùng giá gốc */
   function getPrice(productName, planLabel, fallbackPrice) {
     var k = priceKey(productName, planLabel);
     if (DB.prices && DB.prices[k] != null && DB.prices[k] !== '') {
@@ -1847,9 +1825,7 @@ try {
     return fallbackPrice;
   }
 
-  /* ==========================================================
-     300 SAO LUNG LINH + SAO BĂNG TRẮNG
-     ========================================================== */
+  /* ===== 300 SAO LUNG LINH + SAO BĂNG ===== */
   (function () {
     try {
       var c = document.getElementById('stars');
@@ -1957,9 +1933,7 @@ try {
     } catch (e) {}
   })();
 
-  /* ==========================================================
-     NHẠC NỀN
-     ========================================================== */
+  /* ===== NHẠC NỀN ===== */
   var TRACKS = [
     { name: 'Remix 1', src: 'https://raw.githubusercontent.com/proxyvipivn/SHOP-STORE-ALL-FF/refs/heads/main/Remix2.mp3.mp3' },
     { name: 'Remix 2', src: 'https://raw.githubusercontent.com/proxyvipivn/SHOP-STORE-ALL-FF/refs/heads/main/Remix.mp3%20.mp3' },
@@ -2037,9 +2011,7 @@ try {
     if (p && p.classList.contains('show') && w && !w.contains(e.target)) p.classList.remove('show');
   });
 
-  /* ==========================================================
-     HÀM TIỆN ÍCH
-     ========================================================== */
+  /* ===== HELPERS ===== */
   function fmt(n) { return Number(n || 0).toLocaleString('vi-VN') + 'đ'; }
   function rand(len) { var s = ''; for (var i = 0; i < len; i++) s += (Math.floor(Math.random() * 9) + 1); return s; }
   function now() { return Date.now(); }
@@ -2054,9 +2026,6 @@ try {
     toastT = setTimeout(function () { t.className = ''; }, 3500);
   }
 
-  /* ==========================================================
-     HÀM SAO CHÉP KEY
-     ========================================================== */
   function copyText(text, btnEl) {
     var doDone = function () {
       toast('📋 Đã sao chép: ' + text);
@@ -2079,25 +2048,19 @@ try {
         var ok = document.execCommand('copy');
         document.body.removeChild(ta);
         if (ok) doDone();
-        else toast('❌ Không sao chép được. Vui lòng giữ tay để chọn.', true);
-      } catch (e) {
-        toast('❌ Không sao chép được. Vui lòng giữ tay để chọn.', true);
-      }
+        else toast('❌ Không sao chép được.', true);
+      } catch (e) { toast('❌ Không sao chép được.', true); }
     };
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(text).then(doDone).catch(doFallback);
-    } else {
-      doFallback();
-    }
+    } else { doFallback(); }
   }
   window.__copyKey = copyText;
 
   function getS() { try { return JSON.parse(localStorage.getItem('ff_session')); } catch (e) { return null; } }
   function setS(v) { try { if (v) localStorage.setItem('ff_session', JSON.stringify(v)); else localStorage.removeItem('ff_session'); } catch (e) {} }
 
-  /* ==========================================================
-     FIREBASE SYNC LISTENERS
-     ========================================================== */
+  /* ===== FIREBASE SYNC ===== */
   function setupListeners() {
     if (!db) return;
 
@@ -2127,7 +2090,6 @@ try {
       if (document.getElementById('adminPanel').style.display === 'block') renderAdmin();
     });
 
-    /* LẮNG NGHE THAY ĐỔI GIÁ TỪ FIREBASE → CẬP NHẬT CHO MỌI NGƯỜI */
     db.ref('prices').on('value', function (s) {
       DB.prices = s.val() || {};
       renderIOS();
@@ -2145,15 +2107,10 @@ try {
       DB.reviews = d.reviews || [];
       DB.prices = d.prices || {};
       setupListeners();
-    }).catch(function (e) {
-      console.error(e);
-      setupListeners();
-    });
+    }).catch(function (e) { console.error(e); setupListeners(); });
   }
 
-  /* ==========================================================
-     AUTH
-     ========================================================== */
+  /* ===== AUTH ===== */
   function switchTab(t) {
     var l = (t === 'login');
     document.getElementById('tabLogin').classList.toggle('active', l);
@@ -2190,11 +2147,11 @@ try {
     if (u.length < 3) return aMsg('⚠️ Tên tài khoản phải từ 3 ký tự trở lên');
     if (p.length < 4) return aMsg('⚠️ Mật khẩu phải từ 4 ký tự trở lên');
     if (p !== p2) return aMsg('⚠️ Mật khẩu nhập lại không khớp');
-    if (!db) return aMsg('❌ Chưa kết nối máy chủ. Vui lòng tải lại trang.');
+    if (!db) return aMsg('❌ Chưa kết nối máy chủ.');
 
     db.ref('users/' + u).once('value').then(function (s) {
       if (s.exists()) {
-        aMsg('❌ Tên tài khoản "' + u + '" đã được đăng ký! Vui lòng chọn tên khác.');
+        aMsg('❌ Tên tài khoản "' + u + '" đã được đăng ký!');
         return;
       }
       db.ref('users/' + u).set({
@@ -2218,7 +2175,7 @@ try {
     var u = document.getElementById('lgUser').value.trim();
     var p = document.getElementById('lgPass').value;
     if (!u || !p) return aMsg('⚠️ Vui lòng nhập tên tài khoản và mật khẩu');
-    if (!db) return aMsg('❌ Chưa kết nối máy chủ. Vui lòng tải lại trang.');
+    if (!db) return aMsg('❌ Chưa kết nối máy chủ.');
 
     db.ref('users/' + u).once('value').then(function (s) {
       var user = s.val();
@@ -2251,9 +2208,7 @@ try {
     toast('👋 Đã đăng xuất');
   }
 
-  /* ==========================================================
-     APP
-     ========================================================== */
+  /* ===== APP ===== */
   function enterApp(user) {
     CUR = user;
     document.getElementById('auth').style.display = 'none';
@@ -2305,9 +2260,7 @@ try {
     if (p === 'account') upUI();
   }
 
-  /* ==========================================================
-     RENDER SẢN PHẨM (DÙNG GIÁ TỪ DB)
-     ========================================================== */
+  /* ===== RENDER SẢN PHẨM ===== */
   function renderIOS() {
     var h = '';
     for (var i = 0; i < IOS.length; i++) {
@@ -2357,9 +2310,7 @@ try {
       '</div>';
   }
 
-  /* ==========================================================
-     MUA HÀNG
-     ========================================================== */
+  /* ===== MUA HÀNG ===== */
   window.__buy = function (name, plan, price) {
     var u = uObj();
     if ((u.balance || 0) < price) {
@@ -2395,14 +2346,10 @@ try {
 
       upUI();
       toast('🎉 Chức mừng bạn đã mua hàng thành công! Vui lòng chờ 1-30 phút đơn hàng sẽ được xử lý.');
-    }).catch(function (e) {
-      toast('❌ Lỗi: ' + e.message, true);
-    });
+    }).catch(function (e) { toast('❌ Lỗi: ' + e.message, true); });
   };
 
-  /* ==========================================================
-     QR
-     ========================================================== */
+  /* ===== QR ===== */
   function createQR() {
     var amt = Number(document.getElementById('qrAmount').value);
     if (!amt || amt < 5000) return toast('⚠️ Số tiền tối thiểu là 5.000đ', true);
@@ -2439,9 +2386,7 @@ try {
     toast('✅ Đã tạo mã QR! Vui lòng chuyển khoản đúng nội dung.');
   }
 
-  /* ==========================================================
-     THẺ CAR
-     ========================================================== */
+  /* ===== THẺ CAR ===== */
   var RATE = {
     10000: 5000,
     20000: 15000,
@@ -2458,7 +2403,7 @@ try {
     var seri = document.getElementById('cardSeri').value.trim();
 
     if (!code || !seri) return toast('⚠️ Vui lòng nhập đầy đủ Mã thẻ và Seri!', true);
-    if (code.length < 6 || seri.length < 6) return toast('⚠️ Mã thẻ hoặc Seri không hợp lệ (quá ngắn)!', true);
+    if (code.length < 6 || seri.length < 6) return toast('⚠️ Mã thẻ hoặc Seri không hợp lệ!', true);
 
     var d = {
       id: rand(8),
@@ -2482,9 +2427,7 @@ try {
     toast('✅ Đã gửi thẻ! Admin đang kiểm tra và xử lý.');
   }
 
-  /* ==========================================================
-     LỊCH SỬ (CÓ NÚT COPY KEY)
-     ========================================================== */
+  /* ===== LỊCH SỬ ===== */
   function switchHist(m) {
     histMode = m;
     var t = document.querySelectorAll('.subtab');
@@ -2613,9 +2556,7 @@ try {
     box.innerHTML = h;
   }
 
-  /* ==========================================================
-     ĐÁNH GIÁ
-     ========================================================== */
+  /* ===== ĐÁNH GIÁ ===== */
   (function () {
     var s = document.querySelectorAll('#starPick span');
     for (var i = 0; i < s.length; i++) {
@@ -2651,9 +2592,7 @@ try {
 
   function openLink(u) { window.open(u, '_blank'); }
 
-  /* ==========================================================
-     ADMIN GATE
-     ========================================================== */
+  /* ===== ADMIN GATE ===== */
   function openAdminGate() {
     document.getElementById('adminModal').classList.add('show');
     document.getElementById('adminPass').value = '';
@@ -2686,15 +2625,12 @@ try {
     document.getElementById('adminPanel').style.display = 'none';
   }
 
-  /* ==========================================================
-     RENDER BẢNG CHỈNH GIÁ SẢN PHẨM (ADMIN)
-     ========================================================== */
+  /* ===== RENDER BẢNG CHỈNH GIÁ ===== */
   function renderPrices() {
     var box = document.getElementById('adPrices');
     if (!box) return;
     var h = '';
 
-    /* === SẢN PHẨM IOS === */
     h += '<div class="price-group-title">📱 HACK - All IOS</div>';
     for (var i = 0; i < IOS.length; i++) {
       var pr = IOS[i];
@@ -2713,7 +2649,6 @@ try {
       }
     }
 
-    /* === ESGIN === */
     h += '<div class="price-group-title">🔑 Esgin = IOS</div>';
     for (var a = 0; a < ESGIN.length; a++) {
       var g = ESGIN[a];
@@ -2733,33 +2668,22 @@ try {
     box.innerHTML = h;
   }
 
-  /* ==========================================================
-     LƯU GIÁ MỚI LÊN FIREBASE
-     ========================================================== */
   window.__savePrice = function (productName, planLabel, key) {
     var inp = document.getElementById('ip_' + key);
     if (!inp) return;
     var newPrice = Number(inp.value);
-    if (isNaN(newPrice) || newPrice < 0) {
-      return toast('⚠️ Giá không hợp lệ!', true);
-    }
-
+    if (isNaN(newPrice) || newPrice < 0) return toast('⚠️ Giá không hợp lệ!', true);
     if (!db) return toast('❌ Chưa kết nối máy chủ', true);
 
     db.ref('prices/' + key).set(newPrice).then(function () {
       toast('✅ Đã cập nhật giá: ' + fmt(newPrice));
-      /* Local update ngay */
       DB.prices[key] = newPrice;
       renderIOS();
       renderEsgin();
-    }).catch(function (e) {
-      toast('❌ Lỗi lưu giá: ' + e.message, true);
-    });
+    }).catch(function (e) { toast('❌ Lỗi lưu giá: ' + e.message, true); });
   };
 
-  /* ==========================================================
-     ADMIN RENDER (TỔNG)
-     ========================================================== */
+  /* ===== ADMIN RENDER ===== */
   function renderAdmin() {
     var uk = Object.keys(DB.users);
     document.getElementById('stUsers').textContent = uk.length;
@@ -2778,10 +2702,8 @@ try {
 
     document.getElementById('stRv').textContent = DB.reviews.length;
 
-    /* === BẢNG CHỈNH GIÁ === */
     renderPrices();
 
-    /* === USERS === */
     var h1 = '';
     if (!uk.length) {
       h1 = '<div class="empty">Chưa có người đăng ký</div>';
@@ -2802,7 +2724,6 @@ try {
     }
     document.getElementById('adUsers').innerHTML = h1;
 
-    /* === DEPOSITS === */
     var h2 = '';
     if (!DB.deposits.length) {
       h2 = '<div class="empty">Chưa có yêu cầu nạp tiền</div>';
@@ -2836,7 +2757,6 @@ try {
     }
     document.getElementById('adDeps').innerHTML = h2;
 
-    /* === ORDERS === */
     var h3 = '';
     if (!DB.orders.length) {
       h3 = '<div class="empty">Chưa có đơn hàng</div>';
@@ -2864,7 +2784,6 @@ try {
     }
     document.getElementById('adOrds').innerHTML = h3;
 
-    /* === REVIEWS === */
     var h4 = '';
     if (!DB.reviews.length) {
       h4 = '<div class="empty">Chưa có đánh giá</div>';
@@ -2884,9 +2803,7 @@ try {
     document.getElementById('adRevs').innerHTML = h4;
   }
 
-  /* ==========================================================
-     ADMIN ACTIONS
-     ========================================================== */
+  /* ===== ADMIN ACTIONS ===== */
   window.__appr = function (id) {
     if (!db) return toast('❌ Chưa kết nối máy chủ', true);
     db.ref('deposits').once('value').then(function (s) {
@@ -2942,9 +2859,7 @@ try {
     });
   };
 
-  /* ==========================================================
-     MENU BINDING
-     ========================================================== */
+  /* ===== MENU BINDING ===== */
   (function () {
     var lis = document.querySelectorAll('#menuList li[data-page]');
     for (var i = 0; i < lis.length; i++) {
@@ -2956,9 +2871,7 @@ try {
     }
   })();
 
-  /* ==========================================================
-     START APP
-     ========================================================== */
+  /* ===== START ===== */
   bootAuth();
   initMusic();
 
