@@ -43,18 +43,62 @@ html, body {
   background: #05060f !important;
 }
 
+/* ============================================================
+   BODY VỚI ẢNH NỀN 3D CHUYỂN ĐỘNG
+   ============================================================ */
 body {
   font-family: 'Segoe UI', system-ui, -apple-system, Roboto, sans-serif;
-  background:
-    radial-gradient(circle at 15% 10%, #1a0a35 0%, transparent 45%),
-    radial-gradient(circle at 85% 20%, #00243a 0%, transparent 45%),
-    radial-gradient(circle at 50% 95%, #2a0033 0%, transparent 50%),
-    #05060f !important;
+  background: #05060f !important;
   color: #e9f6ff !important;
   min-height: 100vh;
   overflow-x: hidden;
   -webkit-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
+  position: relative;
+}
+
+/* ===== ẢNH NỀN 3D — ZOOM + XOAY NHẸ LIÊN TỤC ===== */
+body::before {
+  content: '';
+  position: fixed;
+  top: -60px;
+  left: -60px;
+  right: -60px;
+  bottom: -60px;
+  z-index: -2;
+  background: url('https://raw.githubusercontent.com/proxyvipivn/Shop-blox-fruit-/main/IMG_8190.jpeg') center center / cover no-repeat;
+  animation: bg3D 30s ease-in-out infinite;
+  pointer-events: none;
+  will-change: transform;
+  transform-origin: center center;
+}
+
+/* Lớp phủ mờ để chữ dễ đọc */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(180deg,
+    rgba(5, 6, 15, 0.35) 0%,
+    rgba(5, 6, 15, 0.6) 50%,
+    rgba(5, 6, 15, 0.75) 100%);
+  pointer-events: none;
+}
+
+@keyframes bg3D {
+  0%, 100% {
+    transform: scale(1) translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: scale(1.08) translate(-1%, -1.5%) rotate(0.4deg);
+  }
+  50% {
+    transform: scale(1.15) translate(1%, -2%) rotate(-0.4deg);
+  }
+  75% {
+    transform: scale(1.08) translate(-1.5%, 1%) rotate(0.4deg);
+  }
 }
 
 #stars {
@@ -259,7 +303,7 @@ body {
   width: 100%;
   padding: 13px 14px;
   border-radius: 12px;
-  background: rgba(0, 0, 0, 0.45) !important;
+  background: rgba(0, 0, 0, 0.55) !important;
   border: 1px solid rgba(0, 240, 255, 0.25);
   color: #e9f6ff !important;
   -webkit-text-fill-color: #e9f6ff !important;
@@ -284,7 +328,7 @@ body {
 .field textarea:focus {
   border-color: var(--neon1);
   box-shadow: 0 0 0 3px rgba(0, 240, 255, 0.14), 0 0 18px rgba(0, 240, 255, 0.3);
-  background: rgba(0, 0, 0, 0.6) !important;
+  background: rgba(0, 0, 0, 0.7) !important;
 }
 
 .field select option {
@@ -667,7 +711,9 @@ header {
   height: 100%;
   width: min(310px, 84vw);
   z-index: 201;
-  background: linear-gradient(180deg, #0a0e24, #07091a) !important;
+  background: linear-gradient(180deg, rgba(10, 14, 36, 0.98), rgba(7, 9, 26, 0.98)) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border-right: 1px solid var(--line);
   transform: translateX(-105%);
   transition: 0.32s cubic-bezier(0.3, 0.8, 0.3, 1);
@@ -706,14 +752,14 @@ header {
   margin: 14px;
   padding: 13px;
   border-radius: 14px;
-  background: rgba(0, 0, 0, 0.4) !important;
+  background: rgba(0, 0, 0, 0.5) !important;
   border: 1px solid var(--line);
   font-size: 12px;
   color: #9fc9e6 !important;
   line-height: 1.7;
 }
 
-.side-user b { color: var(--neon4) !important; font-size: 13.5px; }
+.side-user b { color: #ffffff !important; font-size: 13.5px; }
 .side-user .ib { color: var(--neon3) !important; }
 
 .menu { list-style: none; padding: 6px 10px 26px; }
@@ -800,22 +846,23 @@ main {
   -webkit-text-fill-color: transparent;
   color: transparent;
   animation: shine 4s linear infinite;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.9));
 }
 
 .panel {
-  background: var(--card) !important;
+  background: rgba(15, 18, 40, 0.85) !important;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--line);
   border-radius: 18px;
   padding: 16px;
   margin-bottom: 14px;
-  box-shadow: 0 0 28px rgba(0, 240,  padding255, 0.12), inset 0 0 30px rgba(0, 0, 0, 0.35);
-  color: #:e9f6ff !important;
+  box-shadow: 0 0 28px rgba(0, 240, 255, 0.12), inset 0 0 30px rgba(0, 0, 0, 0.35);
+  color: #e9f6ff !important;
 }
 
-.panel.gold { border-color: rgba(255, 230, 0, 0.42); box-shadow : 0 0 28px rgba(255, 230, 0, 0.16); }
-.panel.pink { border-color:7 rgba(255, 0, 224, 0.42); box-shadow: 0 0 28px rgba(255, 0, 224, 0.16); }
+.panel.gold { border-color: rgba(255, 230, 0, 0.42); box-shadow: 0 0 28px rgba(255, 230, 0, 0.16); }
+.panel.pink { border-color: rgba(255, 0, 224, 0.42); box-shadow: 0 0 28px rgba(255, 0, 224, 0.16); }
 .panel.green { border-color: rgba(0, 255, 136, 0.42); box-shadow: 0 0 28px rgba(0, 255, 136, 0.16); }
 
 .sec-title {
@@ -842,7 +889,7 @@ main {
 }
 
 .prod {
-  background: linear-gradient(160deg, rgba(20, 24, 55, 0.9), rgba(10, 12, 30, 0.9)) !important;
+  background: linear-gradient(160deg, rgba(20, 24, 55, 0.95), rgba(10, 12, 30, 0.95)) !important;
   border: 1px solid var(--line);
   border-radius: 18px;
   overflow: hidden;
@@ -895,7 +942,7 @@ main {
   gap: 8px;
   padding: 9px 11px;
   border-radius: 11px;
-  background: rgba(0, 0, 0, 0.42) !important;
+  background: rgba(0, 0, 0, 0.55) !important;
   border: 1px solid rgba(0, 240, 255, 0.18);
   transition: 0.22s;
 }
@@ -913,7 +960,7 @@ main {
 }
 
 .plan .buy {
- px 11px;
+  padding: 7px 11px;
   border-radius: 9px;
   border: none;
   cursor: pointer;
@@ -935,7 +982,7 @@ main {
   cursor: pointer;
   font-size: 12.4px;
   font-weight: 800;
-  background: rgba(0, 0, 0, 0.4) !important;
+  background: rgba(0, 0, 0, 0.5) !important;
   border: 1px solid var(--line);
   color: #8fb6d6 !important;
   transition: 0.22s;
@@ -951,7 +998,7 @@ main {
 .item {
   padding: 12px;
   border-radius: 14px;
-  background: rgba(0, 0, 0, 0.36) !important;
+  background: rgba(0, 0, 0, 0.55) !important;
   border: 1px solid rgba(0, 240, 255, 0.16);
   margin-bottom: 9px;
   font-size: 12.4px;
@@ -1155,31 +1202,31 @@ main {
 .bank-info {
   margin-top: 14px;
   font-size: 13px;
-  line-height": 2;
+  line-height: 2;
   text-align: left;
-  background: rgba(0, 0, 0, 0.42) !important;
-  padding: 14 onclickpx;
+  background: rgba(0, 0, 0, 0.6) !important;
+  padding: 14px;
   border-radius: 14px;
   border: 1px solid var(--line);
   color: #e9f6ff !important;
 }
 
-.bank="-info b { color: var(--neon3) !important; }
+.bank-info b { color: var(--neon3) !important; }
 
 .bank-info .hl {
   color: var(--neon4) !important;
-  font-weightswitch: 900;
+  font-weight: 900;
   font-size: 15px;
   letter-spacing: 1px;
 }
 
 .note-warn {
-  margin-top:Tab 12px;
+  margin-top: 12px;
   padding: 11px;
-  border-radius: 12('px;
+  border-radius: 12px;
   font-size: 12px;
   font-weight: 700;
-  background: rgba(255, 230, 0, 0.1) !important;
+  background: rgba(255, 230, 0, 0.15) !important;
   border: 1px solid rgba(255, 230, 0, 0.45);
   color: #ffe600 !important;
   text-align: center;
@@ -1222,7 +1269,7 @@ main {
     <div class="auth-title">SHOP ALL SẢN PHẨM FF – FFMAX</div>
     <div class="auth-sub">HỖ TRỢ ADR🤖 và IOS📱</div>
     <div class="tabs">
-      <div class="tab active" id="tabLoginlogin')">Đăng nhập</div>
+      <div class="tab active" id="tabLogin" onclick="switchTab('login')">Đăng nhập</div>
       <div class="tab" id="tabReg" onclick="switchTab('reg')">Đăng ký</div>
     </div>
     <div id="formLogin">
@@ -1326,7 +1373,7 @@ main {
         <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
           <div style="flex:1;min-width:180px">
             <div style="font-size:12px;color:#8fb6d6">Tên người đăng ký</div>
-            <div style="font-size:19px;font-weight:900;color:var(--neon4)" id="acName">-</div>
+            <div style="font-size:19px;font-weight:900;color:#ffffff" id="acName">-</div>
           </div>
           <div style="text-align:right">
             <div style="font-size:12px;color:#8fb6d6">Số IB</div>
@@ -1635,14 +1682,13 @@ try {
   var IMG = 'https://raw.githubusercontent.com/proxyvipivn/Shop-blox-fruit-/main/';
 
   /* ==========================================================
-     SAO BĂNG TRẮNG NHIỀU
+     CHỈ SAO BĂNG — KHÔNG CÒN SAO LẤP LÁNH
      ========================================================== */
   (function () {
     try {
       var c = document.getElementById('stars');
       var x = c.getContext('2d');
       var W, H;
-      var stars = [];
       var meteors = [];
 
       function resize() {
@@ -1652,16 +1698,6 @@ try {
 
       resize();
       addEventListener('resize', resize);
-
-      for (var i = 0; i < 500; i++) {
-        stars.push({
-          x: Math.random() * W,
-          y: Math.random() * H,
-          r: Math.random() * 1.6 + 0.3,
-          a: Math.random(),
-          s: Math.random() * 0.022 + 0.005
-        });
-      }
 
       function spawnMeteor() {
         if (meteors.length < 22 && Math.random() < 0.85) {
@@ -1680,19 +1716,6 @@ try {
 
       function loop() {
         x.clearRect(0, 0, W, H);
-
-        for (var i = 0; i < stars.length; i++) {
-          var s = stars[i];
-          s.a += s.s;
-          if (s.a > 1 || s.a < 0) s.s *= -1;
-          x.globalAlpha = Math.abs(s.a) * 0.95;
-          x.fillStyle = '#ffffff';
-          x.beginPath();
-          x.arc(s.x, s.y, s.r, 0, 7);
-          x.fill();
-        }
-
-        x.globalAlpha = 1;
 
         for (var j = meteors.length - 1; j >= 0; j--) {
           var m = meteors[j];
@@ -1726,7 +1749,7 @@ try {
 
       loop();
     } catch (e) {
-      console.error('Stars error:', e);
+      console.error('Meteors error:', e);
     }
   })();
 
@@ -1867,6 +1890,7 @@ try {
      ========================================================== */
   function fmt(n) { return Number(n || 0).toLocaleString('vi-VN') + 'đ'; }
 
+  /* Hàm tạo chuỗi số ngẫu nhiên từ 1-9 */
   function rand(len) {
     var s = '';
     for (var i = 0; i < len; i++) s += (Math.floor(Math.random() * 9) + 1);
@@ -1963,13 +1987,9 @@ try {
     m.className = 'msg ' + (ok ? 'ok' : 'err');
   }
 
-  /* ==========================================================
-     KIỂM TRA PHIÊN ĐĂNG NHẬP (12 GIỜ)
-     ========================================================== */
   function bootAuth() {
     var s = getS();
 
-    // Nếu có phiên đăng nhập còn hạn (< 12 giờ) → vào thẳng nick
     if (s && s.user && s.exp > now() && DB.users[s.user]) {
       document.getElementById('auth').style.display = 'none';
       document.getElementById('app').style.display = 'block';
@@ -1977,7 +1997,6 @@ try {
       return;
     }
 
-    // Phiên hết hạn hoặc không có → yêu cầu đăng nhập lại
     if (s) setS(null);
     document.getElementById('auth').style.display = 'flex';
   }
@@ -1999,9 +2018,10 @@ try {
         return;
       }
 
+      /* SỐ IB: 7 CHỮ SỐ RANDOM 1-9 */
       db.ref('users/' + u).set({
         password: p,
-        ib: Math.floor(Math.random() * 9) + 1,
+        ib: rand(7),
         balance: 0,
         totalDeposit: 0,
         totalSpent: 0,
@@ -2033,7 +2053,6 @@ try {
       if (!user) return aMsg('❌ Tài khoản không tồn tại!');
       if (user.password !== p) return aMsg('❌ Mật khẩu không đúng!');
 
-      // LƯU PHIÊN 12 GIỜ — tải lại trang vẫn vào thẳng nick
       var sessionExp = now() + 12 * 60 * 60 * 1000;
       setS({ user: u, exp: sessionExp });
 
@@ -2169,7 +2188,7 @@ try {
       plans: [
         { l: '1 Giờ', p: 20000 },
         { l: '1 Ngày', p: 120000 },
-        { l: '7 Ngày', p: 25000 },
+        { l: '7 Ngày', p: 250000 },
         { l: '30 Ngày', p: 550000 }
       ]
     }
@@ -2276,7 +2295,6 @@ try {
 
       upUI();
 
-      // THÔNG BÁO MUA HÀNG THÀNH CÔNG
       toast('🎉 Chức mừng bạn đã mua hàng thành công! Vui lòng liên hệ phần hỗ trợ để nhận.');
     }).catch(function (e) {
       toast('❌ Lỗi: ' + e.message, true);
@@ -2603,7 +2621,6 @@ try {
 
     document.getElementById('stRv').textContent = DB.reviews.length;
 
-    /* USERS */
     var h1 = '';
     if (!uk.length) {
       h1 = '<div class="empty">Chưa có người đăng ký</div>';
@@ -2624,7 +2641,6 @@ try {
     }
     document.getElementById('adUsers').innerHTML = h1;
 
-    /* DEPOSITS */
     var h2 = '';
     if (!DB.deposits.length) {
       h2 = '<div class="empty">Chưa có yêu cầu nạp tiền</div>';
@@ -2658,7 +2674,6 @@ try {
     }
     document.getElementById('adDeps').innerHTML = h2;
 
-    /* ORDERS */
     var h3 = '';
     if (!DB.orders.length) {
       h3 = '<div class="empty">Chưa có đơn hàng</div>';
@@ -2688,7 +2703,6 @@ try {
     }
     document.getElementById('adOrds').innerHTML = h3;
 
-    /* REVIEWS */
     var h4 = '';
     if (!DB.reviews.length) {
       h4 = '<div class="empty">Chưa có đánh giá</div>';
