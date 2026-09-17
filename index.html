@@ -9,15 +9,23 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>SHOP ALL SẢN PHẨM FF – FFMAX</title>
 <style>
+/* ============================================================
+   BIẾN MÀU TOÀN CỤC
+   ============================================================ */
 :root{
   color-scheme: dark;
   --neon1: #00f0ff;
   --neon2: #ff00e0;
   --neon3: #ffe600;
   --neon4: #00ff88;
-  --line: rgba(0, 240, 255, 0.5);
+  --bg: #05060f;
+  --card: rgba(15, 18, 40, 0.72);
+  --line: rgba(0, 240, 255, 0.28);
 }
 
+/* ============================================================
+   RESET & CƠ BẢN
+   ============================================================ */
 html, body {
   color-scheme: dark !important;
   -webkit-color-scheme: dark !important;
@@ -37,8 +45,12 @@ html, body {
 
 body {
   font-family: 'Segoe UI', system-ui, -apple-system, Roboto, sans-serif;
-  background: transparent !important;
-  color: #ffffff !important;
+  background:
+    radial-gradient(circle at 15% 10%, #1a0a35 0%, transparent 45%),
+    radial-gradient(circle at 85% 20%, #00243a 0%, transparent 45%),
+    radial-gradient(circle at 50% 95%, #2a0033 0%, transparent 50%),
+    #05060f !important;
+  color: #e9f6ff !important;
   min-height: 100vh;
   overflow-x: hidden;
   -webkit-text-size-adjust: 100%;
@@ -46,29 +58,11 @@ body {
   position: relative;
 }
 
-/* ============================================================
-   ẢNH NỀN — RÕ NÉT, PHỦ KÍN
-   ============================================================ */
-#bg-wallpaper {
-  position: fixed;
-  inset: 0;
-  z-index: -10;
-  background-image: url('https://raw.githubusercontent.com/proxyvipivn/Shop-blox-fruit-/main/IMG_8190.jpeg');
-  background-color: #05060f;
-  background-position: center center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  pointer-events: none;
-}
-
-/* ============================================================
-   CANVAS SAO — NẰM TRÊN TẤT CẢ
-   ============================================================ */
+/* Canvas sao + sao băng ở dưới nội dung */
 #stars {
   position: fixed;
   inset: 0;
-  z-index: 9990;
+  z-index: 0;
   pointer-events: none;
   background: transparent !important;
 }
@@ -79,7 +73,7 @@ body {
 }
 
 ::-webkit-scrollbar { width: 8px; height: 8px; }
-::-webkit-scrollbar-track { background: rgba(10, 13, 31, 0.3); }
+::-webkit-scrollbar-track { background: #0a0d1f; }
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(180deg, var(--neon1), var(--neon2));
   border-radius: 8px;
@@ -136,6 +130,7 @@ body {
   color: var(--neon4) !important;
   text-shadow: 0 0 14px rgba(0, 255, 136, 0.7);
   min-height: 22px;
+  letter-spacing: 0.5px;
 }
 
 .load-bar-wrap {
@@ -185,16 +180,17 @@ body {
 
 .auth-box {
   width: min(430px, 94vw);
-  background: rgba(8, 12, 28, 0.35) !important;
-  backdrop-filter: blur(20px) saturate(1.4);
-  -webkit-backdrop-filter: blur(20px) saturate(1.4);
-  border: 1px solid rgba(0, 240, 255, 0.5);
+  background: var(--card) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--line);
   border-radius: 22px;
   padding: 26px 22px;
   box-shadow:
-    0 0 40px rgba(0, 240, 255, 0.3),
-    inset 0 0 40px rgba(0, 0, 0, 0.2);
-  color: #ffffff !important;
+    0 0 40px rgba(0, 240, 255, 0.22),
+    0 0 90px rgba(255, 0, 224, 0.13),
+    inset 0 0 40px rgba(0, 0, 0, 0.5);
+  color: #e9f6ff !important;
 }
 
 .auth-title {
@@ -212,17 +208,17 @@ body {
 
 .auth-sub {
   text-align: center;
-  color: #d0e4f5 !important;
+  color: #7fa8c9 !important;
   font-size: 12px;
   margin-bottom: 18px;
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
+  letter-spacing: 0.5px;
 }
 
 .tabs {
   display: flex;
   gap: 8px;
   margin-bottom: 18px;
-  background: rgba(0, 0, 0, 0.45) !important;
+  background: rgba(0, 0, 0, 0.35) !important;
   padding: 5px;
   border-radius: 14px;
 }
@@ -235,7 +231,7 @@ body {
   cursor: pointer;
   font-weight: 800;
   font-size: 14px;
-  color: #b8d0e0 !important;
+  color: #7fa8c9 !important;
   transition: 0.25s;
   border: 1px solid transparent;
   background: transparent !important;
@@ -253,10 +249,10 @@ body {
 .field label {
   display: block;
   font-size: 12px;
-  color: #d0e4f5 !important;
+  color: #8fb6d6 !important;
   margin-bottom: 6px;
   font-weight: 700;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+  letter-spacing: 0.4px;
 }
 
 .field input,
@@ -265,8 +261,8 @@ body {
   width: 100%;
   padding: 13px 14px;
   border-radius: 12px;
-  background: rgba(0, 0, 0, 0.55) !important;
-  border: 1px solid rgba(0, 240, 255, 0.3);
+  background: rgba(0, 0, 0, 0.45) !important;
+  border: 1px solid rgba(0, 240, 255, 0.25);
   color: #e9f6ff !important;
   -webkit-text-fill-color: #e9f6ff !important;
   font-size: 14px;
@@ -290,7 +286,7 @@ body {
 .field textarea:focus {
   border-color: var(--neon1);
   box-shadow: 0 0 0 3px rgba(0, 240, 255, 0.14), 0 0 18px rgba(0, 240, 255, 0.3);
-  background: rgba(0, 0, 0, 0.75) !important;
+  background: rgba(0, 0, 0, 0.6) !important;
 }
 
 .field select option {
@@ -350,20 +346,20 @@ body {
 
 .msg.err {
   display: block;
-  background: rgba(255, 0, 60, 0.2) !important;
+  background: rgba(255, 0, 60, 0.14) !important;
   border: 1px solid rgba(255, 0, 60, 0.5);
   color: #ff7d96 !important;
 }
 
 .msg.ok {
   display: block;
-  background: rgba(0, 255, 136, 0.18) !important;
+  background: rgba(0, 255, 136, 0.12) !important;
   border: 1px solid rgba(0, 255, 136, 0.5);
   color: #6affb8 !important;
 }
 
 /* ============================================================
-   HEADER — KÍNH MỜ NHẸ
+   HEADER
    ============================================================ */
 header {
   position: sticky;
@@ -373,11 +369,11 @@ header {
   align-items: center;
   gap: 10px;
   padding: 12px 14px;
-  background: rgba(8, 12, 28, 0.3) !important;
-  backdrop-filter: blur(14px) saturate(1.4);
-  -webkit-backdrop-filter: blur(14px) saturate(1.4);
-  border-bottom: 1px solid rgba(0, 240, 255, 0.4);
-  box-shadow: 0 0 26px rgba(0, 240, 255, 0.25);
+  background: rgba(6, 8, 22, 0.9) !important;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+  box-shadow: 0 0 26px rgba(0, 240, 255, 0.18);
 }
 
 .burger {
@@ -391,9 +387,7 @@ header {
   gap: 5px;
   cursor: pointer;
   flex: 0 0 auto;
-  background: rgba(8, 12, 28, 0.4) !important;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: linear-gradient(135deg, rgba(0, 240, 255, 0.14), rgba(255, 0, 224, 0.14)) !important;
   border: 1px solid var(--line);
   transition: 0.22s;
 }
@@ -427,15 +421,13 @@ header {
   -webkit-text-fill-color: transparent;
   color: transparent;
   animation: shine 4s linear infinite;
-  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 1)) drop-shadow(0 0 12px rgba(0, 240, 255, 0.3));
 }
 
 .brand p {
   font-size: 10px;
-  color: #e0ecf5 !important;
+  color: #7fa8c9 !important;
   letter-spacing: 0.4px;
   margin-top: 2px;
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 1);
 }
 
 .bal-chip {
@@ -445,15 +437,12 @@ header {
   padding: 8px 12px;
   border-radius: 30px;
   flex: 0 0 auto;
-  background: rgba(0, 255, 136, 0.2) !important;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(0, 255, 136, 0.6);
+  background: linear-gradient(90deg, rgba(0, 255, 136, 0.16), rgba(0, 240, 255, 0.16)) !important;
+  border: 1px solid rgba(0, 255, 136, 0.45);
   font-weight: 900;
   font-size: 12.5px;
   color: #6affb8 !important;
-  box-shadow: 0 0 18px rgba(0, 255, 136, 0.4);
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 1);
+  box-shadow: 0 0 18px rgba(0, 255, 136, 0.32);
 }
 
 /* ============================================================
@@ -533,15 +522,15 @@ header {
   top: 56px;
   right: 0;
   width: min(280px, 86vw);
-  background: rgba(8, 12, 28, 0.55) !important;
-  backdrop-filter: blur(24px) saturate(1.5);
-  -webkit-backdrop-filter: blur(24px) saturate(1.5);
-  border: 1px solid rgba(255, 182, 193, 0.6);
+  background: linear-gradient(160deg, rgba(15, 18, 40, 0.98), rgba(8, 10, 25, 0.98));
+  border: 1px solid rgba(255, 182, 193, 0.5);
   border-radius: 16px;
   padding: 12px;
-  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.8), 0 0 40px rgba(255, 182, 193, 0.3);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.9), 0 0 40px rgba(255, 182, 193, 0.25);
   display: none;
   z-index: 200;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   animation: musicSlide 0.25s ease;
 }
 
@@ -559,7 +548,7 @@ header {
   margin-bottom: 8px;
   text-align: center;
   padding-bottom: 8px;
-  border-bottom: 1px solid rgba(255, 182, 193, 0.3);
+  border-bottom: 1px solid rgba(255, 182, 193, 0.25);
   color: #ffb6c1 !important;
   -webkit-text-fill-color: #ffb6c1 !important;
   text-shadow: 0 0 12px rgba(255, 182, 193, 0.5);
@@ -574,20 +563,20 @@ header {
   cursor: pointer;
   font-size: 12.5px;
   font-weight: 700;
-  color: #d0e4f5 !important;
+  color: #bfe0f5 !important;
   margin-bottom: 5px;
   border: 1px solid transparent;
   transition: 0.18s;
-  background: rgba(0, 0, 0, 0.45) !important;
+  background: rgba(0, 0, 0, 0.4) !important;
 }
 
 .music-item:active { transform: scale(0.98); }
 
 .music-item.sel {
-  background: linear-gradient(90deg, rgba(255, 182, 193, 0.3), rgba(255, 105, 180, 0.2)) !important;
-  border-color: rgba(255, 182, 193, 0.8);
+  background: linear-gradient(90deg, rgba(255, 182, 193, 0.22), rgba(255, 105, 180, 0.15)) !important;
+  border-color: rgba(255, 182, 193, 0.7);
   color: #fff !important;
-  box-shadow: 0 0 16px rgba(255, 182, 193, 0.5);
+  box-shadow: 0 0 16px rgba(255, 182, 193, 0.4);
 }
 
 .music-item .mi-ico {
@@ -651,9 +640,9 @@ header {
 .music-note {
   text-align: center;
   font-size: 10.5px;
-  color: #d0e4f5 !important;
+  color: #7fa8c9 !important;
   margin-top: 7px;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+  letter-spacing: 0.3px;
 }
 
 /* ============================================================
@@ -663,8 +652,8 @@ header {
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.65) !important;
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
   z-index: 200;
   opacity: 0;
   pointer-events: none;
@@ -680,16 +669,16 @@ header {
   height: 100%;
   width: min(310px, 84vw);
   z-index: 201;
-  background: rgba(6, 10, 24, 0.5) !important;
-  backdrop-filter: blur(24px) saturate(1.5);
-  -webkit-backdrop-filter: blur(24px) saturate(1.5);
+  background: linear-gradient(180deg, rgba(10, 14, 36, 0.98), rgba(7, 9, 26, 0.98)) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border-right: 1px solid var(--line);
   transform: translateX(-105%);
-  transition: 0.32s cubic-bezier( 0.3, 0.8, 0.3, 1);
+  transition: 0.32s cubic-bezier(0.3, 0.8, 0.3, 1);
   display: flex;
   flex-direction: column;
-  overflow box-shadow: 8px 0 50px rgba(0, 0, 0, 0.85);
--y: auto;
+  box-shadow: 8px 0 50px rgba(0, 0, 0, 0.85);
+  overflow-y: auto;
   color: #e9f6ff !important;
 }
 
@@ -698,7 +687,7 @@ header {
 .side-head {
   padding: 20px 18px;
   border-bottom: 1px solid var(--line);
-  background: linear-gradient(135deg, rgba(0, 240, 255, 0.15), rgba(255, 0, 224, 0.15)) !important;
+  background: linear-gradient(135deg, rgba(0, 240, 255, 0.1), rgba(255, 0, 224, 0.1)) !important;
 }
 
 .side-head h2 {
@@ -709,14 +698,12 @@ header {
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
-  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 1));
 }
 
 .side-head p {
   font-size: 11px;
-  color: #d0e4f5 !important;
+  color: #7fa8c9 !important;
   margin-top: 4px;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
 }
 
 .side-user {
@@ -726,9 +713,8 @@ header {
   background: rgba(0, 0, 0, 0.4) !important;
   border: 1px solid var(--line);
   font-size: 12px;
-  color: #d0e4f5 !important;
+  color: #9fc9e6 !important;
   line-height: 1.7;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
 }
 
 .side-user b { color: #ffffff !important; font-size: 13.5px; }
@@ -740,19 +726,18 @@ header {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 14px;
+  padding: 14px 14px;
   margin-bottom: 5px;
   border-radius: 13px;
   cursor: pointer;
   font-size: 13.6px;
   font-weight: 700;
-  color: #d0e4f5 !important;
+  color: #bfe0f5 !important;
   transition: 0.22s;
   border: 1px solid transparent;
   position: relative;
   overflow: hidden;
-  background: rgba(0, 0, 0, 0.15) !important;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+  background: transparent !important;
 }
 
 .menu li::before {
@@ -768,7 +753,7 @@ header {
 }
 
 .menu li:hover {
-  background: rgba(0, 240, 255, 0.15) !important;
+  background: rgba(0, 240, 255, 0.1) !important;
   border-color: var(--line);
   transform: translateX(3px);
 }
@@ -776,10 +761,10 @@ header {
 .menu li:hover::before { opacity: 1; }
 
 .menu li.active {
-  background: linear-gradient(90deg, rgba(0, 240, 255, 0.3), rgba(255, 0, 224, 0.2)) !important;
-  border-color: rgba(0, 240, 255, 0.7);
+  background: linear-gradient(90deg, rgba(0, 240, 255, 0.2), rgba(255, 0, 224, 0.12)) !important;
+  border-color: rgba(0, 240, 255, 0.5);
   color: #fff !important;
-  box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.25);
 }
 
 .menu li.active::before { opacity: 1; }
@@ -819,59 +804,40 @@ main {
   -webkit-text-fill-color: transparent;
   color: transparent;
   animation: shine 4s linear infinite;
-  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 1)) drop-shadow(0 0 14px rgba(0, 240, 255, 0.4));
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.9));
 }
 
-/* ============================================================
-   PANEL — KÍNH MỜ NHẸ, ẢNH NỀN HIỆN RÕ QUA
-   ============================================================ */
 .panel {
-  background: rgba(8, 12, 28, 0.22) !important;
-  backdrop-filter: blur(6px) saturate(1.2);
-  -webkit-backdrop-filter: blur(6px) saturate(1.2);
-  border: 1px solid rgba(0, 240, 255, 0.4);
+  background: var(--card) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--line);
   border-radius: 18px;
   padding: 16px;
   margin-bottom: 14px;
-  box-shadow:
-    0 4px 20px rgba(0, 0, 0, 0.3),
-    0 0 24px rgba(0, 240, 255, 0.15),
-    inset 0 0 30px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 0 28px rgba(0, 240, 255, 0.12), inset 0 0 30px rgba(0, 0, 0, 0.35);
   color: #e9f6ff !important;
 }
 
-.panel.gold {
-  border-color: rgba(255, 230, 0, 0.55);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), 0 0 24px rgba(255, 230, 0, 0.2), inset 0 0 30px rgba(0, 0, 0, 0.08);
-}
-
-.panel.pink {
-  border-color: rgba(255, 0, 224, 0.55);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), 0 0 24px rgba(255, 0, 224, 0.2), inset 0 0 30px rgba(0, 0, 0, 0.08);
-}
-
-.panel.green {
-  border-color: rgba(0, 255, 136, 0.55);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), 0 0 24px rgba(0, 255, 136, 0.2), inset 0 0 30px rgba(0, 0, 0, 0.08);
-}
+.panel.gold { border-color: rgba(255, 230, 0, 0.42); box-shadow: 0 0 28px rgba(255, 230, 0, 0.16); }
+.panel.pink { border-color: rgba(255, 0, 224, 0.42); box-shadow: 0 0 28px rgba(255, 0, 224, 0.16); }
+.panel.green { border-color: rgba(0, 255, 136, 0.42); box-shadow: 0 0 28px rgba(0, 255, 136, 0.16); }
 
 .sec-title {
   font-size: 14.5px;
   font-weight: 900;
   margin-bottom: 11px;
-  color: #ffffff !important;
+  color: #dff3ff !important;
   letter-spacing: 0.5px;
   display: flex;
   align-items: center;
   gap: 8px;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 1), 0 0 12px rgba(0, 240, 255, 0.3);
 }
 
 .hint {
   font-size: 12px;
-  color: #e0ecf5 !important;
+  color: #8fb6d6 !important;
   line-height: 1.65;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
 }
 
 .grid {
@@ -880,23 +846,20 @@ main {
   gap: 14px;
 }
 
-/* PRODUCT — KÍNH MỜ NHẸ */
 .prod {
-  background: rgba(8, 12, 28, 0.25) !important;
-  backdrop-filter: blur(6px) saturate(1.2);
-  -webkit-backdrop-filter: blur(6px) saturate(1.2);
+  background: linear-gradient(160deg, rgba(20, 24, 55, 0.95), rgba(10, 12, 30, 0.95)) !important;
   border: 1px solid var(--line);
   border-radius: 18px;
   overflow: hidden;
   transition: 0.28s;
   position: relative;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), 0 0 22px rgba(0, 240, 255, 0.15);
+  box-shadow: 0 0 22px rgba(0, 240, 255, 0.1);
 }
 
 .prod:hover {
   transform: translateY(-5px);
-  border-color: rgba(0, 240, 255, 0.8);
-  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5), 0 0 40px rgba(0, 240, 255, 0.5), 0 0 70px rgba(255, 0, 224, 0.3);
+  border-color: rgba(0, 240, 255, 0.65);
+  box-shadow: 0 0 40px rgba(0, 240, 255, 0.35), 0 0 70px rgba(255, 0, 224, 0.18);
 }
 
 .prod img {
@@ -918,16 +881,14 @@ main {
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
-  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 1)) drop-shadow(0 0 12px rgba(0, 240, 255, 0.4));
 }
 
 .prod-desc {
   font-size: 11.6px;
-  color: #e0ecf5 !important;
+  color: #8fb6d6 !important;
   line-height: 1.6;
   margin-bottom: 11px;
   white-space: pre-line;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
 }
 
 .plans { display: flex; flex-direction: column; gap: 7px; }
@@ -939,23 +900,21 @@ main {
   gap: 8px;
   padding: 9px 11px;
   border-radius: 11px;
-  background: rgba(0, 0, 0, 0.5) !important;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(0, 240, 255, 0.3);
+  background: rgba(0, 0, 0, 0.55) !important;
+  border: 1px solid rgba(0, 240, 255, 0.18);
   transition: 0.22s;
 }
 
-.plan:hover { border-color: var(--neon4); box-shadow: 0 0 16px rgba(0, 255, 136, 0.4); }
+.plan:hover { border-color: var(--neon4); box-shadow: 0 0 16px rgba(0, 255, 136, 0.3); }
 
-.plan .lb { font-size: 12.2px; font-weight: 700; color: #ffffff !important; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9); }
+.plan .lb { font-size: 12.2px; font-weight: 700; color: #cfe9ff !important; }
 
 .plan .pr {
   font-size: 12.4px;
   font-weight: 900;
   color: var(--neon3) !important;
   white-space: nowrap;
-  text-shadow: 0 0 10px rgba(255, 230, 0, 0.6), 0 1px 3px rgba(0, 0, 0, 0.9);
+  text-shadow: 0 0 10px rgba(255, 230, 0, 0.5);
 }
 
 .plan .buy {
@@ -981,30 +940,24 @@ main {
   cursor: pointer;
   font-size: 12.4px;
   font-weight: 800;
-  background: rgba(0, 0, 0, 0.55) !important;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.5) !important;
   border: 1px solid var(--line);
-  color: #d0e4f5 !important;
+  color: #8fb6d6 !important;
   transition: 0.22s;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
 }
 
 .subtab.active {
   background: linear-gradient(90deg, var(--neon1), var(--neon2)) !important;
   color: #001018 !important;
-  box-shadow: 0 0 20px rgba(0, 240, 255, 0.6);
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.5);
   border-color: transparent;
-  text-shadow: none;
 }
 
 .item {
   padding: 12px;
   border-radius: 14px;
   background: rgba(0, 0, 0, 0.5) !important;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(0, 240, 255, 0.3);
+  border: 1px solid rgba(0, 240, 255, 0.16);
   margin-bottom: 9px;
   font-size: 12.4px;
   display: flex;
@@ -1012,23 +965,12 @@ main {
   gap: 10px;
   flex-wrap: wrap;
   align-items: center;
-  color: #ffffff !important;
+  color: #e9f6ff !important;
 }
 
 .item .l { flex: 1; min-width: 180px; }
-.item .l b {
-  color: var(--neon1) !important;
-  font-size: 13px;
-  display: block;
-  margin-bottom: 4px;
-  text-shadow: 0 0 10px rgba(0, 240, 255, 0.5), 0 1px 3px rgba(0, 0, 0, 0.9);
-}
-.item .l small {
-  color: #e0ecf5 !important;
-  display: block;
-  line-height: 1.6;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
-}
+.item .l b { color: var(--neon1) !important; font-size: 13px; display: block; margin-bottom: 4px; }
+.item .l small { color: #8fb6d6 !important; display: block; line-height: 1.6; }
 
 .badge {
   padding: 5px 11px;
@@ -1040,34 +982,30 @@ main {
 }
 
 .badge.wait {
-  background: rgba(255, 230, 0, 0.3) !important;
-  border: 1px solid rgba(255, 230, 0, 0.8);
+  background: rgba(255, 230, 0, 0.15) !important;
+  border: 1px solid rgba(255, 230, 0, 0.6);
   color: #ffe600 !important;
-  box-shadow: 0 0 14px rgba(255, 230, 0, 0.5);
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+  box-shadow: 0 0 14px rgba(255, 230, 0, 0.3);
 }
 
 .badge.done {
-  background: rgba(0, 255, 136, 0.3) !important;
-  border: 1px solid rgba(0, 255, 136, 0.8);
+  background: rgba(0, 255, 136, 0.15) !important;
+  border: 1px solid rgba(0, 255, 136, 0.6);
   color: #6affb8 !important;
-  box-shadow: 0 0 14px rgba(0, 255, 136, 0.5);
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+  box-shadow: 0 0 14px rgba(0, 255, 136, 0.3);
 }
 
 .badge.cancel {
-  background: rgba(255, 0, 60, 0.3) !important;
-  border: 1px solid rgba(255, 0, 60, 0.8);
+  background: rgba(255, 0, 60, 0.15) !important;
+  border: 1px solid rgba(255, 0, 60, 0.6);
   color: #ff7d96 !important;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
 }
 
 .empty {
   text-align: center;
   padding: 32px 14px;
-  color: #d0e4f5 !important;
+  color: #5f87a8 !important;
   font-size: 13px;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
 }
 
 /* ============================================================
@@ -1095,9 +1033,9 @@ main {
   z-index: 600;
   overflow-y: auto;
   background:
-    radial-gradient(circle at 20% 10%, rgba(26, 0, 51, 0.9), transparent 50%),
-    radial-gradient(circle at 80% 90%, rgba(0, 34, 51, 0.9), transparent 50%),
-    rgba(4, 5, 13, 0.95) !important;
+    radial-gradient(circle at 20% 10%, #1a0033, transparent 50%),
+    radial-gradient(circle at 80% 90%, #002233, transparent 50%),
+    #04050d !important;
   color: #e9f6ff !important;
 }
 
@@ -1109,7 +1047,7 @@ main {
   align-items: center;
   gap: 12px;
   padding: 13px 14px;
-  background: rgba(10, 0, 25, 0.95) !important;
+  background: rgba(10, 0, 25, 0.94) !important;
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid rgba(255, 0, 224, 0.4);
@@ -1140,10 +1078,10 @@ main {
 .astat div {
   padding: 14px;
   border-radius: 15px;
-  background: rgba(20, 0, 40, 0.75) !important;
-  border: 1px solid rgba(255, 0, 224, 0.4);
+  background: rgba(20, 0, 40, 0.7) !important;
+  border: 1px solid rgba(255, 0, 224, 0.3);
   text-align: center;
-  box-shadow: 0 0 20px rgba(255, 0, 224, 0.2);
+  box-shadow: 0 0 20px rgba(255, 0, 224, 0.15);
 }
 
 .astat b {
@@ -1225,12 +1163,10 @@ main {
   line-height: 2;
   text-align: left;
   background: rgba(0, 0, 0, 0.55) !important;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
   padding: 14px;
   border-radius: 14px;
   border: 1px solid var(--line);
-  color: #ffffff !important;
+  color: #e9f6ff !important;
 }
 
 .bank-info b { color: var(--neon3) !important; }
@@ -1248,13 +1184,10 @@ main {
   border-radius: 12px;
   font-size: 12px;
   font-weight: 700;
-  background: rgba(255, 230, 0, 0.2) !important;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 230, 0, 0.6);
+  background: rgba(255, 230, 0, 0.15) !important;
+  border: 1px solid rgba(255, 230, 0, 0.45);
   color: #ffe600 !important;
   text-align: center;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
 }
 
 /* ============================================================
@@ -1269,15 +1202,17 @@ main {
 }
 
 @media (prefers-color-scheme: light) {
-  html, body { background: #05060f !important; color: #ffffff !important; }
+  html, body { background: #05060f !important; color: #e9f6ff !important; }
 }
 </style>
 </head>
 <body>
 
-<div id="bg-wallpaper"></div>
 <canvas id="stars"></canvas>
 
+<!-- ============================================================
+     LOADING
+     ============================================================ -->
 <div id="loading">
   <div class="load-logo">SHOP ALL SẢN PHẨM FF – FFMAX</div>
   <div class="load-sub">HỖ TRỢ ADR🤖 và IOS📱</div>
@@ -1288,6 +1223,9 @@ main {
   </div>
 </div>
 
+<!-- ============================================================
+     AUTH
+     ============================================================ -->
 <div id="auth" class="screen">
   <div class="auth-box">
     <div class="auth-title">SHOP ALL SẢN PHẨM FF – FFMAX</div>
@@ -1297,24 +1235,47 @@ main {
       <div class="tab" id="tabReg" onclick="switchTab('reg')">Đăng ký</div>
     </div>
     <div id="formLogin">
-      <div class="field"><label>Tên tài khoản</label><input id="lgUser" placeholder="Nhập tên tài khoản" autocomplete="username"></div>
-      <div class="field"><label>Mật khẩu</label><input id="lgPass" type="password" placeholder="Nhập mật khẩu" autocomplete="current-password"></div>
+      <div class="field">
+        <label>Tên tài khoản</label>
+        <input id="lgUser" placeholder="Nhập tên tài khoản" autocomplete="username">
+      </div>
+      <div class="field">
+        <label>Mật khẩu</label>
+        <input id="lgPass" type="password" placeholder="Nhập mật khẩu" autocomplete="current-password">
+      </div>
       <button class="btn" onclick="doLogin()">🔓 ĐĂNG NHẬP</button>
     </div>
     <div id="formReg" style="display:none">
-      <div class="field"><label>Tên tài khoản</label><input id="rgUser" placeholder="Nhập tên tài khoản" autocomplete="off"></div>
-      <div class="field"><label>Mật khẩu</label><input id="rgPass" type="password" placeholder="Nhập mật khẩu" autocomplete="new-password"></div>
-      <div class="field"><label>Nhập lại mật khẩu</label><input id="rgPass2" type="password" placeholder="Nhập lại mật khẩu" autocomplete="new-password"></div>
+      <div class="field">
+        <label>Tên tài khoản</label>
+        <input id="rgUser" placeholder="Nhập tên tài khoản" autocomplete="off">
+      </div>
+      <div class="field">
+        <label>Mật khẩu</label>
+        <input id="rgPass" type="password" placeholder="Nhập mật khẩu" autocomplete="new-password">
+      </div>
+      <div class="field">
+        <label>Nhập lại mật khẩu</label>
+        <input id="rgPass2" type="password" placeholder="Nhập lại mật khẩu" autocomplete="new-password">
+      </div>
       <button class="btn pink" onclick="doRegister()">📝 ĐĂNG KÝ</button>
     </div>
     <div class="msg" id="authMsg"></div>
   </div>
 </div>
 
+<!-- ============================================================
+     APP
+     ============================================================ -->
 <div id="app" class="screen" style="display:none">
   <header>
-    <div class="burger" id="burger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
-    <div class="brand"><h1>SHOP All SẢN PHẨM FF – FFMAX</h1><p>HỖ TRỢ ADR🤖 và IOS📱</p></div>
+    <div class="burger" id="burger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+    <div class="brand">
+      <h1>SHOP All SẢN PHẨM FF – FFMAX</h1>
+      <p>HỖ TRỢ ADR🤖 và IOS📱</p>
+    </div>
     <div class="music-wrap">
       <div class="music-ring"></div>
       <button class="music-btn" id="musicBtn" onclick="toggleMusicPanel(event)">
@@ -1322,18 +1283,35 @@ main {
       </button>
       <div class="music-panel" id="musicPanel" onclick="event.stopPropagation()">
         <div class="music-title">🎵 CHỌN NHẠC NỀN</div>
-        <div class="music-item" data-idx="0" onclick="selectTrack(0)"><span class="mi-ico">♪</span><span class="mi-name">Remix 1</span><span class="mi-check">✓</span></div>
-        <div class="music-item" data-idx="1" onclick="selectTrack(1)"><span class="mi-ico">♪</span><span class="mi-name">Remix 2</span><span class="mi-check">✓</span></div>
-        <div class="music-item" data-idx="2" onclick="selectTrack(2)"><span class="mi-ico">♪</span><span class="mi-name">Cute Remix</span><span class="mi-check">✓</span></div>
+        <div class="music-item" data-idx="0" onclick="selectTrack(0)">
+          <span class="mi-ico">♪</span>
+          <span class="mi-name">Remix 1</span>
+          <span class="mi-check">✓</span>
+        </div>
+        <div class="music-item" data-idx="1" onclick="selectTrack(1)">
+          <span class="mi-ico">♪</span>
+          <span class="mi-name">Remix 2</span>
+          <span class="mi-check">✓</span>
+        </div>
+        <div class="music-item" data-idx="2" onclick="selectTrack(2)">
+          <span class="mi-ico">♪</span>
+          <span class="mi-name">Cute Remix</span>
+          <span class="mi-check">✓</span>
+        </div>
         <button class="music-play" id="musicPlayBtn" onclick="togglePlay()">▶ PHÁT NHẠC</button>
         <div class="music-note" id="musicNote">Chọn 1 bài rồi nhấn phát</div>
       </div>
     </div>
     <div class="bal-chip">💰 <span id="hdrBal">0đ</span></div>
   </header>
+
   <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+
   <aside class="sidebar" id="sidebar">
-    <div class="side-head"><h2>⚡ MENU SHOP</h2><p>HỖ TRỢ ADR🤖 và IOS📱</p></div>
+    <div class="side-head">
+      <h2>⚡ MENU SHOP</h2>
+      <p>HỖ TRỢ ADR🤖 và IOS📱</p>
+    </div>
     <div class="side-user" id="sideUser"></div>
     <ul class="menu" id="menuList">
       <li data-page="account"><span class="ico">👤</span> Tài khoản</li>
@@ -1348,20 +1326,22 @@ main {
       <li onclick="logout()"><span class="ico">🚪</span> Đăng xuất</li>
     </ul>
   </aside>
+
   <main>
+    <!-- ===== TÀI KHOẢN ===== -->
     <div class="page" id="page-account">
       <div class="page-title">👤 Tài khoản</div>
       <div class="panel">
         <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
           <div style="flex:1;min-width:180px">
-            <div style="font-size:12px;color:#d0e4f5;text-shadow:0 1px 3px rgba(0,0,0,.9)">Tên người đăng ký</div>
-            <div style="font-size:19px;font-weight:900;color:#ffffff;text-shadow:0 2px 6px rgba(0,0,0,1)" id="acName">-</div>
+            <div style="font-size:12px;color:#8fb6d6">Tên người đăng ký</div>
+            <div style="font-size:19px;font-weight:900;color:#ffffff" id="acName">-</div>
           </div>
           <div style="text-align:right">
-            <div style="font-size:12px;color:#d0e4f5;text-shadow:0 1px 3px rgba(0,0,0,.9)">Số IB</div>
-            <div style="font-size:19px;font-weight:900;color:var(--neon3);text-shadow:0 0 10px rgba(255,230,0,.6),0 2px 6px rgba(0,0,0,1)" id="acIb">-</div>
+            <div style="font-size:12px;color:#8fb6d6">Số IB</div>
+            <div style="font-size:19px;font-weight:900;color:var(--neon3)" id="acIb">-</div>
           </div>
-          <button class="btn sm ghost" onclick="openAdminGate()">⚙️</button>
+          <button class="btn sm ghost" onclick="openAdminGate()" title="Cài đặt">⚙️</button>
         </div>
       </div>
       <div class="astat" style="grid-template-columns:repeat(3,1fr)">
@@ -1369,22 +1349,32 @@ main {
         <div><b id="acSpent">0đ</b><span>TỔNG CHI</span></div>
         <div><b id="acBal">0đ</b><span>SỐ DƯ</span></div>
       </div>
-      <div class="panel green"><div class="sec-title">🧾 Đơn mua</div><div id="acOrders"></div></div>
+      <div class="panel green">
+        <div class="sec-title">🧾 Đơn mua</div>
+        <div id="acOrders"></div>
+      </div>
     </div>
 
+    <!-- ===== NẠP TIỀN ===== -->
     <div class="page" id="page-deposit">
       <div class="page-title">💳 Nạp tiền + Thẻ Car</div>
       <div class="panel gold">
         <div class="sec-title">🏦 PHẦN 1 — TẠO MÃ QR</div>
-        <div class="hint" style="margin-bottom:10px">Tối thiểu <b style="color:#ffe600">5.000đ</b> — Tối đa <b style="color:#ffe600">5.000.000đ</b></div>
-        <div class="field"><label>Số tiền muốn nạp (VNĐ)</label><input id="qrAmount" type="number" placeholder="Ví dụ: 50000" min="5000" max="5000000"></div>
+        <div class="hint" style="margin-bottom:10px">
+          Tối thiểu <b style="color:#ffe600">5.000đ</b> — Tối đa <b style="color:#ffe600">5.000.000đ</b>
+        </div>
+        <div class="field">
+          <label>Số tiền muốn nạp (VNĐ)</label>
+          <input id="qrAmount" type="number" placeholder="Ví dụ: 50000" min="5000" max="5000000">
+        </div>
         <button class="btn gold" onclick="createQR()">📷 TẠO MÃ QR</button>
         <div id="qrResult" style="margin-top:16px"></div>
       </div>
       <div class="panel pink">
         <div class="sec-title">💳 PHẦN 2 — NẠP THẺ CAR</div>
         <div class="hint" style="margin-bottom:10px">Thẻ car phải chịu phí chiết khấu</div>
-        <div class="field"><label>Chọn mệnh giá</label>
+        <div class="field">
+          <label>Chọn mệnh giá</label>
           <select id="cardAmt">
             <option value="10000">10.000đ → nhận 5.000đ</option>
             <option value="20000">20.000đ → nhận 15.000đ</option>
@@ -1394,8 +1384,15 @@ main {
             <option value="500000">500.000đ → nhận 450.000đ</option>
           </select>
         </div>
-        <div class="field"><label>Chọn loại thẻ</label>
-          <select id="cardType"><option>Viettel</option><option>Mobifone</option><option>Garena</option><option>Vinaphone</option><option>Zing</option></select>
+        <div class="field">
+          <label>Chọn loại thẻ</label>
+          <select id="cardType">
+            <option>Viettel</option>
+            <option>Mobifone</option>
+            <option>Garena</option>
+            <option>Vinaphone</option>
+            <option>Zing</option>
+          </select>
         </div>
         <div class="field"><label>Nhập Mã thẻ</label><input id="cardCode" placeholder="Nhập mã thẻ..."></div>
         <div class="field"><label>Nhập Seri</label><input id="cardSeri" placeholder="Nhập seri..."></div>
@@ -1403,6 +1400,7 @@ main {
       </div>
     </div>
 
+    <!-- ===== LỊCH SỬ ===== -->
     <div class="page" id="page-history">
       <div class="page-title">📜 Lịch sử All</div>
       <div class="subtabs">
@@ -1413,67 +1411,124 @@ main {
       <div class="panel" id="histBox"></div>
     </div>
 
+    <!-- ===== HACK IOS ===== -->
     <div class="page" id="page-hackios">
       <div class="page-title">📱 HACK - All IOS</div>
       <div class="grid" id="iosGrid"></div>
     </div>
 
+    <!-- ===== HACK ADR ===== -->
     <div class="page" id="page-hackadr">
       <div class="page-title">🤖 HACK - All ADR + FREE</div>
       <div class="panel green">
         <div class="sec-title">🔥 KHO HACK ADR + FREE</div>
-        <div class="hint">Rất nhiều Hack vừa có bản để mua và có cả bản <b style="color:#00ff88">FREE</b>.<br>Muốn mua hoặc dùng free vui lòng liên hệ phần <b style="color:#00f0ff">Hỗ trợ 📞</b>.<br><br>⚠️ <b style="color:#ffe600">Lưu ý:</b> Hack ADR ít khi được free vì làm khó và tốn nhiều thời gian, nhưng khi mua nhiều sẽ được giảm giá.</div>
+        <div class="hint">
+          Rất nhiều Hack vừa có bản để mua và có cả bản <b style="color:#00ff88">FREE</b>.<br>
+          Muốn mua hoặc dùng free vui lòng liên hệ phần <b style="color:#00f0ff">Hỗ trợ 📞</b>.<br><br>
+          ⚠️ <b style="color:#ffe600">Lưu ý:</b> Hack ADR ít khi được free vì làm khó và tốn nhiều thời gian,
+          nhưng khi mua nhiều sẽ được giảm giá.
+        </div>
       </div>
-      <div class="panel"><div class="sec-title">📞 LIÊN HỆ NGAY</div><button class="btn" onclick="navigate('support')">➡️ QUA PHẦN HỖ TRỢ</button></div>
+      <div class="panel">
+        <div class="sec-title">📞 LIÊN HỆ NGAY</div>
+        <button class="btn" onclick="navigate('support')">➡️ QUA PHẦN HỖ TRỢ</button>
+      </div>
     </div>
 
+    <!-- ===== ESGIN ===== -->
     <div class="page" id="page-esgin">
       <div class="page-title">🔑 Esgin = IOS</div>
       <div class="grid" id="esginGrid"></div>
       <div class="panel gold">
         <div class="sec-title">📖 Tác dụng của Esgin</div>
-        <div class="hint">Tải app cho iOS gọi tắt là <b style="color:#ffe600">IPA</b>. Khi có Esgin sẽ hỗ trợ được rất nhiều cho người dùng, kể cả hack FF và hỗ trợ nhiều app khác khi có IPA.<br><br><b style="color:#00ff88">Phần không bảo hành và có bảo hành:</b> Khi có bảo hành, Esgin lỗi hoặc không dùng được vui lòng liên hệ để được đổi Esgin mới — <b style="color:#ff00e0">lỗi 1 đổi 1</b>.</div>
+        <div class="hint">
+          Tải app cho iOS gọi tắt là <b style="color:#ffe600">IPA</b>. Khi có Esgin sẽ hỗ trợ được rất nhiều cho người dùng,
+          kể cả hack FF và hỗ trợ nhiều app khác khi có IPA.<br><br>
+          <b style="color:#00ff88">Phần không bảo hành và có bảo hành:</b> Khi có bảo hành, Esgin lỗi hoặc không dùng được
+          vui lòng liên hệ để được đổi Esgin mới — <b style="color:#ff00e0">lỗi 1 đổi 1</b>.
+        </div>
       </div>
     </div>
 
+    <!-- ===== HỖ TRỢ ===== -->
     <div class="page" id="page-support">
       <div class="page-title">📞 Hỗ trợ</div>
-      <div class="panel pink"><div class="sec-title">🎵 PHẦN 1 — TIKTOK</div><div class="hint" style="margin-bottom:11px">www.tiktok.com/@trungsangcaythue</div><button class="btn pink" onclick="openLink('https://www.tiktok.com/@trungsangcaythue')">🎵 MỞ TIKTOK</button></div>
-      <div class="panel green"><div class="sec-title">💬 PHẦN 2 — ZALO</div><div class="hint" style="margin-bottom:11px">Zalo: <b style="color:#00ff88">0372822927</b></div><button class="btn" onclick="openLink('https://zalo.me/0372822927')">💬 MỞ ZALO</button></div>
+      <div class="panel pink">
+        <div class="sec-title">🎵 PHẦN 1 — TIKTOK</div>
+        <div class="hint" style="margin-bottom:11px">www.tiktok.com/@trungsangcaythue</div>
+        <button class="btn pink" onclick="openLink('https://www.tiktok.com/@trungsangcaythue')">🎵 MỞ TIKTOK</button>
+      </div>
+      <div class="panel green">
+        <div class="sec-title">💬 PHẦN 2 — ZALO</div>
+        <div class="hint" style="margin-bottom:11px">Zalo: <b style="color:#00ff88">0372822927</b></div>
+        <button class="btn" onclick="openLink('https://zalo.me/0372822927')">💬 MỞ ZALO</button>
+      </div>
     </div>
 
+    <!-- ===== GT HACK ===== -->
     <div class="page" id="page-guide">
       <div class="page-title">⚡ GT HACK IOS + ADR</div>
-      <div class="panel gold"><div class="hint">Hack ADR ít khi được free vì làm khó và tốn nhiều thời gian nhưng khi mua nhiều sẽ được giảm giá.<br><br><b style="color:#ff3d00">Lưu ý quan trọng:</b> Hack chắc chắn sẽ ban và tùy lúc ban, chứ không có hack nào là antiban 100% cả.<br><br>Hack ADR thì sẽ được free nhiều vì nó không như iOS dễ và tiện lợi, và giá sẽ mềm hơn iOS.<br><br><b style="color:#ff3d00">Lưu ý quan trọng:</b> Hack chắc chắn sẽ ban và tùy lúc ban, chứ không có hack nào là antiban 100% cả.</div></div>
+      <div class="panel gold">
+        <div class="hint">
+          Hack ADR ít khi được free vì làm khó và tốn nhiều thời gian nhưng khi mua nhiều sẽ được giảm giá.<br><br>
+          <b style="color:#ff3d00">Lưu ý quan trọng:</b> Hack chắc chắn sẽ ban và tùy lúc ban,
+          chứ không có hack nào là antiban 100% cả.<br><br>
+          Hack ADR thì sẽ được free nhiều vì nó không như iOS dễ và tiện lợi, và giá sẽ mềm hơn iOS.<br><br>
+          <b style="color:#ff3d00">Lưu ý quan trọng:</b> Hack chắc chắn sẽ ban và tùy lúc ban,
+          chứ không có hack nào là antiban 100% cả.
+        </div>
+      </div>
     </div>
 
+    <!-- ===== ĐÁNH GIÁ ===== -->
     <div class="page" id="page-review">
       <div class="page-title">⭐ Đánh giá</div>
       <div class="panel gold">
         <div class="sec-title">Chọn số sao (1 - 5 ⭐)</div>
         <div class="stars-pick" id="starPick">
-          <span data-s="1">⭐</span><span data-s="2">⭐</span><span data-s="3">⭐</span><span data-s="4">⭐</span><span data-s="5">⭐</span>
+          <span data-s="1">⭐</span>
+          <span data-s="2">⭐</span>
+          <span data-s="3">⭐</span>
+          <span data-s="4">⭐</span>
+          <span data-s="5">⭐</span>
         </div>
-        <div class="field"><label>Mô tả trải nghiệm của bạn</label><textarea id="rvText" rows="4" placeholder="Nhập cảm nhận..."></textarea></div>
+        <div class="field">
+          <label>Mô tả trải nghiệm của bạn</label>
+          <textarea id="rvText" rows="4" placeholder="Nhập cảm nhận của bạn về shop..."></textarea>
+        </div>
         <button class="btn gold" onclick="sendReview()">🚀 GỬI ĐÁNH GIÁ</button>
       </div>
     </div>
   </main>
 </div>
 
+<!-- ============================================================
+     ADMIN MODAL
+     ============================================================ -->
 <div id="adminModal">
   <div class="auth-box" style="border-color:rgba(255,0,224,.5);box-shadow:0 0 50px rgba(255,0,224,.35)">
-    <div class="auth-title" style="background:linear-gradient(90deg,#ff00e0,#ffe600);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">🔐 XÁC THỰC QUẢN TRỊ</div>
+    <div class="auth-title" style="background:linear-gradient(90deg,#ff00e0,#ffe600);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">
+      🔐 XÁC THỰC QUẢN TRỊ
+    </div>
     <div class="auth-sub">Khu vực đặc biệt — Chỉ dành cho Admin</div>
-    <div class="field"><label>Nhập mật khẩu Admin</label><input id="adminPass" type="password" placeholder="••••••••••••"></div>
+    <div class="field">
+      <label>Nhập mật khẩu Admin</label>
+      <input id="adminPass" type="password" placeholder="••••••••••••">
+    </div>
     <button class="btn pink" onclick="checkAdmin()">🔓 TRUY CẬP</button>
     <button class="btn ghost" style="margin-top:9px" onclick="closeAdminGate()">✖ Đóng</button>
     <div class="msg" id="adminMsg"></div>
   </div>
 </div>
 
+<!-- ============================================================
+     ADMIN PANEL
+     ============================================================ -->
 <div id="adminPanel">
-  <div class="admin-head"><h2>⚙️ BẢNG ĐIỀU KHIỂN ADMIN</h2><button class="btn sm pink" onclick="closeAdminPanel()">✖ Thoát</button></div>
+  <div class="admin-head">
+    <h2>⚙️ BẢNG ĐIỀU KHIỂN ADMIN</h2>
+    <button class="btn sm pink" onclick="closeAdminPanel()">✖ Thoát</button>
+  </div>
   <div class="admin-body">
     <div class="astat">
       <div><b id="stUsers">0</b><span>NGƯỜI ĐĂNG KÝ</span></div>
@@ -1481,15 +1536,30 @@ main {
       <div><b id="stOrd">0</b><span>ĐƠN CHỜ XỬ LÝ</span></div>
       <div><b id="stRv">0</b><span>ĐÁNH GIÁ</span></div>
     </div>
-    <div class="panel pink"><div class="sec-title">👥 Lịch sử người đăng ký</div><div id="adUsers"></div></div>
-    <div class="panel gold"><div class="sec-title">💰 Duyệt nạp tiền</div><div id="adDeps"></div></div>
-    <div class="panel green"><div class="sec-title">🛒 Đơn hàng — Gửi Key</div><div id="adOrds"></div></div>
-    <div class="panel"><div class="sec-title">⭐ Đánh giá khách hàng</div><div id="adRevs"></div></div>
+    <div class="panel pink">
+      <div class="sec-title">👥 Lịch sử người đăng ký</div>
+      <div id="adUsers"></div>
+    </div>
+    <div class="panel gold">
+      <div class="sec-title">💰 Duyệt nạp tiền (QR & Thẻ Car)</div>
+      <div id="adDeps"></div>
+    </div>
+    <div class="panel green">
+      <div class="sec-title">🛒 Đơn hàng — Gửi Key</div>
+      <div id="adOrds"></div>
+    </div>
+    <div class="panel">
+      <div class="sec-title">⭐ Đánh giá khách hàng</div>
+      <div id="adRevs"></div>
+    </div>
   </div>
 </div>
 
 <div id="toast"></div>
 
+<!-- ============================================================
+     LOADING % SCRIPT
+     ============================================================ -->
 <script>
 (function () {
   try {
@@ -1497,25 +1567,45 @@ main {
     var bar = document.getElementById('loadBar');
     var pct = document.getElementById('loadPct');
     var st = document.getElementById('loadStatus');
-    var msgs = ['Đang xác thực web','Đang tải web','Xác thực tài khoản','Đang load','Chuẩn bị mở web','Hoàn tất! Đang vào shop'];
+    var msgs = [
+      'Đang xác thực web',
+      'Đang tải web',
+      'Xác thực tài khoản',
+      'Đang load',
+      'Chuẩn bị mở web',
+      'Hoàn tất! Đang vào shop'
+    ];
+
     var iv = setInterval(function () {
       p += 3;
       if (p > 100) p = 100;
       if (bar) bar.style.width = p + '%';
       if (pct) pct.textContent = p + '%';
-      if (st) st.textContent = msgs[Math.min(Math.floor(p / 18), 5)] + '...';
+      if (st) {
+        var idx = Math.min(Math.floor(p / 18), 5);
+        st.textContent = msgs[idx] + '...';
+      }
       if (p >= 100) clearInterval(iv);
     }, 70);
   } catch (e) {}
 })();
 </script>
 
+<!-- ============================================================
+     FIREBASE SDK
+     ============================================================ -->
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 
+<!-- ============================================================
+     MAIN APP
+     ============================================================ -->
 <script>
 try {
 
+  /* ==========================================================
+     CONFIG FIREBASE
+     ========================================================== */
   var firebaseConfig = {
     apiKey: "AIzaSyBobP39gLfYvClCCNFIszIGc2LdeUFeI7w",
     authDomain: "shop-all-ff-ff-max.firebaseapp.com",
@@ -1532,106 +1622,200 @@ try {
       firebase.initializeApp(firebaseConfig);
       db = firebase.database();
     }
-  } catch (e) { console.error('Firebase init error:', e); }
+  } catch (e) {
+    console.error('Firebase init error:', e);
+  }
 
-  var DB = { users: {}, deposits: [], orders: [], reviews: [] };
+  /* ==========================================================
+     BIẾN TOÀN CỤC
+     ========================================================== */
+  var DB = {
+    users: {},
+    deposits: [],
+    orders: [],
+    reviews: []
+  };
   var CUR = null;
   var stars = 0;
   var histMode = 'dep';
   var ADMIN_PASS = 'ADMIN104738HACKALL';
   var IMG = 'https://raw.githubusercontent.com/proxyvipivn/Shop-blox-fruit-/main/';
 
+  /* ==========================================================
+     HIỆU ỨNG: 300 SAO LUNG LINH + SAO BĂNG
+     ========================================================== */
   (function () {
     try {
       var c = document.getElementById('stars');
       var x = c.getContext('2d');
-      var W, H, starList = [], meteors = [];
-      function resize() { W = c.width = innerWidth; H = c.height = innerHeight; }
-      resize(); addEventListener('resize', resize);
+      var W, H;
+      var starList = [];
+      var meteors = [];
 
-      for (var i = 0; i < 80; i++) starList.push({
-        x: Math.random() * W, y: Math.random() * H, r: Math.random() * 1.1 + 0.4,
-        baseAlpha: Math.random() * 0.4 + 0.4, phase: Math.random() * Math.PI * 2,
-        speed: Math.random() * 0.02 + 0.01
-      });
+      function resize() {
+        W = c.width = innerWidth;
+        H = c.height = innerHeight;
+      }
 
+      resize();
+      addEventListener('resize', resize);
+
+      /* ============ TẠO 300 NGÔI SAO NHỎ LUNG LINH ============ */
+      for (var i = 0; i < 300; i++) {
+        starList.push({
+          x: Math.random() * W,
+          y: Math.random() * H,
+          r: Math.random() * 1.4 + 0.3,        // bán kính 0.3 - 1.7
+          baseAlpha: Math.random() * 0.5 + 0.3, // alpha cơ bản 0.3 - 0.8
+          phase: Math.random() * Math.PI * 2,
+          speed: Math.random() * 0.03 + 0.008,  // tốc độ nhấp nháy
+          // Một số ngôi sao có màu nhẹ
+          color: Math.random() < 0.15 ? '#00f0ff' :
+                 Math.random() < 0.15 ? '#ffb6c1' :
+                 Math.random() < 0.1 ? '#ffe600' : '#ffffff'
+        });
+      }
+
+      /* ============ SAO BĂNG TRẮNG ============ */
       function spawnMeteor() {
         if (meteors.length < 6 && Math.random() < 0.7) {
           meteors.push({
-            x: Math.random() * W * 1.4 - W * 0.2, y: -100,
-            len: Math.random() * 220 + 180, sp: Math.random() * 12 + 18,
+            x: Math.random() * W * 1.4 - W * 0.2,
+            y: -100,
+            len: Math.random() * 220 + 180,
+            sp: Math.random() * 12 + 18,
             ang: Math.PI / 3.5 + (Math.random() * 0.32 - 0.16),
             width: Math.random() * 1.2 + 2
           });
         }
         setTimeout(spawnMeteor, Math.random() * 500 + 400);
       }
+
       spawnMeteor();
 
       function loop() {
         x.clearRect(0, 0, W, H);
+
+        /* ===== VẼ 300 SAO NHỎ LUNG LINH ===== */
         for (var i = 0; i < starList.length; i++) {
           var s = starList[i];
           s.phase += s.speed;
-          var alpha = s.baseAlpha * (0.4 + 0.6 * (Math.sin(s.phase) * 0.5 + 0.5));
-          x.globalAlpha = alpha;
-          x.shadowBlur = 4; x.shadowColor = 'rgba(255, 255, 255, 0.5)';
-          x.fillStyle = '#ffffff';
-          x.beginPath(); x.arc(s.x, s.y, s.r, 0, Math.PI * 2); x.fill();
-        }
-        x.globalAlpha = 1; x.shadowBlur = 0;
 
+          // Alpha dao động nhẹ nhàng 0.4 → 1.0
+          var alpha = s.baseAlpha * (0.4 + 0.6 * (Math.sin(s.phase) * 0.5 + 0.5));
+
+          x.globalAlpha = alpha;
+          x.shadowBlur = 6;
+          x.shadowColor = s.color;
+          x.fillStyle = s.color;
+          x.beginPath();
+          x.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+          x.fill();
+        }
+
+        x.globalAlpha = 1;
+        x.shadowBlur = 0;
+
+        /* ===== VẼ SAO BĂNG TRẮNG ===== */
         for (var j = meteors.length - 1; j >= 0; j--) {
           var m = meteors[j];
           var tx = m.x - Math.cos(m.ang) * m.len;
           var ty = m.y - Math.sin(m.ang) * m.len;
+
           var g = x.createLinearGradient(m.x, m.y, tx, ty);
           g.addColorStop(0, '#ffffff');
           g.addColorStop(0.18, 'rgba(220, 240, 255, 0.95)');
           g.addColorStop(0.45, 'rgba(150, 200, 255, 0.5)');
           g.addColorStop(0.75, 'rgba(100, 160, 255, 0.15)');
           g.addColorStop(1, 'transparent');
-          x.strokeStyle = g; x.lineWidth = m.width; x.lineCap = 'round';
-          x.shadowBlur = 20; x.shadowColor = '#ffffff';
-          x.beginPath(); x.moveTo(m.x, m.y); x.lineTo(tx, ty); x.stroke();
+
+          x.strokeStyle = g;
+          x.lineWidth = m.width;
+          x.lineCap = 'round';
+          x.shadowBlur = 20;
+          x.shadowColor = '#ffffff';
+          x.beginPath();
+          x.moveTo(m.x, m.y);
+          x.lineTo(tx, ty);
+          x.stroke();
           x.shadowBlur = 0;
+
           var hg = x.createRadialGradient(m.x, m.y, 0, m.x, m.y, 7);
           hg.addColorStop(0, '#ffffff');
           hg.addColorStop(0.4, 'rgba(255, 255, 255, 0.85)');
           hg.addColorStop(1, 'rgba(150, 200, 255, 0)');
           x.fillStyle = hg;
-          x.beginPath(); x.arc(m.x, m.y, 7, 0, Math.PI * 2); x.fill();
+          x.beginPath();
+          x.arc(m.x, m.y, 7, 0, Math.PI * 2);
+          x.fill();
+
           m.x += Math.cos(m.ang) * m.sp;
           m.y += Math.sin(m.ang) * m.sp;
+
           if (m.y > H + 300 || m.x > W + 400) meteors.splice(j, 1);
         }
+
         requestAnimationFrame(loop);
       }
+
       loop();
-    } catch (e) { console.error('Stars error:', e); }
+    } catch (e) {
+      console.error('Stars error:', e);
+    }
   })();
 
+  /* ==========================================================
+     NHẠC NỀN
+     ========================================================== */
   var TRACKS = [
-    { name: 'Remix 1', src: 'https://raw.githubusercontent.com/proxyvipivn/SHOP-STORE-ALL-FF/refs/heads/main/Remix2.mp3.mp3' },
-    { name: 'Remix 2', src: 'https://raw.githubusercontent.com/proxyvipivn/SHOP-STORE-ALL-FF/refs/heads/main/Remix.mp3%20.mp3' },
-    { name: 'Cute Remix', src: 'https://raw.githubusercontent.com/proxyvipivn/SHOP-STORE-ALL-FF/refs/heads/main/cute.mp3.mp3' }
+    {
+      name: 'Remix 1',
+      src: 'https://raw.githubusercontent.com/proxyvipivn/SHOP-STORE-ALL-FF/refs/heads/main/Remix2.mp3.mp3'
+    },
+    {
+      name: 'Remix 2',
+      src: 'https://raw.githubusercontent.com/proxyvipivn/SHOP-STORE-ALL-FF/refs/heads/main/Remix.mp3%20.mp3'
+    },
+    {
+      name: 'Cute Remix',
+      src: 'https://raw.githubusercontent.com/proxyvipivn/SHOP-STORE-ALL-FF/refs/heads/main/cute.mp3.mp3'
+    }
   ];
 
-  var bgMusic = null, curTrack = -1, playing = false;
+  var bgMusic = null;
+  var curTrack = -1;
+  var playing = false;
 
   function initMusic() {
     try {
-      bgMusic = new Audio(); bgMusic.volume = 0.6; bgMusic.preload = 'auto';
+      bgMusic = new Audio();
+      bgMusic.volume = 0.6;
+      bgMusic.preload = 'auto';
+
       bgMusic.addEventListener('ended', function () {
         if (curTrack >= 0 && curTrack < TRACKS.length - 1) {
           selectTrack(curTrack + 1);
-          bgMusic.play().then(function () { playing = true; upMusicUI(); }).catch(function () {});
-        } else { playing = false; upMusicUI(); }
+          bgMusic.play().then(function () {
+            playing = true;
+            upMusicUI();
+          }).catch(function () {});
+        } else {
+          playing = false;
+          upMusicUI();
+        }
       });
+
       bgMusic.addEventListener('play', function () { playing = true; upMusicUI(); });
       bgMusic.addEventListener('pause', function () { playing = false; upMusicUI(); });
-      bgMusic.addEventListener('error', function () { toast('⚠️ Không tải được nhạc.', true); playing = false; upMusicUI(); });
-    } catch (e) {}
+
+      bgMusic.addEventListener('error', function () {
+        toast('⚠️ Không tải được nhạc. Kiểm tra lại link!', true);
+        playing = false;
+        upMusicUI();
+      });
+    } catch (e) {
+      console.error('Music init error:', e);
+    }
   }
 
   function toggleMusicPanel(e) {
@@ -1643,31 +1827,67 @@ try {
   function selectTrack(i) {
     if (i < 0 || i >= TRACKS.length) return;
     curTrack = i;
+
     var items = document.querySelectorAll('.music-item');
-    for (var k = 0; k < items.length; k++) items[k].classList.toggle('sel', Number(items[k].getAttribute('data-idx')) === i);
+    for (var k = 0; k < items.length; k++) {
+      items[k].classList.toggle('sel', Number(items[k].getAttribute('data-idx')) === i);
+    }
+
     if (bgMusic) {
       var wasPlaying = playing;
-      bgMusic.pause(); bgMusic.src = TRACKS[i].src; bgMusic.load();
+      bgMusic.pause();
+      bgMusic.src = TRACKS[i].src;
+      bgMusic.load();
+
       var note = document.getElementById('musicNote');
       if (note) note.textContent = 'Đã chọn: ' + TRACKS[i].name;
-      if (wasPlaying) bgMusic.play().then(function () { playing = true; upMusicUI(); }).catch(function () {});
+
+      if (wasPlaying) {
+        bgMusic.play().then(function () {
+          playing = true;
+          upMusicUI();
+        }).catch(function () {});
+      }
     }
   }
 
   function togglePlay() {
     if (curTrack < 0) selectTrack(0);
-    if (!bgMusic) { toast('⚠️ Trình duyệt không hỗ trợ nhạc', true); return; }
-    if (playing) { bgMusic.pause(); playing = false; upMusicUI(); }
-    else {
+
+    if (!bgMusic) {
+      toast('⚠️ Trình duyệt không hỗ trợ nhạc', true);
+      return;
+    }
+
+    if (playing) {
+      bgMusic.pause();
+      playing = false;
+      upMusicUI();
+    } else {
       if (!bgMusic.src && curTrack >= 0) bgMusic.src = TRACKS[curTrack].src;
-      bgMusic.play().then(function () { playing = true; upMusicUI(); toast('🎵 Đang phát: ' + TRACKS[curTrack].name); }).catch(function () { toast('⚠️ Không phát được nhạc', true); });
+      bgMusic.play().then(function () {
+        playing = true;
+        upMusicUI();
+        toast('🎵 Đang phát: ' + TRACKS[curTrack].name);
+      }).catch(function () {
+        toast('⚠️ Không phát được nhạc', true);
+      });
     }
   }
 
   function upMusicUI() {
-    var b = document.getElementById('musicBtn'), p = document.getElementById('musicPlayBtn');
-    if (playing) { b.classList.add('playing'); p.classList.add('playing'); p.textContent = '⏸ TẠM DỪNG'; }
-    else { b.classList.remove('playing'); p.classList.remove('playing'); p.textContent = '▶ PHÁT NHẠC'; }
+    var b = document.getElementById('musicBtn');
+    var p = document.getElementById('musicPlayBtn');
+
+    if (playing) {
+      b.classList.add('playing');
+      p.classList.add('playing');
+      p.textContent = '⏸ TẠM DỪNG';
+    } else {
+      b.classList.remove('playing');
+      p.classList.remove('playing');
+      p.textContent = '▶ PHÁT NHẠC';
+    }
   }
 
   document.addEventListener('click', function (e) {
@@ -1676,37 +1896,91 @@ try {
     if (p && p.classList.contains('show') && w && !w.contains(e.target)) p.classList.remove('show');
   });
 
+  /* ==========================================================
+     HÀM TIỆN ÍCH
+     ========================================================== */
   function fmt(n) { return Number(n || 0).toLocaleString('vi-VN') + 'đ'; }
-  function rand(len) { var s = ''; for (var i = 0; i < len; i++) s += (Math.floor(Math.random() * 9) + 1); return s; }
+
+  function rand(len) {
+    var s = '';
+    for (var i = 0; i < len; i++) s += (Math.floor(Math.random() * 9) + 1);
+    return s;
+  }
+
   function now() { return Date.now(); }
   function timeStr(t) { return new Date(t).toLocaleString('vi-VN'); }
 
   var toastT;
   function toast(msg, err) {
     var t = document.getElementById('toast');
-    t.textContent = msg; t.className = err ? 'show err' : 'show';
-    clearTimeout(toastT); toastT = setTimeout(function () { t.className = ''; }, 3500);
+    t.textContent = msg;
+    t.className = err ? 'show err' : 'show';
+    clearTimeout(toastT);
+    toastT = setTimeout(function () { t.className = ''; }, 3500);
   }
 
-  function getS() { try { return JSON.parse(localStorage.getItem('ff_session')); } catch (e) { return null; } }
-  function setS(v) { try { if (v) localStorage.setItem('ff_session', JSON.stringify(v)); else localStorage.removeItem('ff_session'); } catch (e) {} }
+  function getS() {
+    try { return JSON.parse(localStorage.getItem('ff_session')); }
+    catch (e) { return null; }
+  }
 
+  function setS(v) {
+    try {
+      if (v) localStorage.setItem('ff_session', JSON.stringify(v));
+      else localStorage.removeItem('ff_session');
+    } catch (e) {}
+  }
+
+  /* ==========================================================
+     FIREBASE SYNC LISTENERS
+     ========================================================== */
   function setupListeners() {
     if (!db) return;
-    db.ref('users').on('value', function (s) { DB.users = s.val() || {}; if (CUR) upUI(); if (document.getElementById('adminPanel').style.display === 'block') renderAdmin(); });
-    db.ref('deposits').on('value', function (s) { DB.deposits = s.val() || []; if (CUR && document.getElementById('page-history').classList.contains('active')) renderHist(); if (document.getElementById('adminPanel').style.display === 'block') renderAdmin(); });
-    db.ref('orders').on('value', function (s) { DB.orders = s.val() || []; if (CUR) { upUI(); if (document.getElementById('page-history').classList.contains('active')) renderHist(); } if (document.getElementById('adminPanel').style.display === 'block') renderAdmin(); });
-    db.ref('reviews').on('value', function (s) { DB.reviews = s.val() || []; if (document.getElementById('adminPanel').style.display === 'block') renderAdmin(); });
+
+    db.ref('users').on('value', function (s) {
+      DB.users = s.val() || {};
+      if (CUR) upUI();
+      if (document.getElementById('adminPanel').style.display === 'block') renderAdmin();
+    });
+
+    db.ref('deposits').on('value', function (s) {
+      DB.deposits = s.val() || [];
+      if (CUR && document.getElementById('page-history').classList.contains('active')) renderHist();
+      if (document.getElementById('adminPanel').style.display === 'block') renderAdmin();
+    });
+
+    db.ref('orders').on('value', function (s) {
+      DB.orders = s.val() || [];
+      if (CUR) {
+        upUI();
+        if (document.getElementById('page-history').classList.contains('active')) renderHist();
+      }
+      if (document.getElementById('adminPanel').style.display === 'block') renderAdmin();
+    });
+
+    db.ref('reviews').on('value', function (s) {
+      DB.reviews = s.val() || [];
+      if (document.getElementById('adminPanel').style.display === 'block') renderAdmin();
+    });
   }
 
   if (db) {
     db.ref('/').once('value').then(function (s) {
       var d = s.val() || {};
-      DB.users = d.users || {}; DB.deposits = d.deposits || []; DB.orders = d.orders || []; DB.reviews = d.reviews || [];
+      DB.users = d.users || {};
+      DB.deposits = d.deposits || [];
+      DB.orders = d.orders || [];
+      DB.reviews = d.reviews || [];
       setupListeners();
-    }).catch(function (e) { console.error(e); setupListeners(); });
+    }).catch(function (e) {
+      console.error('Load error:', e);
+      setupListeners();
+    });
   }
 
+  /* ==========================================================
+     AUTH
+     ========================================================== */
   function switchTab(t) {
     var l = (t === 'login');
     document.getElementById('tabLogin').classList.toggle('active', l);
@@ -1716,7 +1990,11 @@ try {
     document.getElementById('authMsg').className = 'msg';
   }
 
-  function aMsg(t, ok) { var m = document.getElementById('authMsg'); m.textContent = t; m.className = 'msg ' + (ok ? 'ok' : 'err'); }
+  function aMsg(t, ok) {
+    var m = document.getElementById('authMsg');
+    m.textContent = t;
+    m.className = 'msg ' + (ok ? 'ok' : 'err');
+  }
 
   function bootAuth() {
     var s = getS();
@@ -1734,46 +2012,70 @@ try {
     var u = document.getElementById('rgUser').value.trim();
     var p = document.getElementById('rgPass').value;
     var p2 = document.getElementById('rgPass2').value;
-    if (!u || !p) return aMsg('⚠️ Nhập đầy đủ tên và mật khẩu');
-    if (u.length < 3) return aMsg('⚠️ Tên tài khoản phải từ 3 ký tự');
-    if (p.length < 4) return aMsg('⚠️ Mật khẩu phải từ 4 ký tự');
+
+    if (!u || !p) return aMsg('⚠️ Vui lòng nhập đầy đủ tên tài khoản và mật khẩu');
+    if (u.length < 3) return aMsg('⚠️ Tên tài khoản phải từ 3 ký tự trở lên');
+    if (p.length < 4) return aMsg('⚠️ Mật khẩu phải từ 4 ký tự trở lên');
     if (p !== p2) return aMsg('⚠️ Mật khẩu nhập lại không khớp');
-    if (!db) return aMsg('❌ Chưa kết nối máy chủ.');
+    if (!db) return aMsg('❌ Chưa kết nối máy chủ. Vui lòng tải lại trang.');
+
     db.ref('users/' + u).once('value').then(function (s) {
-      if (s.exists()) { aMsg('❌ Tên tài khoản "' + u + '" đã được đăng ký!'); return; }
+      if (s.exists()) {
+        aMsg('❌ Tên tài khoản "' + u + '" đã được đăng ký! Vui lòng chọn tên khác.');
+        return;
+      }
       db.ref('users/' + u).set({
-        password: p, ib: rand(7), balance: 0, totalDeposit: 0, totalSpent: 0, createdAt: now()
+        password: p,
+        ib: rand(7),
+        balance: 0,
+        totalDeposit: 0,
+        totalSpent: 0,
+        createdAt: now()
       }).then(function () {
-        aMsg('✅ Đăng ký thành công!', true);
-        document.getElementById('rgUser').value = ''; document.getElementById('rgPass').value = ''; document.getElementById('rgPass2').value = '';
+        aMsg('✅ Đăng ký thành công! Hãy đăng nhập ngay.', true);
+        document.getElementById('rgUser').value = '';
+        document.getElementById('rgPass').value = '';
+        document.getElementById('rgPass2').value = '';
         setTimeout(function () { switchTab('login'); }, 1100);
-      }).catch(function (e) { aMsg('❌ Lỗi: ' + e.message); });
-    }).catch(function (e) { aMsg('❌ Lỗi: ' + e.message); });
+      }).catch(function (e) {
+        aMsg('❌ Lỗi: ' + e.message);
+      });
+    }).catch(function (e) {
+      aMsg('❌ Lỗi: ' + e.message);
+    });
   }
 
   function doLogin() {
     var u = document.getElementById('lgUser').value.trim();
     var p = document.getElementById('lgPass').value;
-    if (!u || !p) return aMsg('⚠️ Nhập đầy đủ tên và mật khẩu');
-    if (!db) return aMsg('❌ Chưa kết nối máy chủ.');
+
+    if (!u || !p) return aMsg('⚠️ Vui lòng nhập tên tài khoản và mật khẩu');
+    if (!db) return aMsg('❌ Chưa kết nối máy chủ. Vui lòng tải lại trang.');
+
     db.ref('users/' + u).once('value').then(function (s) {
       var user = s.val();
       if (!user) return aMsg('❌ Tài khoản không tồn tại!');
       if (user.password !== p) return aMsg('❌ Mật khẩu không đúng!');
+
       setS({ user: u, exp: now() + 12 * 60 * 60 * 1000 });
       aMsg('✅ Đăng nhập thành công!', true);
+
       setTimeout(function () {
         document.getElementById('auth').style.display = 'none';
-        document.getElementById('lgUser').value = ''; document.getElementById('lgPass').value = '';
+        document.getElementById('lgUser').value = '';
+        document.getElementById('lgPass').value = '';
         document.getElementById('authMsg').className = 'msg';
         document.getElementById('app').style.display = 'block';
         enterApp(u);
       }, 520);
-    }).catch(function (e) { aMsg('❌ Lỗi: ' + e.message); });
+    }).catch(function (e) {
+      aMsg('❌ Lỗi: ' + e.message);
+    });
   }
 
   function logout() {
-    setS(null); CUR = null;
+    setS(null);
+    CUR = null;
     document.getElementById('app').style.display = 'none';
     document.getElementById('sidebar').classList.remove('open');
     document.getElementById('overlay').classList.remove('show');
@@ -1783,11 +2085,15 @@ try {
     toast('👋 Đã đăng xuất');
   }
 
+  /* ==========================================================
+     APP
+     ========================================================== */
   function enterApp(user) {
     CUR = user;
     document.getElementById('auth').style.display = 'none';
     document.getElementById('app').style.display = 'block';
-    upUI(); navigate('account');
+    upUI();
+    navigate('account');
   }
 
   function uObj() { return DB.users[CUR] || {}; }
@@ -1795,12 +2101,17 @@ try {
   function upUI() {
     var u = uObj();
     document.getElementById('hdrBal').textContent = fmt(u.balance);
-    document.getElementById('sideUser').innerHTML = '👤 <b>' + CUR + '</b><br><span class="ib">🔢 Số IB: ' + u.ib + '</span><br>💰 Số dư: <b>' + fmt(u.balance) + '</b>';
+    document.getElementById('sideUser').innerHTML =
+      '👤 <b>' + CUR + '</b><br>' +
+      '<span class="ib">🔢 Số IB: ' + u.ib + '</span><br>' +
+      '💰 Số dư: <b>' + fmt(u.balance) + '</b>';
+
     document.getElementById('acName').textContent = CUR;
     document.getElementById('acIb').textContent = u.ib;
     document.getElementById('acDep').textContent = fmt(u.totalDeposit);
     document.getElementById('acSpent').textContent = fmt(u.totalSpent);
     document.getElementById('acBal').textContent = fmt(u.balance);
+
     renderAcOrders();
   }
 
@@ -1813,24 +2124,74 @@ try {
   function navigate(p) {
     var pages = document.querySelectorAll('.page');
     for (var i = 0; i < pages.length; i++) pages[i].classList.remove('active');
-    var el = document.getElementById('page-' + p); if (el) el.classList.add('active');
+
+    var el = document.getElementById('page-' + p);
+    if (el) el.classList.add('active');
+
     var lis = document.querySelectorAll('#menuList li[data-page]');
-    for (var j = 0; j < lis.length; j++) lis[j].classList.toggle('active', lis[j].getAttribute('data-page') === p);
+    for (var j = 0; j < lis.length; j++) {
+      lis[j].classList.toggle('active', lis[j].getAttribute('data-page') === p);
+    }
+
     document.getElementById('sidebar').classList.remove('open');
     document.getElementById('overlay').classList.remove('show');
     document.getElementById('burger').classList.remove('open');
+
     window.scrollTo({ top: 0, behavior: 'smooth' });
+
     if (p === 'history') renderHist();
     if (p === 'hackios') renderIOS();
     if (p === 'esgin') renderEsgin();
     if (p === 'account') upUI();
   }
 
+  /* ==========================================================
+     SẢN PHẨM
+     ========================================================== */
   var IOS = [
-    { name: 'TROLL MODZ IOS ADR', img: IMG + 'IMG_8158.jpeg', desc: 'Antiban 80-90%\nSiêu bá\nTải app để cài', plans: [{ l: '1 Giờ', p: 10000 }, { l: '1 Ngày', p: 25000 }, { l: '7 Ngày', p: 100000 }, { l: '30 Ngày', p: 170000 }] },
-    { name: 'PROXY IOS IPA', img: IMG + 'IMG_8160.jpeg', desc: 'Antiban 90%\nNhiều chức năng khác nhau\nCần esgin để cài', plans: [{ l: '1 Ngày', p: 20000 }, { l: '7 Ngày', p: 60000 }, { l: '30 Ngày', p: 150000 }, { l: 'Vĩnh viễn', p: 360000 }] },
-    { name: 'MIGUL BAGIC VN', img: IMG + 'IMG_8155.jpeg', desc: 'Antiban siêu bá\nCần esgin để cài\nMenu đầy đủ chức năng', plans: [{ l: '1 Ngày', p: 70000 }, { l: '7 Ngày', p: 200000 }, { l: '30 Ngày', p: 420000 }] },
-    { name: 'MIGUL PRO VN', img: IMG + 'IMG_8156.jpeg', desc: 'Antiban hơn magic nhiều\nCần esgin để cài\nMenu nhiều chắc chắn siêu bá', plans: [{ l: '1 Giờ', p: 20000 }, { l: '1 Ngày', p: 120000 }, { l: '7 Ngày', p: 250000 }, { l: '30 Ngày', p: 550000 }] }
+    {
+      name: 'TROLL MODZ IOS ADR',
+      img: IMG + 'IMG_8158.jpeg',
+      desc: 'Antiban 80-90%\nSiêu bá\nTải app để cài',
+      plans: [
+        { l: '1 Giờ', p: 10000 },
+        { l: '1 Ngày', p: 25000 },
+        { l: '7 Ngày', p: 100000 },
+        { l: '30 Ngày', p: 170000 }
+      ]
+    },
+    {
+      name: 'PROXY IOS IPA',
+      img: IMG + 'IMG_8160.jpeg',
+      desc: 'Antiban 90%\nNhiều chức năng khác nhau\nCần esgin để cài',
+      plans: [
+        { l: '1 Ngày', p: 20000 },
+        { l: '7 Ngày', p: 60000 },
+        { l: '30 Ngày', p: 150000 },
+        { l: 'Vĩnh viễn', p: 360000 }
+      ]
+    },
+    {
+      name: 'MIGUL BAGIC VN',
+      img: IMG + 'IMG_8155.jpeg',
+      desc: 'Antiban siêu bá\nCần esgin để cài\nMenu đầy đủ chức năng',
+      plans: [
+        { l: '1 Ngày', p: 70000 },
+        { l: '7 Ngày', p: 200000 },
+        { l: '30 Ngày', p: 420000 }
+      ]
+    },
+    {
+      name: 'MIGUL PRO VN',
+      img: IMG + 'IMG_8156.jpeg',
+      desc: 'Antiban hơn magic nhiều\nCần esgin để cài\nMenu nhiều chắc chắn siêu bá',
+      plans: [
+        { l: '1 Giờ', p: 20000 },
+        { l: '1 Ngày', p: 120000 },
+        { l: '7 Ngày', p: 250000 },
+        { l: '30 Ngày', p: 550000 }
+      ]
+    }
   ];
 
   var ESGIN = [
@@ -1842,12 +2203,24 @@ try {
   function renderIOS() {
     var h = '';
     for (var i = 0; i < IOS.length; i++) {
-      var pr = IOS[i], pl = '';
+      var pr = IOS[i];
+      var pl = '';
       for (var j = 0; j < pr.plans.length; j++) {
         var p = pr.plans[j];
-        pl += '<div class="plan"><span class="lb">' + p.l + '</span><span class="pr">' + fmt(p.p) + '</span><button class="buy" onclick="window.__buy(\'' + pr.name + '\',\'' + p.l + '\',' + p.p + ')">MUA</button></div>';
+        pl += '<div class="plan">' +
+          '<span class="lb">' + p.l + '</span>' +
+          '<span class="pr">' + fmt(p.p) + '</span>' +
+          '<button class="buy" onclick="window.__buy(\'' + pr.name + '\',\'' + p.l + '\',' + p.p + ')">MUA</button>' +
+          '</div>';
       }
-      h += '<div class="prod"><img src="' + pr.img + '" loading="lazy" onerror="this.style.opacity=.35"><div class="prod-body"><div class="prod-name">' + pr.name + '</div><div class="prod-desc">' + pr.desc + '</div><div class="plans">' + pl + '</div></div></div>';
+      h += '<div class="prod">' +
+        '<img src="' + pr.img + '" loading="lazy" onerror="this.style.opacity=.35">' +
+        '<div class="prod-body">' +
+        '<div class="prod-name">' + pr.name + '</div>' +
+        '<div class="prod-desc">' + pr.desc + '</div>' +
+        '<div class="plans">' + pl + '</div>' +
+        '</div>' +
+        '</div>';
     }
     document.getElementById('iosGrid').innerHTML = h;
   }
@@ -1856,113 +2229,275 @@ try {
     var pl = '';
     for (var i = 0; i < ESGIN.length; i++) {
       var g = ESGIN[i];
-      pl += '<div class="plan"><span class="lb">' + g.name + ' — ' + g.desc + '</span><span class="pr">' + fmt(g.price) + '</span><button class="buy" onclick="window.__buy(\'ESGIN = IOS\',\'' + g.name + ' - ' + g.desc + '\',' + g.price + ')">MUA</button></div>';
+      pl += '<div class="plan">' +
+        '<span class="lb">' + g.name + ' — ' + g.desc + '</span>' +
+        '<span class="pr">' + fmt(g.price) + '</span>' +
+        '<button class="buy" onclick="window.__buy(\'ESGIN = IOS\',\'' + g.name + ' - ' + g.desc + '\',' + g.price + ')">MUA</button>' +
+        '</div>';
     }
-    document.getElementById('esginGrid').innerHTML = '<div class="prod"><img src="' + IMG + 'IMG_8154.jpeg" loading="lazy" onerror="this.style.opacity=.35"><div class="prod-body"><div class="prod-name">ESGIN = IOS 📱</div><div class="prod-desc">Tất cả các gói đều 1 năm\nHỗ trợ cài IPA, hack FF & nhiều app khác</div><div class="plans">' + pl + '</div></div></div>';
+    document.getElementById('esginGrid').innerHTML =
+      '<div class="prod">' +
+      '<img src="' + IMG + 'IMG_8154.jpeg" loading="lazy" onerror="this.style.opacity=.35">' +
+      '<div class="prod-body">' +
+      '<div class="prod-name">ESGIN = IOS 📱</div>' +
+      '<div class="prod-desc">Tất cả các gói đều 1 năm\nHỗ trợ cài IPA, hack FF & nhiều app khác</div>' +
+      '<div class="plans">' + pl + '</div>' +
+      '</div>' +
+      '</div>';
   }
 
   window.__buy = function (name, plan, price) {
     var u = uObj();
-    if ((u.balance || 0) < price) { toast('❌ Bạn cần nạp thêm tiền để mua! Thiếu ' + fmt(price - (u.balance || 0)), true); return; }
+    if ((u.balance || 0) < price) {
+      toast('❌ Bạn cần nạp thêm tiền để mua! Thiếu ' + fmt(price - (u.balance || 0)), true);
+      return;
+    }
     if (!db) return toast('❌ Chưa kết nối máy chủ', true);
+
     db.ref('users/' + CUR).once('value').then(function (s) {
-      var f = s.val(); if (!f) return;
-      if ((f.balance || 0) < price) { toast('❌ Số dư không đủ!', true); return; }
-      f.balance -= price; f.totalSpent = (f.totalSpent || 0) + price;
+      var f = s.val();
+      if (!f) return;
+      if ((f.balance || 0) < price) {
+        toast('❌ Số dư không đủ! Vui lòng nạp thêm.', true);
+        return;
+      }
+      f.balance -= price;
+      f.totalSpent = (f.totalSpent || 0) + price;
       db.ref('users/' + CUR).set(f);
+
       var o = DB.orders.slice();
-      o.unshift({ id: rand(8), user: CUR, name: name, plan: plan, price: price, status: 'wait', key: '', createdAt: now() });
+      o.unshift({
+        id: rand(8),
+        user: CUR,
+        name: name,
+        plan: plan,
+        price: price,
+        status: 'wait',
+        key: '',
+        createdAt: now()
+      });
       DB.orders = o;
       db.ref('orders').set(o);
+
       upUI();
       toast('🎉 Chức mừng bạn đã mua hàng thành công! Vui lòng liên hệ phần hỗ trợ để nhận.');
-    }).catch(function (e) { toast('❌ Lỗi: ' + e.message, true); });
+    }).catch(function (e) {
+      toast('❌ Lỗi: ' + e.message, true);
+    });
   };
 
+  /* ==========================================================
+     QR
+     ========================================================== */
   function createQR() {
     var amt = Number(document.getElementById('qrAmount').value);
     if (!amt || amt < 5000) return toast('⚠️ Số tiền tối thiểu là 5.000đ', true);
     if (amt > 5000000) return toast('⚠️ Số tiền tối đa là 5.000.000đ', true);
+
     var code = rand(6);
-    var d = { id: rand(8), user: CUR, type: 'QR', amount: amt, code: code, status: 'wait', createdAt: now() };
+    var d = {
+      id: rand(8),
+      user: CUR,
+      type: 'QR',
+      amount: amt,
+      code: code,
+      status: 'wait',
+      createdAt: now()
+    };
+
     DB.deposits.unshift(d);
     if (db) db.ref('deposits').set(DB.deposits);
-    document.getElementById('qrResult').innerHTML = '<div class="qr-box"><img src="' + IMG + 'IMG_8134.jpeg" alt="QR"><div class="bank-info">🏦 Ngân hàng: <b>MBBANK</b><br>💳 Số tài khoản: <b>0372822927</b><br>👤 Tên: <b>TRAN TRUNG SANG</b><br>💰 Số tiền: <b class="hl">' + fmt(amt) + '</b><br>📝 Nội dung CK: <b class="hl">' + code + '</b><br>🧾 Mã đơn: <b>' + d.id + '</b></div><div class="note-warn">⚠️ LƯU Ý: Chuyển khoản ĐÚNG nội dung "' + code + '"<br>Admin sẽ xác nhận và cộng tiền vào tài khoản.</div></div>';
-    toast('✅ Đã tạo mã QR!');
+
+    document.getElementById('qrResult').innerHTML =
+      '<div class="qr-box">' +
+      '<img src="' + IMG + 'IMG_8134.jpeg" alt="QR">' +
+      '<div class="bank-info">' +
+      '🏦 Ngân hàng: <b>MBBANK</b><br>' +
+      '💳 Số tài khoản: <b>0372822927</b><br>' +
+      '👤 Tên: <b>TRAN TRUNG SANG</b><br>' +
+      '💰 Số tiền: <b class="hl">' + fmt(amt) + '</b><br>' +
+      '📝 Nội dung CK: <b class="hl">' + code + '</b><br>' +
+      '🧾 Mã đơn: <b>' + d.id + '</b>' +
+      '</div>' +
+      '<div class="note-warn">⚠️ LƯU Ý: Chuyển khoản ĐÚNG nội dung "' + code + '"<br>Admin sẽ xác nhận và cộng tiền vào tài khoản.</div>' +
+      '</div>';
+
+    toast('✅ Đã tạo mã QR! Vui lòng chuyển khoản đúng nội dung.');
   }
 
-  var RATE = { 10000: 5000, 20000: 15000, 50000: 40000, 100000: 80000, 200000: 170000, 500000: 450000 };
+  /* ==========================================================
+     THẺ CAR
+     ========================================================== */
+  var RATE = {
+    10000: 5000,
+    20000: 15000,
+    50000: 40000,
+    100000: 80000,
+    200000: 170000,
+    500000: 450000
+  };
 
   function submitCard() {
     var amt = Number(document.getElementById('cardAmt').value);
     var type = document.getElementById('cardType').value;
     var code = document.getElementById('cardCode').value.trim();
     var seri = document.getElementById('cardSeri').value.trim();
-    if (!code || !seri) return toast('⚠️ Nhập đầy đủ Mã thẻ và Seri!', true);
-    if (code.length < 6 || seri.length < 6) return toast('⚠️ Mã/Seri quá ngắn!', true);
-    var d = { id: rand(8), user: CUR, type: 'CARD', amount: amt, receive: RATE[amt] || 0, cardType: type, cardCode: code, cardSeri: seri, status: 'wait', createdAt: now() };
+
+    if (!code || !seri) return toast('⚠️ Vui lòng nhập đầy đủ Mã thẻ và Seri!', true);
+    if (code.length < 6 || seri.length < 6) return toast('⚠️ Mã thẻ hoặc Seri không hợp lệ (quá ngắn)!', true);
+
+    var d = {
+      id: rand(8),
+      user: CUR,
+      type: 'CARD',
+      amount: amt,
+      receive: RATE[amt] || 0,
+      cardType: type,
+      cardCode: code,
+      cardSeri: seri,
+      status: 'wait',
+      createdAt: now()
+    };
+
     DB.deposits.unshift(d);
     if (db) db.ref('deposits').set(DB.deposits);
+
     document.getElementById('cardCode').value = '';
     document.getElementById('cardSeri').value = '';
-    toast('✅ Đã gửi thẻ!');
+
+    toast('✅ Đã gửi thẻ! Admin đang kiểm tra và xử lý.');
   }
 
+  /* ==========================================================
+     LỊCH SỬ
+     ========================================================== */
   function switchHist(m) {
     histMode = m;
     var t = document.querySelectorAll('.subtab');
-    for (var i = 0; i < t.length; i++) t[i].classList.toggle('active', t[i].getAttribute('data-h') === m);
+    for (var i = 0; i < t.length; i++) {
+      t[i].classList.toggle('active', t[i].getAttribute('data-h') === m);
+    }
     renderHist();
   }
 
   function renderHist() {
-    var box = document.getElementById('histBox'), h = '';
+    var box = document.getElementById('histBox');
+    var h = '';
+
     if (histMode === 'dep') {
       var mine = [];
-      for (var i = 0; i < DB.deposits.length; i++) if (DB.deposits[i].user === CUR) mine.push(DB.deposits[i]);
-      if (!mine.length) h = '<div class="empty">📭 Chưa có giao dịch nạp tiền nào</div>';
-      else for (var j = 0; j < mine.length; j++) {
-        var d = mine[j];
-        var b = d.status === 'wait' ? '<span class="badge wait">ĐANG XỬ LÝ</span>' : d.status === 'done' ? '<span class="badge done">HOÀN THÀNH</span>' : '<span class="badge cancel">ĐÃ HUỶ</span>';
-        var info = d.type === 'QR' ? '💳 Nạp QR — Nội dung: <b style="color:#ffe600">' + d.code + '</b>' : '💳 Thẻ ' + d.cardType + ' — Mệnh giá ' + fmt(d.amount) + ' → nhận ' + fmt(d.receive);
-        var a = d.type === 'QR' ? d.amount : d.receive;
-        h += '<div class="item"><div class="l"><b>Mã đơn: ' + d.id + '</b><small>' + info + '</small><small>Số tiền: <b style="color:#00ff88">' + fmt(a) + '</b></small><small>🕐 ' + timeStr(d.createdAt) + '</small></div>' + b + '</div>';
+      for (var i = 0; i < DB.deposits.length; i++) {
+        if (DB.deposits[i].user === CUR) mine.push(DB.deposits[i]);
+      }
+      if (!mine.length) {
+        h = '<div class="empty">📭 Chưa có giao dịch nạp tiền nào</div>';
+      } else {
+        for (var j = 0; j < mine.length; j++) {
+          var d = mine[j];
+          var b = d.status === 'wait'
+            ? '<span class="badge wait">ĐANG XỬ LÝ</span>'
+            : d.status === 'done'
+              ? '<span class="badge done">HOÀN THÀNH</span>'
+              : '<span class="badge cancel">ĐÃ HUỶ</span>';
+
+          var info = d.type === 'QR'
+            ? '💳 Nạp QR — Nội dung: <b style="color:#ffe600">' + d.code + '</b>'
+            : '💳 Thẻ ' + d.cardType + ' — Mệnh giá ' + fmt(d.amount) + ' → nhận ' + fmt(d.receive);
+
+          var a = d.type === 'QR' ? d.amount : d.receive;
+
+          h += '<div class="item">' +
+            '<div class="l">' +
+            '<b>Mã đơn: ' + d.id + '</b>' +
+            '<small>' + info + '</small>' +
+            '<small>Số tiền: <b style="color:#00ff88">' + fmt(a) + '</b></small>' +
+            '<small>🕐 ' + timeStr(d.createdAt) + '</small>' +
+            '</div>' + b +
+            '</div>';
+        }
       }
     } else if (histMode === 'key') {
       var got = [];
-      for (var a = 0; a < DB.orders.length; a++) if (DB.orders[a].user === CUR && DB.orders[a].key) got.push(DB.orders[a]);
-      if (!got.length) h = '<div class="empty">🔑 Chưa có key nào được gửi</div>';
-      else for (var b2 = 0; b2 < got.length; b2++) {
-        var o = got[b2];
-        h += '<div class="item"><div class="l"><b>' + o.name + ' — ' + o.plan + '</b><small>🔑 KEY: <b style="color:#00ff88;font-size:14px">' + o.key + '</b></small><small>🕐 ' + timeStr(o.createdAt) + '</small></div><span class="badge done">HOÀN THÀNH</span></div>';
+      for (var a = 0; a < DB.orders.length; a++) {
+        if (DB.orders[a].user === CUR && DB.orders[a].key) got.push(DB.orders[a]);
+      }
+      if (!got.length) {
+        h = '<div class="empty">🔑 Chưa có key nào được gửi</div>';
+      } else {
+        for (var b2 = 0; b2 < got.length; b2++) {
+          var o = got[b2];
+          h += '<div class="item">' +
+            '<div class="l">' +
+            '<b>' + o.name + ' — ' + o.plan + '</b>' +
+            '<small>🔑 KEY: <b style="color:#00ff88;font-size:14px">' + o.key + '</b></small>' +
+            '<small>🕐 ' + timeStr(o.createdAt) + '</small>' +
+            '</div>' +
+            '<span class="badge done">HOÀN THÀNH</span>' +
+            '</div>';
+        }
       }
     } else {
       var mine2 = [];
-      for (var c = 0; c < DB.orders.length; c++) if (DB.orders[c].user === CUR) mine2.push(DB.orders[c]);
-      if (!mine2.length) h = '<div class="empty">🛒 Chưa có đơn mua nào</div>';
-      else for (var d2 = 0; d2 < mine2.length; d2++) {
-        var oo = mine2[d2];
-        var bb = oo.status === 'done' ? '<span class="badge done">HOÀN THÀNH</span>' : '<span class="badge wait">ĐANG XỬ LÝ</span>';
-        h += '<div class="item"><div class="l"><b>' + oo.name + '</b><small>Gói: ' + oo.plan + '</small><small>Giá: <b style="color:#ffe600">' + fmt(oo.price) + '</b></small><small>Mã đơn: ' + oo.id + ' • 🕐 ' + timeStr(oo.createdAt) + '</small></div>' + bb + '</div>';
+      for (var c = 0; c < DB.orders.length; c++) {
+        if (DB.orders[c].user === CUR) mine2.push(DB.orders[c]);
+      }
+      if (!mine2.length) {
+        h = '<div class="empty">🛒 Chưa có đơn mua nào</div>';
+      } else {
+        for (var d2 = 0; d2 < mine2.length; d2++) {
+          var oo = mine2[d2];
+          var bb = oo.status === 'done'
+            ? '<span class="badge done">HOÀN THÀNH</span>'
+            : '<span class="badge wait">ĐANG XỬ LÝ</span>';
+
+          h += '<div class="item">' +
+            '<div class="l">' +
+            '<b>' + oo.name + '</b>' +
+            '<small>Gói: ' + oo.plan + '</small>' +
+            '<small>Giá: <b style="color:#ffe600">' + fmt(oo.price) + '</b></small>' +
+            '<small>Mã đơn: ' + oo.id + ' • 🕐 ' + timeStr(oo.createdAt) + '</small>' +
+            '</div>' + bb +
+            '</div>';
+        }
       }
     }
+
     box.innerHTML = h;
   }
 
   function renderAcOrders() {
-    var box = document.getElementById('acOrders'); if (!box) return;
+    var box = document.getElementById('acOrders');
+    if (!box) return;
+
     var mine = [];
-    for (var i = 0; i < DB.orders.length; i++) if (DB.orders[i].user === CUR) mine.push(DB.orders[i]);
-    if (!mine.length) { box.innerHTML = '<div class="empty">Chưa có đơn mua nào</div>'; return; }
+    for (var i = 0; i < DB.orders.length; i++) {
+      if (DB.orders[i].user === CUR) mine.push(DB.orders[i]);
+    }
+
+    if (!mine.length) {
+      box.innerHTML = '<div class="empty">Chưa có đơn mua nào</div>';
+      return;
+    }
+
     var h = '';
     for (var j = 0; j < Math.min(mine.length, 10); j++) {
       var o = mine[j];
-      var b = o.status === 'done' ? '<span class="badge done">HOÀN THÀNH</span>' : '<span class="badge wait">ĐANG XỬ LÝ</span>';
-      h += '<div class="item"><div class="l"><b>' + o.name + '</b><small>' + o.plan + ' • ' + fmt(o.price) + '</small></div>' + b + '</div>';
+      var b = o.status === 'done'
+        ? '<span class="badge done">HOÀN THÀNH</span>'
+        : '<span class="badge wait">ĐANG XỬ LÝ</span>';
+
+      h += '<div class="item">' +
+        '<div class="l"><b>' + o.name + '</b><small>' + o.plan + ' • ' + fmt(o.price) + '</small></div>' +
+        b +
+        '</div>';
     }
+
     box.innerHTML = h;
   }
 
+  /* ==========================================================
+     ĐÁNH GIÁ
+     ========================================================== */
   (function () {
     var s = document.querySelectorAll('#starPick span');
     for (var i = 0; i < s.length; i++) {
@@ -1970,101 +2505,221 @@ try {
         el.addEventListener('click', function () {
           stars = Number(el.getAttribute('data-s'));
           var all = document.querySelectorAll('#starPick span');
-          for (var k = 0; k < all.length; k++) all[k].classList.toggle('on', Number(all[k].getAttribute('data-s')) <= stars);
+          for (var k = 0; k < all.length; k++) {
+            all[k].classList.toggle('on', Number(all[k].getAttribute('data-s')) <= stars);
+          }
         });
       })(s[i]);
     }
   })();
 
   function sendReview() {
-    if (!stars) return toast('⚠️ Chọn số sao từ 1-5 ⭐', true);
+    if (!stars) return toast('⚠️ Vui lòng chọn số sao từ 1-5 ⭐', true);
+
     var text = document.getElementById('rvText').value.trim();
-    DB.reviews.unshift({ id: rand(6), user: CUR, stars: stars, text: text, createdAt: now() });
+
+    DB.reviews.unshift({
+      id: rand(6),
+      user: CUR,
+      stars: stars,
+      text: text,
+      createdAt: now()
+    });
+
     if (db) db.ref('reviews').set(DB.reviews);
-    document.getElementById('rvText').value = ''; stars = 0;
+
+    document.getElementById('rvText').value = '';
+    stars = 0;
+
     var all = document.querySelectorAll('#starPick span');
     for (var i = 0; i < all.length; i++) all[i].classList.remove('on');
+
     toast('🎉 Cảm ơn bạn đã gửi đánh giá!');
   }
 
+  /* ==========================================================
+     LINKS
+     ========================================================== */
   function openLink(u) { window.open(u, '_blank'); }
 
+  /* ==========================================================
+     ADMIN GATE
+     ========================================================== */
   function openAdminGate() {
     document.getElementById('adminModal').classList.add('show');
     document.getElementById('adminPass').value = '';
     document.getElementById('adminMsg').className = 'msg';
     setTimeout(function () { document.getElementById('adminPass').focus(); }, 120);
   }
-  function closeAdminGate() { document.getElementById('adminModal').classList.remove('show'); }
+
+  function closeAdminGate() {
+    document.getElementById('adminModal').classList.remove('show');
+  }
+
   function checkAdmin() {
     var v = document.getElementById('adminPass').value;
     var m = document.getElementById('adminMsg');
-    if (v !== ADMIN_PASS) { m.textContent = '❌ Mật khẩu Admin không đúng!'; m.className = 'msg err'; return; }
-    m.textContent = '✅ Xác thực thành công!'; m.className = 'msg ok';
-    setTimeout(function () { closeAdminGate(); document.getElementById('adminPanel').style.display = 'block'; renderAdmin(); }, 450);
-  }
-  function closeAdminPanel() { document.getElementById('adminPanel').style.display = 'none'; }
 
+    if (v !== ADMIN_PASS) {
+      m.textContent = '❌ Mật khẩu Admin không đúng!';
+      m.className = 'msg err';
+      return;
+    }
+
+    m.textContent = '✅ Xác thực thành công!';
+    m.className = 'msg ok';
+
+    setTimeout(function () {
+      closeAdminGate();
+      document.getElementById('adminPanel').style.display = 'block';
+      renderAdmin();
+    }, 450);
+  }
+
+  function closeAdminPanel() {
+    document.getElementById('adminPanel').style.display = 'none';
+  }
+
+  /* ==========================================================
+     ADMIN RENDER
+     ========================================================== */
   function renderAdmin() {
     var uk = Object.keys(DB.users);
+
     document.getElementById('stUsers').textContent = uk.length;
-    var wd = 0; for (var i = 0; i < DB.deposits.length; i++) if (DB.deposits[i].status === 'wait') wd++;
+
+    var wd = 0;
+    for (var i = 0; i < DB.deposits.length; i++) {
+      if (DB.deposits[i].status === 'wait') wd++;
+    }
     document.getElementById('stDep').textContent = wd;
-    var wo = 0; for (var j = 0; j < DB.orders.length; j++) if (DB.orders[j].status === 'wait') wo++;
+
+    var wo = 0;
+    for (var j = 0; j < DB.orders.length; j++) {
+      if (DB.orders[j].status === 'wait') wo++;
+    }
     document.getElementById('stOrd').textContent = wo;
+
     document.getElementById('stRv').textContent = DB.reviews.length;
 
     var h1 = '';
-    if (!uk.length) h1 = '<div class="empty">Chưa có người đăng ký</div>';
-    else for (var a = 0; a < uk.length; a++) {
-      var n = uk[a], u = DB.users[n];
-      h1 += '<div class="item"><div class="l"><b>👤 ' + n + '</b><small>🔑 Mật khẩu: <b style="color:#ff00e0">' + u.password + '</b></small><small>🔢 Số IB: <b style="color:#ffe600">' + u.ib + '</b></small><small>💰 Số dư: <b style="color:#00ff88">' + fmt(u.balance) + '</b> • Tổng nạp: ' + fmt(u.totalDeposit) + ' • Tổng chi: ' + fmt(u.totalSpent) + '</small><small>🕐 Đăng ký: ' + timeStr(u.createdAt) + '</small></div></div>';
+    if (!uk.length) {
+      h1 = '<div class="empty">Chưa có người đăng ký</div>';
+    } else {
+      for (var a = 0; a < uk.length; a++) {
+        var n = uk[a];
+        var u = DB.users[n];
+        h1 += '<div class="item">' +
+          '<div class="l">' +
+          '<b>👤 ' + n + '</b>' +
+          '<small>🔑 Mật khẩu: <b style="color:#ff00e0">' + u.password + '</b></small>' +
+          '<small>🔢 Số IB: <b style="color:#ffe600">' + u.ib + '</b></small>' +
+          '<small>💰 Số dư: <b style="color:#00ff88">' + fmt(u.balance) + '</b> • Tổng nạp: ' + fmt(u.totalDeposit) + ' • Tổng chi: ' + fmt(u.totalSpent) + '</small>' +
+          '<small>🕐 Đăng ký: ' + timeStr(u.createdAt) + '</small>' +
+          '</div>' +
+          '</div>';
+      }
     }
     document.getElementById('adUsers').innerHTML = h1;
 
     var h2 = '';
-    if (!DB.deposits.length) h2 = '<div class="empty">Chưa có yêu cầu nạp tiền</div>';
-    else for (var b = 0; b < DB.deposits.length; b++) {
-      var d = DB.deposits[b];
-      var info = d.type === 'QR' ? '🏦 QR — Nội dung: <b style="color:#ffe600">' + d.code + '</b> — Số tiền: <b style="color:#00ff88">' + fmt(d.amount) + '</b>' : '💳 Thẻ ' + d.cardType + ' — Mệnh giá ' + fmt(d.amount) + ' → nhận <b style="color:#00ff88">' + fmt(d.receive) + '</b><br>Mã thẻ: <b style="color:#ff00e0">' + d.cardCode + '</b> • Seri: <b style="color:#ff00e0">' + d.cardSeri + '</b>';
-      var bd;
-      if (d.status === 'wait') bd = '<div style="display:flex;gap:7px;flex-wrap:wrap"><button class="btn sm" onclick="window.__appr(\'' + d.id + '\')">✔ XÁC NHẬN</button><button class="btn sm pink" onclick="window.__cnl(\'' + d.id + '\')">✖ HUỶ</button></div>';
-      else if (d.status === 'done') bd = '<span class="badge done">HOÀN THÀNH</span>';
-      else bd = '<span class="badge cancel">ĐÃ HUỶ</span>';
-      h2 += '<div class="item"><div class="l"><b>👤 ' + d.user + ' — Mã đơn ' + d.id + '</b><small>' + info + '</small><small>🕐 ' + timeStr(d.createdAt) + '</small></div>' + bd + '</div>';
+    if (!DB.deposits.length) {
+      h2 = '<div class="empty">Chưa có yêu cầu nạp tiền</div>';
+    } else {
+      for (var b = 0; b < DB.deposits.length; b++) {
+        var d = DB.deposits[b];
+        var info = d.type === 'QR'
+          ? '🏦 QR — Nội dung: <b style="color:#ffe600">' + d.code + '</b> — Số tiền: <b style="color:#00ff88">' + fmt(d.amount) + '</b>'
+          : '💳 Thẻ ' + d.cardType + ' — Mệnh giá ' + fmt(d.amount) + ' → nhận <b style="color:#00ff88">' + fmt(d.receive) + '</b><br>Mã thẻ: <b style="color:#ff00e0">' + d.cardCode + '</b> • Seri: <b style="color:#ff00e0">' + d.cardSeri + '</b>';
+
+        var bd;
+        if (d.status === 'wait') {
+          bd = '<div style="display:flex;gap:7px;flex-wrap:wrap">' +
+            '<button class="btn sm" onclick="window.__appr(\'' + d.id + '\')">✔ XÁC NHẬN</button>' +
+            '<button class="btn sm pink" onclick="window.__cnl(\'' + d.id + '\')">✖ HUỶ</button>' +
+            '</div>';
+        } else if (d.status === 'done') {
+          bd = '<span class="badge done">HOÀN THÀNH</span>';
+        } else {
+          bd = '<span class="badge cancel">ĐÃ HUỶ</span>';
+        }
+
+        h2 += '<div class="item">' +
+          '<div class="l">' +
+          '<b>👤 ' + d.user + ' — Mã đơn ' + d.id + '</b>' +
+          '<small>' + info + '</small>' +
+          '<small>🕐 ' + timeStr(d.createdAt) + '</small>' +
+          '</div>' + bd +
+          '</div>';
+      }
     }
     document.getElementById('adDeps').innerHTML = h2;
 
     var h3 = '';
-    if (!DB.orders.length) h3 = '<div class="empty">Chưa có đơn hàng</div>';
-    else for (var c = 0; c < DB.orders.length; c++) {
-      var o = DB.orders[c], bd2;
-      if (o.status === 'wait') bd2 = '<div style="display:flex;gap:7px;flex-wrap:wrap;align-items:center"><input id="key_' + o.id + '" placeholder="Nhập key..." style="padding:8px 10px;border-radius:9px;background:rgba(0,0,0,.5);border:1px solid rgba(0,255,136,.45);color:#e9f6ff;font-size:12px;width:150px;font-family:inherit;-webkit-text-fill-color:#e9f6ff"><button class="btn sm" onclick="window.__sendk(\'' + o.id + '\')">🔑 GỬI KEY</button></div>';
-      else bd2 = '<div><span class="badge done">HOÀN THÀNH</span><div style="font-size:11.5px;color:#6affb8;margin-top:6px">🔑 ' + o.key + '</div></div>';
-      h3 += '<div class="item"><div class="l"><b>👤 ' + o.user + ' — ' + o.name + '</b><small>Gói: ' + o.plan + ' • Giá: <b style="color:#ffe600">' + fmt(o.price) + '</b></small><small>Mã đơn: ' + o.id + ' • 🕐 ' + timeStr(o.createdAt) + '</small></div>' + bd2 + '</div>';
+    if (!DB.orders.length) {
+      h3 = '<div class="empty">Chưa có đơn hàng</div>';
+    } else {
+      for (var c = 0; c < DB.orders.length; c++) {
+        var o = DB.orders[c];
+        var bd2;
+        if (o.status === 'wait') {
+          bd2 = '<div style="display:flex;gap:7px;flex-wrap:wrap;align-items:center">' +
+            '<input id="key_' + o.id + '" placeholder="Nhập key..." style="padding:8px 10px;border-radius:9px;background:rgba(0,0,0,.5);border:1px solid rgba(0,255,136,.45);color:#e9f6ff;font-size:12px;width:150px;font-family:inherit;-webkit-text-fill-color:#e9f6ff">' +
+            '<button class="btn sm" onclick="window.__sendk(\'' + o.id + '\')">🔑 GỬI KEY</button>' +
+            '</div>';
+        } else {
+          bd2 = '<div><span class="badge done">HOÀN THÀNH</span>' +
+            '<div style="font-size:11.5px;color:#6affb8;margin-top:6px">🔑 ' + o.key + '</div></div>';
+        }
+        h3 += '<div class="item">' +
+          '<div class="l">' +
+          '<b>👤 ' + o.user + ' — ' + o.name + '</b>' +
+          '<small>Gói: ' + o.plan + ' • Giá: <b style="color:#ffe600">' + fmt(o.price) + '</b></small>' +
+          '<small>Mã đơn: ' + o.id + ' • 🕐 ' + timeStr(o.createdAt) + '</small>' +
+          '</div>' + bd2 +
+          '</div>';
+      }
     }
     document.getElementById('adOrds').innerHTML = h3;
 
     var h4 = '';
-    if (!DB.reviews.length) h4 = '<div class="empty">Chưa có đánh giá</div>';
-    else for (var e = 0; e < DB.reviews.length; e++) {
-      var r = DB.reviews[e];
-      h4 += '<div class="item"><div class="l"><b>👤 ' + r.user + '</b><small style="color:#ffe600;font-size:15px">' + Array(r.stars + 1).join('⭐') + '</small><small>' + (r.text || '(Không có mô tả)') + '</small><small>🕐 ' + timeStr(r.createdAt) + '</small></div></div>';
+    if (!DB.reviews.length) {
+      h4 = '<div class="empty">Chưa có đánh giá</div>';
+    } else {
+      for (var e = 0; e < DB.reviews.length; e++) {
+        var r = DB.reviews[e];
+        h4 += '<div class="item">' +
+          '<div class="l">' +
+          '<b>👤 ' + r.user + '</b>' +
+          '<small style="color:#ffe600;font-size:15px">' + Array(r.stars + 1).join('⭐') + '</small>' +
+          '<small>' + (r.text || '(Không có mô tả)') + '</small>' +
+          '<small>🕐 ' + timeStr(r.createdAt) + '</small>' +
+          '</div>' +
+          '</div>';
+      }
     }
     document.getElementById('adRevs').innerHTML = h4;
   }
 
+  /* ==========================================================
+     ADMIN ACTIONS
+     ========================================================== */
   window.__appr = function (id) {
     if (!db) return toast('❌ Chưa kết nối máy chủ', true);
+
     db.ref('deposits').once('value').then(function (s) {
       var deps = s.val() || [];
       var d = null;
-      for (var i = 0; i < deps.length; i++) if (deps[i].id === id) d = deps[i];
+      for (var i = 0; i < deps.length; i++) {
+        if (deps[i].id === id) d = deps[i];
+      }
       if (!d || d.status !== 'wait') return;
       d.status = 'done';
       db.ref('deposits').set(deps);
+
       db.ref('users/' + d.user).once('value').then(function (us) {
-        var u = us.val(); if (!u) return;
+        var u = us.val();
+        if (!u) return;
         var add = d.type === 'QR' ? d.amount : d.receive;
         u.balance = (u.balance || 0) + add;
         u.totalDeposit = (u.totalDeposit || 0) + add;
@@ -2078,37 +2733,51 @@ try {
     if (!db) return;
     db.ref('deposits').once('value').then(function (s) {
       var deps = s.val() || [];
-      for (var i = 0; i < deps.length; i++) if (deps[i].id === id) deps[i].status = 'cancel';
+      for (var i = 0; i < deps.length; i++) {
+        if (deps[i].id === id) deps[i].status = 'cancel';
+      }
       db.ref('deposits').set(deps);
-      toast('✖ Đã huỷ', true);
+      toast('✖ Đã huỷ yêu cầu nạp tiền', true);
     });
   };
 
   window.__sendk = function (id) {
     var inp = document.getElementById('key_' + id);
     var key = (inp ? inp.value : '').trim();
-    if (!key) return toast('⚠️ Nhập key trước', true);
+    if (!key) return toast('⚠️ Vui lòng nhập key trước khi gửi', true);
     if (!db) return;
+
     db.ref('orders').once('value').then(function (s) {
       var ords = s.val() || [];
       var o = null;
-      for (var i = 0; i < ords.length; i++) if (ords[i].id === id) o = ords[i];
+      for (var i = 0; i < ords.length; i++) {
+        if (ords[i].id === id) o = ords[i];
+      }
       if (!o) return;
-      o.key = key; o.status = 'done';
+      o.key = key;
+      o.status = 'done';
       db.ref('orders').set(ords);
       toast('🔑 Đã gửi key cho ' + o.user);
     });
   };
 
+  /* ==========================================================
+     MENU BINDING
+     ========================================================== */
   (function () {
     var lis = document.querySelectorAll('#menuList li[data-page]');
     for (var i = 0; i < lis.length; i++) {
       (function (li) {
-        li.addEventListener('click', function () { navigate(li.getAttribute('data-page')); });
+        li.addEventListener('click', function () {
+          navigate(li.getAttribute('data-page'));
+        });
       })(lis[i]);
     }
   })();
 
+  /* ==========================================================
+     START APP
+     ========================================================== */
   bootAuth();
   initMusic();
 
@@ -2119,7 +2788,10 @@ try {
   var a = document.getElementById('auth');
   if (a) a.style.display = 'flex';
   var m = document.getElementById('authMsg');
-  if (m) { m.textContent = '⚠️ Lỗi tải web.'; m.className = 'msg err'; }
+  if (m) {
+    m.textContent = '⚠️ Lỗi tải web. Vui lòng tải lại trang.';
+    m.className = 'msg err';
+  }
 }
 </script>
 </body>
