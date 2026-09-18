@@ -8,15 +8,42 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>SHOP ALL SẢN PHẨM FF – FFMAX</title>
+
+<!-- ==================================================================
+     PHẦN 1: CSS — TOÀN BỘ GIAO DIỆN
+     ================================================================== -->
 <style>
-:root{
+/* ---------------------------------------------------------------
+   1.1. BIẾN MÀU TOÀN CỤC (DÙNG CHUNG TOÀN WEB)
+   --------------------------------------------------------------- */
+:root {
   color-scheme: dark;
-  --neon1: #00f0ff; --neon2: #ff00e0; --neon3: #ffe600; --neon4: #00ff88;
-  --bg: #05060f; --card: rgba(15, 18, 40, 0.72); --line: rgba(0, 240, 255, 0.28);
+  --neon1: #00f0ff;
+  --neon2: #ff00e0;
+  --neon3: #ffe600;
+  --neon4: #00ff88;
+  --bg-main: #05060f;
+  --card-bg: rgba(15, 18, 40, 0.72);
+  --line-color: rgba(0, 240, 255, 0.28);
 }
-html, body { color-scheme: dark !important; -webkit-color-scheme: dark !important; }
-* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-html, body { height: 100%; background: #05060f !important; }
+
+/* ---------------------------------------------------------------
+   1.2. RESET TOÀN BỘ
+   --------------------------------------------------------------- */
+html, body {
+  color-scheme: dark !important;
+  -webkit-color-scheme: dark !important;
+  height: 100%;
+  background: #05060f !important;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
 body {
   font-family: 'Segoe UI', system-ui, -apple-system, Roboto, sans-serif;
   background:
@@ -24,240 +51,1594 @@ body {
     radial-gradient(circle at 85% 20%, #00243a 0%, transparent 45%),
     radial-gradient(circle at 50% 95%, #2a0033 0%, transparent 50%),
     #05060f !important;
-  color: #e9f6ff !important; min-height: 100vh; overflow-x: hidden;
-  -webkit-text-size-adjust: 100%; -webkit-font-smoothing: antialiased; position: relative;
+  color: #e9f6ff !important;
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
 }
-#stars { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 9000; pointer-events: none; background: transparent !important; }
-.screen { position: relative; z-index: 2; }
+
+/* ---------------------------------------------------------------
+   1.3. CANVAS SAO BĂNG + SAO LUNG LINH
+   --------------------------------------------------------------- */
+#stars {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9000;
+  pointer-events: none;
+  background: transparent !important;
+}
+
+.screen {
+  position: relative;
+  z-index: 2;
+}
+
+/* ---------------------------------------------------------------
+   1.4. THANH CUỘN
+   --------------------------------------------------------------- */
 ::-webkit-scrollbar { width: 8px; height: 8px; }
 ::-webkit-scrollbar-track { background: #0a0d1f; }
-::-webkit-scrollbar-thumb { background: linear-gradient(180deg, var(--neon1), var(--neon2)); border-radius: 8px; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--neon1), var(--neon2));
+  border-radius: 8px;
+}
 
+/* ---------------------------------------------------------------
+   1.5. MÀN HÌNH LOADING
+   --------------------------------------------------------------- */
 #loading {
-  position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 9999;
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  gap: 26px; padding: 24px; text-align: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 26px;
+  padding: 24px;
+  text-align: center;
   background: radial-gradient(circle at 50% 40%, #0b1030 0%, #05060f 70%) !important;
-  color: #e9f6ff !important; animation: autoHide 0.5s ease 3s forwards;
+  color: #e9f6ff !important;
+  animation: autoHideLoading 0.5s ease 3s forwards;
 }
-@keyframes autoHide { to { opacity: 0; visibility: hidden; pointer-events: none; } }
+
+@keyframes autoHideLoading {
+  to { opacity: 0; visibility: hidden; pointer-events: none; }
+}
+
 .load-logo {
-  font-size: clamp(20px, 5.5vw, 38px); font-weight: 900; letter-spacing: 2px;
+  font-size: clamp(20px, 5.5vw, 38px);
+  font-weight: 900;
+  letter-spacing: 2px;
   background: linear-gradient(90deg, var(--neon1), var(--neon2), var(--neon3), var(--neon1));
-  background-size: 300% 100%; -webkit-background-clip: text; background-clip: text;
-  -webkit-text-fill-color: transparent; color: transparent;
-  animation: shine 3s linear infinite; filter: drop-shadow(0 0 18px rgba(0, 240, 255, 0.55));
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: shineAnimation 3s linear infinite;
+  filter: drop-shadow(0 0 18px rgba(0, 240, 255, 0.55));
 }
-@keyframes shine { to { background-position: 300% 0; } }
-.load-sub { color: #8fb6d6 !important; font-size: clamp(12px, 3.2vw, 15px); letter-spacing: 1px; }
-.load-status { font-size: clamp(12px, 3.4vw, 16px); font-weight: 700; color: var(--neon4) !important; text-shadow: 0 0 14px rgba(0, 255, 136, 0.7); min-height: 22px; letter-spacing: 0.5px; }
-.load-bar-wrap { width: min(560px, 92vw); height: 22px; border-radius: 30px; position: relative; background: rgba(255, 255, 255, 0.06) !important; border: 1px solid var(--line); overflow: hidden; box-shadow: 0 0 24px rgba(0, 240, 255, 0.28), inset 0 0 20px rgba(0, 0, 0, 0.6); }
-.load-bar { height: 100%; width: 0%; border-radius: 30px; background: linear-gradient(90deg, #00ff88, #00f0ff, #ff00e0, #ffe600); background-size: 300% 100%; animation: shine 2s linear infinite; box-shadow: 0 0 22px rgba(0, 240, 255, 0.9); transition: width 0.28s ease; }
-.load-pct { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 900; color: #ffffff !important; text-shadow: 0 0 6px #000, 0 0 10px #000; }
 
-#auth { display: none; min-height: 100vh; align-items: center; justify-content: center; padding: 20px; }
-.auth-box { width: min(430px, 94vw); background: var(--card) !important; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid var(--line); border-radius: 22px; padding: 26px 22px; box-shadow: 0 0 40px rgba(0, 240, 255, 0.22), 0 0 90px rgba(255, 0, 224, 0.13), inset 0 0 40px rgba(0, 0, 0, 0.5); color: #e9f6ff !important; }
-.auth-title { text-align: center; font-size: clamp(17px, 4.8vw, 23px); font-weight: 900; letter-spacing: 1px; background: linear-gradient(90deg, var(--neon1), var(--neon2), var(--neon3)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; margin-bottom: 4px; }
-.auth-sub { text-align: center; color: #7fa8c9 !important; font-size: 12px; margin-bottom: 18px; letter-spacing: 0.5px; }
-.tabs { display: flex; gap: 8px; margin-bottom: 18px; background: rgba(0, 0, 0, 0.35) !important; padding: 5px; border-radius: 14px; }
-.tab { flex: 1; padding: 11px; text-align: center; border-radius: 11px; cursor: pointer; font-weight: 800; font-size: 14px; color: #7fa8c9 !important; transition: 0.25s; border: 1px solid transparent; background: transparent !important; }
-.tab.active { color: #001018 !important; background: linear-gradient(90deg, var(--neon1), var(--neon4)) !important; box-shadow: 0 0 20px rgba(0, 240, 255, 0.55); border-color: rgba(255, 255, 255, 0.3); }
+@keyframes shineAnimation {
+  to { background-position: 300% 0; }
+}
+
+.load-sub {
+  color: #8fb6d6 !important;
+  font-size: clamp(12px, 3.2vw, 15px);
+  letter-spacing: 1px;
+}
+
+.load-status {
+  font-size: clamp(12px, 3.4vw, 16px);
+  font-weight: 700;
+  color: var(--neon4) !important;
+  text-shadow: 0 0 14px rgba(0, 255, 136, 0.7);
+  min-height: 22px;
+  letter-spacing: 0.5px;
+}
+
+.load-bar-wrap {
+  width: min(560px, 92vw);
+  height: 22px;
+  border-radius: 30px;
+  position: relative;
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid var(--line-color);
+  overflow: hidden;
+  box-shadow: 0 0 24px rgba(0, 240, 255, 0.28), inset 0 0 20px rgba(0, 0, 0, 0.6);
+}
+
+.load-bar {
+  height: 100%;
+  width: 0%;
+  border-radius: 30px;
+  background: linear-gradient(90deg, #00ff88, #00f0ff, #ff00e0, #ffe600);
+  background-size: 300% 100%;
+  animation: shineAnimation 2s linear infinite;
+  box-shadow: 0 0 22px rgba(0, 240, 255, 0.9);
+  transition: width 0.28s ease;
+}
+
+.load-pct {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 900;
+  color: #ffffff !important;
+  text-shadow: 0 0 6px #000, 0 0 10px #000;
+}
+
+/* ---------------------------------------------------------------
+   1.6. MÀN HÌNH ĐĂNG NHẬP / ĐĂNG KÝ
+   --------------------------------------------------------------- */
+#auth {
+  display: none;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.auth-box {
+  width: min(430px, 94vw);
+  background: var(--card-bg) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--line-color);
+  border-radius: 22px;
+  padding: 26px 22px;
+  box-shadow:
+    0 0 40px rgba(0, 240, 255, 0.22),
+    0 0 90px rgba(255, 0, 224, 0.13),
+    inset 0 0 40px rgba(0, 0, 0, 0.5);
+  color: #e9f6ff !important;
+}
+
+.auth-title {
+  text-align: center;
+  font-size: clamp(17px, 4.8vw, 23px);
+  font-weight: 900;
+  letter-spacing: 1px;
+  background: linear-gradient(90deg, var(--neon1), var(--neon2), var(--neon3));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  margin-bottom: 4px;
+}
+
+.auth-sub {
+  text-align: center;
+  color: #7fa8c9 !important;
+  font-size: 12px;
+  margin-bottom: 18px;
+  letter-spacing: 0.5px;
+}
+
+.tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 18px;
+  background: rgba(0, 0, 0, 0.35) !important;
+  padding: 5px;
+  border-radius: 14px;
+}
+
+.tab {
+  flex: 1;
+  padding: 11px;
+  text-align: center;
+  border-radius: 11px;
+  cursor: pointer;
+  font-weight: 800;
+  font-size: 14px;
+  color: #7fa8c9 !important;
+  transition: 0.25s;
+  border: 1px solid transparent;
+  background: transparent !important;
+}
+
+.tab.active {
+  color: #001018 !important;
+  background: linear-gradient(90deg, var(--neon1), var(--neon4)) !important;
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.55);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
 .field { margin-bottom: 13px; }
-.field label { display: block; font-size: 12px; color: #8fb6d6 !important; margin-bottom: 6px; font-weight: 700; letter-spacing: 0.4px; }
-.field input, .field select, .field textarea { width: 100%; padding: 13px 14px; border-radius: 12px; background: rgba(0, 0, 0, 0.45) !important; border: 1px solid rgba(0, 240, 255, 0.25); color: #e9f6ff !important; -webkit-text-fill-color: #e9f6ff !important; font-size: 14px; outline: none; transition: 0.22s; font-family: inherit; caret-color: #00f0ff; appearance: none; -webkit-appearance: none; }
-.field input::placeholder, .field textarea::placeholder { color: #5c7d99 !important; -webkit-text-fill-color: #5c7d99 !important; opacity: 1; }
-.field input:focus, .field select:focus, .field textarea:focus { border-color: var(--neon1); box-shadow: 0 0 0 3px rgba(0, 240, 255, 0.14), 0 0 18px rgba(0, 240, 255, 0.3); background: rgba(0, 0, 0, 0.6) !important; }
-.field select option { background: #0a0d1f !important; color: #e9f6ff !important; }
-.btn { width: 100%; padding: 14px; border: none; border-radius: 13px; cursor: pointer; font-weight: 900; font-size: 15px; letter-spacing: 0.7px; color: #001018 !important; background: linear-gradient(90deg, var(--neon1), var(--neon4)); box-shadow: 0 0 24px rgba(0, 240, 255, 0.5); transition: 0.22s; font-family: inherit; -webkit-appearance: none; }
-.btn:hover { transform: translateY(-2px); box-shadow: 0 0 34px rgba(0, 240, 255, 0.85); }
-.btn:active { transform: scale(0.98); }
-.btn.pink { background: linear-gradient(90deg, var(--neon2), #ff7a00) !important; box-shadow: 0 0 24px rgba(255, 0, 224, 0.5); }
-.btn.gold { background: linear-gradient(90deg, var(--neon3), #ff8a00) !important; box-shadow: 0 0 24px rgba(255, 230, 0, 0.5); }
-.btn.ghost { background: transparent !important; border: 1px solid var(--line); color: #bfe6ff !important; -webkit-text-fill-color: #bfe6ff !important; box-shadow: none; }
-.btn.sm { width: auto; padding: 9px 14px; font-size: 12.5px; border-radius: 10px; }
-.msg { margin-top: 12px; padding: 11px 13px; border-radius: 11px; font-size: 13px; font-weight: 700; display: none; text-align: center; }
-.msg.err { display: block; background: rgba(255, 0, 60, 0.14) !important; border: 1px solid rgba(255, 0, 60, 0.5); color: #ff7d96 !important; }
-.msg.ok { display: block; background: rgba(0, 255, 136, 0.12) !important; border: 1px solid rgba(0, 255, 136, 0.5); color: #6affb8 !important; }
 
-header { position: sticky; top: 0; z-index: 100; display: flex; align-items: center; gap: 10px; padding: 12px 14px; background: rgba(6, 8, 22, 0.9) !important; backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); box-shadow: 0 0 26px rgba(0, 240, 255, 0.18); }
-.burger { width: 44px; height: 44px; border-radius: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; cursor: pointer; flex: 0 0 auto; background: linear-gradient(135deg, rgba(0, 240, 255, 0.14), rgba(255, 0, 224, 0.14)) !important; border: 1px solid var(--line); transition: 0.22s; }
-.burger span { width: 22px; height: 2.5px; border-radius: 3px; background: linear-gradient(90deg, var(--neon1), var(--neon2)); display: block; transition: 0.25s; }
+.field label {
+  display: block;
+  font-size: 12px;
+  color: #8fb6d6 !important;
+  margin-bottom: 6px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  padding: 13px 14px;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.45) !important;
+  border: 1px solid rgba(0, 240, 255, 0.25);
+  color: #e9f6ff !important;
+  -webkit-text-fill-color: #e9f6ff !important;
+  font-size: 14px;
+  outline: none;
+  transition: 0.22s;
+  font-family: inherit;
+  caret-color: #00f0ff;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+  color: #5c7d99 !important;
+  -webkit-text-fill-color: #5c7d99 !important;
+  opacity: 1;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  border-color: var(--neon1);
+  box-shadow: 0 0 0 3px rgba(0, 240, 255, 0.14), 0 0 18px rgba(0, 240, 255, 0.3);
+  background: rgba(0, 0, 0, 0.6) !important;
+}
+
+.field select option {
+  background: #0a0d1f !important;
+  color: #e9f6ff !important;
+}
+
+/* ---------------------------------------------------------------
+   1.7. NÚT BẤM
+   --------------------------------------------------------------- */
+.btn {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 13px;
+  cursor: pointer;
+  font-weight: 900;
+  font-size: 15px;
+  letter-spacing: 0.7px;
+  color: #001018 !important;
+  background: linear-gradient(90deg, var(--neon1), var(--neon4));
+  box-shadow: 0 0 24px rgba(0, 240, 255, 0.5);
+  transition: 0.22s;
+  font-family: inherit;
+  -webkit-appearance: none;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 34px rgba(0, 240, 255, 0.85);
+}
+
+.btn:active { transform: scale(0.98); }
+
+.btn.pink {
+  background: linear-gradient(90deg, var(--neon2), #ff7a00) !important;
+  box-shadow: 0 0 24px rgba(255, 0, 224, 0.5);
+}
+
+.btn.gold {
+  background: linear-gradient(90deg, var(--neon3), #ff8a00) !important;
+  box-shadow: 0 0 24px rgba(255, 230, 0, 0.5);
+}
+
+.btn.ghost {
+  background: transparent !important;
+  border: 1px solid var(--line-color);
+  color: #bfe6ff !important;
+  -webkit-text-fill-color: #bfe6ff !important;
+  box-shadow: none;
+}
+
+.btn.sm {
+  width: auto;
+  padding: 9px 14px;
+  font-size: 12.5px;
+  border-radius: 10px;
+}
+
+.msg {
+  margin-top: 12px;
+  padding: 11px 13px;
+  border-radius: 11px;
+  font-size: 13px;
+  font-weight: 700;
+  display: none;
+  text-align: center;
+}
+
+.msg.err {
+  display: block;
+  background: rgba(255, 0, 60, 0.14) !important;
+  border: 1px solid rgba(255, 0, 60, 0.5);
+  color: #ff7d96 !important;
+}
+
+.msg.ok {
+  display: block;
+  background: rgba(0, 255, 136, 0.12) !important;
+  border: 1px solid rgba(0, 255, 136, 0.5);
+  color: #6affb8 !important;
+}
+
+/* ---------------------------------------------------------------
+   1.8. HEADER (THANH TIÊU ĐỀ)
+   --------------------------------------------------------------- */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  background: rgba(6, 8, 22, 0.9) !important;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line-color);
+  box-shadow: 0 0 26px rgba(0, 240, 255, 0.18);
+}
+
+.burger {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  cursor: pointer;
+  flex: 0 0 auto;
+  background: linear-gradient(135deg, rgba(0, 240, 255, 0.14), rgba(255, 0, 224, 0.14)) !important;
+  border: 1px solid var(--line-color);
+  transition: 0.22s;
+}
+
+.burger span {
+  width: 22px;
+  height: 2.5px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--neon1), var(--neon2));
+  display: block;
+  transition: 0.25s;
+}
+
 .burger.open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
 .burger.open span:nth-child(2) { opacity: 0; }
 .burger.open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
-.brand { flex: 1; min-width: 0; }
-.brand h1 { font-size: clamp(11px, 3.2vw, 15px); font-weight: 900; letter-spacing: 0.6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; background: linear-gradient(90deg, var(--neon1), var(--neon3), var(--neon2)); background-size: 200% 100%; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; animation: shine 4s linear infinite; }
-.brand p { font-size: 10px; color: #7fa8c9 !important; letter-spacing: 0.4px; margin-top: 2px; }
-.bal-chip { display: flex; align-items: center; gap: 6px; padding: 8px 12px; border-radius: 30px; flex: 0 0 auto; background: linear-gradient(90deg, rgba(0, 255, 136, 0.16), rgba(0, 240, 255, 0.16)) !important; border: 1px solid rgba(0, 255, 136, 0.45); font-weight: 900; font-size: 12.5px; color: #6affb8 !important; box-shadow: 0 0 18px rgba(0, 255, 136, 0.32); }
 
-.music-wrap { position: relative; width: 42px; height: 42px; flex: 0 0 auto; z-index: 120; }
-.music-ring { position: absolute; top: -3px; left: -3px; right: -3px; bottom: -3px; border-radius: 50%; background: conic-gradient(from 0deg, #ff9eb5, #ffc0cb, #ffd6e0, #ffb6c1, #ff8fb1, #ffc0cb, #ff9eb5); animation: spin 3s linear infinite; z-index: 0; filter: blur(0.3px); box-shadow: 0 0 14px rgba(255, 182, 193, 0.7); }
-.music-ring::after { content: ''; position: absolute; top: 2px; left: 2px; right: 2px; bottom: 2px; border-radius: 50%; background: #05060f; }
-@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-.music-btn { position: relative; z-index: 2; width: 42px; height: 42px; border-radius: 50%; background: radial-gradient(circle at 40% 35%, #1a1e4a, #05060f); border: none; cursor: pointer; font-size: 17px; color: #fff; display: flex; align-items: center; justify-content: center; padding: 0; transition: 0.2s; overflow: hidden; -webkit-appearance: none; }
-.music-btn img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; display: block; }
+.brand { flex: 1; min-width: 0; }
+
+.brand h1 {
+  font-size: clamp(11px, 3.2vw, 15px);
+  font-weight: 900;
+  letter-spacing: 0.6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background: linear-gradient(90deg, var(--neon1), var(--neon3), var(--neon2));
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: shineAnimation 4s linear infinite;
+}
+
+.brand p {
+  font-size: 10px;
+  color: #7fa8c9 !important;
+  letter-spacing: 0.4px;
+  margin-top: 2px;
+}
+
+.bal-chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-radius: 30px;
+  flex: 0 0 auto;
+  background: linear-gradient(90deg, rgba(0, 255, 136, 0.16), rgba(0, 240, 255, 0.16)) !important;
+  border: 1px solid rgba(0, 255, 136, 0.45);
+  font-weight: 900;
+  font-size: 12.5px;
+  color: #6affb8 !important;
+  box-shadow: 0 0 18px rgba(0, 255, 136, 0.32);
+}
+
+/* ---------------------------------------------------------------
+   1.9. TRÌNH PHÁT NHẠC
+   --------------------------------------------------------------- */
+.music-wrap {
+  position: relative;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 auto;
+  z-index: 120;
+}
+
+.music-ring {
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg,
+    #ff9eb5, #ffc0cb, #ffd6e0, #ffb6c1, #ff8fb1, #ffc0cb, #ff9eb5);
+  animation: spinRing 3s linear infinite;
+  z-index: 0;
+  filter: blur(0.3px);
+  box-shadow: 0 0 14px rgba(255, 182, 193, 0.7);
+}
+
+.music-ring::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  right: 2px;
+  bottom: 2px;
+  border-radius: 50%;
+  background: #05060f;
+}
+
+@keyframes spinRing {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.music-btn {
+  position: relative;
+  z-index: 2;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 35%, #1a1e4a, #05060f);
+  border: none;
+  cursor: pointer;
+  font-size: 17px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: 0.2s;
+  overflow: hidden;
+  -webkit-appearance: none;
+}
+
+.music-btn img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+
 .music-btn:active { transform: scale(0.92); }
 .music-btn.playing { animation: pulseMusic 1.2s infinite; }
-@keyframes pulseMusic { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.12); } }
-.music-panel { position: absolute; top: 56px; right: 0; width: min(280px, 86vw); background: linear-gradient(160deg, rgba(15, 18, 40, 0.98), rgba(8, 10, 25, 0.98)); border: 1px solid rgba(255, 182, 193, 0.5); border-radius: 16px; padding: 12px; box-shadow: 0 8px 40px rgba(0, 0, 0, 0.9), 0 0 40px rgba(255, 182, 193, 0.25); display: none; z-index: 200; backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); animation: musicSlide 0.25s ease; }
+
+@keyframes pulseMusic {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.12); }
+}
+
+.music-panel {
+  position: absolute;
+  top: 56px;
+  right: 0;
+  width: min(280px, 86vw);
+  background: linear-gradient(160deg, rgba(15, 18, 40, 0.98), rgba(8, 10, 25, 0.98));
+  border: 1px solid rgba(255, 182, 193, 0.5);
+  border-radius: 16px;
+  padding: 12px;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.9), 0 0 40px rgba(255, 182, 193, 0.25);
+  display: none;
+  z-index: 200;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  animation: musicSlide 0.25s ease;
+}
+
 .music-panel.show { display: block; }
-@keyframes musicSlide { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
-.music-title { font-size: 12px; font-weight: 900; letter-spacing: 1px; margin-bottom: 8px; text-align: center; padding-bottom: 8px; border-bottom: 1px solid rgba(255, 182, 193, 0.25); color: #ffb6c1 !important; -webkit-text-fill-color: #ffb6c1 !important; text-shadow: 0 0 12px rgba(255, 182, 193, 0.5); }
-.music-item { display: flex; align-items: center; gap: 9px; padding: 9px 10px; border-radius: 10px; cursor: pointer; font-size: 12.5px; font-weight: 700; color: #bfe0f5 !important; margin-bottom: 5px; border: 1px solid transparent; transition: 0.18s; background: rgba(0, 0, 0, 0.4) !important; }
+
+@keyframes musicSlide {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: none; }
+}
+
+.music-title {
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+  text-align: center;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 182, 193, 0.25);
+  color: #ffb6c1 !important;
+  -webkit-text-fill-color: #ffb6c1 !important;
+  text-shadow: 0 0 12px rgba(255, 182, 193, 0.5);
+}
+
+.music-item {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 9px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #bfe0f5 !important;
+  margin-bottom: 5px;
+  border: 1px solid transparent;
+  transition: 0.18s;
+  background: rgba(0, 0, 0, 0.4) !important;
+}
+
 .music-item:active { transform: scale(0.98); }
-.music-item.sel { background: linear-gradient(90deg, rgba(255, 182, 193, 0.22), rgba(255, 105, 180, 0.15)) !important; border-color: rgba(255, 182, 193, 0.7); color: #fff !important; box-shadow: 0 0 16px rgba(255, 182, 193, 0.4); }
-.music-item .mi-ico { width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; flex: 0 0 auto; background: linear-gradient(135deg, #ff9eb5, #ff69b4); color: #001018; }
-.music-item.sel .mi-ico { background: linear-gradient(135deg, #ffb6c1, #ff69b4); }
-.music-item .mi-name { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.music-item .mi-check { font-size: 14px; color: #ffb6c1; opacity: 0; }
+
+.music-item.sel {
+  background: linear-gradient(90deg, rgba(255, 182, 193, 0.22), rgba(255, 105, 180, 0.15)) !important;
+  border-color: rgba(255, 182, 193, 0.7);
+  color: #fff !important;
+  box-shadow: 0 0 16px rgba(255, 182, 193, 0.4);
+}
+
+.music-item .mi-ico {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  flex: 0 0 auto;
+  background: linear-gradient(135deg, #ff9eb5, #ff69b4);
+  color: #001018;
+}
+
+.music-item.sel .mi-ico {
+  background: linear-gradient(135deg, #ffb6c1, #ff69b4);
+}
+
+.music-item .mi-name {
+  flex: 1;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.music-item .mi-check {
+  font-size: 14px;
+  color: #ffb6c1;
+  opacity: 0;
+}
+
 .music-item.sel .mi-check { opacity: 1; }
-.music-play { width: 100%; padding: 11px; border-radius: 11px; cursor: pointer; font-weight: 900; font-size: 13px; color: #001018 !important; background: linear-gradient(90deg, #ffb6c1, #ff69b4); border: none; margin-top: 6px; font-family: inherit; box-shadow: 0 0 20px rgba(255, 182, 193, 0.55); transition: 0.2s; -webkit-appearance: none; }
+
+.music-play {
+  width: 100%;
+  padding: 11px;
+  border-radius: 11px;
+  cursor: pointer;
+  font-weight: 900;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  color: #001018 !important;
+  background: linear-gradient(90deg, #ffb6c1, #ff69b4);
+  border: none;
+  margin-top: 6px;
+  font-family: inherit;
+  box-shadow: 0 0 20px rgba(255, 182, 193, 0.55);
+  transition: 0.2s;
+  -webkit-appearance: none;
+}
+
 .music-play:active { transform: scale(0.97); }
-.music-play.playing { background: linear-gradient(90deg, #ff0055, #ff7a00) !important; box-shadow: 0 0 20px rgba(255, 0, 85, 0.6); }
-.music-note { text-align: center; font-size: 10.5px; color: #7fa8c9 !important; margin-top: 7px; letter-spacing: 0.3px; }
 
-.overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.72) !important; z-index: 9995; opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.3s ease, visibility 0.3s ease; }
-.overlay.show { opacity: 1; visibility: visible; pointer-events: auto; }
+.music-play.playing {
+  background: linear-gradient(90deg, #ff0055, #ff7a00) !important;
+  box-shadow: 0 0 20px rgba(255, 0, 85, 0.6);
+}
 
-.sidebar { position: fixed; top: 0; left: 0; width: min(310px, 84vw); height: 100vh; z-index: 9996; background: linear-gradient(180deg, rgba(10, 14, 36, 0.99), rgba(7, 9, 26, 0.99)) !important; border-right: 1px solid var(--line); transform: translateX(-105%); transition: transform 0.32s cubic-bezier(0.3, 0.8, 0.3, 1); display: flex; flex-direction: column; box-shadow: 8px 0 50px rgba(0, 0, 0, 0.95); overflow-y: auto; color: #e9f6ff !important; }
+.music-note {
+  text-align: center;
+  font-size: 10.5px;
+  color: #7fa8c9 !important;
+  margin-top: 7px;
+  letter-spacing: 0.3px;
+}
+
+/* ---------------------------------------------------------------
+   1.10. OVERLAY (LỚP PHỦ ĐEN)
+   --------------------------------------------------------------- */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.72) !important;
+  z-index: 9995;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.overlay.show {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* ---------------------------------------------------------------
+   1.11. SIDEBAR (MENU 3 GẠCH)
+   --------------------------------------------------------------- */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: min(310px, 84vw);
+  height: 100vh;
+  z-index: 9996;
+  background: linear-gradient(180deg, rgba(10, 14, 36, 0.99), rgba(7, 9, 26, 0.99)) !important;
+  border-right: 1px solid var(--line-color);
+  transform: translateX(-105%);
+  transition: transform 0.32s cubic-bezier(0.3, 0.8, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  box-shadow: 8px 0 50px rgba(0, 0, 0, 0.95);
+  overflow-y: auto;
+  color: #e9f6ff !important;
+}
+
 .sidebar.open { transform: translateX(0); }
-.side-head { padding: 20px 18px; border-bottom: 1px solid var(--line); background: linear-gradient(135deg, rgba(0, 240, 255, 0.1), rgba(255, 0, 224, 0.1)) !important; }
-.side-head h2 { font-size: 15px; font-weight: 900; background: linear-gradient(90deg, var(--neon1), var(--neon2)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; }
-.side-head p { font-size: 11px; color: #7fa8c9 !important; margin-top: 4px; }
-.side-user { margin: 14px; padding: 13px; border-radius: 14px; background: rgba(0, 0, 0, 0.4) !important; border: 1px solid var(--line); font-size: 12px; color: #9fc9e6 !important; line-height: 1.7; }
+
+.side-head {
+  padding: 20px 18px;
+  border-bottom: 1px solid var(--line-color);
+  background: linear-gradient(135deg, rgba(0, 240, 255, 0.1), rgba(255, 0, 224, 0.1)) !important;
+}
+
+.side-head h2 {
+  font-size: 15px;
+  font-weight: 900;
+  background: linear-gradient(90deg, var(--neon1), var(--neon2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.side-head p {
+  font-size: 11px;
+  color: #7fa8c9 !important;
+  margin-top: 4px;
+}
+
+.side-user {
+  margin: 14px;
+  padding: 13px;
+  border-radius: 14px;
+  background: rgba(0, 0, 0, 0.4) !important;
+  border: 1px solid var(--line-color);
+  font-size: 12px;
+  color: #9fc9e6 !important;
+  line-height: 1.7;
+}
+
 .side-user b { color: #ffffff !important; font-size: 13.5px; }
 .side-user .ib { color: var(--neon3) !important; }
 .side-user .dc { color: var(--neon2) !important; }
-.menu { list-style: none; padding: 6px 10px 26px; }
-.menu li { display: flex; align-items: center; gap: 12px; padding: 14px 14px; margin-bottom: 5px; border-radius: 13px; cursor: pointer; font-size: 13.6px; font-weight: 700; color: #bfe0f5 !important; transition: 0.22s; border: 1px solid transparent; position: relative; overflow: hidden; background: transparent !important; }
-.menu li::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: linear-gradient(180deg, var(--neon1), var(--neon2)); opacity: 0; transition: 0.22s; }
-.menu li:hover { background: rgba(0, 240, 255, 0.1) !important; border-color: var(--line); transform: translateX(3px); }
-.menu li:hover::before { opacity: 1; }
-.menu li.active { background: linear-gradient(90deg, rgba(0, 240, 255, 0.2), rgba(255, 0, 224, 0.12)) !important; border-color: rgba(0, 240, 255, 0.5); color: #fff !important; box-shadow: 0 0 20px rgba(0, 240, 255, 0.25); }
-.menu li.active::before { opacity: 1; }
-.menu .ico { font-size: 17px; width: 22px; text-align: center; flex: 0 0 auto; }
 
-main { padding: 16px 14px 90px; max-width: 1180px; margin: 0 auto; background: transparent !important; }
+.menu {
+  list-style: none;
+  padding: 6px 10px 26px;
+}
+
+.menu li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 14px;
+  margin-bottom: 5px;
+  border-radius: 13px;
+  cursor: pointer;
+  font-size: 13.6px;
+  font-weight: 700;
+  color: #bfe0f5 !important;
+  transition: 0.22s;
+  border: 1px solid transparent;
+  position: relative;
+  overflow: hidden;
+  background: transparent !important;
+}
+
+.menu li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg, var(--neon1), var(--neon2));
+  opacity: 0;
+  transition: 0.22s;
+}
+
+.menu li:hover {
+  background: rgba(0, 240, 255, 0.1) !important;
+  border-color: var(--line-color);
+  transform: translateX(3px);
+}
+
+.menu li:hover::before { opacity: 1; }
+
+.menu li.active {
+  background: linear-gradient(90deg, rgba(0, 240, 255, 0.2), rgba(255, 0, 224, 0.12)) !important;
+  border-color: rgba(0, 240, 255, 0.5);
+  color: #fff !important;
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.25);
+}
+
+.menu li.active::before { opacity: 1; }
+
+.menu .ico {
+  font-size: 17px;
+  width: 22px;
+  text-align: center;
+  flex: 0 0 auto;
+}
+
+/* ---------------------------------------------------------------
+   1.12. NỘI DUNG CHÍNH
+   --------------------------------------------------------------- */
+main {
+  padding: 16px 14px 90px;
+  max-width: 1180px;
+  margin: 0 auto;
+  background: transparent !important;
+}
+
 .page { display: none; }
 .page.active { display: block; }
-.page-title { font-size: clamp(17px, 4.6vw, 23px); font-weight: 900; margin-bottom: 14px; letter-spacing: 0.6px; display: flex; align-items: center; gap: 9px; background: linear-gradient(90deg, var(--neon1), var(--neon3), var(--neon2)); background-size: 200% 100%; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; animation: shine 4s linear infinite; filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.9)); }
-.panel { background: var(--card) !important; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid var(--line); border-radius: 18px; padding: 16px; margin-bottom: 14px; box-shadow: 0 0 28px rgba(0, 240, 255, 0.12), inset 0 0 30px rgba(0, 0, 0, 0.35); color: #e9f6ff !important; }
+
+.page-title {
+  font-size: clamp(17px, 4.6vw, 23px);
+  font-weight: 900;
+  margin-bottom: 14px;
+  letter-spacing: 0.6px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  background: linear-gradient(90deg, var(--neon1), var(--neon3), var(--neon2));
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: shineAnimation 4s linear infinite;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.9));
+}
+
+.panel {
+  background: var(--card-bg) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--line-color);
+  border-radius: 18px;
+  padding: 16px;
+  margin-bottom: 14px;
+  box-shadow: 0 0 28px rgba(0, 240, 255, 0.12), inset 0 0 30px rgba(0, 0, 0, 0.35);
+  color: #e9f6ff !important;
+}
+
 .panel.gold { border-color: rgba(255, 230, 0, 0.42); box-shadow: 0 0 28px rgba(255, 230, 0, 0.16); }
 .panel.pink { border-color: rgba(255, 0, 224, 0.42); box-shadow: 0 0 28px rgba(255, 0, 224, 0.16); }
 .panel.green { border-color: rgba(0, 255, 136, 0.42); box-shadow: 0 0 28px rgba(0, 255, 136, 0.16); }
-.sec-title { font-size: 14.5px; font-weight: 900; margin-bottom: 11px; color: #dff3ff !important; letter-spacing: 0.5px; display: flex; align-items: center; gap: 8px; }
-.hint { font-size: 12px; color: #8fb6d6 !important; line-height: 1.65; }
-.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(255px, 1fr)); gap: 14px; }
-.prod { background: linear-gradient(160deg, rgba(20, 24, 55, 0.95), rgba(10, 12, 30, 0.95)) !important; border: 1px solid var(--line); border-radius: 18px; overflow: hidden; transition: 0.28s; position: relative; box-shadow: 0 0 22px rgba(0, 240, 255, 0.1); }
-.prod:hover { transform: translateY(-5px); border-color: rgba(0, 240, 255, 0.65); box-shadow: 0 0 40px rgba(0, 240, 255, 0.35), 0 0 70px rgba(255, 0, 224, 0.18); }
-.prod img { width: 100%; height: 172px; object-fit: cover; display: block; background: #0a0d1f !important; }
+
+.sec-title {
+  font-size: 14.5px;
+  font-weight: 900;
+  margin-bottom: 11px;
+  color: #dff3ff !important;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hint {
+  font-size: 12px;
+  color: #8fb6d6 !important;
+  line-height: 1.65;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(255px, 1fr));
+  gap: 14px;
+}
+
+/* ---------------------------------------------------------------
+   1.13. THẺ SẢN PHẨM
+   --------------------------------------------------------------- */
+.prod {
+  background: linear-gradient(160deg, rgba(20, 24, 55, 0.95), rgba(10, 12, 30, 0.95)) !important;
+  border: 1px solid var(--line-color);
+  border-radius: 18px;
+  overflow: hidden;
+  transition: 0.28s;
+  position: relative;
+  box-shadow: 0 0 22px rgba(0, 240, 255, 0.1);
+}
+
+.prod:hover {
+  transform: translateY(-5px);
+  border-color: rgba(0, 240, 255, 0.65);
+  box-shadow: 0 0 40px rgba(0, 240, 255, 0.35), 0 0 70px rgba(255, 0, 224, 0.18);
+}
+
+.prod img {
+  width: 100%;
+  height: 172px;
+  object-fit: cover;
+  display: block;
+  background: #0a0d1f !important;
+}
+
 .prod-body { padding: 13px; }
-.prod-name { font-size: 14.5px; font-weight: 900; margin-bottom: 7px; background: linear-gradient(90deg, var(--neon1), var(--neon2)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; }
-.prod-desc { font-size: 11.6px; color: #8fb6d6 !important; line-height: 1.6; margin-bottom: 11px; white-space: pre-line; }
+
+.prod-name {
+  font-size: 14.5px;
+  font-weight: 900;
+  margin-bottom: 7px;
+  background: linear-gradient(90deg, var(--neon1), var(--neon2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.prod-desc {
+  font-size: 11.6px;
+  color: #8fb6d6 !important;
+  line-height: 1.6;
+  margin-bottom: 11px;
+  white-space: pre-line;
+}
+
 .plans { display: flex; flex-direction: column; gap: 7px; }
-.plan { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 9px 11px; border-radius: 11px; background: rgba(0, 0, 0, 0.55) !important; border: 1px solid rgba(0, 240, 255, 0.18); transition: 0.22s; flex-wrap: wrap; }
+
+.plan {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 9px 11px;
+  border-radius: 11px;
+  background: rgba(0, 0, 0, 0.55) !important;
+  border: 1px solid rgba(0, 240, 255, 0.18);
+  transition: 0.22s;
+  flex-wrap: wrap;
+}
+
 .plan:hover { border-color: var(--neon4); box-shadow: 0 0 16px rgba(0, 255, 136, 0.3); }
 .plan .lb { font-size: 12.2px; font-weight: 700; color: #cfe9ff !important; }
-.plan .pr { font-size: 12.4px; font-weight: 900; color: var(--neon3) !important; white-space: nowrap; text-shadow: 0 0 10px rgba(255, 230, 0, 0.5); }
-.plan .pr-original { font-size: 11px; font-weight: 700; color: #ff7d96; text-decoration: line-through; white-space: nowrap; opacity: 0.85; }
-.plan .pr-final { font-size: 13px; font-weight: 900; color: #00ff88; white-space: nowrap; text-shadow: 0 0 10px rgba(0, 255, 136, 0.6); }
-.plan .pr-discount-badge { font-size: 10px; font-weight: 900; padding: 2px 6px; border-radius: 8px; background: linear-gradient(90deg, #ff00e0, #ff7a00); color: #fff; white-space: nowrap; box-shadow: 0 0 10px rgba(255, 0, 224, 0.5); }
-.plan .price-group { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; }
-.plan .buy { padding: 7px 11px; border-radius: 9px; border: none; cursor: pointer; font-weight: 900; font-size: 11px; background: linear-gradient(90deg, var(--neon4), var(--neon1)) !important; color: #001018 !important; transition: 0.2s; font-family: inherit; }
-.plan .buy:hover { box-shadow: 0 0 18px rgba(0, 255, 136, 0.7); transform: scale(1.06); }
 
-.discount-banner { margin-bottom: 14px; padding: 12px 14px; border-radius: 14px; background: linear-gradient(90deg, rgba(255, 0, 224, 0.2), rgba(255, 122, 0, 0.2)) !important; border: 1px solid rgba(255, 0, 224, 0.6); color: #fff; font-weight: 800; font-size: 13px; text-align: center; box-shadow: 0 0 24px rgba(255, 0, 224, 0.4); animation: pulseDiscount 2s ease-in-out infinite; }
-@keyframes pulseDiscount { 0%, 100% { box-shadow: 0 0 24px rgba(255, 0, 224, 0.4); } 50% { box-shadow: 0 0 40px rgba(255, 0, 224, 0.75); } }
+.plan .pr {
+  font-size: 12.4px;
+  font-weight: 900;
+  color: var(--neon3) !important;
+  white-space: nowrap;
+  text-shadow: 0 0 10px rgba(255, 230, 0, 0.5);
+}
+
+.plan .pr-original {
+  font-size: 11px;
+  font-weight: 700;
+  color: #ff7d96;
+  text-decoration: line-through;
+  white-space: nowrap;
+  opacity: 0.85;
+}
+
+.plan .pr-final {
+  font-size: 13px;
+  font-weight: 900;
+  color: #00ff88;
+  white-space: nowrap;
+  text-shadow: 0 0 10px rgba(0, 255, 136, 0.6);
+}
+
+.plan .pr-discount-badge {
+  font-size: 10px;
+  font-weight: 900;
+  padding: 2px 6px;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #ff00e0, #ff7a00);
+  color: #fff;
+  white-space: nowrap;
+  box-shadow: 0 0 10px rgba(255, 0, 224, 0.5);
+}
+
+.plan .price-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.plan .buy {
+  padding: 7px 11px;
+  border-radius: 9px;
+  border: none;
+  cursor: pointer;
+  font-weight: 900;
+  font-size: 11px;
+  background: linear-gradient(90deg, var(--neon4), var(--neon1)) !important;
+  color: #001018 !important;
+  transition: 0.2s;
+  font-family: inherit;
+}
+
+.plan .buy:hover {
+  box-shadow: 0 0 18px rgba(0, 255, 136, 0.7);
+  transform: scale(1.06);
+}
+
+/* ---------------------------------------------------------------
+   1.14. BANNER KHUYẾN MÃI
+   --------------------------------------------------------------- */
+.discount-banner {
+  margin-bottom: 14px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: linear-gradient(90deg, rgba(255, 0, 224, 0.2), rgba(255, 122, 0, 0.2)) !important;
+  border: 1px solid rgba(255, 0, 224, 0.6);
+  color: #fff;
+  font-weight: 800;
+  font-size: 13px;
+  text-align: center;
+  box-shadow: 0 0 24px rgba(255, 0, 224, 0.4);
+  animation: pulseDiscountBanner 2s ease-in-out infinite;
+}
+
+@keyframes pulseDiscountBanner {
+  0%, 100% { box-shadow: 0 0 24px rgba(255, 0, 224, 0.4); }
+  50% { box-shadow: 0 0 40px rgba(255, 0, 224, 0.75); }
+}
+
 .discount-banner b { color: #ffe600; font-size: 15px; }
 
-.subtabs { display: flex; gap: 8px; margin-bottom: 13px; flex-wrap: wrap; }
-.subtab { padding: 9px 15px; border-radius: 30px; cursor: pointer; font-size: 12.4px; font-weight: 800; background: rgba(0, 0, 0, 0.5) !important; border: 1px solid var(--line); color: #8fb6d6 !important; transition: 0.22s; }
-.subtab.active { background: linear-gradient(90deg, var(--neon1), var(--neon2)) !important; color: #001018 !important; box-shadow: 0 0 20px rgba(0, 240, 255, 0.5); border-color: transparent; }
-.item { padding: 12px; border-radius: 14px; background: rgba(0, 0, 0, 0.5) !important; border: 1px solid rgba(0, 240, 255, 0.16); margin-bottom: 9px; font-size: 12.4px; display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; align-items: center; color: #e9f6ff !important; }
+/* ---------------------------------------------------------------
+   1.15. SUBTABS (TAB CON)
+   --------------------------------------------------------------- */
+.subtabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 13px;
+  flex-wrap: wrap;
+}
+
+.subtab {
+  padding: 9px 15px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 12.4px;
+  font-weight: 800;
+  background: rgba(0, 0, 0, 0.5) !important;
+  border: 1px solid var(--line-color);
+  color: #8fb6d6 !important;
+  transition: 0.22s;
+}
+
+.subtab.active {
+  background: linear-gradient(90deg, var(--neon1), var(--neon2)) !important;
+  color: #001018 !important;
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.5);
+  border-color: transparent;
+}
+
+/* ---------------------------------------------------------------
+   1.16. ITEM (KHUNG THÔNG TIN)
+   --------------------------------------------------------------- */
+.item {
+  padding: 12px;
+  border-radius: 14px;
+  background: rgba(0, 0, 0, 0.5) !important;
+  border: 1px solid rgba(0, 240, 255, 0.16);
+  margin-bottom: 9px;
+  font-size: 12.4px;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+  color: #e9f6ff !important;
+}
+
 .item .l { flex: 1; min-width: 180px; }
-.item .l b { color: var(--neon1) !important; font-size: 13px; display: block; margin-bottom: 4px; }
-.item .l small { color: #8fb6d6 !important; display: block; line-height: 1.6; }
 
-.key-row { display: flex; align-items: center; gap: 8px; margin-top: 4px; flex-wrap: wrap; }
-.key-text { color: #00ff88; font-weight: 900; font-size: 14px; font-family: 'Courier New', monospace; word-break: break-all; text-shadow: 0 0 10px rgba(0, 255, 136, 0.4); }
-.copy-btn { display: inline-flex; align-items: center; justify-content: center; min-width: 34px; height: 30px; padding: 0 8px; border-radius: 8px; background: linear-gradient(135deg, rgba(0, 240, 255, 0.2), rgba(0, 255, 136, 0.2)) !important; border: 1px solid rgba(0, 240, 255, 0.6); cursor: pointer; color: #00f0ff; font-size: 14px; transition: 0.2s; flex: 0 0 auto; font-family: inherit; -webkit-appearance: none; box-shadow: 0 0 12px rgba(0, 240, 255, 0.3); }
-.copy-btn:hover { background: linear-gradient(135deg, rgba(0, 240, 255, 0.4), rgba(0, 255, 136, 0.4)) !important; box-shadow: 0 0 18px rgba(0, 240, 255, 0.6); transform: scale(1.05); }
+.item .l b {
+  color: var(--neon1) !important;
+  font-size: 13px;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.item .l small {
+  color: #8fb6d6 !important;
+  display: block;
+  line-height: 1.6;
+}
+
+/* ---------------------------------------------------------------
+   1.17. KEY + NÚT SAO CHÉP
+   --------------------------------------------------------------- */
+.key-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+  flex-wrap: wrap;
+}
+
+.key-text {
+  color: #00ff88;
+  font-weight: 900;
+  font-size: 14px;
+  font-family: 'Courier New', monospace;
+  word-break: break-all;
+  text-shadow: 0 0 10px rgba(0, 255, 136, 0.4);
+}
+
+.copy-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 34px;
+  height: 30px;
+  padding: 0 8px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, rgba(0, 240, 255, 0.2), rgba(0, 255, 136, 0.2)) !important;
+  border: 1px solid rgba(0, 240, 255, 0.6);
+  cursor: pointer;
+  color: #00f0ff;
+  font-size: 14px;
+  transition: 0.2s;
+  flex: 0 0 auto;
+  font-family: inherit;
+  -webkit-appearance: none;
+  box-shadow: 0 0 12px rgba(0, 240, 255, 0.3);
+}
+
+.copy-btn:hover {
+  background: linear-gradient(135deg, rgba(0, 240, 255, 0.4), rgba(0, 255, 136, 0.4)) !important;
+  box-shadow: 0 0 18px rgba(0, 240, 255, 0.6);
+  transform: scale(1.05);
+}
+
 .copy-btn:active { transform: scale(0.92); }
-.copy-btn.copied { background: linear-gradient(135deg, rgba(0, 255, 136, 0.5), rgba(0, 255, 136, 0.3)) !important; border-color: #00ff88; color: #00ff88; }
 
-.badge { padding: 5px 11px; border-radius: 20px; font-size: 10.6px; font-weight: 900; white-space: nowrap; letter-spacing: 0.4px; }
-.badge.wait { background: rgba(255, 230, 0, 0.15) !important; border: 1px solid rgba(255, 230, 0, 0.6); color: #ffe600 !important; box-shadow: 0 0 14px rgba(255, 230, 0, 0.3); }
-.badge.done { background: rgba(0, 255, 136, 0.15) !important; border: 1px solid rgba(0, 255, 136, 0.6); color: #6affb8 !important; box-shadow: 0 0 14px rgba(0, 255, 136, 0.3); }
-.badge.cancel { background: rgba(255, 0, 60, 0.15) !important; border: 1px solid rgba(255, 0, 60, 0.6); color: #ff7d96 !important; }
-.empty { text-align: center; padding: 32px 14px; color: #5f87a8 !important; font-size: 13px; }
+.copy-btn.copied {
+  background: linear-gradient(135deg, rgba(0, 255, 136, 0.5), rgba(0, 255, 136, 0.3)) !important;
+  border-color: #00ff88;
+  color: #00ff88;
+}
 
-#adminModal { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 9997; display: none; align-items: center; justify-content: center; padding: 18px; background: rgba(0, 0, 0, 0.85) !important; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+/* ---------------------------------------------------------------
+   1.18. BADGE (NHÃN TRẠNG THÁI)
+   --------------------------------------------------------------- */
+.badge {
+  padding: 5px 11px;
+  border-radius: 20px;
+  font-size: 10.6px;
+  font-weight: 900;
+  white-space: nowrap;
+  letter-spacing: 0.4px;
+}
+
+.badge.wait {
+  background: rgba(255, 230, 0, 0.15) !important;
+  border: 1px solid rgba(255, 230, 0, 0.6);
+  color: #ffe600 !important;
+  box-shadow: 0 0 14px rgba(255, 230, 0, 0.3);
+}
+
+.badge.done {
+  background: rgba(0, 255, 136, 0.15) !important;
+  border: 1px solid rgba(0, 255, 136, 0.6);
+  color: #6affb8 !important;
+  box-shadow: 0 0 14px rgba(0, 255, 136, 0.3);
+}
+
+.badge.cancel {
+  background: rgba(255, 0, 60, 0.15) !important;
+  border: 1px solid rgba(255, 0, 60, 0.6);
+  color: #ff7d96 !important;
+}
+
+.empty {
+  text-align: center;
+  padding: 32px 14px;
+  color: #5f87a8 !important;
+  font-size: 13px;
+}
+
+/* ---------------------------------------------------------------
+   1.19. ADMIN MODAL + PANEL
+   --------------------------------------------------------------- */
+#adminModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9997;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  background: rgba(0, 0, 0, 0.85) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
 #adminModal.show { display: flex; }
-#adminPanel { display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 9998; overflow-y: auto; background: radial-gradient(circle at 20% 10%, #1a0033, transparent 50%), radial-gradient(circle at 80% 90%, #002233, transparent 50%), #04050d !important; color: #e9f6ff !important; }
-.admin-head { position: sticky; top: 0; z-index: 10; display: flex; align-items: center; gap: 12px; padding: 13px 14px; background: rgba(10, 0, 25, 0.94) !important; backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid rgba(255, 0, 224, 0.4); box-shadow: 0 0 30px rgba(255, 0, 224, 0.25); }
-.admin-head h2 { flex: 1; font-size: 15px; font-weight: 900; letter-spacing: 1px; background: linear-gradient(90deg, var(--neon2), var(--neon3)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; }
-.admin-body { padding: 16px 14px 70px; max-width: 1180px; margin: 0 auto; }
-.astat { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin-bottom: 16px; }
-.astat div { padding: 14px; border-radius: 15px; background: rgba(20, 0, 40, 0.7) !important; border: 1px solid rgba(255, 0, 224, 0.3); text-align: center; box-shadow: 0 0 20px rgba(255, 0, 224, 0.15); }
-.astat b { display: block; font-size: 19px; font-weight: 900; color: var(--neon3) !important; text-shadow: 0 0 14px rgba(255, 230, 0, 0.6); }
-.astat span { font-size: 10.6px; color: #c9a8e0 !important; letter-spacing: 0.5px; }
 
-.bulk-box { padding: 14px; border-radius: 14px; background: rgba(255, 230, 0, 0.08) !important; border: 1px solid rgba(255, 230, 0, 0.5); margin-bottom: 14px; }
-.bulk-box .bulk-title { font-size: 13px; font-weight: 900; color: #ffe600; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
-.bulk-box .bulk-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
-.bulk-box input { flex: 1; min-width: 100px; padding: 10px 12px; border-radius: 10px; background: rgba(0, 0, 0, 0.6) !important; border: 1px solid rgba(255, 230, 0, 0.5); color: #ffe600 !important; -webkit-text-fill-color: #ffe600 !important; font-size: 14px; font-weight: 900; font-family: inherit; outline: none; text-align: center; }
-.bulk-box input:focus { border-color: #ffe600; box-shadow: 0 0 0 3px rgba(255, 230, 0, 0.2); }
-.bulk-box .bulk-save { padding: 10px 16px; border-radius: 10px; border: none; cursor: pointer; font-weight: 900; font-size: 12px; background: linear-gradient(90deg, #ffe600, #ff8a00); color: #001018; font-family: inherit; transition: 0.2s; }
-.bulk-box .bulk-save:hover { transform: scale(1.05); box-shadow: 0 0 16px rgba(255, 230, 0, 0.6); }
-.bulk-box .bulk-reset { padding: 10px 14px; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.3); cursor: pointer; font-weight: 900; font-size: 11.5px; background: transparent; color: #c9a8e0; font-family: inherit; transition: 0.2s; }
+#adminPanel {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9998;
+  overflow-y: auto;
+  background:
+    radial-gradient(circle at 20% 10%, #1a0033, transparent 50%),
+    radial-gradient(circle at 80% 90%, #002233, transparent 50%),
+    #04050d !important;
+  color: #e9f6ff !important;
+}
+
+.admin-head {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 14px;
+  background: rgba(10, 0, 25, 0.94) !important;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(255, 0, 224, 0.4);
+  box-shadow: 0 0 30px rgba(255, 0, 224, 0.25);
+}
+
+.admin-head h2 {
+  flex: 1;
+  font-size: 15px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  background: linear-gradient(90deg, var(--neon2), var(--neon3));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.admin-body {
+  padding: 16px 14px 70px;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.astat {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.astat div {
+  padding: 14px;
+  border-radius: 15px;
+  background: rgba(20, 0, 40, 0.7) !important;
+  border: 1px solid rgba(255, 0, 224, 0.3);
+  text-align: center;
+  box-shadow: 0 0 20px rgba(255, 0, 224, 0.15);
+}
+
+.astat b {
+  display: block;
+  font-size: 19px;
+  font-weight: 900;
+  color: var(--neon3) !important;
+  text-shadow: 0 0 14px rgba(255, 230, 0, 0.6);
+}
+
+.astat span {
+  font-size: 10.6px;
+  color: #c9a8e0 !important;
+  letter-spacing: 0.5px;
+}
+
+/* Bulk discount box */
+.bulk-box {
+  padding: 14px;
+  border-radius: 14px;
+  background: rgba(255, 230, 0, 0.08) !important;
+  border: 1px solid rgba(255, 230, 0, 0.5);
+  margin-bottom: 14px;
+}
+
+.bulk-box .bulk-title {
+  font-size: 13px;
+  font-weight: 900;
+  color: #ffe600;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.bulk-box .bulk-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.bulk-box input {
+  flex: 1;
+  min-width: 100px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.6) !important;
+  border: 1px solid rgba(255, 230, 0, 0.5);
+  color: #ffe600 !important;
+  -webkit-text-fill-color: #ffe600 !important;
+  font-size: 14px;
+  font-weight: 900;
+  font-family: inherit;
+  outline: none;
+  text-align: center;
+}
+
+.bulk-box input:focus {
+  border-color: #ffe600;
+  box-shadow: 0 0 0 3px rgba(255, 230, 0, 0.2);
+}
+
+.bulk-box .bulk-save {
+  padding: 10px 16px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: 900;
+  font-size: 12px;
+  background: linear-gradient(90deg, #ffe600, #ff8a00);
+  color: #001018;
+  font-family: inherit;
+  transition: 0.2s;
+}
+
+.bulk-box .bulk-save:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 16px rgba(255, 230, 0, 0.6);
+}
+
+.bulk-box .bulk-reset {
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  font-weight: 900;
+  font-size: 11.5px;
+  background: transparent;
+  color: #c9a8e0;
+  font-family: inherit;
+  transition: 0.2s;
+}
+
 .bulk-box .bulk-reset:hover { background: rgba(255, 255, 255, 0.1); }
-.bulk-status { margin-top: 8px; font-size: 12px; font-weight: 700; text-align: center; }
 
-.price-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 9px 11px; border-radius: 11px; background: rgba(0, 0, 0, 0.5) !important; border: 1px solid rgba(255, 230, 0, 0.3); margin-bottom: 7px; flex-wrap: wrap; }
-.price-row .pr-info { flex: 1; min-width: 150px; font-size: 12px; }
-.price-row .pr-info b { color: #ffe600; font-size: 12.8px; display: block; margin-bottom: 3px; }
-.price-row .pr-info small { color: #c9a8e0; font-size: 11px; }
-.price-row .pr-input { width: 110px; padding: 8px 10px; border-radius: 9px; background: rgba(0, 0, 0, 0.6) !important; border: 1px solid rgba(255, 230, 0, 0.5); color: #ffe600 !important; -webkit-text-fill-color: #ffe600 !important; font-size: 12.5px; font-family: inherit; font-weight: 900; text-align: right; outline: none; }
-.price-row .pr-input:focus { border-color: #ffe600; box-shadow: 0 0 0 3px rgba(255, 230, 0, 0.2); }
-.price-row .pr-save { padding: 8px 12px; border-radius: 9px; border: none; cursor: pointer; font-weight: 900; font-size: 11px; background: linear-gradient(90deg, #ffe600, #ff8a00); color: #001018; font-family: inherit; transition: 0.2s; }
-.price-row .pr-save:hover { transform: scale(1.05); box-shadow: 0 0 16px rgba(255, 230, 0, 0.6); }
-.price-group-title { font-size: 13px; font-weight: 900; color: #ffe600; margin: 14px 0 8px; padding-bottom: 5px; border-bottom: 1px dashed rgba(255, 230, 0, 0.3); display: flex; align-items: center; gap: 6px; }
+.bulk-status {
+  margin-top: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: center;
+}
 
-.user-select-box { display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
-.user-select-box select { flex: 1; min-width: 180px; padding: 12px 14px; border-radius: 12px; background: rgba(0, 0, 0, 0.6) !important; border: 1px solid rgba(255, 0, 224, 0.6); color: #ff9eb5 !important; -webkit-text-fill-color: #ff9eb5 !important; font-size: 13.5px; font-weight: 900; font-family: inherit; outline: none; appearance: none; -webkit-appearance: none; }
-.user-select-box select option { background: #0a0d1f; color: #ff9eb5; }
+/* Price row */
+.price-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 9px 11px;
+  border-radius: 11px;
+  background: rgba(0, 0, 0, 0.5) !important;
+  border: 1px solid rgba(255, 230, 0, 0.3);
+  margin-bottom: 7px;
+  flex-wrap: wrap;
+}
 
-.stars-pick { display: flex; gap: 8px; justify-content: center; margin: 14px 0; font-size: 34px; cursor: pointer; user-select: none; }
-.stars-pick span { transition: 0.18s; filter: grayscale(1) opacity(0.4); }
-.stars-pick span.on { filter: none; transform: scale(1.16); text-shadow: 0 0 20px rgba(255, 230, 0, 0.9); }
+.price-row .pr-info {
+  flex: 1;
+  min-width: 150px;
+  font-size: 12px;
+}
 
+.price-row .pr-info b {
+  color: #ffe600;
+  font-size: 12.8px;
+  display: block;
+  margin-bottom: 3px;
+}
+
+.price-row .pr-info small {
+  color: #c9a8e0;
+  font-size: 11px;
+}
+
+.price-row .pr-input {
+  width: 110px;
+  padding: 8px 10px;
+  border-radius: 9px;
+  background: rgba(0, 0, 0, 0.6) !important;
+  border: 1px solid rgba(255, 230, 0, 0.5);
+  color: #ffe600 !important;
+  -webkit-text-fill-color: #ffe600 !important;
+  font-size: 12.5px;
+  font-family: inherit;
+  font-weight: 900;
+  text-align: right;
+  outline: none;
+}
+
+.price-row .pr-input:focus {
+  border-color: #ffe600;
+  box-shadow: 0 0 0 3px rgba(255, 230, 0, 0.2);
+}
+
+.price-row .pr-save {
+  padding: 8px 12px;
+  border-radius: 9px;
+  border: none;
+  cursor: pointer;
+  font-weight: 900;
+  font-size: 11px;
+  background: linear-gradient(90deg, #ffe600, #ff8a00);
+  color: #001018;
+  font-family: inherit;
+  transition: 0.2s;
+}
+
+.price-row .pr-save:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 16px rgba(255, 230, 0, 0.6);
+}
+
+.price-group-title {
+  font-size: 13px;
+  font-weight: 900;
+  color: #ffe600;
+  margin: 14px 0 8px;
+  padding-bottom: 5px;
+  border-bottom: 1px dashed rgba(255, 230, 0, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* User select */
+.user-select-box {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.user-select-box select {
+  flex: 1;
+  min-width: 180px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.6) !important;
+  border: 1px solid rgba(255, 0, 224, 0.6);
+  color: #ff9eb5 !important;
+  -webkit-text-fill-color: #ff9eb5 !important;
+  font-size: 13.5px;
+  font-weight: 900;
+  font-family: inherit;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.user-select-box select option {
+  background: #0a0d1f;
+  color: #ff9eb5;
+}
+
+/* ---------------------------------------------------------------
+   1.20. ĐÁNH GIÁ SAO
+   --------------------------------------------------------------- */
+.stars-pick {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin: 14px 0;
+  font-size: 34px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.stars-pick span {
+  transition: 0.18s;
+  filter: grayscale(1) opacity(0.4);
+}
+
+.stars-pick span.on {
+  filter: none;
+  transform: scale(1.16);
+  text-shadow: 0 0 20px rgba(255, 230, 0, 0.9);
+}
+
+/* ---------------------------------------------------------------
+   1.21. THÔNG BÁO NỔI (POPUP NOTIFICATION)
+   --------------------------------------------------------------- */
 #orderNotification {
-  position: fixed; top: 80px; left: 50%;
+  position: fixed;
+  top: 80px;
+  left: 50%;
   transform: translateX(-50%) translateY(-120px);
-  z-index: 9500; padding: 16px 26px; border-radius: 16px;
-  font-weight: 900; font-size: 14px; max-width: 92vw; text-align: center;
-  pointer-events: none; opacity: 0;
+  z-index: 9500;
+  padding: 16px 26px;
+  border-radius: 16px;
+  font-weight: 900;
+  font-size: 14px;
+  max-width: 92vw;
+  text-align: center;
+  pointer-events: none;
+  opacity: 0;
   transition: all 0.5s cubic-bezier(0.3, 1.4, 0.5, 1);
   background: linear-gradient(90deg, #00f0ff, #00ff88);
   color: #001018;
   box-shadow: 0 0 34px rgba(0, 240, 255, 0.95), 0 0 60px rgba(0, 255, 136, 0.5);
   border: 2px solid rgba(255, 255, 255, 0.6);
 }
-#orderNotification.show { transform: translateX(-50%) translateY(0); opacity: 1; }
-#orderNotification.done { background: linear-gradient(90deg, #00ff88, #ffe600); box-shadow: 0 0 34px rgba(0, 255, 136, 0.95), 0 0 60px rgba(255, 230, 0, 0.6); }
-#orderNotification.warn { background: linear-gradient(90deg, #ffe600, #ff8a00); color: #001018; box-shadow: 0 0 34px rgba(255, 230, 0, 0.95), 0 0 60px rgba(255, 138, 0, 0.6); }
 
-#toast { position: fixed; left: 50%; bottom: 26px; transform: translateX(-50%) translateY(140px); z-index: 9999; padding: 13px 22px; border-radius: 30px; font-weight: 800; font-size: 13.4px; background: linear-gradient(90deg, rgba(0, 240, 255, 0.95), rgba(0, 255, 136, 0.95)) !important; color: #001018 !important; box-shadow: 0 0 34px rgba(0, 240, 255, 0.8); transition: 0.4s cubic-bezier(0.3, 1.4, 0.5, 1); max-width: 90vw; text-align: center; }
+#orderNotification.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+#orderNotification.done {
+  background: linear-gradient(90deg, #00ff88, #ffe600);
+  box-shadow: 0 0 34px rgba(0, 255, 136, 0.95), 0 0 60px rgba(255, 230, 0, 0.6);
+}
+
+#orderNotification.warn {
+  background: linear-gradient(90deg, #ffe600, #ff8a00);
+  color: #001018;
+  box-shadow: 0 0 34px rgba(255, 230, 0, 0.95), 0 0 60px rgba(255, 138, 0, 0.6);
+}
+
+/* ---------------------------------------------------------------
+   1.22. TOAST (THÔNG BÁO NGẮN)
+   --------------------------------------------------------------- */
+#toast {
+  position: fixed;
+  left: 50%;
+  bottom: 26px;
+  transform: translateX(-50%) translateY(140px);
+  z-index: 9999;
+  padding: 13px 22px;
+  border-radius: 30px;
+  font-weight: 800;
+  font-size: 13.4px;
+  background: linear-gradient(90deg, rgba(0, 240, 255, 0.95), rgba(0, 255, 136, 0.95)) !important;
+  color: #001018 !important;
+  box-shadow: 0 0 34px rgba(0, 240, 255, 0.8);
+  transition: 0.4s cubic-bezier(0.3, 1.4, 0.5, 1);
+  max-width: 90vw;
+  text-align: center;
+}
+
 #toast.show { transform: translateX(-50%) translateY(0); }
-#toast.err { background: linear-gradient(90deg, #ff0055, #ff7a00) !important; color: #fff !important; box-shadow: 0 0 34px rgba(255, 0, 85, 0.8); }
 
+#toast.err {
+  background: linear-gradient(90deg, #ff0055, #ff7a00) !important;
+  color: #fff !important;
+  box-shadow: 0 0 34px rgba(255, 0, 85, 0.8);
+}
+
+/* ---------------------------------------------------------------
+   1.23. QR BOX
+   --------------------------------------------------------------- */
 .qr-box { text-align: center; padding: 8px; }
-.qr-box img { width: min(290px, 82vw); border-radius: 16px; border: 2px solid var(--neon1); box-shadow: 0 0 34px rgba(0, 240, 255, 0.5); background: #fff !important; }
-.bank-info { margin-top: 14px; font-size: 13px; line-height: 2; text-align: left; background: rgba(0, 0, 0, 0.55) !important; padding: 14px; border-radius: 14px; border: 1px solid var(--line); color: #e9f6ff !important; }
-.bank-info b { color: var(--neon3) !important; }
-.bank-info .hl { color: var(--neon4) !important; font-weight: 900; font-size: 15px; letter-spacing: 1px; }
-.note-warn { margin-top: 12px; padding: 11px; border-radius: 12px; font-size: 12px; font-weight: 700; background: rgba(255, 230, 0, 0.15) !important; border: 1px solid rgba(255, 230, 0, 0.45); color: #ffe600 !important; text-align: center; }
 
+.qr-box img {
+  width: min(290px, 82vw);
+  border-radius: 16px;
+  border: 2px solid var(--neon1);
+  box-shadow: 0 0 34px rgba(0, 240, 255, 0.5);
+  background: #fff !important;
+}
+
+.bank-info {
+  margin-top: 14px;
+  font-size: 13px;
+  line-height: 2;
+  text-align: left;
+  background: rgba(0, 0, 0, 0.55) !important;
+  padding: 14px;
+  border-radius: 14px;
+  border: 1px solid var(--line-color);
+  color: #e9f6ff !important;
+}
+
+.bank-info b { color: var(--neon3) !important; }
+
+.bank-info .hl {
+  color: var(--neon4) !important;
+  font-weight: 900;
+  font-size: 15px;
+  letter-spacing: 1px;
+}
+
+.note-warn {
+  margin-top: 12px;
+  padding: 11px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 700;
+  background: rgba(255, 230, 0, 0.15) !important;
+  border: 1px solid rgba(255, 230, 0, 0.45);
+  color: #ffe600 !important;
+  text-align: center;
+}
+
+/* ---------------------------------------------------------------
+   1.24. RESPONSIVE
+   --------------------------------------------------------------- */
 @media (max-width: 520px) {
   .plan { flex-wrap: wrap; }
   .plan .buy { width: 100%; }
@@ -266,16 +1647,30 @@ main { padding: 16px 14px 90px; max-width: 1180px; margin: 0 auto; background: t
   .bal-chip { padding: 7px 10px; font-size: 11.5px; }
   .price-row .pr-input { width: 90px; }
 }
+
 @media (prefers-color-scheme: light) {
-  html, body { background: #05060f !important; color: #e9f6ff !important; }
+  html, body {
+    background: #05060f !important;
+    color: #e9f6ff !important;
+  }
 }
 </style>
 </head>
 <body>
 
+<!-- ==================================================================
+     PHẦN 2: HTML — CẤU TRÚC TRANG
+     ================================================================== -->
+
+<!-- Canvas vẽ sao + sao băng -->
 <canvas id="stars"></canvas>
+
+<!-- Popup thông báo đơn hàng -->
 <div id="orderNotification"></div>
 
+<!-- ==================================================================
+     2.1. MÀN HÌNH LOADING
+     ================================================================== -->
 <div id="loading">
   <div class="load-logo">SHOP ALL SẢN PHẨM FF – FFMAX</div>
   <div class="load-sub">HỖ TRỢ ADR🤖 và IOS📱</div>
@@ -286,33 +1681,74 @@ main { padding: 16px 14px 90px; max-width: 1180px; margin: 0 auto; background: t
   </div>
 </div>
 
+<!-- ==================================================================
+     2.2. MÀN HÌNH ĐĂNG NHẬP / ĐĂNG KÝ
+     ================================================================== -->
 <div id="auth" class="screen">
   <div class="auth-box">
     <div class="auth-title">SHOP ALL SẢN PHẨM FF – FFMAX</div>
     <div class="auth-sub">HỖ TRỢ ADR🤖 và IOS📱</div>
+
+    <!-- Tab chuyển đổi Đăng nhập / Đăng ký -->
     <div class="tabs">
       <div class="tab active" id="tabLogin" onclick="switchTab('login')">Đăng nhập</div>
       <div class="tab" id="tabReg" onclick="switchTab('reg')">Đăng ký</div>
     </div>
+
+    <!-- Form đăng nhập -->
     <div id="formLogin">
-      <div class="field"><label>Tên tài khoản</label><input id="lgUser" placeholder="Nhập tên tài khoản" autocomplete="username"></div>
-      <div class="field"><label>Mật khẩu</label><input id="lgPass" type="password" placeholder="Nhập mật khẩu" autocomplete="current-password"></div>
+      <div class="field">
+        <label>Tên tài khoản</label>
+        <input id="lgUser" placeholder="Nhập tên tài khoản" autocomplete="username">
+      </div>
+      <div class="field">
+        <label>Mật khẩu</label>
+        <input id="lgPass" type="password" placeholder="Nhập mật khẩu" autocomplete="current-password">
+      </div>
       <button class="btn" onclick="doLogin()">🔓 ĐĂNG NHẬP</button>
     </div>
+
+    <!-- Form đăng ký -->
     <div id="formReg" style="display:none">
-      <div class="field"><label>Tên tài khoản</label><input id="rgUser" placeholder="Nhập tên tài khoản" autocomplete="off"></div>
-      <div class="field"><label>Mật khẩu</label><input id="rgPass" type="password" placeholder="Nhập mật khẩu" autocomplete="new-password"></div>
-      <div class="field"><label>Nhập lại mật khẩu</label><input id="rgPass2" type="password" placeholder="Nhập lại mật khẩu" autocomplete="new-password"></div>
+      <div class="field">
+        <label>Tên tài khoản</label>
+        <input id="rgUser" placeholder="Nhập tên tài khoản" autocomplete="off">
+      </div>
+      <div class="field">
+        <label>Mật khẩu</label>
+        <input id="rgPass" type="password" placeholder="Nhập mật khẩu" autocomplete="new-password">
+      </div>
+      <div class="field">
+        <label>Nhập lại mật khẩu</label>
+        <input id="rgPass2" type="password" placeholder="Nhập lại mật khẩu" autocomplete="new-password">
+      </div>
       <button class="btn pink" onclick="doRegister()">📝 ĐĂNG KÝ</button>
     </div>
+
+    <!-- Vùng hiển thị thông báo lỗi/thành công -->
     <div class="msg" id="authMsg"></div>
   </div>
 </div>
 
+<!-- ==================================================================
+     2.3. GIAO DIỆN CHÍNH (SAU KHI ĐĂNG NHẬP)
+     ================================================================== -->
 <div id="app" class="screen" style="display:none">
+
+  <!-- HEADER -->
   <header>
-    <div class="burger" id="burger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
-    <div class="brand"><h1>SHOP All SẢN PHẨM FF – FFMAX</h1><p>HỖ TRỢ ADR🤖 và IOS📱</p></div>
+    <!-- Nút menu 3 gạch -->
+    <div class="burger" id="burger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+
+    <!-- Tên shop -->
+    <div class="brand">
+      <h1>SHOP All SẢN PHẨM FF – FFMAX</h1>
+      <p>HỖ TRỢ ADR🤖 và IOS📱</p>
+    </div>
+
+    <!-- Trình phát nhạc -->
     <div class="music-wrap">
       <div class="music-ring"></div>
       <button class="music-btn" id="musicBtn" onclick="toggleMusicPanel(event)">
@@ -320,20 +1756,43 @@ main { padding: 16px 14px 90px; max-width: 1180px; margin: 0 auto; background: t
       </button>
       <div class="music-panel" id="musicPanel" onclick="event.stopPropagation()">
         <div class="music-title">🎵 CHỌN NHẠC NỀN</div>
-        <div class="music-item" data-idx="0" onclick="selectTrack(0)"><span class="mi-ico">♪</span><span class="mi-name">Remix 1</span><span class="mi-check">✓</span></div>
-        <div class="music-item" data-idx="1" onclick="selectTrack(1)"><span class="mi-ico">♪</span><span class="mi-name">Remix 2</span><span class="mi-check">✓</span></div>
-        <div class="music-item" data-idx="2" onclick="selectTrack(2)"><span class="mi-ico">♪</span><span class="mi-name">Cute Remix</span><span class="mi-check">✓</span></div>
+        <div class="music-item" data-idx="0" onclick="selectTrack(0)">
+          <span class="mi-ico">♪</span>
+          <span class="mi-name">Remix 1</span>
+          <span class="mi-check">✓</span>
+        </div>
+        <div class="music-item" data-idx="1" onclick="selectTrack(1)">
+          <span class="mi-ico">♪</span>
+          <span class="mi-name">Remix 2</span>
+          <span class="mi-check">✓</span>
+        </div>
+        <div class="music-item" data-idx="2" onclick="selectTrack(2)">
+          <span class="mi-ico">♪</span>
+          <span class="mi-name">Cute Remix</span>
+          <span class="mi-check">✓</span>
+        </div>
         <button class="music-play" id="musicPlayBtn" onclick="togglePlay()">▶ PHÁT NHẠC</button>
         <div class="music-note" id="musicNote">Chọn 1 bài rồi nhấn phát</div>
       </div>
     </div>
+
+    <!-- Số dư hiển thị trên header -->
     <div class="bal-chip">💰 <span id="hdrBal">0đ</span></div>
   </header>
 
+  <!-- NỘI DUNG CHÍNH -->
   <main>
+
+    <!-- ==================================================
+         TRANG: TÀI KHOẢN
+         ================================================== -->
     <div class="page" id="page-account">
       <div class="page-title">👤 Tài khoản</div>
+
+      <!-- Banner giảm giá (nếu có) -->
       <div id="discountBannerAcc"></div>
+
+      <!-- Thông tin user -->
       <div class="panel">
         <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
           <div style="flex:1;min-width:180px">
@@ -347,26 +1806,42 @@ main { padding: 16px 14px 90px; max-width: 1180px; margin: 0 auto; background: t
           <button class="btn sm ghost" onclick="openAdminGate()" title="Cài đặt">⚙️</button>
         </div>
       </div>
+
+      <!-- Thống kê tài khoản -->
       <div class="astat" style="grid-template-columns:repeat(3,1fr)">
         <div><b id="acDep">0đ</b><span>TỔNG NẠP</span></div>
         <div><b id="acSpent">0đ</b><span>TỔNG CHI</span></div>
         <div><b id="acBal">0đ</b><span>SỐ DƯ</span></div>
       </div>
+
+      <!-- Danh sách đơn mua gần đây -->
       <div class="panel green">
         <div class="sec-title">🧾 Đơn mua</div>
         <div id="acOrders"></div>
       </div>
     </div>
 
+    <!-- ==================================================
+         TRANG: NẠP TIỀN + THẺ CAR
+         ================================================== -->
     <div class="page" id="page-deposit">
       <div class="page-title">💳 Nạp tiền + Thẻ Car</div>
+
+      <!-- Nạp QR -->
       <div class="panel gold">
         <div class="sec-title">🏦 PHẦN 1 — TẠO MÃ QR</div>
-        <div class="hint" style="margin-bottom:10px">Tối thiểu <b style="color:#ffe600">5.000đ</b> — Tối đa <b style="color:#ffe600">5.000.000đ</b></div>
-        <div class="field"><label>Số tiền muốn nạp (VNĐ)</label><input id="qrAmount" type="number" placeholder="Ví dụ: 50000" min="5000" max="5000000"></div>
+        <div class="hint" style="margin-bottom:10px">
+          Tối thiểu <b style="color:#ffe600">5.000đ</b> — Tối đa <b style="color:#ffe600">5.000.000đ</b>
+        </div>
+        <div class="field">
+          <label>Số tiền muốn nạp (VNĐ)</label>
+          <input id="qrAmount" type="number" placeholder="Ví dụ: 50000" min="5000" max="5000000">
+        </div>
         <button class="btn gold" onclick="createQR()">📷 TẠO MÃ QR</button>
         <div id="qrResult" style="margin-top:16px"></div>
       </div>
+
+      <!-- Nạp thẻ car -->
       <div class="panel pink">
         <div class="sec-title">💳 PHẦN 2 — NẠP THẺ CAR</div>
         <div class="hint" style="margin-bottom:10px">Thẻ car phải chịu phí chiết khấu</div>
@@ -384,16 +1859,28 @@ main { padding: 16px 14px 90px; max-width: 1180px; margin: 0 auto; background: t
         <div class="field">
           <label>Chọn loại thẻ</label>
           <select id="cardType">
-            <option>Viettel</option><option>Mobifone</option><option>Garena</option>
-            <option>Vinaphone</option><option>Zing</option>
+            <option>Viettel</option>
+            <option>Mobifone</option>
+            <option>Garena</option>
+            <option>Vinaphone</option>
+            <option>Zing</option>
           </select>
         </div>
-        <div class="field"><label>Nhập Mã thẻ</label><input id="cardCode" placeholder="Nhập mã thẻ..."></div>
-        <div class="field"><label>Nhập Seri</label><input id="cardSeri" placeholder="Nhập seri..."></div>
+        <div class="field">
+          <label>Nhập Mã thẻ</label>
+          <input id="cardCode" placeholder="Nhập mã thẻ...">
+        </div>
+        <div class="field">
+          <label>Nhập Seri</label>
+          <input id="cardSeri" placeholder="Nhập seri...">
+        </div>
         <button class="btn pink" onclick="submitCard()">✅ XÁC NHẬN THẺ</button>
       </div>
     </div>
 
+    <!-- ==================================================
+         TRANG: LỊCH SỬ
+         ================================================== -->
     <div class="page" id="page-history">
       <div class="page-title">📜 Lịch sử All</div>
       <div class="subtabs">
@@ -404,12 +1891,18 @@ main { padding: 16px 14px 90px; max-width: 1180px; margin: 0 auto; background: t
       <div class="panel" id="histBox"></div>
     </div>
 
+    <!-- ==================================================
+         TRANG: HACK ALL IOS
+         ================================================== -->
     <div class="page" id="page-hackios">
       <div class="page-title">📱 HACK - All IOS</div>
       <div id="discountBannerIos"></div>
       <div class="grid" id="iosGrid"></div>
     </div>
 
+    <!-- ==================================================
+         TRANG: HACK ALL ADR + FREE
+         ================================================== -->
     <div class="page" id="page-hackadr">
       <div class="page-title">🤖 HACK - All ADR + FREE</div>
       <div class="panel green">
@@ -421,10 +1914,15 @@ main { padding: 16px 14px 90px; max-width: 1180px; margin: 0 auto; background: t
           nhưng khi mua nhiều sẽ được giảm giá.
         </div>
       </div>
-      <div class="panel"><div class="sec-title">📞 LIÊN HỆ NGAY</div>
-        <button class="btn" onclick="navigate('support')">➡️ QUA PHẦN HỖ TRỢ</button></div>
+      <div class="panel">
+        <div class="sec-title">📞 LIÊN HỆ NGAY</div>
+        <button class="btn" onclick="navigate('support')">➡️ QUA PHẦN HỖ TRỢ</button>
+      </div>
     </div>
 
+    <!-- ==================================================
+         TRANG: ESGIN = IOS
+         ================================================== -->
     <div class="page" id="page-esgin">
       <div class="page-title">🔑 Esgin = IOS</div>
       <div id="discountBannerEsgin"></div>
@@ -440,6 +1938,9 @@ main { padding: 16px 14px 90px; max-width: 1180px; margin: 0 auto; background: t
       </div>
     </div>
 
+    <!-- ==================================================
+         TRANG: HỖ TRỢ
+         ================================================== -->
     <div class="page" id="page-support">
       <div class="page-title">📞 Hỗ trợ</div>
       <div class="panel pink">
@@ -454,6 +1955,9 @@ main { padding: 16px 14px 90px; max-width: 1180px; margin: 0 auto; background: t
       </div>
     </div>
 
+    <!-- ==================================================
+         TRANG: GT HACK
+         ================================================== -->
     <div class="page" id="page-guide">
       <div class="page-title">⚡ GT HACK IOS + ADR</div>
       <div class="panel gold">
@@ -468,26 +1972,41 @@ main { padding: 16px 14px 90px; max-width: 1180px; margin: 0 auto; background: t
       </div>
     </div>
 
+    <!-- ==================================================
+         TRANG: ĐÁNH GIÁ
+         ================================================== -->
     <div class="page" id="page-review">
       <div class="page-title">⭐ Đánh giá</div>
       <div class="panel gold">
         <div class="sec-title">Chọn số sao (1 - 5 ⭐)</div>
         <div class="stars-pick" id="starPick">
-          <span data-s="1">⭐</span><span data-s="2">⭐</span><span data-s="3">⭐</span>
-          <span data-s="4">⭐</span><span data-s="5">⭐</span>
+          <span data-s="1">⭐</span>
+          <span data-s="2">⭐</span>
+          <span data-s="3">⭐</span>
+          <span data-s="4">⭐</span>
+          <span data-s="5">⭐</span>
         </div>
-        <div class="field"><label>Mô tả trải nghiệm của bạn</label>
-          <textarea id="rvText" rows="4" placeholder="Nhập cảm nhận của bạn về shop..."></textarea></div>
+        <div class="field">
+          <label>Mô tả trải nghiệm của bạn</label>
+          <textarea id="rvText" rows="4" placeholder="Nhập cảm nhận của bạn về shop..."></textarea>
+        </div>
         <button class="btn gold" onclick="sendReview()">🚀 GỬI ĐÁNH GIÁ</button>
       </div>
     </div>
+
   </main>
 </div>
 
+<!-- ==================================================================
+     2.4. OVERLAY + SIDEBAR (ĐẶT NGOÀI #app ĐỂ KHÔNG BỊ GIỚI HẠN)
+     ================================================================== -->
 <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
 
 <aside class="sidebar" id="sidebar">
-  <div class="side-head"><h2>⚡ MENU SHOP</h2><p>HỖ TRỢ ADR🤖 và IOS📱</p></div>
+  <div class="side-head">
+    <h2>⚡ MENU SHOP</h2>
+    <p>HỖ TRỢ ADR🤖 và IOS📱</p>
+  </div>
   <div class="side-user" id="sideUser"></div>
   <ul class="menu" id="menuList">
     <li data-page="account"><span class="ico">👤</span> Tài khoản</li>
@@ -503,26 +2022,36 @@ main { padding: 16px 14px 90px; max-width: 1180px; margin: 0 auto; background: t
   </ul>
 </aside>
 
+<!-- ==================================================================
+     2.5. ADMIN — MODAL XÁC THỰC
+     ================================================================== -->
 <div id="adminModal">
   <div class="auth-box" style="border-color:rgba(255,0,224,.5);box-shadow:0 0 50px rgba(255,0,224,.35)">
     <div class="auth-title" style="background:linear-gradient(90deg,#ff00e0,#ffe600);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">
       🔐 XÁC THỰC QUẢN TRỊ
     </div>
     <div class="auth-sub">Khu vực đặc biệt — Chỉ dành cho Admin</div>
-    <div class="field"><label>Nhập mật khẩu Admin</label>
-      <input id="adminPass" type="password" placeholder="••••••••••••"></div>
+    <div class="field">
+      <label>Nhập mật khẩu Admin</label>
+      <input id="adminPass" type="password" placeholder="••••••••••••">
+    </div>
     <button class="btn pink" onclick="checkAdmin()">🔓 TRUY CẬP</button>
     <button class="btn ghost" style="margin-top:9px" onclick="closeAdminGate()">✖ Đóng</button>
     <div class="msg" id="adminMsg"></div>
   </div>
 </div>
 
+<!-- ==================================================================
+     2.6. ADMIN PANEL
+     ================================================================== -->
 <div id="adminPanel">
   <div class="admin-head">
     <h2>⚙️ BẢNG ĐIỀU KHIỂN ADMIN</h2>
     <button class="btn sm pink" onclick="closeAdminPanel()">✖ Thoát</button>
   </div>
   <div class="admin-body">
+
+    <!-- Thống kê nhanh -->
     <div class="astat">
       <div><b id="stUsers">0</b><span>NGƯỜI ĐĂNG KÝ</span></div>
       <div><b id="stDep">0</b><span>NẠP CHỜ DUYỆT</span></div>
@@ -530,9 +2059,15 @@ main { padding: 16px 14px 90px; max-width: 1180px; margin: 0 auto; background: t
       <div><b id="stRv">0</b><span>ĐÁNH GIÁ</span></div>
     </div>
 
+    <!-- MỤC 1: Chỉnh giá toàn shop -->
     <div class="panel gold">
       <div class="sec-title">💵 MỤC 1 — Chỉnh giá TOÀN SHOP</div>
-      <div class="hint" style="margin-bottom:10px">Áp dụng cho <b style="color:#ffe600">TẤT CẢ</b> người dùng. Bao gồm: giảm giá chung + chỉnh giá từng sản phẩm.</div>
+      <div class="hint" style="margin-bottom:10px">
+        Áp dụng cho <b style="color:#ffe600">TẤT CẢ</b> người dùng.
+        Bao gồm: giảm giá chung + chỉnh giá từng sản phẩm.
+      </div>
+
+      <!-- Bulk discount -->
       <div class="bulk-box">
         <div class="bulk-title">🔥 Giảm giá TẤT CẢ sản phẩm toàn shop (%)</div>
         <div class="bulk-row">
@@ -542,12 +2077,18 @@ main { padding: 16px 14px 90px; max-width: 1180px; margin: 0 auto; background: t
         </div>
         <div class="bulk-status" id="bulkStatus"></div>
       </div>
+
+      <!-- Danh sách giá global -->
       <div id="globalPrices"></div>
     </div>
 
+    <!-- MỤC 2: Chỉnh giá riêng user -->
     <div class="panel pink">
       <div class="sec-title">💸 MỤC 2 — Chỉnh giá RIÊNG cho từng người dùng</div>
-      <div class="hint" style="margin-bottom:10px">Chỉ người dùng được chọn mới thấy giá riêng. Chọn user → chỉnh giá sản phẩm → nhấn 💾 LƯU.</div>
+      <div class="hint" style="margin-bottom:10px">
+        Chỉ người dùng được chọn mới thấy giá riêng.
+        Chọn user → chỉnh giá sản phẩm → nhấn 💾 LƯU.
+      </div>
       <div class="user-select-box">
         <select id="perUserSelect" onchange="window.__renderPerUserPrices()">
           <option value="">-- Chọn người dùng --</option>
@@ -556,53 +2097,87 @@ main { padding: 16px 14px 90px; max-width: 1180px; margin: 0 auto; background: t
       <div id="perUserPriceList"></div>
     </div>
 
+    <!-- Danh sách user -->
     <div class="panel pink">
       <div class="sec-title">👥 Lịch sử người đăng ký</div>
       <div id="adUsers"></div>
     </div>
+
+    <!-- Duyệt nạp tiền -->
     <div class="panel gold">
       <div class="sec-title">💰 Duyệt nạp tiền (QR & Thẻ Car)</div>
       <div id="adDeps"></div>
     </div>
+
+    <!-- Đơn hàng — gửi key -->
     <div class="panel green">
       <div class="sec-title">🛒 Đơn hàng — Gửi Key</div>
       <div id="adOrds"></div>
     </div>
+
+    <!-- Đánh giá -->
     <div class="panel">
       <div class="sec-title">⭐ Đánh giá khách hàng</div>
       <div id="adRevs"></div>
     </div>
+
   </div>
 </div>
 
+<!-- Toast -->
 <div id="toast"></div>
 
+<!-- ==================================================================
+     PHẦN 3: JAVASCRIPT — XỬ LÝ LOGIC
+     ================================================================== -->
+
+<!-- 3.1. Script chạy thanh loading (độc lập) -->
 <script>
-(function () {
+(function() {
   try {
-    var p = 0;
+    var progress = 0;
     var bar = document.getElementById('loadBar');
     var pct = document.getElementById('loadPct');
-    var st = document.getElementById('loadStatus');
-    var msgs = ['Đang xác thực web','Đang tải web','Xác thực tài khoản','Đang load','Chuẩn bị mở web','Hoàn tất! Đang vào shop'];
-    var iv = setInterval(function () {
-      p += 3;
-      if (p > 100) p = 100;
-      if (bar) bar.style.width = p + '%';
-      if (pct) pct.textContent = p + '%';
-      if (st) st.textContent = msgs[Math.min(Math.floor(p / 18), 5)] + '...';
-      if (p >= 100) clearInterval(iv);
+    var statusEl = document.getElementById('loadStatus');
+    var messages = [
+      'Đang xác thực web',
+      'Đang tải web',
+      'Xác thực tài khoản',
+      'Đang load',
+      'Chuẩn bị mở web',
+      'Hoàn tất! Đang vào shop'
+    ];
+
+    var timer = setInterval(function() {
+      progress += 3;
+      if (progress > 100) progress = 100;
+      if (bar) bar.style.width = progress + '%';
+      if (pct) pct.textContent = progress + '%';
+      if (statusEl) {
+        var idx = Math.min(Math.floor(progress / 18), 5);
+        statusEl.textContent = messages[idx] + '...';
+      }
+      if (progress >= 100) {
+        clearInterval(timer);
+      }
     }, 70);
-  } catch (e) {}
+  } catch (err) {
+    console.error('Loading script error:', err);
+  }
 })();
 </script>
 
+<!-- 3.2. Firebase SDK -->
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 
+<!-- 3.3. Script chính -->
 <script>
 try {
 
+  /* ================================================================
+     3.3.1. CẤU HÌNH FIREBASE
+     ================================================================ */
   var firebaseConfig = {
     apiKey: "AIzaSyBobP39gLfYvClCCNFIszIGc2LdeUFeI7w",
     authDomain: "shop-all-ff-ff-max.firebaseapp.com",
@@ -619,32 +2194,78 @@ try {
       firebase.initializeApp(firebaseConfig);
       db = firebase.database();
     }
-  } catch (e) { console.error('Firebase init error:', e); }
+  } catch (err) {
+    console.error('Firebase init error:', err);
+  }
 
+  /* ================================================================
+     3.3.2. BIẾN TOÀN CỤC
+     ================================================================ */
   var DB = {
-    users: {}, deposits: [], orders: [], reviews: [],
+    users: {},
+    deposits: [],
+    orders: [],
+    reviews: [],
     config: { prices: {}, bulkDiscount: 0 }
   };
-  var CUR = null;
-  var stars = 0;
-  var histMode = 'dep';
+
+  var CUR = null;              // User hiện tại đang đăng nhập
+  var stars = 0;               // Số sao đánh giá
+  var histMode = 'dep';        // Tab lịch sử hiện tại
   var ADMIN_PASS = 'ADMIN104738HACKALL';
   var IMG = 'https://raw.githubusercontent.com/proxyvipivn/Shop-blox-fruit-/main/';
-  var _notifyCheckedThisSession = false;
 
+  var _notifyCheckedThisSession = false; // Đảm bảo chỉ check 1 lần khi vào app
+  var notifyQueue = [];        // Hàng đợi thông báo
+  var notifying = false;       // Đang hiện thông báo
+
+  /* ================================================================
+     3.3.3. DỮ LIỆU SẢN PHẨM
+     ================================================================ */
   var IOS = [
-    { name: 'TROLL MODZ IOS ADR', img: IMG + 'IMG_8158.jpeg',
+    {
+      name: 'TROLL MODZ IOS ADR',
+      img: IMG + 'IMG_8158.jpeg',
       desc: 'Antiban 80-90%\nSiêu bá\nTải app để cài',
-      plans: [{ l: '1 Giờ', p: 10000 },{ l: '1 Ngày', p: 25000 },{ l: '7 Ngày', p: 100000 },{ l: '30 Ngày', p: 170000 }] },
-    { name: 'PROXY IOS IPA', img: IMG + 'IMG_8160.jpeg',
+      plans: [
+        { l: '1 Giờ', p: 10000 },
+        { l: '1 Ngày', p: 25000 },
+        { l: '7 Ngày', p: 100000 },
+        { l: '30 Ngày', p: 170000 }
+      ]
+    },
+    {
+      name: 'PROXY IOS IPA',
+      img: IMG + 'IMG_8160.jpeg',
       desc: 'Antiban 90%\nNhiều chức năng khác nhau\nCần esgin để cài',
-      plans: [{ l: '1 Ngày', p: 20000 },{ l: '7 Ngày', p: 60000 },{ l: '30 Ngày', p: 150000 },{ l: 'Vĩnh viễn', p: 360000 }] },
-    { name: 'MIGUL BAGIC VN', img: IMG + 'IMG_8155.jpeg',
+      plans: [
+        { l: '1 Ngày', p: 20000 },
+        { l: '7 Ngày', p: 60000 },
+        { l: '30 Ngày', p: 150000 },
+        { l: 'Vĩnh viễn', p: 360000 }
+      ]
+    },
+    {
+      name: 'MIGUL BAGIC VN',
+      img: IMG + 'IMG_8155.jpeg',
       desc: 'Antiban siêu bá\nCần esgin để cài\nMenu đầy đủ chức năng',
-      plans: [{ l: '1 Ngày', p: 70000 },{ l: '7 Ngày', p: 200000 },{ l: '30 Ngày', p: 420000 }] },
-    { name: 'MIGUL PRO VN', img: IMG + 'IMG_8156.jpeg',
+      plans: [
+        { l: '1 Ngày', p: 70000 },
+        { l: '7 Ngày', p: 200000 },
+        { l: '30 Ngày', p: 420000 }
+      ]
+    },
+    {
+      name: 'MIGUL PRO VN',
+      img: IMG + 'IMG_8156.jpeg',
       desc: 'Antiban hơn magic nhiều\nCần esgin để cài\nMenu nhiều chắc chắn siêu bá',
-      plans: [{ l: '1 Giờ', p: 20000 },{ l: '1 Ngày', p: 120000 },{ l: '7 Ngày', p: 250000 },{ l: '30 Ngày', p: 550000 }] }
+      plans: [
+        { l: '1 Giờ', p: 20000 },
+        { l: '1 Ngày', p: 120000 },
+        { l: '7 Ngày', p: 250000 },
+        { l: '30 Ngày', p: 550000 }
+      ]
+    }
   ];
 
   var ESGIN = [
@@ -653,39 +2274,76 @@ try {
     { name: 'GÓI 3', price: 300000, desc: 'Bảo hành 300 ngày' }
   ];
 
+  /* Tỉ lệ thẻ car mới */
+  var RATE = {
+    10000: 8500,
+    20000: 18000,
+    50000: 47000,
+    100000: 96500,
+    200000: 195000,
+    500000: 490000
+  };
+
+  /* ================================================================
+     3.3.4. HÀM XỬ LÝ GIÁ
+     ================================================================ */
+
+  /* Tạo key duy nhất cho mỗi sản phẩm + gói */
   function priceKey(productName, planLabel) {
     return (productName + '||' + planLabel).replace(/[.#$\[\]\/]/g, '_');
   }
 
+  /* Lấy giá gốc (ưu tiên: user custom → global → original) */
   function getBasePrice(productName, planLabel, originalPrice) {
     var key = priceKey(productName, planLabel);
     var basePrice = originalPrice;
+
+    /* 1. Kiểm tra giá riêng của user đang đăng nhập */
     if (CUR) {
       var u = DB.users[CUR] || {};
       if (u.customPrices && u.customPrices[key] != null && u.customPrices[key] !== '') {
-        var up = Number(u.customPrices[key]);
-        if (!isNaN(up) && up > 0) return up;
+        var userPrice = Number(u.customPrices[key]);
+        if (!isNaN(userPrice) && userPrice > 0) {
+          return userPrice;
+        }
       }
     }
+
+    /* 2. Kiểm tra giá global */
     if (DB.config.prices && DB.config.prices[key] != null && DB.config.prices[key] !== '') {
-      var gp = Number(DB.config.prices[key]);
-      if (!isNaN(gp) && gp > 0) return gp;
+      var globalPrice = Number(DB.config.prices[key]);
+      if (!isNaN(globalPrice) && globalPrice > 0) {
+        return globalPrice;
+      }
     }
+
+    /* 3. Trả về giá gốc */
     return originalPrice;
   }
 
+  /* Lấy giá cuối cùng sau khi áp dụng giảm giá */
   function getFinalPrice(productName, planLabel, originalPrice) {
     var base = getBasePrice(productName, planLabel, originalPrice);
+
+    /* Áp dụng giảm giá toàn shop */
     var bulk = Number(DB.config.bulkDiscount) || 0;
-    if (bulk > 0 && bulk <= 100) base = base * (100 - bulk) / 100;
+    if (bulk > 0 && bulk <= 100) {
+      base = base * (100 - bulk) / 100;
+    }
+
+    /* Áp dụng giảm giá riêng user */
     if (CUR) {
       var uu = DB.users[CUR] || {};
-      var ud = Number(uu.discount) || 0;
-      if (ud > 0 && ud <= 100) base = base * (100 - ud) / 100;
+      var userDisc = Number(uu.discount) || 0;
+      if (userDisc > 0 && userDisc <= 100) {
+        base = base * (100 - userDisc) / 100;
+      }
     }
+
     return Math.round(base);
   }
 
+  /* Lấy % giảm giá của user hiện tại */
   function getMyDiscount() {
     if (!CUR) return 0;
     var u = DB.users[CUR] || {};
@@ -695,17 +2353,29 @@ try {
     return d;
   }
 
-  /* ===== SAO + SAO BĂNG ===== */
-  (function () {
+  /* ================================================================
+     3.3.5. HIỆU ỨNG SAO LUNG LINH + SAO BĂNG
+     ================================================================ */
+  (function initStarsEffect() {
     try {
-      var c = document.getElementById('stars');
-      var x = c.getContext('2d');
-      var W, H, starList = [], meteors = [];
-      function resize() { W = c.width = innerWidth; H = c.height = innerHeight; }
-      resize(); addEventListener('resize', resize);
+      var canvas = document.getElementById('stars');
+      var ctx = canvas.getContext('2d');
+      var W, H;
+      var starList = [];
+      var meteors = [];
+
+      function resize() {
+        W = canvas.width = innerWidth;
+        H = canvas.height = innerHeight;
+      }
+      resize();
+      addEventListener('resize', resize);
+
+      /* Tạo 300 ngôi sao nhỏ lung linh */
       for (var i = 0; i < 300; i++) {
         starList.push({
-          x: Math.random() * W, y: Math.random() * H,
+          x: Math.random() * W,
+          y: Math.random() * H,
           r: Math.random() * 1.4 + 0.3,
           baseAlpha: Math.random() * 0.5 + 0.3,
           phase: Math.random() * Math.PI * 2,
@@ -715,10 +2385,13 @@ try {
                  Math.random() < 0.1 ? '#ffe600' : '#ffffff'
         });
       }
+
+      /* Tạo sao băng trắng */
       function spawnMeteor() {
         if (meteors.length < 6 && Math.random() < 0.7) {
           meteors.push({
-            x: Math.random() * W * 1.4 - W * 0.2, y: -100,
+            x: Math.random() * W * 1.4 - W * 0.2,
+            y: -100,
             len: Math.random() * 220 + 180,
             sp: Math.random() * 12 + 18,
             ang: Math.PI / 3.5 + (Math.random() * 0.32 - 0.16),
@@ -728,411 +2401,672 @@ try {
         setTimeout(spawnMeteor, Math.random() * 500 + 400);
       }
       spawnMeteor();
-      function loop() {
-        x.clearRect(0, 0, W, H);
+
+      /* Vòng lặp vẽ */
+      function drawFrame() {
+        ctx.clearRect(0, 0, W, H);
+
+        /* Vẽ 300 sao nhỏ */
         for (var i = 0; i < starList.length; i++) {
           var s = starList[i];
           s.phase += s.speed;
           var alpha = s.baseAlpha * (0.4 + 0.6 * (Math.sin(s.phase) * 0.5 + 0.5));
-          x.globalAlpha = alpha; x.shadowBlur = 6; x.shadowColor = s.color;
-          x.fillStyle = s.color;
-          x.beginPath(); x.arc(s.x, s.y, s.r, 0, Math.PI * 2); x.fill();
+          ctx.globalAlpha = alpha;
+          ctx.shadowBlur = 6;
+          ctx.shadowColor = s.color;
+          ctx.fillStyle = s.color;
+          ctx.beginPath();
+          ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+          ctx.fill();
         }
-        x.globalAlpha = 1; x.shadowBlur = 0;
+        ctx.globalAlpha = 1;
+        ctx.shadowBlur = 0;
+
+        /* Vẽ sao băng */
         for (var j = meteors.length - 1; j >= 0; j--) {
           var m = meteors[j];
           var tx = m.x - Math.cos(m.ang) * m.len;
           var ty = m.y - Math.sin(m.ang) * m.len;
-          var g = x.createLinearGradient(m.x, m.y, tx, ty);
-          g.addColorStop(0, '#ffffff');
-          g.addColorStop(0.18, 'rgba(220,240,255,0.95)');
-          g.addColorStop(0.45, 'rgba(150,200,255,0.5)');
-          g.addColorStop(0.75, 'rgba(100,160,255,0.15)');
-          g.addColorStop(1, 'transparent');
-          x.strokeStyle = g; x.lineWidth = m.width; x.lineCap = 'round';
-          x.shadowBlur = 20; x.shadowColor = '#ffffff';
-          x.beginPath(); x.moveTo(m.x, m.y); x.lineTo(tx, ty); x.stroke();
-          x.shadowBlur = 0;
-          var hg = x.createRadialGradient(m.x, m.y, 0, m.x, m.y, 7);
-          hg.addColorStop(0, '#ffffff');
-          hg.addColorStop(0.4, 'rgba(255,255,255,0.85)');
-          hg.addColorStop(1, 'rgba(150,200,255,0)');
-          x.fillStyle = hg;
-          x.beginPath(); x.arc(m.x, m.y, 7, 0, Math.PI * 2); x.fill();
+
+          /* Đuôi sao băng */
+          var gradient = ctx.createLinearGradient(m.x, m.y, tx, ty);
+          gradient.addColorStop(0, '#ffffff');
+          gradient.addColorStop(0.18, 'rgba(220,240,255,0.95)');
+          gradient.addColorStop(0.45, 'rgba(150,200,255,0.5)');
+          gradient.addColorStop(0.75, 'rgba(100,160,255,0.15)');
+          gradient.addColorStop(1, 'transparent');
+
+          ctx.strokeStyle = gradient;
+          ctx.lineWidth = m.width;
+          ctx.lineCap = 'round';
+          ctx.shadowBlur = 20;
+          ctx.shadowColor = '#ffffff';
+          ctx.beginPath();
+          ctx.moveTo(m.x, m.y);
+          ctx.lineTo(tx, ty);
+          ctx.stroke();
+          ctx.shadowBlur = 0;
+
+          /* Đầu sao băng — hạt sáng */
+          var headGrad = ctx.createRadialGradient(m.x, m.y, 0, m.x, m.y, 7);
+          headGrad.addColorStop(0, '#ffffff');
+          headGrad.addColorStop(0.4, 'rgba(255,255,255,0.85)');
+          headGrad.addColorStop(1, 'rgba(150,200,255,0)');
+          ctx.fillStyle = headGrad;
+          ctx.beginPath();
+          ctx.arc(m.x, m.y, 7, 0, Math.PI * 2);
+          ctx.fill();
+
+          /* Di chuyển */
           m.x += Math.cos(m.ang) * m.sp;
           m.y += Math.sin(m.ang) * m.sp;
-          if (m.y > H + 300 || m.x > W + 400) meteors.splice(j, 1);
+
+          /* Xoá khi bay khỏi màn hình */
+          if (m.y > H + 300 || m.x > W + 400) {
+            meteors.splice(j, 1);
+          }
         }
-        requestAnimationFrame(loop);
+
+        requestAnimationFrame(drawFrame);
       }
-      loop();
-    } catch (e) {}
+      drawFrame();
+    } catch (err) {
+      console.error('Stars effect error:', err);
+    }
   })();
 
-  /* ===== NHẠC ===== */
+  /* ================================================================
+     3.3.6. TRÌNH PHÁT NHẠC
+     ================================================================ */
   var TRACKS = [
     { name: 'Remix 1', src: 'https://raw.githubusercontent.com/proxyvipivn/SHOP-STORE-ALL-FF/refs/heads/main/Remix2.mp3.mp3' },
     { name: 'Remix 2', src: 'https://raw.githubusercontent.com/proxyvipivn/SHOP-STORE-ALL-FF/refs/heads/main/Remix.mp3%20.mp3' },
     { name: 'Cute Remix', src: 'https://raw.githubusercontent.com/proxyvipivn/SHOP-STORE-ALL-FF/refs/heads/main/cute.mp3.mp3' }
   ];
-  var bgMusic = null, curTrack = -1, playing = false;
+
+  var bgMusic = null;
+  var curTrack = -1;
+  var playing = false;
+
   function initMusic() {
     try {
       bgMusic = new Audio();
-      bgMusic.volume = 0.6; bgMusic.preload = 'auto';
-      bgMusic.addEventListener('ended', function () {
+      bgMusic.volume = 0.6;
+      bgMusic.preload = 'auto';
+
+      /* Tự động phát bài kế tiếp khi hết */
+      bgMusic.addEventListener('ended', function() {
         if (curTrack >= 0 && curTrack < TRACKS.length - 1) {
           selectTrack(curTrack + 1);
-          bgMusic.play().then(function () { playing = true; upMusicUI(); }).catch(function () {});
-        } else { playing = false; upMusicUI(); }
+          bgMusic.play()
+            .then(function() { playing = true; updateMusicUI(); })
+            .catch(function() {});
+        } else {
+          playing = false;
+          updateMusicUI();
+        }
       });
-      bgMusic.addEventListener('play', function () { playing = true; upMusicUI(); });
-      bgMusic.addEventListener('pause', function () { playing = false; upMusicUI(); });
-      bgMusic.addEventListener('error', function () {
-        toast('⚠️ Không tải được nhạc.', true); playing = false; upMusicUI();
+
+      bgMusic.addEventListener('play', function() {
+        playing = true;
+        updateMusicUI();
       });
-    } catch (e) {}
+
+      bgMusic.addEventListener('pause', function() {
+        playing = false;
+        updateMusicUI();
+      });
+
+      bgMusic.addEventListener('error', function() {
+        toast('⚠️ Không tải được nhạc. Kiểm tra lại link!', true);
+        playing = false;
+        updateMusicUI();
+      });
+    } catch (err) {
+      console.error('Music init error:', err);
+    }
   }
+
   function toggleMusicPanel(e) {
     if (e) e.stopPropagation();
     var panel = document.getElementById('musicPanel');
     if (panel) panel.classList.toggle('show');
   }
-  function selectTrack(i) {
-    if (i < 0 || i >= TRACKS.length) return;
-    curTrack = i;
+
+  function selectTrack(index) {
+    if (index < 0 || index >= TRACKS.length) return;
+    curTrack = index;
+
+    /* Cập nhật giao diện chọn bài */
     var items = document.querySelectorAll('.music-item');
-    for (var k = 0; k < items.length; k++) items[k].classList.toggle('sel', Number(items[k].getAttribute('data-idx')) === i);
+    for (var k = 0; k < items.length; k++) {
+      var isSel = Number(items[k].getAttribute('data-idx')) === index;
+      items[k].classList.toggle('sel', isSel);
+    }
+
     if (bgMusic) {
       var wasPlaying = playing;
-      bgMusic.pause(); bgMusic.src = TRACKS[i].src; bgMusic.load();
+      bgMusic.pause();
+      bgMusic.src = TRACKS[index].src;
+      bgMusic.load();
+
       var note = document.getElementById('musicNote');
-      if (note) note.textContent = 'Đã chọn: ' + TRACKS[i].name;
-      if (wasPlaying) bgMusic.play().then(function () { playing = true; upMusicUI(); }).catch(function () {});
+      if (note) note.textContent = 'Đã chọn: ' + TRACKS[index].name;
+
+      /* Nếu đang phát thì tiếp tục phát bài mới */
+      if (wasPlaying) {
+        bgMusic.play()
+          .then(function() { playing = true; updateMusicUI(); })
+          .catch(function() {});
+      }
     }
   }
+
   function togglePlay() {
     if (curTrack < 0) selectTrack(0);
-    if (!bgMusic) { toast('⚠️ Trình duyệt không hỗ trợ nhạc', true); return; }
-    if (playing) { bgMusic.pause(); playing = false; upMusicUI(); }
-    else {
-      if (!bgMusic.src && curTrack >= 0) bgMusic.src = TRACKS[curTrack].src;
-      bgMusic.play().then(function () {
-        playing = true; upMusicUI();
-        toast('🎵 Đang phát: ' + TRACKS[curTrack].name);
-      }).catch(function () { toast('⚠️ Không phát được nhạc', true); });
+    if (!bgMusic) {
+      toast('⚠️ Trình duyệt không hỗ trợ nhạc', true);
+      return;
+    }
+
+    if (playing) {
+      bgMusic.pause();
+      playing = false;
+      updateMusicUI();
+    } else {
+      if (!bgMusic.src && curTrack >= 0) {
+        bgMusic.src = TRACKS[curTrack].src;
+      }
+      bgMusic.play()
+        .then(function() {
+          playing = true;
+          updateMusicUI();
+          toast('🎵 Đang phát: ' + TRACKS[curTrack].name);
+        })
+        .catch(function() {
+          toast('⚠️ Không phát được nhạc', true);
+        });
     }
   }
-  function upMusicUI() {
-    var b = document.getElementById('musicBtn'), p = document.getElementById('musicPlayBtn');
-    if (playing) { b.classList.add('playing'); p.classList.add('playing'); p.textContent = '⏸ TẠM DỪNG'; }
-    else { b.classList.remove('playing'); p.classList.remove('playing'); p.textContent = '▶ PHÁT NHẠC'; }
+
+  function updateMusicUI() {
+    var btn = document.getElementById('musicBtn');
+    var playBtn = document.getElementById('musicPlayBtn');
+    if (!btn || !playBtn) return;
+
+    if (playing) {
+      btn.classList.add('playing');
+      playBtn.classList.add('playing');
+      playBtn.textContent = '⏸ TẠM DỪNG';
+    } else {
+      btn.classList.remove('playing');
+      playBtn.classList.remove('playing');
+      playBtn.textContent = '▶ PHÁT NHẠC';
+    }
   }
-  document.addEventListener('click', function (e) {
-    var p = document.getElementById('musicPanel');
-    var w = document.querySelector('.music-wrap');
-    if (p && p.classList.contains('show') && w && !w.contains(e.target)) p.classList.remove('show');
+
+  /* Đóng panel nhạc khi bấm ra ngoài */
+  document.addEventListener('click', function(e) {
+    var panel = document.getElementById('musicPanel');
+    var wrap = document.querySelector('.music-wrap');
+    if (panel && panel.classList.contains('show') && wrap && !wrap.contains(e.target)) {
+      panel.classList.remove('show');
+    }
   });
 
-  /* ===== HELPERS ===== */
-  function fmt(n) { return Number(n || 0).toLocaleString('vi-VN') + 'đ'; }
-  function rand(len) { var s = ''; for (var i = 0; i < len; i++) s += (Math.floor(Math.random() * 9) + 1); return s; }
-  function now() { return Date.now(); }
-  function timeStr(t) { return new Date(t).toLocaleString('vi-VN'); }
+  /* ================================================================
+     3.3.7. HÀM TIỆN ÍCH
+     ================================================================ */
+  function fmt(n) {
+    return Number(n || 0).toLocaleString('vi-VN') + 'đ';
+  }
 
+  function rand(len) {
+    var s = '';
+    for (var i = 0; i < len; i++) {
+      s += (Math.floor(Math.random() * 9) + 1);
+    }
+    return s;
+  }
+
+  function now() {
+    return Date.now();
+  }
+
+  function timeStr(t) {
+    return new Date(t).toLocaleString('vi-VN');
+  }
+
+  /* Toast thông báo ngắn */
   var toastT;
   function toast(msg, err) {
     var t = document.getElementById('toast');
-    t.textContent = msg; t.className = err ? 'show err' : 'show';
-    clearTimeout(toastT); toastT = setTimeout(function () { t.className = ''; }, 3500);
+    if (!t) return;
+    t.textContent = msg;
+    t.className = err ? 'show err' : 'show';
+    clearTimeout(toastT);
+    toastT = setTimeout(function() { t.className = ''; }, 3500);
   }
 
+  /* Sao chép văn bản vào clipboard */
   function copyText(text, btnEl) {
-    var doDone = function () {
+    var onSuccess = function() {
       toast('📋 Đã sao chép: ' + text);
-      if (btnEl) { btnEl.classList.add('copied'); setTimeout(function () { btnEl.classList.remove('copied'); }, 1200); }
+      if (btnEl) {
+        btnEl.classList.add('copied');
+        setTimeout(function() { btnEl.classList.remove('copied'); }, 1200);
+      }
     };
-    var doFallback = function () {
+
+    var fallback = function() {
       try {
         var ta = document.createElement('textarea');
-        ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
-        ta.style.top = '0'; ta.style.left = '0';
-        document.body.appendChild(ta); ta.focus(); ta.select();
-        var ok = document.execCommand('copy'); document.body.removeChild(ta);
-        if (ok) doDone(); else toast('❌ Không sao chép được.', true);
-      } catch (e) { toast('❌ Không sao chép được.', true); }
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        ta.style.top = '0';
+        ta.style.left = '0';
+        document.body.appendChild(ta);
+        ta.focus();
+        ta.select();
+        var ok = document.execCommand('copy');
+        document.body.removeChild(ta);
+        if (ok) onSuccess();
+        else toast('❌ Không sao chép được.', true);
+      } catch (err) {
+        toast('❌ Không sao chép được.', true);
+      }
     };
+
     if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(text).then(doDone).catch(doFallback);
-    } else doFallback();
+      navigator.clipboard.writeText(text).then(onSuccess).catch(fallback);
+    } else {
+      fallback();
+    }
   }
   window.__copyKey = copyText;
 
-  /* ==========================================================
-     HỆ THỐNG THÔNG BÁO QUEUE — HIỆN LẦN LƯỢT 5 GIÂY
-     ========================================================== */
-  var notifyQueue = [];
-  var notifying = false;
-
-  function queueNotify(msg, type) {
-    // type: 'pending' | 'done' | 'warn'
-    notifyQueue.push({ msg: msg, type: type });
-    if (!notifying) processNotifyQueue();
+  /* Session storage (lưu phiên đăng nhập 12h) */
+  function getSession() {
+    try { return JSON.parse(localStorage.getItem('ff_session')); }
+    catch (err) { return null; }
   }
 
-  function processNotifyQueue() {
-    if (notifyQueue.length === 0) { notifying = false; return; }
+  function setSession(v) {
+    try {
+      if (v) localStorage.setItem('ff_session', JSON.stringify(v));
+      else localStorage.removeItem('ff_session');
+    } catch (err) {}
+  }
+
+  /* ================================================================
+     3.3.8. HỆ THỐNG THÔNG BÁO QUEUE
+     ================================================================ */
+  function queueNotification(msg, type) {
+    notifyQueue.push({ msg: msg, type: type });
+    if (!notifying) {
+      processNotificationQueue();
+    }
+  }
+
+  function processNotificationQueue() {
+    if (notifyQueue.length === 0) {
+      notifying = false;
+      return;
+    }
     notifying = true;
+
     var item = notifyQueue.shift();
     var el = document.getElementById('orderNotification');
-    if (!el) { notifying = false; return; }
+    if (!el) {
+      notifying = false;
+      return;
+    }
+
     el.textContent = item.msg;
     el.className = '';
-    if (item.type === 'done') el.className = 'show done';
-    else if (item.type === 'warn') el.className = 'show warn';
-    else el.className = 'show';
+    if (item.type === 'done') {
+      el.className = 'show done';
+    } else if (item.type === 'warn') {
+      el.className = 'show warn';
+    } else {
+      el.className = 'show';
+    }
 
-    setTimeout(function () {
+    setTimeout(function() {
       el.className = '';
-      setTimeout(processNotifyQueue, 400);
+      setTimeout(processNotificationQueue, 400);
     }, 5000);
   }
 
-  /* ==========================================================
-     KIỂM TRA THÔNG BÁO NẠP TIỀN
-     ========================================================== */
-  function checkDepositNotify() {
+  /* ================================================================
+     3.3.9. KIỂM TRA THÔNG BÁO NẠP TIỀN
+     ================================================================ */
+  function checkDepositNotifications() {
     if (!CUR) return;
 
-    var myDeps = [];
+    var myDeposits = [];
     for (var i = 0; i < DB.deposits.length; i++) {
-      if (DB.deposits[i].user === CUR) myDeps.push(DB.deposits[i]);
+      if (DB.deposits[i].user === CUR) {
+        myDeposits.push(DB.deposits[i]);
+      }
     }
 
-    /* ===== PHẦN 1: ĐƠN ĐANG XỬ LÝ — HIỆN MỖI LẦN TẢI LẠI ===== */
+    /* PHẦN 1: ĐƠN ĐANG XỬ LÝ — HIỆN MỖI LẦN TẢI LẠI */
     var hasQRPending = false;
     var hasCardPending = false;
-    for (var j = 0; j < myDeps.length; j++) {
-      if (myDeps[j].status === 'wait') {
-        if (myDeps[j].type === 'QR') hasQRPending = true;
-        if (myDeps[j].type === 'CARD') hasCardPending = true;
+
+    for (var j = 0; j < myDeposits.length; j++) {
+      if (myDeposits[j].status === 'wait') {
+        if (myDeposits[j].type === 'QR') hasQRPending = true;
+        if (myDeposits[j].type === 'CARD') hasCardPending = true;
       }
     }
-    if (hasQRPending) queueNotify('Đơn hàng nạp MÃ QR đang được xử lý 🕠', 'warn');
-    if (hasCardPending) queueNotify('Đơn hàng nạp Thẻ car đang được xử lý 🕠', 'warn');
 
-    /* ===== PHẦN 2: ĐƠN ĐÃ XỬ LÝ — CHỈ HIỆN 1 LẦN ===== */
-    var keyD = 'ff_dep_notif_' + CUR;
-    var notified = [];
-    try { notified = JSON.parse(localStorage.getItem(keyD) || '[]'); } catch (e) { notified = []; }
+    if (hasQRPending) {
+      queueNotification('Đơn hàng nạp MÃ QR đang được xử lý 🕠', 'warn');
+    }
+    if (hasCardPending) {
+      queueNotification('Đơn hàng nạp Thẻ car đang được xử lý 🕠', 'warn');
+    }
 
-    for (var k = 0; k < myDeps.length; k++) {
-      var d = myDeps[k];
-      // Đơn đã xử lý thành công — chưa thông báo
-      if (d.status === 'done' && notified.indexOf(d.id) === -1) {
+    /* PHẦN 2: ĐƠN ĐÃ XỬ LÝ — CHỈ HIỆN 1 LẦN */
+    var notifKey = 'ff_dep_notif_' + CUR;
+    var notifiedIds = [];
+    try {
+      notifiedIds = JSON.parse(localStorage.getItem(notifKey) || '[]');
+    } catch (err) {
+      notifiedIds = [];
+    }
+
+    for (var k = 0; k < myDeposits.length; k++) {
+      var d = myDeposits[k];
+
+      /* Đơn thành công — chưa thông báo */
+      if (d.status === 'done' && notifiedIds.indexOf(d.id) === -1) {
         var amt = d.type === 'QR' ? d.amount : d.receive;
-        queueNotify('Nạp thành công ' + fmt(amt) + ' 🎉', 'done');
-        notified.push(d.id);
+        queueNotification('Nạp thành công ' + fmt(amt) + ' 🎉', 'done');
+        notifiedIds.push(d.id);
       }
-      // Đơn bị huỷ — đánh dấu luôn để không hiện lại
-      if (d.status === 'cancel' && notified.indexOf(d.id) === -1) {
-        notified.push(d.id);
+
+      /* Đơn bị huỷ — đánh dấu để không hiện lại */
+      if (d.status === 'cancel' && notifiedIds.indexOf(d.id) === -1) {
+        notifiedIds.push(d.id);
       }
     }
-    try { localStorage.setItem(keyD, JSON.stringify(notified)); } catch (e) {}
+
+    try {
+      localStorage.setItem(notifKey, JSON.stringify(notifiedIds));
+    } catch (err) {}
   }
 
-  /* ==========================================================
-     KIỂM TRA THÔNG BÁO ĐƠN MUA
-     ========================================================== */
-  function checkOrderNotify() {
+  /* ================================================================
+     3.3.10. KIỂM TRA THÔNG BÁO ĐƠN MUA
+     ================================================================ */
+  function checkOrderNotifications() {
     if (!CUR) return;
 
     var myOrders = [];
     for (var i = 0; i < DB.orders.length; i++) {
-      if (DB.orders[i].user === CUR) myOrders.push(DB.orders[i]);
+      if (DB.orders[i].user === CUR) {
+        myOrders.push(DB.orders[i]);
+      }
     }
 
-    var keyP = 'ff_notif_p_' + CUR;
-    var keyD = 'ff_notif_d_' + CUR;
-    var notifiedP = [];
-    var notifiedD = [];
-    try { notifiedP = JSON.parse(localStorage.getItem(keyP) || '[]'); } catch (e) { notifiedP = []; }
-    try { notifiedD = JSON.parse(localStorage.getItem(keyD) || '[]'); } catch (e) { notifiedD = []; }
+    var keyPending = 'ff_notif_p_' + CUR;
+    var keyDone = 'ff_notif_d_' + CUR;
+    var notifiedPending = [];
+    var notifiedDone = [];
 
-    // Đơn đang xử lý — đơn mới
+    try { notifiedPending = JSON.parse(localStorage.getItem(keyPending) || '[]'); }
+    catch (err) { notifiedPending = []; }
+    try { notifiedDone = JSON.parse(localStorage.getItem(keyDone) || '[]'); }
+    catch (err) { notifiedDone = []; }
+
+    /* Đơn đang xử lý — chỉ đơn mới */
     var pendingShown = false;
     for (var a = 0; a < myOrders.length; a++) {
       var o = myOrders[a];
-      if (o.status === 'wait' && notifiedP.indexOf(o.id) === -1) {
+      if (o.status === 'wait' && notifiedPending.indexOf(o.id) === -1) {
         if (!pendingShown) {
-          queueNotify('Sản phẩm vẫn đang trong quá trình xử lý ⚡️', 'pending');
+          queueNotification('Sản phẩm vẫn đang trong quá trình xử lý ⚡️', 'pending');
           pendingShown = true;
         }
-        notifiedP.push(o.id);
+        notifiedPending.push(o.id);
       }
     }
 
-    // Đơn đã xử lý (có key) — đơn mới
+    /* Đơn đã có key — chỉ đơn mới */
     var doneShown = false;
     for (var b = 0; b < myOrders.length; b++) {
       var oo = myOrders[b];
-      if (oo.status === 'done' && oo.key && notifiedD.indexOf(oo.id) === -1) {
+      if (oo.status === 'done' && oo.key && notifiedDone.indexOf(oo.id) === -1) {
         if (!doneShown) {
-          queueNotify('Đơn hàng của bạn đã được xử lý🎉', 'done');
+          queueNotification('Đơn hàng của bạn đã được xử lý🎉', 'done');
           doneShown = true;
         }
-        notifiedD.push(oo.id);
+        notifiedDone.push(oo.id);
       }
     }
 
-    try { localStorage.setItem(keyP, JSON.stringify(notifiedP)); } catch (e) {}
-    try { localStorage.setItem(keyD, JSON.stringify(notifiedD)); } catch (e) {}
+    try { localStorage.setItem(keyPending, JSON.stringify(notifiedPending)); } catch (err) {}
+    try { localStorage.setItem(keyDone, JSON.stringify(notifiedDone)); } catch (err) {}
   }
 
-  function runAllNotifies() {
-    checkDepositNotify();
-    checkOrderNotify();
+  function runAllNotifications() {
+    checkDepositNotifications();
+    checkOrderNotifications();
   }
 
-  function getS() { try { return JSON.parse(localStorage.getItem('ff_session')); } catch (e) { return null; } }
-  function setS(v) { try { if (v) localStorage.setItem('ff_session', JSON.stringify(v)); else localStorage.removeItem('ff_session'); } catch (e) {} }
-
-  /* ===== FIREBASE SYNC ===== */
-  function setupListeners() {
+  /* ================================================================
+     3.3.11. LẮNG NGHE DỮ LIỆU TỪ FIREBASE
+     ================================================================ */
+  function setupFirebaseListeners() {
     if (!db) return;
 
-    db.ref('users').on('value', function (s) {
-      DB.users = s.val() || {};
-      if (CUR) { upUI(); renderDiscountBanner(); renderIOS(); renderEsgin(); }
-      if (document.getElementById('adminPanel').style.display === 'block') renderAdmin();
-    });
-
-    db.ref('deposits').on('value', function (s) {
-      DB.deposits = s.val() || [];
-      if (CUR && document.getElementById('page-history').classList.contains('active')) renderHist();
-      if (document.getElementById('adminPanel').style.display === 'block') renderAdmin();
-      // Khi data thay đổi và user đang login → check notification mới (không spam pending)
-      if (CUR && _notifyCheckedThisSession) {
-        checkDepositNotify();
-        checkOrderNotify();
-      }
-    });
-
-    db.ref('orders').on('value', function (s) {
-      DB.orders = s.val() || [];
+    /* Người dùng */
+    db.ref('users').on('value', function(snap) {
+      DB.users = snap.val() || {};
       if (CUR) {
         upUI();
-        if (document.getElementById('page-history').classList.contains('active')) renderHist();
+        renderDiscountBanner();
+        renderIOS();
+        renderEsgin();
       }
-      if (document.getElementById('adminPanel').style.display === 'block') renderAdmin();
+      if (document.getElementById('adminPanel').style.display === 'block') {
+        renderAdmin();
+      }
+    });
+
+    /* Nạp tiền */
+    db.ref('deposits').on('value', function(snap) {
+      DB.deposits = snap.val() || [];
+      if (CUR && document.getElementById('page-history').classList.contains('active')) {
+        renderHist();
+      }
+      if (document.getElementById('adminPanel').style.display === 'block') {
+        renderAdmin();
+      }
+      /* Nếu đã check thông báo 1 lần → check lại khi có cập nhật */
       if (CUR && _notifyCheckedThisSession) {
-        checkOrderNotify();
+        checkDepositNotifications();
+        checkOrderNotifications();
       }
     });
 
-    db.ref('reviews').on('value', function (s) {
-      DB.reviews = s.val() || [];
-      if (document.getElementById('adminPanel').style.display === 'block') renderAdmin();
+    /* Đơn mua */
+    db.ref('orders').on('value', function(snap) {
+      DB.orders = snap.val() || [];
+      if (CUR) {
+        upUI();
+        if (document.getElementById('page-history').classList.contains('active')) {
+          renderHist();
+        }
+      }
+      if (document.getElementById('adminPanel').style.display === 'block') {
+        renderAdmin();
+      }
+      if (CUR && _notifyCheckedThisSession) {
+        checkOrderNotifications();
+      }
     });
 
-    db.ref('config').on('value', function (s) {
-      var d = s.val() || {};
+    /* Đánh giá */
+    db.ref('reviews').on('value', function(snap) {
+      DB.reviews = snap.val() || [];
+      if (document.getElementById('adminPanel').style.display === 'block') {
+        renderAdmin();
+      }
+    });
+
+    /* Cấu hình (giá + giảm giá toàn shop) */
+    db.ref('config').on('value', function(snap) {
+      var d = snap.val() || {};
       DB.config = {
         prices: d.prices || {},
         bulkDiscount: Number(d.bulkDiscount) || 0
       };
-      renderIOS(); renderEsgin();
-      if (document.getElementById('adminPanel').style.display === 'block') renderAdmin();
+      renderIOS();
+      renderEsgin();
+      if (document.getElementById('adminPanel').style.display === 'block') {
+        renderAdmin();
+      }
     });
   }
 
+  /* Load dữ liệu ban đầu */
   if (db) {
-    db.ref('/').once('value').then(function (s) {
-      var d = s.val() || {};
-      DB.users = d.users || {};
-      DB.deposits = d.deposits || [];
-      DB.orders = d.orders || [];
-      DB.reviews = d.reviews || [];
-      DB.config = {
-        prices: (d.config && d.config.prices) || {},
-        bulkDiscount: (d.config && Number(d.config.bulkDiscount)) || 0
-      };
-      setupListeners();
-    }).catch(function (e) { console.error(e); setupListeners(); });
+    db.ref('/').once('value')
+      .then(function(snap) {
+        var d = snap.val() || {};
+        DB.users = d.users || {};
+        DB.deposits = d.deposits || [];
+        DB.orders = d.orders || [];
+        DB.reviews = d.reviews || [];
+        DB.config = {
+          prices: (d.config && d.config.prices) || {},
+          bulkDiscount: (d.config && Number(d.config.bulkDiscount)) || 0
+        };
+        setupFirebaseListeners();
+      })
+      .catch(function(err) {
+        console.error('Load data error:', err);
+        setupFirebaseListeners();
+      });
   }
 
-  /* ===== AUTH ===== */
+  /* ================================================================
+     3.3.12. ĐĂNG NHẬP / ĐĂNG KÝ
+     ================================================================ */
   function switchTab(t) {
-    var l = (t === 'login');
-    document.getElementById('tabLogin').classList.toggle('active', l);
-    document.getElementById('tabReg').classList.toggle('active', !l);
-    document.getElementById('formLogin').style.display = l ? 'block' : 'none';
-    document.getElementById('formReg').style.display = l ? 'none' : 'block';
+    var isLogin = (t === 'login');
+    document.getElementById('tabLogin').classList.toggle('active', isLogin);
+    document.getElementById('tabReg').classList.toggle('active', !isLogin);
+    document.getElementById('formLogin').style.display = isLogin ? 'block' : 'none';
+    document.getElementById('formReg').style.display = isLogin ? 'none' : 'block';
     document.getElementById('authMsg').className = 'msg';
   }
-  function aMsg(t, ok) {
+
+  function authMsg(text, isOk) {
     var m = document.getElementById('authMsg');
-    m.textContent = t; m.className = 'msg ' + (ok ? 'ok' : 'err');
+    m.textContent = text;
+    m.className = 'msg ' + (isOk ? 'ok' : 'err');
   }
+
   function bootAuth() {
-    var s = getS();
+    var s = getSession();
     if (s && s.user && s.exp > now() && DB.users[s.user]) {
       document.getElementById('auth').style.display = 'none';
       document.getElementById('app').style.display = 'block';
       enterApp(s.user);
       return;
     }
-    if (s) setS(null);
+    if (s) setSession(null);
     document.getElementById('auth').style.display = 'flex';
   }
+
   function doRegister() {
-    var u = document.getElementById('rgUser').value.trim();
-    var p = document.getElementById('rgPass').value;
-    var p2 = document.getElementById('rgPass2').value;
-    if (!u || !p) return aMsg('⚠️ Vui lòng nhập đầy đủ tên tài khoản và mật khẩu');
-    if (u.length < 3) return aMsg('⚠️ Tên tài khoản phải từ 3 ký tự trở lên');
-    if (p.length < 4) return aMsg('⚠️ Mật khẩu phải từ 4 ký tự trở lên');
-    if (p !== p2) return aMsg('⚠️ Mật khẩu nhập lại không khớp');
-    if (!db) return aMsg('❌ Chưa kết nối máy chủ.');
-    db.ref('users/' + u).once('value').then(function (s) {
-      if (s.exists()) { aMsg('❌ Tên tài khoản "' + u + '" đã được đăng ký!'); return; }
-      db.ref('users/' + u).set({
-        password: p, ib: rand(7), balance: 0,
-        totalDeposit: 0, totalSpent: 0, discount: 0,
-        customPrices: {}, createdAt: now()
-      }).then(function () {
-        aMsg('✅ Đăng ký thành công! Hãy đăng nhập ngay.', true);
-        document.getElementById('rgUser').value = '';
-        document.getElementById('rgPass').value = '';
-        document.getElementById('rgPass2').value = '';
-        setTimeout(function () { switchTab('login'); }, 1100);
-      }).catch(function (e) { aMsg('❌ Lỗi: ' + e.message); });
-    }).catch(function (e) { aMsg('❌ Lỗi: ' + e.message); });
+    var username = document.getElementById('rgUser').value.trim();
+    var pass = document.getElementById('rgPass').value;
+    var pass2 = document.getElementById('rgPass2').value;
+
+    if (!username || !pass) return authMsg('⚠️ Vui lòng nhập đầy đủ tên tài khoản và mật khẩu');
+    if (username.length < 3) return authMsg('⚠️ Tên tài khoản phải từ 3 ký tự trở lên');
+    if (pass.length < 4) return authMsg('⚠️ Mật khẩu phải từ 4 ký tự trở lên');
+    if (pass !== pass2) return authMsg('⚠️ Mật khẩu nhập lại không khớp');
+    if (!db) return authMsg('❌ Chưa kết nối máy chủ. Vui lòng tải lại trang.');
+
+    db.ref('users/' + username).once('value')
+      .then(function(snap) {
+        if (snap.exists()) {
+          authMsg('❌ Tên tài khoản "' + username + '" đã được đăng ký! Vui lòng chọn tên khác.');
+          return;
+        }
+
+        db.ref('users/' + username).set({
+          password: pass,
+          ib: rand(7),
+          balance: 0,
+          totalDeposit: 0,
+          totalSpent: 0,
+          discount: 0,
+          customPrices: {},
+          createdAt: now()
+        })
+          .then(function() {
+            authMsg('✅ Đăng ký thành công! Hãy đăng nhập ngay.', true);
+            document.getElementById('rgUser').value = '';
+            document.getElementById('rgPass').value = '';
+            document.getElementById('rgPass2').value = '';
+            setTimeout(function() { switchTab('login'); }, 1100);
+          })
+          .catch(function(err) {
+            authMsg('❌ Lỗi: ' + err.message);
+          });
+      })
+      .catch(function(err) {
+        authMsg('❌ Lỗi: ' + err.message);
+      });
   }
+
   function doLogin() {
-    var u = document.getElementById('lgUser').value.trim();
-    var p = document.getElementById('lgPass').value;
-    if (!u || !p) return aMsg('⚠️ Vui lòng nhập tên tài khoản và mật khẩu');
-    if (!db) return aMsg('❌ Chưa kết nối máy chủ.');
-    db.ref('users/' + u).once('value').then(function (s) {
-      var user = s.val();
-      if (!user) return aMsg('❌ Tài khoản không tồn tại!');
-      if (user.password !== p) return aMsg('❌ Mật khẩu không đúng!');
-      setS({ user: u, exp: now() + 12 * 60 * 60 * 1000 });
-      aMsg('✅ Đăng nhập thành công!', true);
-      setTimeout(function () {
-        document.getElementById('auth').style.display = 'none';
-        document.getElementById('lgUser').value = '';
-        document.getElementById('lgPass').value = '';
-        document.getElementById('authMsg').className = 'msg';
-        document.getElementById('app').style.display = 'block';
-        enterApp(u);
-      }, 520);
-    }).catch(function (e) { aMsg('❌ Lỗi: ' + e.message); });
+    var username = document.getElementById('lgUser').value.trim();
+    var pass = document.getElementById('lgPass').value;
+
+    if (!username || !pass) return authMsg('⚠️ Vui lòng nhập tên tài khoản và mật khẩu');
+    if (!db) return authMsg('❌ Chưa kết nối máy chủ. Vui lòng tải lại trang.');
+
+    db.ref('users/' + username).once('value')
+      .then(function(snap) {
+        var user = snap.val();
+        if (!user) return authMsg('❌ Tài khoản không tồn tại!');
+        if (user.password !== pass) return authMsg('❌ Mật khẩu không đúng!');
+
+        /* Lưu phiên 12 giờ */
+        setSession({
+          user: username,
+          exp: now() + 12 * 60 * 60 * 1000
+        });
+
+        authMsg('✅ Đăng nhập thành công!', true);
+
+        setTimeout(function() {
+          document.getElementById('auth').style.display = 'none';
+          document.getElementById('lgUser').value = '';
+          document.getElementById('lgPass').value = '';
+          document.getElementById('authMsg').className = 'msg';
+          document.getElementById('app').style.display = 'block';
+          enterApp(username);
+        }, 520);
+      })
+      .catch(function(err) {
+        authMsg('❌ Lỗi: ' + err.message);
+      });
   }
+
   function logout() {
-    setS(null); CUR = null;
+    setSession(null);
+    CUR = null;
     _notifyCheckedThisSession = false;
     notifyQueue = [];
     notifying = false;
@@ -1145,9 +3079,11 @@ try {
     toast('👋 Đã đăng xuất');
   }
 
-  /* ===== APP ===== */
-  function enterApp(user) {
-    CUR = user;
+  /* ================================================================
+     3.3.13. APP — VÀO TRANG CHÍNH
+     ================================================================ */
+  function enterApp(username) {
+    CUR = username;
     document.getElementById('auth').style.display = 'none';
     document.getElementById('app').style.display = 'block';
     upUI();
@@ -1155,75 +3091,103 @@ try {
     renderIOS();
     renderEsgin();
     navigate('account');
-    // Chạy tất cả thông báo sau khi vào app
-    setTimeout(function () {
+
+    /* Chạy thông báo sau 1.2 giây */
+    setTimeout(function() {
       if (!_notifyCheckedThisSession) {
         _notifyCheckedThisSession = true;
-        runAllNotifies();
+        runAllNotifications();
       }
     }, 1200);
   }
 
-  function uObj() { return DB.users[CUR] || {}; }
+  function getUserObj() {
+    return DB.users[CUR] || {};
+  }
 
+  /* Cập nhật giao diện user */
   function upUI() {
-    var u = uObj();
+    var u = getUserObj();
+
     document.getElementById('hdrBal').textContent = fmt(u.balance);
+
     var dc = getMyDiscount();
     var dcText = dc > 0 ? '<br><span class="dc">💸 Giảm giá: -' + dc + '%</span>' : '';
+
     document.getElementById('sideUser').innerHTML =
       '👤 <b>' + CUR + '</b><br>' +
       '<span class="ib">🔢 Số IB: ' + u.ib + '</span><br>' +
       '💰 Số dư: <b>' + fmt(u.balance) + '</b>' + dcText;
+
     document.getElementById('acName').textContent = CUR;
     document.getElementById('acIb').textContent = u.ib;
     document.getElementById('acDep').textContent = fmt(u.totalDeposit);
     document.getElementById('acSpent').textContent = fmt(u.totalSpent);
     document.getElementById('acBal').textContent = fmt(u.balance);
+
     renderAcOrders();
   }
 
+  /* Banner giảm giá */
   function renderDiscountBanner() {
     var dc = getMyDiscount();
     var bulk = Number(DB.config.bulkDiscount) || 0;
     var html = '';
+
     if (dc > 0 || bulk > 0) {
       var parts = [];
       if (bulk > 0) parts.push('SHOP GIẢM ' + bulk + '%');
       if (dc > 0) parts.push('BẠN ĐƯỢC GIẢM THÊM ' + dc + '%');
       html = '<div class="discount-banner">💸 <b>' + parts.join(' + ') + '</b> cho tất cả sản phẩm! 🎉</div>';
     }
-    ['discountBannerAcc', 'discountBannerIos', 'discountBannerEsgin'].forEach(function (id) {
-      var el = document.getElementById(id);
+
+    var ids = ['discountBannerAcc', 'discountBannerIos', 'discountBannerEsgin'];
+    for (var i = 0; i < ids.length; i++) {
+      var el = document.getElementById(ids[i]);
       if (el) el.innerHTML = html;
-    });
+    }
   }
 
+  /* Menu toggle */
   function toggleMenu() {
     document.getElementById('sidebar').classList.toggle('open');
     document.getElementById('overlay').classList.toggle('show');
     document.getElementById('burger').classList.toggle('open');
   }
-  function navigate(p) {
+
+  /* Điều hướng trang */
+  function navigate(page) {
     var pages = document.querySelectorAll('.page');
-    for (var i = 0; i < pages.length; i++) pages[i].classList.remove('active');
-    var el = document.getElementById('page-' + p);
+    for (var i = 0; i < pages.length; i++) {
+      pages[i].classList.remove('active');
+    }
+    var el = document.getElementById('page-' + page);
     if (el) el.classList.add('active');
+
     var lis = document.querySelectorAll('#menuList li[data-page]');
-    for (var j = 0; j < lis.length; j++) lis[j].classList.toggle('active', lis[j].getAttribute('data-page') === p);
+    for (var j = 0; j < lis.length; j++) {
+      lis[j].classList.toggle('active', lis[j].getAttribute('data-page') === page);
+    }
+
     document.getElementById('sidebar').classList.remove('open');
     document.getElementById('overlay').classList.remove('show');
     document.getElementById('burger').classList.remove('open');
+
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    if (p === 'history') renderHist();
-    if (p === 'hackios') renderIOS();
-    if (p === 'esgin') renderEsgin();
-    if (p === 'account') upUI();
+
+    if (page === 'history') renderHist();
+    if (page === 'hackios') renderIOS();
+    if (page === 'esgin') renderEsgin();
+    if (page === 'account') upUI();
   }
 
+  /* ================================================================
+     3.3.14. RENDER HTML GIÁ
+     ================================================================ */
   function renderPriceHTML(originalPrice, productName, planLabel) {
     var base = getBasePrice(productName, planLabel, originalPrice);
     var final = getFinalPrice(productName, planLabel, originalPrice);
+
     if (final < base) {
       var diff = Math.round((base - final) / base * 100);
       return '<div class="price-group">' +
@@ -1235,100 +3199,145 @@ try {
     return '<span class="pr">' + fmt(final) + '</span>';
   }
 
+  /* ================================================================
+     3.3.15. RENDER SẢN PHẨM IOS
+     ================================================================ */
   function renderIOS() {
-    var h = '';
+    var html = '';
+
     for (var i = 0; i < IOS.length; i++) {
-      var pr = IOS[i];
-      var pl = '';
-      for (var j = 0; j < pr.plans.length; j++) {
-        var p = pr.plans[j];
-        var base = getBasePrice(pr.name, p.l, p.p);
-        var finalPrice = getFinalPrice(pr.name, p.l, p.p);
-        pl += '<div class="plan">' +
-          '<span class="lb">' + p.l + '</span>' +
-          renderPriceHTML(p.p, pr.name, p.l) +
-          '<button class="buy" onclick="window.__buy(\'' + pr.name + '\',\'' + p.l + '\',' + finalPrice + ',' + base + ')">MUA</button>' +
+      var prod = IOS[i];
+      var plansHTML = '';
+
+      for (var j = 0; j < prod.plans.length; j++) {
+        var plan = prod.plans[j];
+        var base = getBasePrice(prod.name, plan.l, plan.p);
+        var finalPrice = getFinalPrice(prod.name, plan.l, plan.p);
+
+        plansHTML += '<div class="plan">' +
+          '<span class="lb">' + plan.l + '</span>' +
+          renderPriceHTML(plan.p, prod.name, plan.l) +
+          '<button class="buy" onclick="window.__buy(\'' + prod.name + '\',\'' + plan.l + '\',' + finalPrice + ',' + base + ')">MUA</button>' +
           '</div>';
       }
-      h += '<div class="prod">' +
-        '<img src="' + pr.img + '" loading="lazy" onerror="this.style.opacity=.35">' +
+
+      html += '<div class="prod">' +
+        '<img src="' + prod.img + '" loading="lazy" onerror="this.style.opacity=.35">' +
         '<div class="prod-body">' +
-        '<div class="prod-name">' + pr.name + '</div>' +
-        '<div class="prod-desc">' + pr.desc + '</div>' +
-        '<div class="plans">' + pl + '</div>' +
-        '</div></div>';
+        '<div class="prod-name">' + prod.name + '</div>' +
+        '<div class="prod-desc">' + prod.desc + '</div>' +
+        '<div class="plans">' + plansHTML + '</div>' +
+        '</div>' +
+        '</div>';
     }
-    document.getElementById('iosGrid').innerHTML = h;
+
+    document.getElementById('iosGrid').innerHTML = html;
   }
 
+  /* ================================================================
+     3.3.16. RENDER ESGIN
+     ================================================================ */
   function renderEsgin() {
-    var pl = '';
+    var plansHTML = '';
+
     for (var i = 0; i < ESGIN.length; i++) {
       var g = ESGIN[i];
       var label = g.name + ' - ' + g.desc;
       var base = getBasePrice('ESGIN = IOS', label, g.price);
       var finalPrice = getFinalPrice('ESGIN = IOS', label, g.price);
-      pl += '<div class="plan">' +
+
+      plansHTML += '<div class="plan">' +
         '<span class="lb">' + g.name + ' — ' + g.desc + '</span>' +
         renderPriceHTML(g.price, 'ESGIN = IOS', label) +
         '<button class="buy" onclick="window.__buy(\'ESGIN = IOS\',\'' + label + '\',' + finalPrice + ',' + base + ')">MUA</button>' +
         '</div>';
     }
+
     document.getElementById('esginGrid').innerHTML =
       '<div class="prod">' +
       '<img src="' + IMG + 'IMG_8154.jpeg" loading="lazy" onerror="this.style.opacity=.35">' +
       '<div class="prod-body">' +
       '<div class="prod-name">ESGIN = IOS 📱</div>' +
       '<div class="prod-desc">Tất cả các gói đều 1 năm\nHỗ trợ cài IPA, hack FF & nhiều app khác</div>' +
-      '<div class="plans">' + pl + '</div>' +
-      '</div></div>';
+      '<div class="plans">' + plansHTML + '</div>' +
+      '</div>' +
+      '</div>';
   }
 
-  window.__buy = function (name, plan, finalPrice, basePrice) {
-    var u = uObj();
+  /* ================================================================
+     3.3.17. MUA HÀNG
+     ================================================================ */
+  window.__buy = function(name, plan, finalPrice, basePrice) {
+    var u = getUserObj();
     var priceToUse = (typeof finalPrice === 'number' && finalPrice > 0) ? finalPrice : basePrice;
+
     if ((u.balance || 0) < priceToUse) {
       toast('❌ Bạn cần nạp thêm tiền để mua! Thiếu ' + fmt(priceToUse - (u.balance || 0)), true);
       return;
     }
     if (!db) return toast('❌ Chưa kết nối máy chủ', true);
-    db.ref('users/' + CUR).once('value').then(function (s) {
-      var f = s.val();
-      if (!f) return;
-      if ((f.balance || 0) < priceToUse) {
-        toast('❌ Số dư không đủ! Vui lòng nạp thêm.', true);
-        return;
-      }
-      f.balance -= priceToUse;
-      f.totalSpent = (f.totalSpent || 0) + priceToUse;
-      db.ref('users/' + CUR).set(f);
-      var o = DB.orders.slice();
-      o.unshift({
-        id: rand(8), user: CUR, name: name, plan: plan,
-        price: priceToUse,
-        originalPrice: basePrice || priceToUse,
-        discount: getMyDiscount(),
-        bulkDiscount: Number(DB.config.bulkDiscount) || 0,
-        status: 'wait', key: '', createdAt: now()
+
+    db.ref('users/' + CUR).once('value')
+      .then(function(snap) {
+        var fresh = snap.val();
+        if (!fresh) return;
+
+        if ((fresh.balance || 0) < priceToUse) {
+          toast('❌ Số dư không đủ! Vui lòng nạp thêm.', true);
+          return;
+        }
+
+        fresh.balance -= priceToUse;
+        fresh.totalSpent = (fresh.totalSpent || 0) + priceToUse;
+        db.ref('users/' + CUR).set(fresh);
+
+        var orders = DB.orders.slice();
+        orders.unshift({
+          id: rand(8),
+          user: CUR,
+          name: name,
+          plan: plan,
+          price: priceToUse,
+          originalPrice: basePrice || priceToUse,
+          discount: getMyDiscount(),
+          bulkDiscount: Number(DB.config.bulkDiscount) || 0,
+          status: 'wait',
+          key: '',
+          createdAt: now()
+        });
+        DB.orders = orders;
+        db.ref('orders').set(orders);
+
+        upUI();
+        toast('🎉 Chức mừng bạn đã mua hàng thành công! Vui lòng chờ 1-30 phút đơn hàng sẽ được xử lý.');
+      })
+      .catch(function(err) {
+        toast('❌ Lỗi: ' + err.message, true);
       });
-      DB.orders = o;
-      db.ref('orders').set(o);
-      upUI();
-      toast('🎉 Chức mừng bạn đã mua hàng thành công! Vui lòng chờ 1-30 phút đơn hàng sẽ được xử lý.');
-    }).catch(function (e) { toast('❌ Lỗi: ' + e.message, true); });
   };
 
+  /* ================================================================
+     3.3.18. TẠO MÃ QR
+     ================================================================ */
   function createQR() {
     var amt = Number(document.getElementById('qrAmount').value);
     if (!amt || amt < 5000) return toast('⚠️ Số tiền tối thiểu là 5.000đ', true);
     if (amt > 5000000) return toast('⚠️ Số tiền tối đa là 5.000.000đ', true);
+
     var code = rand(6);
-    var d = {
-      id: rand(8), user: CUR, type: 'QR', amount: amt,
-      code: code, status: 'wait', createdAt: now()
+    var dep = {
+      id: rand(8),
+      user: CUR,
+      type: 'QR',
+      amount: amt,
+      code: code,
+      status: 'wait',
+      createdAt: now()
     };
-    DB.deposits.unshift(d);
+
+    DB.deposits.unshift(dep);
     if (db) db.ref('deposits').set(DB.deposits);
+
     document.getElementById('qrResult').innerHTML =
       '<div class="qr-box">' +
       '<img src="' + IMG + 'IMG_8134.jpeg" alt="QR">' +
@@ -1338,450 +3347,767 @@ try {
       '👤 Tên: <b>TRAN TRUNG SANG</b><br>' +
       '💰 Số tiền: <b class="hl">' + fmt(amt) + '</b><br>' +
       '📝 Nội dung CK: <b class="hl">' + code + '</b><br>' +
-      '🧾 Mã đơn: <b>' + d.id + '</b>' +
+      '🧾 Mã đơn: <b>' + dep.id + '</b>' +
       '</div>' +
       '<div class="note-warn">⚠️ LƯU Ý: Chuyển khoản ĐÚNG nội dung "' + code + '"<br>Admin sẽ xác nhận và cộng tiền vào tài khoản.</div>' +
       '</div>';
+
     toast('✅ Đã tạo mã QR! Vui lòng chuyển khoản đúng nội dung.');
   }
 
-  var RATE = {
-    10000: 8500, 20000: 18000, 50000: 47000,
-    100000: 96500, 200000: 195000, 500000: 490000
-  };
-
+  /* ================================================================
+     3.3.19. NẠP THẺ CAR
+     ================================================================ */
   function submitCard() {
     var amt = Number(document.getElementById('cardAmt').value);
     var type = document.getElementById('cardType').value;
     var code = document.getElementById('cardCode').value.trim();
     var seri = document.getElementById('cardSeri').value.trim();
+
     if (!code || !seri) return toast('⚠️ Vui lòng nhập đầy đủ Mã thẻ và Seri!', true);
-    if (code.length < 6 || seri.length < 6) return toast('⚠️ Mã thẻ hoặc Seri không hợp lệ!', true);
-    var d = {
-      id: rand(8), user: CUR, type: 'CARD', amount: amt,
-      receive: RATE[amt] || 0, cardType: type,
-      cardCode: code, cardSeri: seri,
-      status: 'wait', createdAt: now()
+    if (code.length < 6 || seri.length < 6) return toast('⚠️ Mã thẻ hoặc Seri không hợp lệ (quá ngắn)!', true);
+
+    var dep = {
+      id: rand(8),
+      user: CUR,
+      type: 'CARD',
+      amount: amt,
+      receive: RATE[amt] || 0,
+      cardType: type,
+      cardCode: code,
+      cardSeri: seri,
+      status: 'wait',
+      createdAt: now()
     };
-    DB.deposits.unshift(d);
+
+    DB.deposits.unshift(dep);
     if (db) db.ref('deposits').set(DB.deposits);
+
     document.getElementById('cardCode').value = '';
     document.getElementById('cardSeri').value = '';
+
     toast('✅ Đã gửi thẻ! Admin đang kiểm tra và xử lý.');
   }
 
-  function switchHist(m) {
-    histMode = m;
-    var t = document.querySelectorAll('.subtab');
-    for (var i = 0; i < t.length; i++) t[i].classList.toggle('active', t[i].getAttribute('data-h') === m);
+  /* ================================================================
+     3.3.20. LỊCH SỬ
+     ================================================================ */
+  function switchHist(mode) {
+    histMode = mode;
+    var tabs = document.querySelectorAll('.subtab');
+    for (var i = 0; i < tabs.length; i++) {
+      tabs[i].classList.toggle('active', tabs[i].getAttribute('data-h') === mode);
+    }
     renderHist();
   }
 
   function renderHist() {
     var box = document.getElementById('histBox');
-    var h = '';
+    var html = '';
+
     if (histMode === 'dep') {
-      var mine = [];
-      for (var i = 0; i < DB.deposits.length; i++) if (DB.deposits[i].user === CUR) mine.push(DB.deposits[i]);
-      if (!mine.length) h = '<div class="empty">📭 Chưa có giao dịch nạp tiền nào</div>';
-      else for (var j = 0; j < mine.length; j++) {
-        var d = mine[j];
-        var b = d.status === 'wait' ? '<span class="badge wait">ĐANG XỬ LÝ</span>' : d.status === 'done' ? '<span class="badge done">HOÀN THÀNH</span>' : '<span class="badge cancel">ĐÃ HUỶ</span>';
-        var info = d.type === 'QR' ? '💳 Nạp QR — Nội dung: <b style="color:#ffe600">' + d.code + '</b>' : '💳 Thẻ ' + d.cardType + ' — Mệnh giá ' + fmt(d.amount) + ' → nhận ' + fmt(d.receive);
-        var a = d.type === 'QR' ? d.amount : d.receive;
-        h += '<div class="item"><div class="l"><b>Mã đơn: ' + d.id + '</b><small>' + info + '</small><small>Số tiền: <b style="color:#00ff88">' + fmt(a) + '</b></small><small>🕐 ' + timeStr(d.createdAt) + '</small></div>' + b + '</div>';
+      /* Tab nạp tiền */
+      var myDeps = [];
+      for (var i = 0; i < DB.deposits.length; i++) {
+        if (DB.deposits[i].user === CUR) myDeps.push(DB.deposits[i]);
+      }
+
+      if (!myDeps.length) {
+        html = '<div class="empty">📭 Chưa có giao dịch nạp tiền nào</div>';
+      } else {
+        for (var j = 0; j < myDeps.length; j++) {
+          var d = myDeps[j];
+          var badge = d.status === 'wait'
+            ? '<span class="badge wait">ĐANG XỬ LÝ</span>'
+            : d.status === 'done'
+              ? '<span class="badge done">HOÀN THÀNH</span>'
+              : '<span class="badge cancel">ĐÃ HUỶ</span>';
+
+          var info = d.type === 'QR'
+            ? '💳 Nạp QR — Nội dung: <b style="color:#ffe600">' + d.code + '</b>'
+            : '💳 Thẻ ' + d.cardType + ' — Mệnh giá ' + fmt(d.amount) + ' → nhận ' + fmt(d.receive);
+
+          var amountShow = d.type === 'QR' ? d.amount : d.receive;
+
+          html += '<div class="item">' +
+            '<div class="l">' +
+            '<b>Mã đơn: ' + d.id + '</b>' +
+            '<small>' + info + '</small>' +
+            '<small>Số tiền: <b style="color:#00ff88">' + fmt(amountShow) + '</b></small>' +
+            '<small>🕐 ' + timeStr(d.createdAt) + '</small>' +
+            '</div>' + badge +
+            '</div>';
+        }
       }
     } else if (histMode === 'key') {
-      var got = [];
-      for (var a = 0; a < DB.orders.length; a++) if (DB.orders[a].user === CUR && DB.orders[a].key) got.push(DB.orders[a]);
-      if (!got.length) h = '<div class="empty">🔑 Chưa có key nào được gửi</div>';
-      else for (var b2 = 0; b2 < got.length; b2++) {
-        var o = got[b2];
-        var keyEsc = String(o.key).replace(/'/g, "\\'").replace(/"/g, '&quot;');
-        h += '<div class="item"><div class="l"><b>' + o.name + ' — ' + o.plan + '</b>' +
-          '<div class="key-row"><span class="key-text">🔑 ' + o.key + '</span>' +
-          '<button class="copy-btn" onclick="window.__copyKey(\'' + keyEsc + '\', this)" title="Sao chép key">📋</button></div>' +
-          '<small>🕐 ' + timeStr(o.createdAt) + '</small></div>' +
-          '<span class="badge done">HOÀN THÀNH</span></div>';
+      /* Tab nhận key */
+      var keyOrders = [];
+      for (var a = 0; a < DB.orders.length; a++) {
+        if (DB.orders[a].user === CUR && DB.orders[a].key) {
+          keyOrders.push(DB.orders[a]);
+        }
+      }
+
+      if (!keyOrders.length) {
+        html = '<div class="empty">🔑 Chưa có key nào được gửi</div>';
+      } else {
+        for (var b = 0; b < keyOrders.length; b++) {
+          var o = keyOrders[b];
+          var keyEsc = String(o.key).replace(/'/g, "\\'").replace(/"/g, '&quot;');
+
+          html += '<div class="item">' +
+            '<div class="l">' +
+            '<b>' + o.name + ' — ' + o.plan + '</b>' +
+            '<div class="key-row">' +
+            '<span class="key-text">🔑 ' + o.key + '</span>' +
+            '<button class="copy-btn" onclick="window.__copyKey(\'' + keyEsc + '\', this)" title="Sao chép key">📋</button>' +
+            '</div>' +
+            '<small>🕐 ' + timeStr(o.createdAt) + '</small>' +
+            '</div>' +
+            '<span class="badge done">HOÀN THÀNH</span>' +
+            '</div>';
+        }
       }
     } else {
-      var mine2 = [];
-      for (var c = 0; c < DB.orders.length; c++) if (DB.orders[c].user === CUR) mine2.push(DB.orders[c]);
-      if (!mine2.length) h = '<div class="empty">🛒 Chưa có đơn mua nào</div>';
-      else for (var d2 = 0; d2 < mine2.length; d2++) {
-        var oo = mine2[d2];
-        var bb = oo.status === 'done' ? '<span class="badge done">HOÀN THÀNH</span>' : '<span class="badge wait">ĐANG XỬ LÝ</span>';
-        var priceLine = 'Giá: <b style="color:#ffe600">' + fmt(oo.price) + '</b>';
-        if (oo.originalPrice && oo.originalPrice > oo.price) {
-          priceLine = 'Giá gốc: <span style="text-decoration:line-through;color:#ff7d96">' + fmt(oo.originalPrice) + '</span> → <b style="color:#00ff88">' + fmt(oo.price) + '</b>';
+      /* Tab đơn mua */
+      var myOrders = [];
+      for (var c = 0; c < DB.orders.length; c++) {
+        if (DB.orders[c].user === CUR) myOrders.push(DB.orders[c]);
+      }
+
+      if (!myOrders.length) {
+        html = '<div class="empty">🛒 Chưa có đơn mua nào</div>';
+      } else {
+        for (var d2 = 0; d2 < myOrders.length; d2++) {
+          var oo = myOrders[d2];
+          var badge2 = oo.status === 'done'
+            ? '<span class="badge done">HOÀN THÀNH</span>'
+            : '<span class="badge wait">ĐANG XỬ LÝ</span>';
+
+          var priceLine = 'Giá: <b style="color:#ffe600">' + fmt(oo.price) + '</b>';
+          if (oo.originalPrice && oo.originalPrice > oo.price) {
+            priceLine = 'Giá gốc: <span style="text-decoration:line-through;color:#ff7d96">' +
+              fmt(oo.originalPrice) + '</span> → <b style="color:#00ff88">' + fmt(oo.price) + '</b>';
+          }
+
+          html += '<div class="item">' +
+            '<div class="l">' +
+            '<b>' + oo.name + '</b>' +
+            '<small>Gói: ' + oo.plan + '</small>' +
+            '<small>' + priceLine + '</small>' +
+            '<small>Mã đơn: ' + oo.id + ' • 🕐 ' + timeStr(oo.createdAt) + '</small>' +
+            '</div>' + badge2 +
+            '</div>';
         }
-        h += '<div class="item"><div class="l"><b>' + oo.name + '</b><small>Gói: ' + oo.plan + '</small><small>' + priceLine + '</small><small>Mã đơn: ' + oo.id + ' • 🕐 ' + timeStr(oo.createdAt) + '</small></div>' + bb + '</div>';
       }
     }
-    box.innerHTML = h;
+
+    box.innerHTML = html;
   }
 
+  /* Đơn mua ở trang Tài khoản */
   function renderAcOrders() {
     var box = document.getElementById('acOrders');
     if (!box) return;
-    var mine = [];
-    for (var i = 0; i < DB.orders.length; i++) if (DB.orders[i].user === CUR) mine.push(DB.orders[i]);
-    if (!mine.length) { box.innerHTML = '<div class="empty">Chưa có đơn mua nào</div>'; return; }
-    var h = '';
-    for (var j = 0; j < Math.min(mine.length, 10); j++) {
-      var o = mine[j];
-      var b = o.status === 'done' ? '<span class="badge done">HOÀN THÀNH</span>' : '<span class="badge wait">ĐANG XỬ LÝ</span>';
-      h += '<div class="item"><div class="l"><b>' + o.name + '</b><small>' + o.plan + ' • ' + fmt(o.price) + '</small></div>' + b + '</div>';
+
+    var myOrders = [];
+    for (var i = 0; i < DB.orders.length; i++) {
+      if (DB.orders[i].user === CUR) myOrders.push(DB.orders[i]);
     }
-    box.innerHTML = h;
+
+    if (!myOrders.length) {
+      box.innerHTML = '<div class="empty">Chưa có đơn mua nào</div>';
+      return;
+    }
+
+    var html = '';
+    var limit = Math.min(myOrders.length, 10);
+    for (var j = 0; j < limit; j++) {
+      var o = myOrders[j];
+      var badge = o.status === 'done'
+        ? '<span class="badge done">HOÀN THÀNH</span>'
+        : '<span class="badge wait">ĐANG XỬ LÝ</span>';
+
+      html += '<div class="item">' +
+        '<div class="l"><b>' + o.name + '</b><small>' + o.plan + ' • ' + fmt(o.price) + '</small></div>' +
+        badge +
+        '</div>';
+    }
+    box.innerHTML = html;
   }
 
-  (function () {
-    var s = document.querySelectorAll('#starPick span');
-    for (var i = 0; i < s.length; i++) {
-      (function (el) {
-        el.addEventListener('click', function () {
+  /* ================================================================
+     3.3.21. ĐÁNH GIÁ
+     ================================================================ */
+  (function initStarPicker() {
+    var spans = document.querySelectorAll('#starPick span');
+    for (var i = 0; i < spans.length; i++) {
+      (function(el) {
+        el.addEventListener('click', function() {
           stars = Number(el.getAttribute('data-s'));
           var all = document.querySelectorAll('#starPick span');
-          for (var k = 0; k < all.length; k++) all[k].classList.toggle('on', Number(all[k].getAttribute('data-s')) <= stars);
+          for (var k = 0; k < all.length; k++) {
+            all[k].classList.toggle('on', Number(all[k].getAttribute('data-s')) <= stars);
+          }
         });
-      })(s[i]);
+      })(spans[i]);
     }
   })();
 
   function sendReview() {
     if (!stars) return toast('⚠️ Vui lòng chọn số sao từ 1-5 ⭐', true);
+
     var text = document.getElementById('rvText').value.trim();
-    DB.reviews.unshift({ id: rand(6), user: CUR, stars: stars, text: text, createdAt: now() });
+
+    DB.reviews.unshift({
+      id: rand(6),
+      user: CUR,
+      stars: stars,
+      text: text,
+      createdAt: now()
+    });
     if (db) db.ref('reviews').set(DB.reviews);
+
     document.getElementById('rvText').value = '';
     stars = 0;
+
     var all = document.querySelectorAll('#starPick span');
     for (var i = 0; i < all.length; i++) all[i].classList.remove('on');
+
     toast('🎉 Cảm ơn bạn đã gửi đánh giá!');
   }
 
-  function openLink(u) { window.open(u, '_blank'); }
+  function openLink(url) {
+    window.open(url, '_blank');
+  }
 
+  /* ================================================================
+     3.3.22. ADMIN — XÁC THỰC
+     ================================================================ */
   function openAdminGate() {
     document.getElementById('adminModal').classList.add('show');
     document.getElementById('adminPass').value = '';
     document.getElementById('adminMsg').className = 'msg';
-    setTimeout(function () { document.getElementById('adminPass').focus(); }, 120);
+    setTimeout(function() {
+      document.getElementById('adminPass').focus();
+    }, 120);
   }
-  function closeAdminGate() { document.getElementById('adminModal').classList.remove('show'); }
+
+  function closeAdminGate() {
+    document.getElementById('adminModal').classList.remove('show');
+  }
+
   function checkAdmin() {
     var v = document.getElementById('adminPass').value;
     var m = document.getElementById('adminMsg');
-    if (v !== ADMIN_PASS) { m.textContent = '❌ Mật khẩu Admin không đúng!'; m.className = 'msg err'; return; }
+
+    if (v !== ADMIN_PASS) {
+      m.textContent = '❌ Mật khẩu Admin không đúng!';
+      m.className = 'msg err';
+      return;
+    }
     m.textContent = '✅ Xác thực thành công!';
     m.className = 'msg ok';
-    setTimeout(function () {
+
+    setTimeout(function() {
       closeAdminGate();
       document.getElementById('adminPanel').style.display = 'block';
       renderAdmin();
     }, 450);
   }
-  function closeAdminPanel() { document.getElementById('adminPanel').style.display = 'none'; }
 
-  window.__saveBulkDiscount = function () {
+  function closeAdminPanel() {
+    document.getElementById('adminPanel').style.display = 'none';
+  }
+
+  /* ================================================================
+     3.3.23. ADMIN — BULK DISCOUNT
+     ================================================================ */
+  window.__saveBulkDiscount = function() {
     var inp = document.getElementById('bulkDiscountInput');
     if (!inp) return;
     var v = Number(inp.value);
     if (isNaN(v) || v < 0) return toast('⚠️ % không hợp lệ!', true);
     if (v > 100) { v = 100; inp.value = 100; }
     if (!db) return toast('❌ Chưa kết nối máy chủ', true);
-    db.ref('config/bulkDiscount').set(v).then(function () {
-      toast('✅ Đã đặt giảm toàn shop: ' + v + '%');
-      DB.config.bulkDiscount = v;
-      renderIOS(); renderEsgin();
-      renderBulkStatus();
-    }).catch(function (e) { toast('❌ Lỗi: ' + e.message, true); });
+
+    db.ref('config/bulkDiscount').set(v)
+      .then(function() {
+        toast('✅ Đã đặt giảm toàn shop: ' + v + '%');
+        DB.config.bulkDiscount = v;
+        renderIOS();
+        renderEsgin();
+        renderBulkStatus();
+      })
+      .catch(function(err) {
+        toast('❌ Lỗi: ' + err.message, true);
+      });
   };
-  window.__resetBulkDiscount = function () {
+
+  window.__resetBulkDiscount = function() {
     if (!db) return;
-    db.ref('config/bulkDiscount').set(0).then(function () {
-      toast('✖ Đã xoá giảm giá toàn shop');
-      DB.config.bulkDiscount = 0;
-      var inp = document.getElementById('bulkDiscountInput');
-      if (inp) inp.value = '';
-      renderIOS(); renderEsgin();
-      renderBulkStatus();
-    }).catch(function (e) { toast('❌ Lỗi: ' + e.message, true); });
+    db.ref('config/bulkDiscount').set(0)
+      .then(function() {
+        toast('✖ Đã xoá giảm giá toàn shop');
+        DB.config.bulkDiscount = 0;
+        var inp = document.getElementById('bulkDiscountInput');
+        if (inp) inp.value = '';
+        renderIOS();
+        renderEsgin();
+        renderBulkStatus();
+      })
+      .catch(function(err) {
+        toast('❌ Lỗi: ' + err.message, true);
+      });
   };
+
   function renderBulkStatus() {
     var el = document.getElementById('bulkStatus');
     if (!el) return;
     var b = Number(DB.config.bulkDiscount) || 0;
-    el.innerHTML = b > 0 ? '🔥 Đang giảm <b style="color:#00ff88">' + b + '%</b> cho TẤT CẢ sản phẩm' : '⚪ Chưa áp dụng giảm giá toàn shop';
+    el.innerHTML = b > 0
+      ? '🔥 Đang giảm <b style="color:#00ff88">' + b + '%</b> cho TẤT CẢ sản phẩm'
+      : '⚪ Chưa áp dụng giảm giá toàn shop';
     el.style.color = b > 0 ? '#00ff88' : '#c9a8e0';
   }
 
+  /* ================================================================
+     3.3.24. ADMIN — GLOBAL PRICES
+     ================================================================ */
   function renderGlobalPrices() {
     var box = document.getElementById('globalPrices');
     if (!box) return;
-    var h = '';
-    h += '<div class="price-group-title">📱 HACK - All IOS (TOÀN SHOP)</div>';
+    var html = '';
+
+    html += '<div class="price-group-title">📱 HACK - All IOS (TOÀN SHOP)</div>';
     for (var i = 0; i < IOS.length; i++) {
-      var pr = IOS[i];
-      for (var j = 0; j < pr.plans.length; j++) {
-        var p = pr.plans[j];
-        var k = priceKey(pr.name, p.l);
-        var cur = getBasePrice(pr.name, p.l, p.p);
-        h += '<div class="price-row">' +
-          '<div class="pr-info"><b>' + pr.name + '</b><small>Gói: ' + p.l + ' — Giá gốc: ' + fmt(p.p) + '</small></div>' +
+      var prod = IOS[i];
+      for (var j = 0; j < prod.plans.length; j++) {
+        var p = prod.plans[j];
+        var k = priceKey(prod.name, p.l);
+        var cur = getBasePrice(prod.name, p.l, p.p);
+
+        html += '<div class="price-row">' +
+          '<div class="pr-info">' +
+          '<b>' + prod.name + '</b>' +
+          '<small>Gói: ' + p.l + ' — Giá gốc: ' + fmt(p.p) + '</small>' +
+          '</div>' +
           '<input class="pr-input" type="number" id="gp_' + k + '" value="' + cur + '" min="0" step="1000">' +
-          '<button class="pr-save" onclick="window.__saveGlobalPrice(\'' + pr.name.replace(/'/g, "\\'") + '\',\'' + p.l.replace(/'/g, "\\'") + '\',\'' + k + '\')">💾 LƯU</button>' +
+          '<button class="pr-save" onclick="window.__saveGlobalPrice(\'' + prod.name.replace(/'/g, "\\'") + '\',\'' + p.l.replace(/'/g, "\\'") + '\',\'' + k + '\')">💾 LƯU</button>' +
           '</div>';
       }
     }
-    h += '<div class="price-group-title">🔑 Esgin = IOS (TOÀN SHOP)</div>';
+
+    html += '<div class="price-group-title">🔑 Esgin = IOS (TOÀN SHOP)</div>';
     for (var a = 0; a < ESGIN.length; a++) {
       var g = ESGIN[a];
       var label = g.name + ' - ' + g.desc;
       var k2 = priceKey('ESGIN = IOS', label);
       var cur2 = getBasePrice('ESGIN = IOS', label, g.price);
-      h += '<div class="price-row">' +
-        '<div class="pr-info"><b>ESGIN = IOS</b><small>Gói: ' + g.name + ' — Giá gốc: ' + fmt(g.price) + '</small></div>' +
+
+      html += '<div class="price-row">' +
+        '<div class="pr-info">' +
+        '<b>ESGIN = IOS</b>' +
+        '<small>Gói: ' + g.name + ' — Giá gốc: ' + fmt(g.price) + '</small>' +
+        '</div>' +
         '<input class="pr-input" type="number" id="gp_' + k2 + '" value="' + cur2 + '" min="0" step="1000">' +
         '<button class="pr-save" onclick="window.__saveGlobalPrice(\'ESGIN = IOS\',\'' + label.replace(/'/g, "\\'") + '\',\'' + k2 + '\')">💾 LƯU</button>' +
         '</div>';
     }
-    box.innerHTML = h;
+
+    box.innerHTML = html;
   }
 
-  window.__saveGlobalPrice = function (productName, planLabel, key) {
+  window.__saveGlobalPrice = function(productName, planLabel, key) {
     var inp = document.getElementById('gp_' + key);
     if (!inp) return;
     var newPrice = Number(inp.value);
     if (isNaN(newPrice) || newPrice < 0) return toast('⚠️ Giá không hợp lệ!', true);
     if (!db) return toast('❌ Chưa kết nối máy chủ', true);
-    db.ref('config/prices/' + key).set(newPrice).then(function () {
-      toast('✅ Đã đổi giá toàn shop: ' + fmt(newPrice));
-      DB.config.prices[key] = newPrice;
-      renderIOS(); renderEsgin();
-    }).catch(function (e) { toast('❌ Lỗi: ' + e.message, true); });
+
+    db.ref('config/prices/' + key).set(newPrice)
+      .then(function() {
+        toast('✅ Đã đổi giá toàn shop: ' + fmt(newPrice));
+        DB.config.prices[key] = newPrice;
+        renderIOS();
+        renderEsgin();
+      })
+      .catch(function(err) {
+        toast('❌ Lỗi: ' + err.message, true);
+      });
   };
 
+  /* ================================================================
+     3.3.25. ADMIN — PER USER PRICES
+     ================================================================ */
   function renderUserSelect() {
     var sel = document.getElementById('perUserSelect');
     if (!sel) return;
-    var old = sel.value;
-    var uk = Object.keys(DB.users);
-    var h = '<option value="">-- Chọn người dùng --</option>';
-    for (var i = 0; i < uk.length; i++) h += '<option value="' + uk[i].replace(/"/g, '&quot;') + '">' + uk[i] + '</option>';
-    sel.innerHTML = h;
-    if (old && DB.users[old]) sel.value = old;
+    var oldVal = sel.value;
+    var userKeys = Object.keys(DB.users);
+
+    var html = '<option value="">-- Chọn người dùng --</option>';
+    for (var i = 0; i < userKeys.length; i++) {
+      html += '<option value="' + userKeys[i].replace(/"/g, '&quot;') + '">' + userKeys[i] + '</option>';
+    }
+    sel.innerHTML = html;
+
+    if (oldVal && DB.users[oldVal]) sel.value = oldVal;
   }
 
-  window.__renderPerUserPrices = function () {
+  window.__renderPerUserPrices = function() {
     var sel = document.getElementById('perUserSelect');
     var box = document.getElementById('perUserPriceList');
     if (!sel || !box) return;
+
     var userName = sel.value;
     if (!userName) { box.innerHTML = ''; return; }
-    if (!DB.users[userName]) { box.innerHTML = '<div class="empty">Không tìm thấy user</div>'; return; }
-    var u = DB.users[userName] || {};
-    var cp = u.customPrices || {};
-    var h = '<div style="font-size:13px;font-weight:900;color:#ff9eb5;margin-bottom:10px">👤 Đang chỉnh giá cho: <b style="color:#fff">' + userName + '</b></div>';
+    if (!DB.users[userName]) {
+      box.innerHTML = '<div class="empty">Không tìm thấy user</div>';
+      return;
+    }
 
-    h += '<div class="price-group-title" style="color:#ff9eb5;border-bottom-color:rgba(255,0,224,.3)">📱 HACK - All IOS</div>';
+    var u = DB.users[userName] || {};
+    var customPrices = u.customPrices || {};
+    var html = '<div style="font-size:13px;font-weight:900;color:#ff9eb5;margin-bottom:10px">' +
+      '👤 Đang chỉnh giá cho: <b style="color:#fff">' + userName + '</b></div>';
+
+    /* IOS */
+    html += '<div class="price-group-title" style="color:#ff9eb5;border-bottom-color:rgba(255,0,224,.3)">📱 HACK - All IOS</div>';
     for (var i = 0; i < IOS.length; i++) {
-      var pr = IOS[i];
-      for (var j = 0; j < pr.plans.length; j++) {
-        var p = pr.plans[j];
-        var k = priceKey(pr.name, p.l);
+      var prod = IOS[i];
+      for (var j = 0; j < prod.plans.length; j++) {
+        var p = prod.plans[j];
+        var k = priceKey(prod.name, p.l);
         var globalPrice = (DB.config.prices && DB.config.prices[k]) || p.p;
-        var cur = (cp[k] != null && cp[k] !== '') ? cp[k] : globalPrice;
-        var isCustom = cp[k] != null && cp[k] !== '';
-        h += '<div class="price-row" style="border-color:rgba(255,0,224,.3)">' +
-          '<div class="pr-info"><b style="color:#ff9eb5">' + pr.name + '</b><small>Gói: ' + p.l + ' — Giá gốc shop: ' + fmt(globalPrice) + (isCustom ? ' <span style="color:#00ff88">(Đã chỉnh riêng)</span>' : '') + '</small></div>' +
+        var cur = (customPrices[k] != null && customPrices[k] !== '') ? customPrices[k] : globalPrice;
+        var isCustom = customPrices[k] != null && customPrices[k] !== '';
+
+        html += '<div class="price-row" style="border-color:rgba(255,0,224,.3)">' +
+          '<div class="pr-info">' +
+          '<b style="color:#ff9eb5">' + prod.name + '</b>' +
+          '<small>Gói: ' + p.l + ' — Giá gốc shop: ' + fmt(globalPrice) +
+          (isCustom ? ' <span style="color:#00ff88">(Đã chỉnh riêng)</span>' : '') + '</small>' +
+          '</div>' +
           '<input class="pr-input" type="number" id="up_' + userName + '_' + k + '" value="' + cur + '" min="0" step="1000" style="border-color:rgba(255,0,224,.5);color:#ff9eb5">' +
           '<button class="pr-save" onclick="window.__saveUserPrice(\'' + userName.replace(/'/g, "\\'") + '\',\'' + k + '\')" style="background:linear-gradient(90deg,#ff00e0,#ff7a00);color:#fff">💾 LƯU</button>' +
           '<button class="pr-save" onclick="window.__resetUserPrice(\'' + userName.replace(/'/g, "\\'") + '\',\'' + k + '\')" style="background:transparent;color:#c9a8e0;border:1px solid rgba(255,255,255,.3)">✖ XOÁ</button>' +
           '</div>';
       }
     }
-    h += '<div class="price-group-title" style="color:#ff9eb5;border-bottom-color:rgba(255,0,224,.3)">🔑 Esgin = IOS</div>';
+
+    /* ESGIN */
+    html += '<div class="price-group-title" style="color:#ff9eb5;border-bottom-color:rgba(255,0,224,.3)">🔑 Esgin = IOS</div>';
     for (var a = 0; a < ESGIN.length; a++) {
       var g = ESGIN[a];
       var label = g.name + ' - ' + g.desc;
       var k2 = priceKey('ESGIN = IOS', label);
       var globalPrice2 = (DB.config.prices && DB.config.prices[k2]) || g.price;
-      var cur2 = (cp[k2] != null && cp[k2] !== '') ? cp[k2] : globalPrice2;
-      var isCustom2 = cp[k2] != null && cp[k2] !== '';
-      h += '<div class="price-row" style="border-color:rgba(255,0,224,.3)">' +
-        '<div class="pr-info"><b style="color:#ff9eb5">ESGIN = IOS</b><small>Gói: ' + g.name + ' — Giá gốc shop: ' + fmt(globalPrice2) + (isCustom2 ? ' <span style="color:#00ff88">(Đã chỉnh riêng)</span>' : '') + '</small></div>' +
+      var cur2 = (customPrices[k2] != null && customPrices[k2] !== '') ? customPrices[k2] : globalPrice2;
+      var isCustom2 = customPrices[k2] != null && customPrices[k2] !== '';
+
+      html += '<div class="price-row" style="border-color:rgba(255,0,224,.3)">' +
+        '<div class="pr-info">' +
+        '<b style="color:#ff9eb5">ESGIN = IOS</b>' +
+        '<small>Gói: ' + g.name + ' — Giá gốc shop: ' + fmt(globalPrice2) +
+        (isCustom2 ? ' <span style="color:#00ff88">(Đã chỉnh riêng)</span>' : '') + '</small>' +
+        '</div>' +
         '<input class="pr-input" type="number" id="up_' + userName + '_' + k2 + '" value="' + cur2 + '" min="0" step="1000" style="border-color:rgba(255,0,224,.5);color:#ff9eb5">' +
         '<button class="pr-save" onclick="window.__saveUserPrice(\'' + userName.replace(/'/g, "\\'") + '\',\'' + k2 + '\')" style="background:linear-gradient(90deg,#ff00e0,#ff7a00);color:#fff">💾 LƯU</button>' +
         '<button class="pr-save" onclick="window.__resetUserPrice(\'' + userName.replace(/'/g, "\\'") + '\',\'' + k2 + '\')" style="background:transparent;color:#c9a8e0;border:1px solid rgba(255,255,255,.3)">✖ XOÁ</button>' +
         '</div>';
     }
-    box.innerHTML = h;
+
+    box.innerHTML = html;
   };
 
-  window.__saveUserPrice = function (userName, key) {
+  window.__saveUserPrice = function(userName, key) {
     var inp = document.getElementById('up_' + userName + '_' + key);
     if (!inp) return;
     var newPrice = Number(inp.value);
     if (isNaN(newPrice) || newPrice < 0) return toast('⚠️ Giá không hợp lệ!', true);
     if (!db) return toast('❌ Chưa kết nối máy chủ', true);
     if (!DB.users[userName]) return toast('❌ Không tìm thấy user!', true);
+
     var u = DB.users[userName];
     if (!u.customPrices) u.customPrices = {};
     u.customPrices[key] = newPrice;
-    db.ref('users/' + userName).set(u).then(function () {
-      toast('✅ Đã đặt giá riêng cho ' + userName);
-      window.__renderPerUserPrices();
-    }).catch(function (e) { toast('❌ Lỗi: ' + e.message, true); });
+
+    db.ref('users/' + userName).set(u)
+      .then(function() {
+        toast('✅ Đã đặt giá riêng cho ' + userName);
+        window.__renderPerUserPrices();
+      })
+      .catch(function(err) {
+        toast('❌ Lỗi: ' + err.message, true);
+      });
   };
 
-  window.__resetUserPrice = function (userName, key) {
+  window.__resetUserPrice = function(userName, key) {
     if (!db) return;
     if (!DB.users[userName]) return;
+
     var u = DB.users[userName];
-    if (u.customPrices && u.customPrices[key] != null) delete u.customPrices[key];
-    db.ref('users/' + userName).set(u).then(function () {
-      toast('✖ Đã xoá giá riêng của ' + userName);
-      window.__renderPerUserPrices();
-    }).catch(function (e) { toast('❌ Lỗi: ' + e.message, true); });
+    if (u.customPrices && u.customPrices[key] != null) {
+      delete u.customPrices[key];
+    }
+
+    db.ref('users/' + userName).set(u)
+      .then(function() {
+        toast('✖ Đã xoá giá riêng của ' + userName);
+        window.__renderPerUserPrices();
+      })
+      .catch(function(err) {
+        toast('❌ Lỗi: ' + err.message, true);
+      });
   };
 
+  /* ================================================================
+     3.3.26. ADMIN — RENDER TỔNG
+     ================================================================ */
   function renderAdmin() {
-    var uk = Object.keys(DB.users);
-    document.getElementById('stUsers').textContent = uk.length;
-    var wd = 0;
-    for (var i = 0; i < DB.deposits.length; i++) if (DB.deposits[i].status === 'wait') wd++;
-    document.getElementById('stDep').textContent = wd;
-    var wo = 0;
-    for (var j = 0; j < DB.orders.length; j++) if (DB.orders[j].status === 'wait') wo++;
-    document.getElementById('stOrd').textContent = wo;
+    var userKeys = Object.keys(DB.users);
+    document.getElementById('stUsers').textContent = userKeys.length;
+
+    var waitDep = 0;
+    for (var i = 0; i < DB.deposits.length; i++) {
+      if (DB.deposits[i].status === 'wait') waitDep++;
+    }
+    document.getElementById('stDep').textContent = waitDep;
+
+    var waitOrd = 0;
+    for (var j = 0; j < DB.orders.length; j++) {
+      if (DB.orders[j].status === 'wait') waitOrd++;
+    }
+    document.getElementById('stOrd').textContent = waitOrd;
+
     document.getElementById('stRv').textContent = DB.reviews.length;
 
+    /* Bulk */
     var bulkInp = document.getElementById('bulkDiscountInput');
-    if (bulkInp && !bulkInp.value) bulkInp.value = Number(DB.config.bulkDiscount) || '';
+    if (bulkInp && !bulkInp.value) {
+      bulkInp.value = Number(DB.config.bulkDiscount) || '';
+    }
     renderBulkStatus();
     renderGlobalPrices();
     renderUserSelect();
 
-    var h1 = '';
-    if (!uk.length) h1 = '<div class="empty">Chưa có người đăng ký</div>';
-    else for (var a = 0; a < uk.length; a++) {
-      var n = uk[a]; var u = DB.users[n];
-      var dc = Number(u.discount) || 0;
-      var cpCount = u.customPrices ? Object.keys(u.customPrices).length : 0;
-      var dcText = dc > 0 ? ' • 💸 Giảm: <b style="color:#ff9eb5">' + dc + '%</b>' : '';
-      var cpText = cpCount > 0 ? ' • 🎯 <b style="color:#00ff88">' + cpCount + ' giá riêng</b>' : '';
-      h1 += '<div class="item"><div class="l"><b>👤 ' + n + '</b>' +
-        '<small>🔑 Mật khẩu: <b style="color:#ff00e0">' + u.password + '</b></small>' +
-        '<small>🔢 Số IB: <b style="color:#ffe600">' + u.ib + '</b></small>' +
-        '<small>💰 Số dư: <b style="color:#00ff88">' + fmt(u.balance) + '</b> • Tổng nạp: ' + fmt(u.totalDeposit) + ' • Tổng chi: ' + fmt(u.totalSpent) + dcText + cpText + '</small>' +
-        '<small>🕐 Đăng ký: ' + timeStr(u.createdAt) + '</small></div></div>';
-    }
-    document.getElementById('adUsers').innerHTML = h1;
+    /* Users list */
+    var usersHTML = '';
+    if (!userKeys.length) {
+      usersHTML = '<div class="empty">Chưa có người đăng ký</div>';
+    } else {
+      for (var a = 0; a < userKeys.length; a++) {
+        var n = userKeys[a];
+        var u = DB.users[n];
+        var dc = Number(u.discount) || 0;
+        var cpCount = u.customPrices ? Object.keys(u.customPrices).length : 0;
+        var dcText = dc > 0 ? ' • 💸 Giảm: <b style="color:#ff9eb5">' + dc + '%</b>' : '';
+        var cpText = cpCount > 0 ? ' • 🎯 <b style="color:#00ff88">' + cpCount + ' giá riêng</b>' : '';
 
-    var h2 = '';
-    if (!DB.deposits.length) h2 = '<div class="empty">Chưa có yêu cầu nạp tiền</div>';
-    else for (var b = 0; b < DB.deposits.length; b++) {
-      var d = DB.deposits[b];
-      var info = d.type === 'QR'
-        ? '🏦 QR — Nội dung: <b style="color:#ffe600">' + d.code + '</b> — Số tiền: <b style="color:#00ff88">' + fmt(d.amount) + '</b>'
-        : '💳 Thẻ ' + d.cardType + ' — Mệnh giá ' + fmt(d.amount) + ' → nhận <b style="color:#00ff88">' + fmt(d.receive) + '</b><br>Mã thẻ: <b style="color:#ff00e0">' + d.cardCode + '</b> • Seri: <b style="color:#ff00e0">' + d.cardSeri + '</b>';
-      var bd;
-      if (d.status === 'wait') bd = '<div style="display:flex;gap:7px;flex-wrap:wrap"><button class="btn sm" onclick="window.__appr(\'' + d.id + '\')">✔ XÁC NHẬN</button><button class="btn sm pink" onclick="window.__cnl(\'' + d.id + '\')">✖ HUỶ</button></div>';
-      else if (d.status === 'done') bd = '<span class="badge done">HOÀN THÀNH</span>';
-      else bd = '<span class="badge cancel">ĐÃ HUỶ</span>';
-      h2 += '<div class="item"><div class="l"><b>👤 ' + d.user + ' — Mã đơn ' + d.id + '</b><small>' + info + '</small><small>🕐 ' + timeStr(d.createdAt) + '</small></div>' + bd + '</div>';
-    }
-    document.getElementById('adDeps').innerHTML = h2;
-
-    var h3 = '';
-    if (!DB.orders.length) h3 = '<div class="empty">Chưa có đơn hàng</div>';
-    else for (var c = 0; c < DB.orders.length; c++) {
-      var o = DB.orders[c]; var bd2;
-      if (o.status === 'wait') bd2 = '<div style="display:flex;gap:7px;flex-wrap:wrap;align-items:center"><input id="key_' + o.id + '" placeholder="Nhập key..." style="padding:8px 10px;border-radius:9px;background:rgba(0,0,0,.5);border:1px solid rgba(0,255,136,.45);color:#e9f6ff;font-size:12px;width:150px;font-family:inherit;-webkit-text-fill-color:#e9f6ff"><button class="btn sm" onclick="window.__sendk(\'' + o.id + '\')">🔑 GỬI KEY</button></div>';
-      else bd2 = '<div><span class="badge done">HOÀN THÀNH</span><div style="font-size:11.5px;color:#6affb8;margin-top:6px">🔑 ' + o.key + '</div></div>';
-      var priceInfo = 'Giá: <b style="color:#ffe600">' + fmt(o.price) + '</b>';
-      if (o.originalPrice && o.originalPrice > o.price) {
-        priceInfo = 'Giá gốc: <span style="text-decoration:line-through;color:#ff7d96">' + fmt(o.originalPrice) + '</span> → <b style="color:#00ff88">' + fmt(o.price) + '</b>';
+        usersHTML += '<div class="item">' +
+          '<div class="l">' +
+          '<b>👤 ' + n + '</b>' +
+          '<small>🔑 Mật khẩu: <b style="color:#ff00e0">' + u.password + '</b></small>' +
+          '<small>🔢 Số IB: <b style="color:#ffe600">' + u.ib + '</b></small>' +
+          '<small>💰 Số dư: <b style="color:#00ff88">' + fmt(u.balance) + '</b> • Tổng nạp: ' +
+          fmt(u.totalDeposit) + ' • Tổng chi: ' + fmt(u.totalSpent) + dcText + cpText + '</small>' +
+          '<small>🕐 Đăng ký: ' + timeStr(u.createdAt) + '</small>' +
+          '</div>' +
+          '</div>';
       }
-      h3 += '<div class="item"><div class="l"><b>👤 ' + o.user + ' — ' + o.name + '</b><small>Gói: ' + o.plan + ' • ' + priceInfo + '</small><small>Mã đơn: ' + o.id + ' • 🕐 ' + timeStr(o.createdAt) + '</small></div>' + bd2 + '</div>';
     }
-    document.getElementById('adOrds').innerHTML = h3;
+    document.getElementById('adUsers').innerHTML = usersHTML;
 
-    var h4 = '';
-    if (!DB.reviews.length) h4 = '<div class="empty">Chưa có đánh giá</div>';
-    else for (var e = 0; e < DB.reviews.length; e++) {
-      var r = DB.reviews[e];
-      h4 += '<div class="item"><div class="l"><b>👤 ' + r.user + '</b><small style="color:#ffe600;font-size:15px">' + Array(r.stars + 1).join('⭐') + '</small><small>' + (r.text || '(Không có mô tả)') + '</small><small>🕐 ' + timeStr(r.createdAt) + '</small></div></div>';
+    /* Deposits */
+    var depsHTML = '';
+    if (!DB.deposits.length) {
+      depsHTML = '<div class="empty">Chưa có yêu cầu nạp tiền</div>';
+    } else {
+      for (var b = 0; b < DB.deposits.length; b++) {
+        var d = DB.deposits[b];
+        var info = d.type === 'QR'
+          ? '🏦 QR — Nội dung: <b style="color:#ffe600">' + d.code + '</b> — Số tiền: <b style="color:#00ff88">' + fmt(d.amount) + '</b>'
+          : '💳 Thẻ ' + d.cardType + ' — Mệnh giá ' + fmt(d.amount) +
+            ' → nhận <b style="color:#00ff88">' + fmt(d.receive) + '</b><br>Mã thẻ: <b style="color:#ff00e0">' +
+            d.cardCode + '</b> • Seri: <b style="color:#ff00e0">' + d.cardSeri + '</b>';
+
+        var badge;
+        if (d.status === 'wait') {
+          badge = '<div style="display:flex;gap:7px;flex-wrap:wrap">' +
+            '<button class="btn sm" onclick="window.__appr(\'' + d.id + '\')">✔ XÁC NHẬN</button>' +
+            '<button class="btn sm pink" onclick="window.__cnl(\'' + d.id + '\')">✖ HUỶ</button>' +
+            '</div>';
+        } else if (d.status === 'done') {
+          badge = '<span class="badge done">HOÀN THÀNH</span>';
+        } else {
+          badge = '<span class="badge cancel">ĐÃ HUỶ</span>';
+        }
+
+        depsHTML += '<div class="item">' +
+          '<div class="l">' +
+          '<b>👤 ' + d.user + ' — Mã đơn ' + d.id + '</b>' +
+          '<small>' + info + '</small>' +
+          '<small>🕐 ' + timeStr(d.createdAt) + '</small>' +
+          '</div>' + badge +
+          '</div>';
+      }
     }
-    document.getElementById('adRevs').innerHTML = h4;
+    document.getElementById('adDeps').innerHTML = depsHTML;
+
+    /* Orders */
+    var ordsHTML = '';
+    if (!DB.orders.length) {
+      ordsHTML = '<div class="empty">Chưa có đơn hàng</div>';
+    } else {
+      for (var c = 0; c < DB.orders.length; c++) {
+        var o = DB.orders[c];
+        var badge2;
+        if (o.status === 'wait') {
+          badge2 = '<div style="display:flex;gap:7px;flex-wrap:wrap;align-items:center">' +
+            '<input id="key_' + o.id + '" placeholder="Nhập key..." style="padding:8px 10px;border-radius:9px;background:rgba(0,0,0,.5);border:1px solid rgba(0,255,136,.45);color:#e9f6ff;font-size:12px;width:150px;font-family:inherit;-webkit-text-fill-color:#e9f6ff">' +
+            '<button class="btn sm" onclick="window.__sendk(\'' + o.id + '\')">🔑 GỬI KEY</button>' +
+            '</div>';
+        } else {
+          badge2 = '<div><span class="badge done">HOÀN THÀNH</span>' +
+            '<div style="font-size:11.5px;color:#6affb8;margin-top:6px">🔑 ' + o.key + '</div></div>';
+        }
+
+        var priceInfo = 'Giá: <b style="color:#ffe600">' + fmt(o.price) + '</b>';
+        if (o.originalPrice && o.originalPrice > o.price) {
+          priceInfo = 'Giá gốc: <span style="text-decoration:line-through;color:#ff7d96">' +
+            fmt(o.originalPrice) + '</span> → <b style="color:#00ff88">' + fmt(o.price) + '</b>';
+        }
+
+        ordsHTML += '<div class="item">' +
+          '<div class="l">' +
+          '<b>👤 ' + o.user + ' — ' + o.name + '</b>' +
+          '<small>Gói: ' + o.plan + ' • ' + priceInfo + '</small>' +
+          '<small>Mã đơn: ' + o.id + ' • 🕐 ' + timeStr(o.createdAt) + '</small>' +
+          '</div>' + badge2 +
+          '</div>';
+      }
+    }
+    document.getElementById('adOrds').innerHTML = ordsHTML;
+
+    /* Reviews */
+    var revsHTML = '';
+    if (!DB.reviews.length) {
+      revsHTML = '<div class="empty">Chưa có đánh giá</div>';
+    } else {
+      for (var e = 0; e < DB.reviews.length; e++) {
+        var r = DB.reviews[e];
+        revsHTML += '<div class="item">' +
+          '<div class="l">' +
+          '<b>👤 ' + r.user + '</b>' +
+          '<small style="color:#ffe600;font-size:15px">' + Array(r.stars + 1).join('⭐') + '</small>' +
+          '<small>' + (r.text || '(Không có mô tả)') + '</small>' +
+          '<small>🕐 ' + timeStr(r.createdAt) + '</small>' +
+          '</div>' +
+          '</div>';
+      }
+    }
+    document.getElementById('adRevs').innerHTML = revsHTML;
   }
 
-  window.__appr = function (id) {
+  /* ================================================================
+     3.3.27. ADMIN — ACTIONS (DUYỆT NẠP, GỬI KEY)
+     ================================================================ */
+  window.__appr = function(id) {
     if (!db) return toast('❌ Chưa kết nối máy chủ', true);
-    db.ref('deposits').once('value').then(function (s) {
-      var deps = s.val() || []; var d = null;
-      for (var i = 0; i < deps.length; i++) if (deps[i].id === id) d = deps[i];
-      if (!d || d.status !== 'wait') return;
-      d.status = 'done';
-      db.ref('deposits').set(deps);
-      db.ref('users/' + d.user).once('value').then(function (us) {
-        var u = us.val(); ifu (!) return;
-        var add = d.type === 'QR' ? d.amount : d.receive;
-        u.balance = (u.balance || 0) + add;
-        u.totalDeposit = (u.totalDeposit || 0) + add;
-        db.ref('users/' + d.user).set(u);
-        toast('✅ Đã xác nhận nạp tiền cho ' + d.user);
+
+    db.ref('deposits').once('value')
+      .then(function(snap) {
+        var deps = snap.val() || [];
+        var d = null;
+        for (var i = 0; i < deps.length; i++) {
+          if (deps[i].id === id) d = deps[i];
+        }
+        if (!d || d.status !== 'wait') return;
+
+        d.status = 'done';
+        db.ref('deposits').set(deps);
+
+        db.ref('users/' + d.user).once('value')
+          .then(function(us) {
+            var u = us.val();
+            if (!u) return;
+            var add = d.type === 'QR' ? d.amount : d.receive;
+            u.balance = (u.balance || 0) + add;
+            u.totalDeposit = (u.totalDeposit || 0) + add;
+            db.ref('users/' + d.user).set(u);
+            toast('✅ Đã xác nhận nạp tiền cho ' + d.user);
+          });
       });
-    });
   };
 
-  window.__cnl = function (id) {
+  window.__cnl = function(id) {
     if (!db) return;
-    db.ref('deposits').once('value').then(function (s) {
-      var deps = s.val() || [];
-      for (var i = 0; i < deps.length; i++) if (deps[i].id === id) deps[i].status = 'cancel';
-      db.ref('deposits').set(deps);
-      toast('✖ Đã huỷ yêu cầu nạp tiền', true);
-    });
+    db.ref('deposits').once('value')
+      .then(function(snap) {
+        var deps = snap.val() || [];
+        for (var i = 0; i < deps.length; i++) {
+          if (deps[i].id === id) deps[i].status = 'cancel';
+        }
+        db.ref('deposits').set(deps);
+        toast('✖ Đã huỷ yêu cầu nạp tiền', true);
+      });
   };
 
-  window.__sendk = function (id) {
+  window.__sendk = function(id) {
     var inp = document.getElementById('key_' + id);
     var key = (inp ? inp.value : '').trim();
     if (!key) return toast('⚠️ Vui lòng nhập key trước khi gửi', true);
     if (!db) return;
-    db.ref('orders').once('value').then(function (s) {
-      var ords = s.val() || []; var o = null;
-      for (var i = 0; i < ords.length; i++) if (ords[i].id === id) o = ords[i];
-      if (!o) return;
-      o.key = key; o.status = 'done'; o.doneAt = now();
-      db.ref('orders').set(ords);
-      toast('🔑 Đã gửi key cho ' + o.user);
-    });
+
+    db.ref('orders').once('value')
+      .then(function(snap) {
+        var ords = snap.val() || [];
+        var o = null;
+        for (var i = 0; i < ords.length; i++) {
+          if (ords[i].id === id) o = ords[i];
+        }
+        if (!o) return;
+
+        o.key = key;
+        o.status = 'done';
+        o.doneAt = now();
+        db.ref('orders').set(ords);
+        toast('🔑 Đã gửi key cho ' + o.user);
+      });
   };
 
-  (function () {
+  /* ================================================================
+     3.3.28. BIND MENU CLICK
+     ================================================================ */
+  (function bindMenuClicks() {
     var lis = document.querySelectorAll('#menuList li[data-page]');
     for (var i = 0; i < lis.length; i++) {
-      (function (li) {
-        li.addEventListener('click', function () { navigate(li.getAttribute('data-page')); });
+      (function(li) {
+        li.addEventListener('click', function() {
+          navigate(li.getAttribute('data-page'));
+        });
       })(lis[i]);
     }
   })();
 
+  /* ================================================================
+     3.3.29. KHỞI ĐỘNG
+     ================================================================ */
   bootAuth();
   initMusic();
 
 } catch (err) {
   console.error('LỖI KHỞI TẠO:', err);
-  var l = document.getElementById('loading');
-  if (l) l.style.display = 'none';
-  var a = document.getElementById('auth');
-  if (a) a.style.display = 'flex';
-  var m = document.getElementById('authMsg');
-  if (m) { m.textContent = '⚠️ Lỗi tải web. Vui lòng tải lại trang.'; m.className = 'msg err'; }
+  var loadingEl = document.getElementById('loading');
+  if (loadingEl) loadingEl.style.display = 'none';
+  var authEl = document.getElementById('auth');
+  if (authEl) authEl.style.display = 'flex';
+  var msgEl = document.getElementById('authMsg');
+  if (msgEl) {
+    msgEl.textContent = '⚠️ Lỗi tải web. Vui lòng tải lại trang.';
+    msgEl.className = 'msg err';
+  }
 }
 </script>
 </body>
