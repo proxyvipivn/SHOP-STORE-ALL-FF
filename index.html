@@ -11,19 +11,12 @@
 <style>
 :root{
   color-scheme: dark;
-  --neon1: #00f0ff;
-  --neon2: #ff00e0;
-  --neon3: #ffe600;
-  --neon4: #00ff88;
-  --bg: #05060f;
-  --card: rgba(15, 18, 40, 0.72);
-  --line: rgba(0, 240, 255, 0.28);
+  --neon1: #00f0ff; --neon2: #ff00e0; --neon3: #ffe600; --neon4: #00ff88;
+  --bg: #05060f; --card: rgba(15, 18, 40, 0.72); --line: rgba(0, 240, 255, 0.28);
 }
-
 html, body { color-scheme: dark !important; -webkit-color-scheme: dark !important; }
 * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 html, body { height: 100%; background: #05060f !important; }
-
 body {
   font-family: 'Segoe UI', system-ui, -apple-system, Roboto, sans-serif;
   background:
@@ -31,138 +24,51 @@ body {
     radial-gradient(circle at 85% 20%, #00243a 0%, transparent 45%),
     radial-gradient(circle at 50% 95%, #2a0033 0%, transparent 50%),
     #05060f !important;
-  color: #e9f6ff !important;
-  min-height: 100vh;
-  overflow-x: hidden;
-  -webkit-text-size-adjust: 100%;
-  -webkit-font-smoothing: antialiased;
-  position: relative;
+  color: #e9f6ff !important; min-height: 100vh; overflow-x: hidden;
+  -webkit-text-size-adjust: 100%; -webkit-font-smoothing: antialiased; position: relative;
 }
-
-#stars {
-  position: fixed; top: 0; left: 0;
-  width: 100%; height: 100%;
-  z-index: 9000;
-  pointer-events: none;
-  background: transparent !important;
-}
-
+#stars { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 9000; pointer-events: none; background: transparent !important; }
 .screen { position: relative; z-index: 2; }
-
 ::-webkit-scrollbar { width: 8px; height: 8px; }
 ::-webkit-scrollbar-track { background: #0a0d1f; }
 ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, var(--neon1), var(--neon2)); border-radius: 8px; }
 
-/* LOADING */
 #loading {
-  position: fixed; top: 0; left: 0;
-  width: 100%; height: 100%;
-  z-index: 9999;
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 9999;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
   gap: 26px; padding: 24px; text-align: center;
   background: radial-gradient(circle at 50% 40%, #0b1030 0%, #05060f 70%) !important;
-  color: #e9f6ff !important;
-  animation: autoHide 0.5s ease 3s forwards;
+  color: #e9f6ff !important; animation: autoHide 0.5s ease 3s forwards;
 }
 @keyframes autoHide { to { opacity: 0; visibility: hidden; pointer-events: none; } }
-
 .load-logo {
-  font-size: clamp(20px, 5.5vw, 38px);
-  font-weight: 900; letter-spacing: 2px;
+  font-size: clamp(20px, 5.5vw, 38px); font-weight: 900; letter-spacing: 2px;
   background: linear-gradient(90deg, var(--neon1), var(--neon2), var(--neon3), var(--neon1));
-  background-size: 300% 100%;
-  -webkit-background-clip: text; background-clip: text;
+  background-size: 300% 100%; -webkit-background-clip: text; background-clip: text;
   -webkit-text-fill-color: transparent; color: transparent;
-  animation: shine 3s linear infinite;
-  filter: drop-shadow(0 0 18px rgba(0, 240, 255, 0.55));
+  animation: shine 3s linear infinite; filter: drop-shadow(0 0 18px rgba(0, 240, 255, 0.55));
 }
 @keyframes shine { to { background-position: 300% 0; } }
 .load-sub { color: #8fb6d6 !important; font-size: clamp(12px, 3.2vw, 15px); letter-spacing: 1px; }
-.load-status {
-  font-size: clamp(12px, 3.4vw, 16px);
-  font-weight: 700; color: var(--neon4) !important;
-  text-shadow: 0 0 14px rgba(0, 255, 136, 0.7);
-  min-height: 22px; letter-spacing: 0.5px;
-}
-.load-bar-wrap {
-  width: min(560px, 92vw); height: 22px; border-radius: 30px;
-  position: relative; background: rgba(255, 255, 255, 0.06) !important;
-  border: 1px solid var(--line); overflow: hidden;
-  box-shadow: 0 0 24px rgba(0, 240, 255, 0.28), inset 0 0 20px rgba(0, 0, 0, 0.6);
-}
-.load-bar {
-  height: 100%; width: 0%; border-radius: 30px;
-  background: linear-gradient(90deg, #00ff88, #00f0ff, #ff00e0, #ffe600);
-  background-size: 300% 100%; animation: shine 2s linear infinite;
-  box-shadow: 0 0 22px rgba(0, 240, 255, 0.9); transition: width 0.28s ease;
-}
-.load-pct {
-  position: absolute; top: 0; left: 0;
-  width: 100%; height: 100%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 12px; font-weight: 900; color: #ffffff !important;
-  text-shadow: 0 0 6px #000, 0 0 10px #000;
-}
+.load-status { font-size: clamp(12px, 3.4vw, 16px); font-weight: 700; color: var(--neon4) !important; text-shadow: 0 0 14px rgba(0, 255, 136, 0.7); min-height: 22px; letter-spacing: 0.5px; }
+.load-bar-wrap { width: min(560px, 92vw); height: 22px; border-radius: 30px; position: relative; background: rgba(255, 255, 255, 0.06) !important; border: 1px solid var(--line); overflow: hidden; box-shadow: 0 0 24px rgba(0, 240, 255, 0.28), inset 0 0 20px rgba(0, 0, 0, 0.6); }
+.load-bar { height: 100%; width: 0%; border-radius: 30px; background: linear-gradient(90deg, #00ff88, #00f0ff, #ff00e0, #ffe600); background-size: 300% 100%; animation: shine 2s linear infinite; box-shadow: 0 0 22px rgba(0, 240, 255, 0.9); transition: width 0.28s ease; }
+.load-pct { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 900; color: #ffffff !important; text-shadow: 0 0 6px #000, 0 0 10px #000; }
 
-/* AUTH */
 #auth { display: none; min-height: 100vh; align-items: center; justify-content: center; padding: 20px; }
-.auth-box {
-  width: min(430px, 94vw);
-  background: var(--card) !important;
-  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--line); border-radius: 22px;
-  padding: 26px 22px;
-  box-shadow: 0 0 40px rgba(0, 240, 255, 0.22), 0 0 90px rgba(255, 0, 224, 0.13), inset 0 0 40px rgba(0, 0, 0, 0.5);
-  color: #e9f6ff !important;
-}
-.auth-title {
-  text-align: center; font-size: clamp(17px, 4.8vw, 23px);
-  font-weight: 900; letter-spacing: 1px;
-  background: linear-gradient(90deg, var(--neon1), var(--neon2), var(--neon3));
-  -webkit-background-clip: text; background-clip: text;
-  -webkit-text-fill-color: transparent; color: transparent; margin-bottom: 4px;
-}
+.auth-box { width: min(430px, 94vw); background: var(--card) !important; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid var(--line); border-radius: 22px; padding: 26px 22px; box-shadow: 0 0 40px rgba(0, 240, 255, 0.22), 0 0 90px rgba(255, 0, 224, 0.13), inset 0 0 40px rgba(0, 0, 0, 0.5); color: #e9f6ff !important; }
+.auth-title { text-align: center; font-size: clamp(17px, 4.8vw, 23px); font-weight: 900; letter-spacing: 1px; background: linear-gradient(90deg, var(--neon1), var(--neon2), var(--neon3)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; margin-bottom: 4px; }
 .auth-sub { text-align: center; color: #7fa8c9 !important; font-size: 12px; margin-bottom: 18px; letter-spacing: 0.5px; }
 .tabs { display: flex; gap: 8px; margin-bottom: 18px; background: rgba(0, 0, 0, 0.35) !important; padding: 5px; border-radius: 14px; }
-.tab {
-  flex: 1; padding: 11px; text-align: center; border-radius: 11px;
-  cursor: pointer; font-weight: 800; font-size: 14px;
-  color: #7fa8c9 !important; transition: 0.25s;
-  border: 1px solid transparent; background: transparent !important;
-}
-.tab.active {
-  color: #001018 !important;
-  background: linear-gradient(90deg, var(--neon1), var(--neon4)) !important;
-  box-shadow: 0 0 20px rgba(0, 240, 255, 0.55);
-  border-color: rgba(255, 255, 255, 0.3);
-}
+.tab { flex: 1; padding: 11px; text-align: center; border-radius: 11px; cursor: pointer; font-weight: 800; font-size: 14px; color: #7fa8c9 !important; transition: 0.25s; border: 1px solid transparent; background: transparent !important; }
+.tab.active { color: #001018 !important; background: linear-gradient(90deg, var(--neon1), var(--neon4)) !important; box-shadow: 0 0 20px rgba(0, 240, 255, 0.55); border-color: rgba(255, 255, 255, 0.3); }
 .field { margin-bottom: 13px; }
 .field label { display: block; font-size: 12px; color: #8fb6d6 !important; margin-bottom: 6px; font-weight: 700; letter-spacing: 0.4px; }
-.field input, .field select, .field textarea {
-  width: 100%; padding: 13px 14px; border-radius: 12px;
-  background: rgba(0, 0, 0, 0.45) !important;
-  border: 1px solid rgba(0, 240, 255, 0.25);
-  color: #e9f6ff !important; -webkit-text-fill-color: #e9f6ff !important;
-  font-size: 14px; outline: none; transition: 0.22s;
-  font-family: inherit; caret-color: #00f0ff;
-  appearance: none; -webkit-appearance: none;
-}
+.field input, .field select, .field textarea { width: 100%; padding: 13px 14px; border-radius: 12px; background: rgba(0, 0, 0, 0.45) !important; border: 1px solid rgba(0, 240, 255, 0.25); color: #e9f6ff !important; -webkit-text-fill-color: #e9f6ff !important; font-size: 14px; outline: none; transition: 0.22s; font-family: inherit; caret-color: #00f0ff; appearance: none; -webkit-appearance: none; }
 .field input::placeholder, .field textarea::placeholder { color: #5c7d99 !important; -webkit-text-fill-color: #5c7d99 !important; opacity: 1; }
-.field input:focus, .field select:focus, .field textarea:focus {
-  border-color: var(--neon1);
-  box-shadow: 0 0 0 3px rgba(0, 240, 255, 0.14), 0 0 18px rgba(0, 240, 255, 0.3);
-  background: rgba(0, 0, 0, 0.6) !important;
-}
+.field input:focus, .field select:focus, .field textarea:focus { border-color: var(--neon1); box-shadow: 0 0 0 3px rgba(0, 240, 255, 0.14), 0 0 18px rgba(0, 240, 255, 0.3); background: rgba(0, 0, 0, 0.6) !important; }
 .field select option { background: #0a0d1f !important; color: #e9f6ff !important; }
-.btn {
-  width: 100%; padding: 14px; border: none; border-radius: 13px;
-  cursor: pointer; font-weight: 900; font-size: 15px; letter-spacing: 0.7px;
-  color: #001018 !important;
-  background: linear-gradient(90deg, var(--neon1), var(--neon4));
-  box-shadow: 0 0 24px rgba(0, 240, 255, 0.5);
-  transition: 0.22s; font-family: inherit; -webkit-appearance: none;
-}
+.btn { width: 100%; padding: 14px; border: none; border-radius: 13px; cursor: pointer; font-weight: 900; font-size: 15px; letter-spacing: 0.7px; color: #001018 !important; background: linear-gradient(90deg, var(--neon1), var(--neon4)); box-shadow: 0 0 24px rgba(0, 240, 255, 0.5); transition: 0.22s; font-family: inherit; -webkit-appearance: none; }
 .btn:hover { transform: translateY(-2px); box-shadow: 0 0 34px rgba(0, 240, 255, 0.85); }
 .btn:active { transform: scale(0.98); }
 .btn.pink { background: linear-gradient(90deg, var(--neon2), #ff7a00) !important; box-shadow: 0 0 24px rgba(255, 0, 224, 0.5); }
@@ -173,339 +79,108 @@ body {
 .msg.err { display: block; background: rgba(255, 0, 60, 0.14) !important; border: 1px solid rgba(255, 0, 60, 0.5); color: #ff7d96 !important; }
 .msg.ok { display: block; background: rgba(0, 255, 136, 0.12) !important; border: 1px solid rgba(0, 255, 136, 0.5); color: #6affb8 !important; }
 
-/* HEADER */
-header {
-  position: sticky; top: 0; z-index: 100;
-  display: flex; align-items: center; gap: 10px;
-  padding: 12px 14px;
-  background: rgba(6, 8, 22, 0.9) !important;
-  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-  border-bottom: 1px solid var(--line);
-  box-shadow: 0 0 26px rgba(0, 240, 255, 0.18);
-}
-.burger {
-  width: 44px; height: 44px; border-radius: 12px;
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  gap: 5px; cursor: pointer; flex: 0 0 auto;
-  background: linear-gradient(135deg, rgba(0, 240, 255, 0.14), rgba(255, 0, 224, 0.14)) !important;
-  border: 1px solid var(--line); transition: 0.22s;
-}
+header { position: sticky; top: 0; z-index: 100; display: flex; align-items: center; gap: 10px; padding: 12px 14px; background: rgba(6, 8, 22, 0.9) !important; backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); box-shadow: 0 0 26px rgba(0, 240, 255, 0.18); }
+.burger { width: 44px; height: 44px; border-radius: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; cursor: pointer; flex: 0 0 auto; background: linear-gradient(135deg, rgba(0, 240, 255, 0.14), rgba(255, 0, 224, 0.14)) !important; border: 1px solid var(--line); transition: 0.22s; }
 .burger span { width: 22px; height: 2.5px; border-radius: 3px; background: linear-gradient(90deg, var(--neon1), var(--neon2)); display: block; transition: 0.25s; }
 .burger.open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
 .burger.open span:nth-child(2) { opacity: 0; }
 .burger.open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
 .brand { flex: 1; min-width: 0; }
-.brand h1 {
-  font-size: clamp(11px, 3.2vw, 15px); font-weight: 900;
-  letter-spacing: 0.6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-  background: linear-gradient(90deg, var(--neon1), var(--neon3), var(--neon2));
-  background-size: 200% 100%;
-  -webkit-background-clip: text; background-clip: text;
-  -webkit-text-fill-color: transparent; color: transparent;
-  animation: shine 4s linear infinite;
-}
+.brand h1 { font-size: clamp(11px, 3.2vw, 15px); font-weight: 900; letter-spacing: 0.6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; background: linear-gradient(90deg, var(--neon1), var(--neon3), var(--neon2)); background-size: 200% 100%; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; animation: shine 4s linear infinite; }
 .brand p { font-size: 10px; color: #7fa8c9 !important; letter-spacing: 0.4px; margin-top: 2px; }
-.bal-chip {
-  display: flex; align-items: center; gap: 6px;
-  padding: 8px 12px; border-radius: 30px; flex: 0 0 auto;
-  background: linear-gradient(90deg, rgba(0, 255, 136, 0.16), rgba(0, 240, 255, 0.16)) !important;
-  border: 1px solid rgba(0, 255, 136, 0.45);
-  font-weight: 900; font-size: 12.5px; color: #6affb8 !important;
-  box-shadow: 0 0 18px rgba(0, 255, 136, 0.32);
-}
+.bal-chip { display: flex; align-items: center; gap: 6px; padding: 8px 12px; border-radius: 30px; flex: 0 0 auto; background: linear-gradient(90deg, rgba(0, 255, 136, 0.16), rgba(0, 240, 255, 0.16)) !important; border: 1px solid rgba(0, 255, 136, 0.45); font-weight: 900; font-size: 12.5px; color: #6affb8 !important; box-shadow: 0 0 18px rgba(0, 255, 136, 0.32); }
 
-/* MUSIC */
 .music-wrap { position: relative; width: 42px; height: 42px; flex: 0 0 auto; z-index: 120; }
-.music-ring {
-  position: absolute; top: -3px; left: -3px; right: -3px; bottom: -3px;
-  border-radius: 50%;
-  background: conic-gradient(from 0deg, #ff9eb5, #ffc0cb, #ffd6e0, #ffb6c1, #ff8fb1, #ffc0cb, #ff9eb5);
-  animation: spin 3s linear infinite; z-index: 0;
-  filter: blur(0.3px); box-shadow: 0 0 14px rgba(255, 182, 193, 0.7);
-}
-.music-ring::after {
-  content: ''; position: absolute;
-  top: 2px; left: 2px; right: 2px; bottom: 2px;
-  border-radius: 50%; background: #05060f;
-}
+.music-ring { position: absolute; top: -3px; left: -3px; right: -3px; bottom: -3px; border-radius: 50%; background: conic-gradient(from 0deg, #ff9eb5, #ffc0cb, #ffd6e0, #ffb6c1, #ff8fb1, #ffc0cb, #ff9eb5); animation: spin 3s linear infinite; z-index: 0; filter: blur(0.3px); box-shadow: 0 0 14px rgba(255, 182, 193, 0.7); }
+.music-ring::after { content: ''; position: absolute; top: 2px; left: 2px; right: 2px; bottom: 2px; border-radius: 50%; background: #05060f; }
 @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-.music-btn {
-  position: relative; z-index: 2;
-  width: 42px; height: 42px; border-radius: 50%;
-  background: radial-gradient(circle at 40% 35%, #1a1e4a, #05060f);
-  border: none; cursor: pointer; font-size: 17px; color: #fff;
-  display: flex; align-items: center; justify-content: center;
-  padding: 0; transition: 0.2s; overflow: hidden; -webkit-appearance: none;
-}
+.music-btn { position: relative; z-index: 2; width: 42px; height: 42px; border-radius: 50%; background: radial-gradient(circle at 40% 35%, #1a1e4a, #05060f); border: none; cursor: pointer; font-size: 17px; color: #fff; display: flex; align-items: center; justify-content: center; padding: 0; transition: 0.2s; overflow: hidden; -webkit-appearance: none; }
 .music-btn img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; display: block; }
 .music-btn:active { transform: scale(0.92); }
 .music-btn.playing { animation: pulseMusic 1.2s infinite; }
 @keyframes pulseMusic { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.12); } }
-.music-panel {
-  position: absolute; top: 56px; right: 0;
-  width: min(280px, 86vw);
-  background: linear-gradient(160deg, rgba(15, 18, 40, 0.98), rgba(8, 10, 25, 0.98));
-  border: 1px solid rgba(255, 182, 193, 0.5);
-  border-radius: 16px; padding: 12px;
-  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.9), 0 0 40px rgba(255, 182, 193, 0.25);
-  display: none; z-index: 200;
-  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-  animation: musicSlide 0.25s ease;
-}
+.music-panel { position: absolute; top: 56px; right: 0; width: min(280px, 86vw); background: linear-gradient(160deg, rgba(15, 18, 40, 0.98), rgba(8, 10, 25, 0.98)); border: 1px solid rgba(255, 182, 193, 0.5); border-radius: 16px; padding: 12px; box-shadow: 0 8px 40px rgba(0, 0, 0, 0.9), 0 0 40px rgba(255, 182, 193, 0.25); display: none; z-index: 200; backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); animation: musicSlide 0.25s ease; }
 .music-panel.show { display: block; }
 @keyframes musicSlide { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
-.music-title {
-  font-size: 12px; font-weight: 900; letter-spacing: 1px;
-  margin-bottom: 8px; text-align: center; padding-bottom: 8px;
-  border-bottom: 1px solid rgba(255, 182, 193, 0.25);
-  color: #ffb6c1 !important; -webkit-text-fill-color: #ffb6c1 !important;
-  text-shadow: 0 0 12px rgba(255, 182, 193, 0.5);
-}
-.music-item {
-  display: flex; align-items: center; gap: 9px;
-  padding: 9px 10px; border-radius: 10px; cursor: pointer;
-  font-size: 12.5px; font-weight: 700; color: #bfe0f5 !important;
-  margin-bottom: 5px; border: 1px solid transparent;
-  transition: 0.18s; background: rgba(0, 0, 0, 0.4) !important;
-}
+.music-title { font-size: 12px; font-weight: 900; letter-spacing: 1px; margin-bottom: 8px; text-align: center; padding-bottom: 8px; border-bottom: 1px solid rgba(255, 182, 193, 0.25); color: #ffb6c1 !important; -webkit-text-fill-color: #ffb6c1 !important; text-shadow: 0 0 12px rgba(255, 182, 193, 0.5); }
+.music-item { display: flex; align-items: center; gap: 9px; padding: 9px 10px; border-radius: 10px; cursor: pointer; font-size: 12.5px; font-weight: 700; color: #bfe0f5 !important; margin-bottom: 5px; border: 1px solid transparent; transition: 0.18s; background: rgba(0, 0, 0, 0.4) !important; }
 .music-item:active { transform: scale(0.98); }
-.music-item.sel {
-  background: linear-gradient(90deg, rgba(255, 182, 193, 0.22), rgba(255, 105, 180, 0.15)) !important;
-  border-color: rgba(255, 182, 193, 0.7); color: #fff !important;
-  box-shadow: 0 0 16px rgba(255, 182, 193, 0.4);
-}
-.music-item .mi-ico {
-  width: 22px; height: 22px; border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 11px; flex: 0 0 auto;
-  background: linear-gradient(135deg, #ff9eb5, #ff69b4); color: #001018;
-}
+.music-item.sel { background: linear-gradient(90deg, rgba(255, 182, 193, 0.22), rgba(255, 105, 180, 0.15)) !important; border-color: rgba(255, 182, 193, 0.7); color: #fff !important; box-shadow: 0 0 16px rgba(255, 182, 193, 0.4); }
+.music-item .mi-ico { width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; flex: 0 0 auto; background: linear-gradient(135deg, #ff9eb5, #ff69b4); color: #001018; }
 .music-item.sel .mi-ico { background: linear-gradient(135deg, #ffb6c1, #ff69b4); }
 .music-item .mi-name { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .music-item .mi-check { font-size: 14px; color: #ffb6c1; opacity: 0; }
 .music-item.sel .mi-check { opacity: 1; }
-.music-play {
-  width: 100%; padding: 11px; border-radius: 11px;
-  cursor: pointer; font-weight: 900; font-size: 13px;
-  color: #001018 !important;
-  background: linear-gradient(90deg, #ffb6c1, #ff69b4);
-  border: none; margin-top: 6px; font-family: inherit;
-  box-shadow: 0 0 20px rgba(255, 182, 193, 0.55);
-  transition: 0.2s; -webkit-appearance: none;
-}
+.music-play { width: 100%; padding: 11px; border-radius: 11px; cursor: pointer; font-weight: 900; font-size: 13px; color: #001018 !important; background: linear-gradient(90deg, #ffb6c1, #ff69b4); border: none; margin-top: 6px; font-family: inherit; box-shadow: 0 0 20px rgba(255, 182, 193, 0.55); transition: 0.2s; -webkit-appearance: none; }
 .music-play:active { transform: scale(0.97); }
-.music-play.playing {
-  background: linear-gradient(90deg, #ff0055, #ff7a00) !important;
-  box-shadow: 0 0 20px rgba(255, 0, 85, 0.6);
-}
+.music-play.playing { background: linear-gradient(90deg, #ff0055, #ff7a00) !important; box-shadow: 0 0 20px rgba(255, 0, 85, 0.6); }
 .music-note { text-align: center; font-size: 10.5px; color: #7fa8c9 !important; margin-top: 7px; letter-spacing: 0.3px; }
 
-/* OVERLAY */
-.overlay {
-  position: fixed; top: 0; left: 0;
-  width: 100vw; height: 100vh;
-  background: rgba(0, 0, 0, 0.72) !important;
-  z-index: 9995; opacity: 0; visibility: hidden;
-  pointer-events: none;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-}
+.overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.72) !important; z-index: 9995; opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.3s ease, visibility 0.3s ease; }
 .overlay.show { opacity: 1; visibility: visible; pointer-events: auto; }
 
-/* SIDEBAR */
-.sidebar {
-  position: fixed; top: 0; left: 0;
-  width: min(310px, 84vw); height: 100vh;
-  z-index: 9996;
-  background: linear-gradient(180deg, rgba(10, 14, 36, 0.99), rgba(7, 9, 26, 0.99)) !important;
-  border-right: 1px solid var(--line);
-  transform: translateX(-105%);
-  transition: transform 0.32s cubic-bezier(0.3, 0.8, 0.3, 1);
-  display: flex; flex-direction: column;
-  box-shadow: 8px 0 50px rgba(0, 0, 0, 0.95);
-  overflow-y: auto; color: #e9f6ff !important;
-}
+.sidebar { position: fixed; top: 0; left: 0; width: min(310px, 84vw); height: 100vh; z-index: 9996; background: linear-gradient(180deg, rgba(10, 14, 36, 0.99), rgba(7, 9, 26, 0.99)) !important; border-right: 1px solid var(--line); transform: translateX(-105%); transition: transform 0.32s cubic-bezier(0.3, 0.8, 0.3, 1); display: flex; flex-direction: column; box-shadow: 8px 0 50px rgba(0, 0, 0, 0.95); overflow-y: auto; color: #e9f6ff !important; }
 .sidebar.open { transform: translateX(0); }
-.side-head {
-  padding: 20px 18px; border-bottom: 1px solid var(--line);
-  background: linear-gradient(135deg, rgba(0, 240, 255, 0.1), rgba(255, 0, 224, 0.1)) !important;
-}
-.side-head h2 {
-  font-size: 15px; font-weight: 900;
-  background: linear-gradient(90deg, var(--neon1), var(--neon2));
-  -webkit-background-clip: text; background-clip: text;
-  -webkit-text-fill-color: transparent; color: transparent;
-}
+.side-head { padding: 20px 18px; border-bottom: 1px solid var(--line); background: linear-gradient(135deg, rgba(0, 240, 255, 0.1), rgba(255, 0, 224, 0.1)) !important; }
+.side-head h2 { font-size: 15px; font-weight: 900; background: linear-gradient(90deg, var(--neon1), var(--neon2)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; }
 .side-head p { font-size: 11px; color: #7fa8c9 !important; margin-top: 4px; }
-.side-user {
-  margin: 14px; padding: 13px; border-radius: 14px;
-  background: rgba(0, 0, 0, 0.4) !important;
-  border: 1px solid var(--line);
-  font-size: 12px; color: #9fc9e6 !important; line-height: 1.7;
-}
+.side-user { margin: 14px; padding: 13px; border-radius: 14px; background: rgba(0, 0, 0, 0.4) !important; border: 1px solid var(--line); font-size: 12px; color: #9fc9e6 !important; line-height: 1.7; }
 .side-user b { color: #ffffff !important; font-size: 13.5px; }
 .side-user .ib { color: var(--neon3) !important; }
 .side-user .dc { color: var(--neon2) !important; }
 .menu { list-style: none; padding: 6px 10px 26px; }
-.menu li {
-  display: flex; align-items: center; gap: 12px;
-  padding: 14px 14px; margin-bottom: 5px; border-radius: 13px;
-  cursor: pointer; font-size: 13.6px; font-weight: 700;
-  color: #bfe0f5 !important; transition: 0.22s;
-  border: 1px solid transparent;
-  position: relative; overflow: hidden;
-  background: transparent !important;
-}
-.menu li::before {
-  content: ''; position: absolute;
-  left: 0; top: 0; bottom: 0; width: 3px;
-  background: linear-gradient(180deg, var(--neon1), var(--neon2));
-  opacity: 0; transition: 0.22s;
-}
+.menu li { display: flex; align-items: center; gap: 12px; padding: 14px 14px; margin-bottom: 5px; border-radius: 13px; cursor: pointer; font-size: 13.6px; font-weight: 700; color: #bfe0f5 !important; transition: 0.22s; border: 1px solid transparent; position: relative; overflow: hidden; background: transparent !important; }
+.menu li::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: linear-gradient(180deg, var(--neon1), var(--neon2)); opacity: 0; transition: 0.22s; }
 .menu li:hover { background: rgba(0, 240, 255, 0.1) !important; border-color: var(--line); transform: translateX(3px); }
 .menu li:hover::before { opacity: 1; }
-.menu li.active {
-  background: linear-gradient(90deg, rgba(0, 240, 255, 0.2), rgba(255, 0, 224, 0.12)) !important;
-  border-color: rgba(0, 240, 255, 0.5); color: #fff !important;
-  box-shadow: 0 0 20px rgba(0, 240, 255, 0.25);
-}
+.menu li.active { background: linear-gradient(90deg, rgba(0, 240, 255, 0.2), rgba(255, 0, 224, 0.12)) !important; border-color: rgba(0, 240, 255, 0.5); color: #fff !important; box-shadow: 0 0 20px rgba(0, 240, 255, 0.25); }
 .menu li.active::before { opacity: 1; }
 .menu .ico { font-size: 17px; width: 22px; text-align: center; flex: 0 0 auto; }
 
-/* MAIN */
 main { padding: 16px 14px 90px; max-width: 1180px; margin: 0 auto; background: transparent !important; }
 .page { display: none; }
 .page.active { display: block; }
-.page-title {
-  font-size: clamp(17px, 4.6vw, 23px); font-weight: 900;
-  margin-bottom: 14px; letter-spacing: 0.6px;
-  display: flex; align-items: center; gap: 9px;
-  background: linear-gradient(90deg, var(--neon1), var(--neon3), var(--neon2));
-  background-size: 200% 100%;
-  -webkit-background-clip: text; background-clip: text;
-  -webkit-text-fill-color: transparent; color: transparent;
-  animation: shine 4s linear infinite;
-  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.9));
-}
-.panel {
-  background: var(--card) !important;
-  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--line); border-radius: 18px;
-  padding: 16px; margin-bottom: 14px;
-  box-shadow: 0 0 28px rgba(0, 240, 255, 0.12), inset 0 0 30px rgba(0, 0, 0, 0.35);
-  color: #e9f6ff !important;
-}
+.page-title { font-size: clamp(17px, 4.6vw, 23px); font-weight: 900; margin-bottom: 14px; letter-spacing: 0.6px; display: flex; align-items: center; gap: 9px; background: linear-gradient(90deg, var(--neon1), var(--neon3), var(--neon2)); background-size: 200% 100%; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; animation: shine 4s linear infinite; filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.9)); }
+.panel { background: var(--card) !important; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid var(--line); border-radius: 18px; padding: 16px; margin-bottom: 14px; box-shadow: 0 0 28px rgba(0, 240, 255, 0.12), inset 0 0 30px rgba(0, 0, 0, 0.35); color: #e9f6ff !important; }
 .panel.gold { border-color: rgba(255, 230, 0, 0.42); box-shadow: 0 0 28px rgba(255, 230, 0, 0.16); }
 .panel.pink { border-color: rgba(255, 0, 224, 0.42); box-shadow: 0 0 28px rgba(255, 0, 224, 0.16); }
 .panel.green { border-color: rgba(0, 255, 136, 0.42); box-shadow: 0 0 28px rgba(0, 255, 136, 0.16); }
-.sec-title {
-  font-size: 14.5px; font-weight: 900;
-  margin-bottom: 11px; color: #dff3ff !important;
-  letter-spacing: 0.5px; display: flex; align-items: center; gap: 8px;
-}
+.sec-title { font-size: 14.5px; font-weight: 900; margin-bottom: 11px; color: #dff3ff !important; letter-spacing: 0.5px; display: flex; align-items: center; gap: 8px; }
 .hint { font-size: 12px; color: #8fb6d6 !important; line-height: 1.65; }
 .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(255px, 1fr)); gap: 14px; }
-
-.prod {
-  background: linear-gradient(160deg, rgba(20, 24, 55, 0.95), rgba(10, 12, 30, 0.95)) !important;
-  border: 1px solid var(--line); border-radius: 18px;
-  overflow: hidden; transition: 0.28s; position: relative;
-  box-shadow: 0 0 22px rgba(0, 240, 255, 0.1);
-}
-.prod:hover {
-  transform: translateY(-5px); border-color: rgba(0, 240, 255, 0.65);
-  box-shadow: 0 0 40px rgba(0, 240, 255, 0.35), 0 0 70px rgba(255, 0, 224, 0.18);
-}
+.prod { background: linear-gradient(160deg, rgba(20, 24, 55, 0.95), rgba(10, 12, 30, 0.95)) !important; border: 1px solid var(--line); border-radius: 18px; overflow: hidden; transition: 0.28s; position: relative; box-shadow: 0 0 22px rgba(0, 240, 255, 0.1); }
+.prod:hover { transform: translateY(-5px); border-color: rgba(0, 240, 255, 0.65); box-shadow: 0 0 40px rgba(0, 240, 255, 0.35), 0 0 70px rgba(255, 0, 224, 0.18); }
 .prod img { width: 100%; height: 172px; object-fit: cover; display: block; background: #0a0d1f !important; }
 .prod-body { padding: 13px; }
-.prod-name {
-  font-size: 14.5px; font-weight: 900; margin-bottom: 7px;
-  background: linear-gradient(90deg, var(--neon1), var(--neon2));
-  -webkit-background-clip: text; background-clip: text;
-  -webkit-text-fill-color: transparent; color: transparent;
-}
+.prod-name { font-size: 14.5px; font-weight: 900; margin-bottom: 7px; background: linear-gradient(90deg, var(--neon1), var(--neon2)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; }
 .prod-desc { font-size: 11.6px; color: #8fb6d6 !important; line-height: 1.6; margin-bottom: 11px; white-space: pre-line; }
 .plans { display: flex; flex-direction: column; gap: 7px; }
-.plan {
-  display: flex; align-items: center; justify-content: space-between;
-  gap: 8px; padding: 9px 11px; border-radius: 11px;
-  background: rgba(0, 0, 0, 0.55) !important;
-  border: 1px solid rgba(0, 240, 255, 0.18);
-  transition: 0.22s; flex-wrap: wrap;
-}
+.plan { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 9px 11px; border-radius: 11px; background: rgba(0, 0, 0, 0.55) !important; border: 1px solid rgba(0, 240, 255, 0.18); transition: 0.22s; flex-wrap: wrap; }
 .plan:hover { border-color: var(--neon4); box-shadow: 0 0 16px rgba(0, 255, 136, 0.3); }
 .plan .lb { font-size: 12.2px; font-weight: 700; color: #cfe9ff !important; }
 .plan .pr { font-size: 12.4px; font-weight: 900; color: var(--neon3) !important; white-space: nowrap; text-shadow: 0 0 10px rgba(255, 230, 0, 0.5); }
 .plan .pr-original { font-size: 11px; font-weight: 700; color: #ff7d96; text-decoration: line-through; white-space: nowrap; opacity: 0.85; }
 .plan .pr-final { font-size: 13px; font-weight: 900; color: #00ff88; white-space: nowrap; text-shadow: 0 0 10px rgba(0, 255, 136, 0.6); }
-.plan .pr-discount-badge {
-  font-size: 10px; font-weight: 900; padding: 2px 6px;
-  border-radius: 8px;
-  background: linear-gradient(90deg, #ff00e0, #ff7a00);
-  color: #fff; white-space: nowrap;
-  box-shadow: 0 0 10px rgba(255, 0, 224, 0.5);
-}
+.plan .pr-discount-badge { font-size: 10px; font-weight: 900; padding: 2px 6px; border-radius: 8px; background: linear-gradient(90deg, #ff00e0, #ff7a00); color: #fff; white-space: nowrap; box-shadow: 0 0 10px rgba(255, 0, 224, 0.5); }
 .plan .price-group { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; }
-.plan .buy {
-  padding: 7px 11px; border-radius: 9px; border: none; cursor: pointer;
-  font-weight: 900; font-size: 11px;
-  background: linear-gradient(90deg, var(--neon4), var(--neon1)) !important;
-  color: #001018 !important; transition: 0.2s; font-family: inherit;
-}
+.plan .buy { padding: 7px 11px; border-radius: 9px; border: none; cursor: pointer; font-weight: 900; font-size: 11px; background: linear-gradient(90deg, var(--neon4), var(--neon1)) !important; color: #001018 !important; transition: 0.2s; font-family: inherit; }
 .plan .buy:hover { box-shadow: 0 0 18px rgba(0, 255, 136, 0.7); transform: scale(1.06); }
 
-.discount-banner {
-  margin-bottom: 14px; padding: 12px 14px; border-radius: 14px;
-  background: linear-gradient(90deg, rgba(255, 0, 224, 0.2), rgba(255, 122, 0, 0.2)) !important;
-  border: 1px solid rgba(255, 0, 224, 0.6);
-  color: #fff; font-weight: 800; font-size: 13px;
-  text-align: center; box-shadow: 0 0 24px rgba(255, 0, 224, 0.4);
-  animation: pulseDiscount 2s ease-in-out infinite;
-}
-@keyframes pulseDiscount {
-  0%, 100% { box-shadow: 0 0 24px rgba(255, 0, 224, 0.4); }
-  50% { box-shadow: 0 0 40px rgba(255, 0, 224, 0.75); }
-}
+.discount-banner { margin-bottom: 14px; padding: 12px 14px; border-radius: 14px; background: linear-gradient(90deg, rgba(255, 0, 224, 0.2), rgba(255, 122, 0, 0.2)) !important; border: 1px solid rgba(255, 0, 224, 0.6); color: #fff; font-weight: 800; font-size: 13px; text-align: center; box-shadow: 0 0 24px rgba(255, 0, 224, 0.4); animation: pulseDiscount 2s ease-in-out infinite; }
+@keyframes pulseDiscount { 0%, 100% { box-shadow: 0 0 24px rgba(255, 0, 224, 0.4); } 50% { box-shadow: 0 0 40px rgba(255, 0, 224, 0.75); } }
 .discount-banner b { color: #ffe600; font-size: 15px; }
 
 .subtabs { display: flex; gap: 8px; margin-bottom: 13px; flex-wrap: wrap; }
-.subtab {
-  padding: 9px 15px; border-radius: 30px; cursor: pointer;
-  font-size: 12.4px; font-weight: 800;
-  background: rgba(0, 0, 0, 0.5) !important;
-  border: 1px solid var(--line); color: #8fb6d6 !important; transition: 0.22s;
-}
-.subtab.active {
-  background: linear-gradient(90deg, var(--neon1), var(--neon2)) !important;
-  color: #001018 !important;
-  box-shadow: 0 0 20px rgba(0, 240, 255, 0.5);
-  border-color: transparent;
-}
-.item {
-  padding: 12px; border-radius: 14px;
-  background: rgba(0, 0, 0, 0.5) !important;
-  border: 1px solid rgba(0, 240, 255, 0.16);
-  margin-bottom: 9px; font-size: 12.4px;
-  display: flex; justify-content: space-between;
-  gap: 10px; flex-wrap: wrap; align-items: center;
-  color: #e9f6ff !important;
-}
+.subtab { padding: 9px 15px; border-radius: 30px; cursor: pointer; font-size: 12.4px; font-weight: 800; background: rgba(0, 0, 0, 0.5) !important; border: 1px solid var(--line); color: #8fb6d6 !important; transition: 0.22s; }
+.subtab.active { background: linear-gradient(90deg, var(--neon1), var(--neon2)) !important; color: #001018 !important; box-shadow: 0 0 20px rgba(0, 240, 255, 0.5); border-color: transparent; }
+.item { padding: 12px; border-radius: 14px; background: rgba(0, 0, 0, 0.5) !important; border: 1px solid rgba(0, 240, 255, 0.16); margin-bottom: 9px; font-size: 12.4px; display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; align-items: center; color: #e9f6ff !important; }
 .item .l { flex: 1; min-width: 180px; }
 .item .l b { color: var(--neon1) !important; font-size: 13px; display: block; margin-bottom: 4px; }
 .item .l small { color: #8fb6d6 !important; display: block; line-height: 1.6; }
 
 .key-row { display: flex; align-items: center; gap: 8px; margin-top: 4px; flex-wrap: wrap; }
 .key-text { color: #00ff88; font-weight: 900; font-size: 14px; font-family: 'Courier New', monospace; word-break: break-all; text-shadow: 0 0 10px rgba(0, 255, 136, 0.4); }
-.copy-btn {
-  display: inline-flex; align-items: center; justify-content: center;
-  min-width: 34px; height: 30px; padding: 0 8px;
-  border-radius: 8px;
-  background: linear-gradient(135deg, rgba(0, 240, 255, 0.2), rgba(0, 255, 136, 0.2)) !important;
-  border: 1px solid rgba(0, 240, 255, 0.6);
-  cursor: pointer; color: #00f0ff; font-size: 14px;
-  transition: 0.2s; flex: 0 0 auto; font-family: inherit;
-  -webkit-appearance: none;
-  box-shadow: 0 0 12px rgba(0, 240, 255, 0.3);
-}
+.copy-btn { display: inline-flex; align-items: center; justify-content: center; min-width: 34px; height: 30px; padding: 0 8px; border-radius: 8px; background: linear-gradient(135deg, rgba(0, 240, 255, 0.2), rgba(0, 255, 136, 0.2)) !important; border: 1px solid rgba(0, 240, 255, 0.6); cursor: pointer; color: #00f0ff; font-size: 14px; transition: 0.2s; flex: 0 0 auto; font-family: inherit; -webkit-appearance: none; box-shadow: 0 0 12px rgba(0, 240, 255, 0.3); }
 .copy-btn:hover { background: linear-gradient(135deg, rgba(0, 240, 255, 0.4), rgba(0, 255, 136, 0.4)) !important; box-shadow: 0 0 18px rgba(0, 240, 255, 0.6); transform: scale(1.05); }
 .copy-btn:active { transform: scale(0.92); }
 .copy-btn.copied { background: linear-gradient(135deg, rgba(0, 255, 136, 0.5), rgba(0, 255, 136, 0.3)) !important; border-color: #00ff88; color: #00ff88; }
@@ -514,210 +189,68 @@ main { padding: 16px 14px 90px; max-width: 1180px; margin: 0 auto; background: t
 .badge.wait { background: rgba(255, 230, 0, 0.15) !important; border: 1px solid rgba(255, 230, 0, 0.6); color: #ffe600 !important; box-shadow: 0 0 14px rgba(255, 230, 0, 0.3); }
 .badge.done { background: rgba(0, 255, 136, 0.15) !important; border: 1px solid rgba(0, 255, 136, 0.6); color: #6affb8 !important; box-shadow: 0 0 14px rgba(0, 255, 136, 0.3); }
 .badge.cancel { background: rgba(255, 0, 60, 0.15) !important; border: 1px solid rgba(255, 0, 60, 0.6); color: #ff7d96 !important; }
-
 .empty { text-align: center; padding: 32px 14px; color: #5f87a8 !important; font-size: 13px; }
 
-/* ADMIN MODAL */
-#adminModal {
-  position: fixed; top: 0; left: 0;
-  width: 100vw; height: 100vh;
-  z-index: 9997; display: none;
-  align-items: center; justify-content: center;
-  padding: 18px;
-  background: rgba(0, 0, 0, 0.85) !important;
-  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-}
+#adminModal { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 9997; display: none; align-items: center; justify-content: center; padding: 18px; background: rgba(0, 0, 0, 0.85) !important; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
 #adminModal.show { display: flex; }
-
-/* ADMIN PANEL */
-#adminPanel {
-  display: none; position: fixed;
-  top: 0; left: 0;
-  width: 100vw; height: 100vh;
-  z-index: 9998; overflow-y: auto;
-  background:
-    radial-gradient(circle at 20% 10%, #1a0033, transparent 50%),
-    radial-gradient(circle at 80% 90%, #002233, transparent 50%),
-    #04050d !important;
-  color: #e9f6ff !important;
-}
-.admin-head {
-  position: sticky; top: 0; z-index: 10;
-  display: flex; align-items: center; gap: 12px;
-  padding: 13px 14px;
-  background: rgba(10, 0, 25, 0.94) !important;
-  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-  border-bottom: 1px solid rgba(255, 0, 224, 0.4);
-  box-shadow: 0 0 30px rgba(255, 0, 224, 0.25);
-}
-.admin-head h2 {
-  flex: 1; font-size: 15px; font-weight: 900; letter-spacing: 1px;
-  background: linear-gradient(90deg, var(--neon2), var(--neon3));
-  -webkit-background-clip: text; background-clip: text;
-  -webkit-text-fill-color: transparent; color: transparent;
-}
+#adminPanel { display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 9998; overflow-y: auto; background: radial-gradient(circle at 20% 10%, #1a0033, transparent 50%), radial-gradient(circle at 80% 90%, #002233, transparent 50%), #04050d !important; color: #e9f6ff !important; }
+.admin-head { position: sticky; top: 0; z-index: 10; display: flex; align-items: center; gap: 12px; padding: 13px 14px; background: rgba(10, 0, 25, 0.94) !important; backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid rgba(255, 0, 224, 0.4); box-shadow: 0 0 30px rgba(255, 0, 224, 0.25); }
+.admin-head h2 { flex: 1; font-size: 15px; font-weight: 900; letter-spacing: 1px; background: linear-gradient(90deg, var(--neon2), var(--neon3)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; }
 .admin-body { padding: 16px 14px 70px; max-width: 1180px; margin: 0 auto; }
 .astat { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin-bottom: 16px; }
-.astat div {
-  padding: 14px; border-radius: 15px;
-  background: rgba(20, 0, 40, 0.7) !important;
-  border: 1px solid rgba(255, 0, 224, 0.3);
-  text-align: center;
-  box-shadow: 0 0 20px rgba(255, 0, 224, 0.15);
-}
+.astat div { padding: 14px; border-radius: 15px; background: rgba(20, 0, 40, 0.7) !important; border: 1px solid rgba(255, 0, 224, 0.3); text-align: center; box-shadow: 0 0 20px rgba(255, 0, 224, 0.15); }
 .astat b { display: block; font-size: 19px; font-weight: 900; color: var(--neon3) !important; text-shadow: 0 0 14px rgba(255, 230, 0, 0.6); }
 .astat span { font-size: 10.6px; color: #c9a8e0 !important; letter-spacing: 0.5px; }
 
-/* BULK DISCOUNT BOX */
-.bulk-box {
-  padding: 14px; border-radius: 14px;
-  background: rgba(255, 230, 0, 0.08) !important;
-  border: 1px solid rgba(255, 230, 0, 0.5);
-  margin-bottom: 14px;
-}
-.bulk-box .bulk-title {
-  font-size: 13px; font-weight: 900; color: #ffe600;
-  margin-bottom: 8px; display: flex; align-items: center; gap: 6px;
-}
-.bulk-box .bulk-row {
-  display: flex; gap: 8px; flex-wrap: wrap; align-items: center;
-}
-.bulk-box input {
-  flex: 1; min-width: 100px;
-  padding: 10px 12px; border-radius: 10px;
-  background: rgba(0, 0, 0, 0.6) !important;
-  border: 1px solid rgba(255, 230, 0, 0.5);
-  color: #ffe600 !important;
-  -webkit-text-fill-color: #ffe600 !important;
-  font-size: 14px; font-weight: 900;
-  font-family: inherit; outline: none;
-  text-align: center;
-}
+.bulk-box { padding: 14px; border-radius: 14px; background: rgba(255, 230, 0, 0.08) !important; border: 1px solid rgba(255, 230, 0, 0.5); margin-bottom: 14px; }
+.bulk-box .bulk-title { font-size: 13px; font-weight: 900; color: #ffe600; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+.bulk-box .bulk-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.bulk-box input { flex: 1; min-width: 100px; padding: 10px 12px; border-radius: 10px; background: rgba(0, 0, 0, 0.6) !important; border: 1px solid rgba(255, 230, 0, 0.5); color: #ffe600 !important; -webkit-text-fill-color: #ffe600 !important; font-size: 14px; font-weight: 900; font-family: inherit; outline: none; text-align: center; }
 .bulk-box input:focus { border-color: #ffe600; box-shadow: 0 0 0 3px rgba(255, 230, 0, 0.2); }
-.bulk-box .bulk-save {
-  padding: 10px 16px; border-radius: 10px; border: none;
-  cursor: pointer; font-weight: 900; font-size: 12px;
-  background: linear-gradient(90deg, #ffe600, #ff8a00);
-  color: #001018; font-family: inherit;
-  transition: 0.2s;
-}
+.bulk-box .bulk-save { padding: 10px 16px; border-radius: 10px; border: none; cursor: pointer; font-weight: 900; font-size: 12px; background: linear-gradient(90deg, #ffe600, #ff8a00); color: #001018; font-family: inherit; transition: 0.2s; }
 .bulk-box .bulk-save:hover { transform: scale(1.05); box-shadow: 0 0 16px rgba(255, 230, 0, 0.6); }
-.bulk-box .bulk-reset {
-  padding: 10px 14px; border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  cursor: pointer; font-weight: 900; font-size: 11.5px;
-  background: transparent; color: #c9a8e0;
-  font-family: inherit; transition: 0.2s;
-}
+.bulk-box .bulk-reset { padding: 10px 14px; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.3); cursor: pointer; font-weight: 900; font-size: 11.5px; background: transparent; color: #c9a8e0; font-family: inherit; transition: 0.2s; }
 .bulk-box .bulk-reset:hover { background: rgba(255, 255, 255, 0.1); }
-.bulk-status {
-  margin-top: 8px; font-size: 12px; font-weight: 700;
-  text-align: center;
-}
+.bulk-status { margin-top: 8px; font-size: 12px; font-weight: 700; text-align: center; }
 
-/* PRICE ROW */
-.price-row {
-  display: flex; align-items: center; justify-content: space-between;
-  gap: 8px; padding: 9px 11px; border-radius: 11px;
-  background: rgba(0, 0, 0, 0.5) !important;
-  border: 1px solid rgba(255, 230, 0, 0.3);
-  margin-bottom: 7px; flex-wrap: wrap;
-}
+.price-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 9px 11px; border-radius: 11px; background: rgba(0, 0, 0, 0.5) !important; border: 1px solid rgba(255, 230, 0, 0.3); margin-bottom: 7px; flex-wrap: wrap; }
 .price-row .pr-info { flex: 1; min-width: 150px; font-size: 12px; }
 .price-row .pr-info b { color: #ffe600; font-size: 12.8px; display: block; margin-bottom: 3px; }
 .price-row .pr-info small { color: #c9a8e0; font-size: 11px; }
-.price-row .pr-input {
-  width: 110px; padding: 8px 10px; border-radius: 9px;
-  background: rgba(0, 0, 0, 0.6) !important;
-  border: 1px solid rgba(255, 230, 0, 0.5);
-  color: #ffe600 !important;
-  -webkit-text-fill-color: #ffe600 !important;
-  font-size: 12.5px; font-family: inherit; font-weight: 900;
-  text-align: right; outline: none;
-}
+.price-row .pr-input { width: 110px; padding: 8px 10px; border-radius: 9px; background: rgba(0, 0, 0, 0.6) !important; border: 1px solid rgba(255, 230, 0, 0.5); color: #ffe600 !important; -webkit-text-fill-color: #ffe600 !important; font-size: 12.5px; font-family: inherit; font-weight: 900; text-align: right; outline: none; }
 .price-row .pr-input:focus { border-color: #ffe600; box-shadow: 0 0 0 3px rgba(255, 230, 0, 0.2); }
-.price-row .pr-save {
-  padding: 8px 12px; border-radius: 9px; border: none;
-  cursor: pointer; font-weight: 900; font-size: 11px;
-  background: linear-gradient(90deg, #ffe600, #ff8a00);
-  color: #001018; font-family: inherit; transition: 0.2s;
-}
+.price-row .pr-save { padding: 8px 12px; border-radius: 9px; border: none; cursor: pointer; font-weight: 900; font-size: 11px; background: linear-gradient(90deg, #ffe600, #ff8a00); color: #001018; font-family: inherit; transition: 0.2s; }
 .price-row .pr-save:hover { transform: scale(1.05); box-shadow: 0 0 16px rgba(255, 230, 0, 0.6); }
-.price-group-title {
-  font-size: 13px; font-weight: 900; color: #ffe600;
-  margin: 14px 0 8px; padding-bottom: 5px;
-  border-bottom: 1px dashed rgba(255, 230, 0, 0.3);
-  display: flex; align-items: center; gap: 6px;
-}
+.price-group-title { font-size: 13px; font-weight: 900; color: #ffe600; margin: 14px 0 8px; padding-bottom: 5px; border-bottom: 1px dashed rgba(255, 230, 0, 0.3); display: flex; align-items: center; gap: 6px; }
 
-/* USER SELECT */
-.user-select-box {
-  display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap;
-}
-.user-select-box select {
-  flex: 1; min-width: 180px;
-  padding: 12px 14px; border-radius: 12px;
-  background: rgba(0, 0, 0, 0.6) !important;
-  border: 1px solid rgba(255, 0, 224, 0.6);
-  color: #ff9eb5 !important;
-  -webkit-text-fill-color: #ff9eb5 !important;
-  font-size: 13.5px; font-weight: 900;
-  font-family: inherit; outline: none;
-  appearance: none; -webkit-appearance: none;
-}
+.user-select-box { display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
+.user-select-box select { flex: 1; min-width: 180px; padding: 12px 14px; border-radius: 12px; background: rgba(0, 0, 0, 0.6) !important; border: 1px solid rgba(255, 0, 224, 0.6); color: #ff9eb5 !important; -webkit-text-fill-color: #ff9eb5 !important; font-size: 13.5px; font-weight: 900; font-family: inherit; outline: none; appearance: none; -webkit-appearance: none; }
 .user-select-box select option { background: #0a0d1f; color: #ff9eb5; }
 
-/* REVIEW STARS */
 .stars-pick { display: flex; gap: 8px; justify-content: center; margin: 14px 0; font-size: 34px; cursor: pointer; user-select: none; }
 .stars-pick span { transition: 0.18s; filter: grayscale(1) opacity(0.4); }
 .stars-pick span.on { filter: none; transform: scale(1.16); text-shadow: 0 0 20px rgba(255, 230, 0, 0.9); }
 
-/* ORDER NOTIFICATION */
 #orderNotification {
-  position: fixed;
-  top: 80px;
-  left: 50%;
+  position: fixed; top: 80px; left: 50%;
   transform: translateX(-50%) translateY(-120px);
-  z-index: 9500;
-  padding: 16px 26px;
-  border-radius: 16px;
-  font-weight: 900;
-  font-size: 14px;
-  max-width: 92vw;
-  text-align: center;
-  pointer-events: none;
-  opacity: 0;
+  z-index: 9500; padding: 16px 26px; border-radius: 16px;
+  font-weight: 900; font-size: 14px; max-width: 92vw; text-align: center;
+  pointer-events: none; opacity: 0;
   transition: all 0.5s cubic-bezier(0.3, 1.4, 0.5, 1);
   background: linear-gradient(90deg, #00f0ff, #00ff88);
   color: #001018;
   box-shadow: 0 0 34px rgba(0, 240, 255, 0.95), 0 0 60px rgba(0, 255, 136, 0.5);
   border: 2px solid rgba(255, 255, 255, 0.6);
 }
-#orderNotification.show {
-  transform: translateX(-50%) translateY(0);
-  opacity: 1;
-}
-#orderNotification.done {
-  background: linear-gradient(90deg, #00ff88, #ffe600);
-  box-shadow: 0 0 34px rgba(0, 255, 136, 0.95), 0 0 60px rgba(255, 230, 0, 0.6);
-}
+#orderNotification.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+#orderNotification.done { background: linear-gradient(90deg, #00ff88, #ffe600); box-shadow: 0 0 34px rgba(0, 255, 136, 0.95), 0 0 60px rgba(255, 230, 0, 0.6); }
+#orderNotification.warn { background: linear-gradient(90deg, #ffe600, #ff8a00); color: #001018; box-shadow: 0 0 34px rgba(255, 230, 0, 0.95), 0 0 60px rgba(255, 138, 0, 0.6); }
 
-/* TOAST */
-#toast {
-  position: fixed; left: 50%; bottom: 26px;
-  transform: translateX(-50%) translateY(140px);
-  z-index: 9999; padding: 13px 22px; border-radius: 30px;
-  font-weight: 800; font-size: 13.4px;
-  background: linear-gradient(90deg, rgba(0, 240, 255, 0.95), rgba(0, 255, 136, 0.95)) !important;
-  color: #001018 !important;
-  box-shadow: 0 0 34px rgba(0, 240, 255, 0.8);
-  transition: 0.4s cubic-bezier(0.3, 1.4, 0.5, 1);
-  max-width: 90vw; text-align: center;
-}
+#toast { position: fixed; left: 50%; bottom: 26px; transform: translateX(-50%) translateY(140px); z-index: 9999; padding: 13px 22px; border-radius: 30px; font-weight: 800; font-size: 13.4px; background: linear-gradient(90deg, rgba(0, 240, 255, 0.95), rgba(0, 255, 136, 0.95)) !important; color: #001018 !important; box-shadow: 0 0 34px rgba(0, 240, 255, 0.8); transition: 0.4s cubic-bezier(0.3, 1.4, 0.5, 1); max-width: 90vw; text-align: center; }
 #toast.show { transform: translateX(-50%) translateY(0); }
 #toast.err { background: linear-gradient(90deg, #ff0055, #ff7a00) !important; color: #fff !important; box-shadow: 0 0 34px rgba(255, 0, 85, 0.8); }
 
-/* QR */
 .qr-box { text-align: center; padding: 8px; }
 .qr-box img { width: min(290px, 82vw); border-radius: 16px; border: 2px solid var(--neon1); box-shadow: 0 0 34px rgba(0, 240, 255, 0.5); background: #fff !important; }
 .bank-info { margin-top: 14px; font-size: 13px; line-height: 2; text-align: left; background: rgba(0, 0, 0, 0.55) !important; padding: 14px; border-radius: 14px; border: 1px solid var(--line); color: #e9f6ff !important; }
@@ -733,7 +266,6 @@ main { padding: 16px 14px 90px; max-width: 1180px; margin: 0 auto; background: t
   .bal-chip { padding: 7px 10px; font-size: 11.5px; }
   .price-row .pr-input { width: 90px; }
 }
-
 @media (prefers-color-scheme: light) {
   html, body { background: #05060f !important; color: #e9f6ff !important; }
 }
@@ -744,7 +276,6 @@ main { padding: 16px 14px 90px; max-width: 1180px; margin: 0 auto; background: t
 <canvas id="stars"></canvas>
 <div id="orderNotification"></div>
 
-<!-- LOADING -->
 <div id="loading">
   <div class="load-logo">SHOP ALL SẢN PHẨM FF – FFMAX</div>
   <div class="load-sub">HỖ TRỢ ADR🤖 và IOS📱</div>
@@ -755,7 +286,6 @@ main { padding: 16px 14px 90px; max-width: 1180px; margin: 0 auto; background: t
   </div>
 </div>
 
-<!-- AUTH -->
 <div id="auth" class="screen">
   <div class="auth-box">
     <div class="auth-title">SHOP ALL SẢN PHẨM FF – FFMAX</div>
@@ -779,16 +309,10 @@ main { padding: 16px 14px 90px; max-width: 1180px; margin: 0 auto; background: t
   </div>
 </div>
 
-<!-- APP -->
 <div id="app" class="screen" style="display:none">
   <header>
-    <div class="burger" id="burger" onclick="toggleMenu()">
-      <span></span><span></span><span></span>
-    </div>
-    <div class="brand">
-      <h1>SHOP All SẢN PHẨM FF – FFMAX</h1>
-      <p>HỖ TRỢ ADR🤖 và IOS📱</p>
-    </div>
+    <div class="burger" id="burger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+    <div class="brand"><h1>SHOP All SẢN PHẨM FF – FFMAX</h1><p>HỖ TRỢ ADR🤖 và IOS📱</p></div>
     <div class="music-wrap">
       <div class="music-ring"></div>
       <button class="music-btn" id="musicBtn" onclick="toggleMusicPanel(event)">
@@ -807,7 +331,6 @@ main { padding: 16px 14px 90px; max-width: 1180px; margin: 0 auto; background: t
   </header>
 
   <main>
-    <!-- TÀI KHOẢN -->
     <div class="page" id="page-account">
       <div class="page-title">👤 Tài khoản</div>
       <div id="discountBannerAcc"></div>
@@ -835,7 +358,6 @@ main { padding: 16px 14px 90px; max-width: 1180px; margin: 0 auto; background: t
       </div>
     </div>
 
-    <!-- NẠP TIỀN -->
     <div class="page" id="page-deposit">
       <div class="page-title">💳 Nạp tiền + Thẻ Car</div>
       <div class="panel gold">
@@ -872,7 +394,6 @@ main { padding: 16px 14px 90px; max-width: 1180px; margin: 0 auto; background: t
       </div>
     </div>
 
-    <!-- LỊCH SỬ -->
     <div class="page" id="page-history">
       <div class="page-title">📜 Lịch sử All</div>
       <div class="subtabs">
@@ -883,14 +404,12 @@ main { padding: 16px 14px 90px; max-width: 1180px; margin: 0 auto; background: t
       <div class="panel" id="histBox"></div>
     </div>
 
-    <!-- HACK IOS -->
     <div class="page" id="page-hackios">
       <div class="page-title">📱 HACK - All IOS</div>
       <div id="discountBannerIos"></div>
       <div class="grid" id="iosGrid"></div>
     </div>
 
-    <!-- HACK ADR -->
     <div class="page" id="page-hackadr">
       <div class="page-title">🤖 HACK - All ADR + FREE</div>
       <div class="panel green">
@@ -906,7 +425,6 @@ main { padding: 16px 14px 90px; max-width: 1180px; margin: 0 auto; background: t
         <button class="btn" onclick="navigate('support')">➡️ QUA PHẦN HỖ TRỢ</button></div>
     </div>
 
-    <!-- ESGIN -->
     <div class="page" id="page-esgin">
       <div class="page-title">🔑 Esgin = IOS</div>
       <div id="discountBannerEsgin"></div>
@@ -922,7 +440,6 @@ main { padding: 16px 14px 90px; max-width: 1180px; margin: 0 auto; background: t
       </div>
     </div>
 
-    <!-- HỖ TRỢ -->
     <div class="page" id="page-support">
       <div class="page-title">📞 Hỗ trợ</div>
       <div class="panel pink">
@@ -937,7 +454,6 @@ main { padding: 16px 14px 90px; max-width: 1180px; margin: 0 auto; background: t
       </div>
     </div>
 
-    <!-- GT HACK -->
     <div class="page" id="page-guide">
       <div class="page-title">⚡ GT HACK IOS + ADR</div>
       <div class="panel gold">
@@ -952,7 +468,6 @@ main { padding: 16px 14px 90px; max-width: 1180px; margin: 0 auto; background: t
       </div>
     </div>
 
-    <!-- ĐÁNH GIÁ -->
     <div class="page" id="page-review">
       <div class="page-title">⭐ Đánh giá</div>
       <div class="panel gold">
@@ -972,10 +487,7 @@ main { padding: 16px 14px 90px; max-width: 1180px; margin: 0 auto; background: t
 <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
 
 <aside class="sidebar" id="sidebar">
-  <div class="side-head">
-    <h2>⚡ MENU SHOP</h2>
-    <p>HỖ TRỢ ADR🤖 và IOS📱</p>
-  </div>
+  <div class="side-head"><h2>⚡ MENU SHOP</h2><p>HỖ TRỢ ADR🤖 và IOS📱</p></div>
   <div class="side-user" id="sideUser"></div>
   <ul class="menu" id="menuList">
     <li data-page="account"><span class="ico">👤</span> Tài khoản</li>
@@ -1018,12 +530,9 @@ main { padding: 16px 14px 90px; max-width: 1180px; margin: 0 auto; background: t
       <div><b id="stRv">0</b><span>ĐÁNH GIÁ</span></div>
     </div>
 
-    <!-- ===== MỤC 1: CHỈNH GIÁ TOÀN SHOP ===== -->
     <div class="panel gold">
       <div class="sec-title">💵 MỤC 1 — Chỉnh giá TOÀN SHOP</div>
       <div class="hint" style="margin-bottom:10px">Áp dụng cho <b style="color:#ffe600">TẤT CẢ</b> người dùng. Bao gồm: giảm giá chung + chỉnh giá từng sản phẩm.</div>
-
-      <!-- BULK DISCOUNT -->
       <div class="bulk-box">
         <div class="bulk-title">🔥 Giảm giá TẤT CẢ sản phẩm toàn shop (%)</div>
         <div class="bulk-row">
@@ -1033,22 +542,17 @@ main { padding: 16px 14px 90px; max-width: 1180px; margin: 0 auto; background: t
         </div>
         <div class="bulk-status" id="bulkStatus"></div>
       </div>
-
-      <!-- GLOBAL PRICES -->
       <div id="globalPrices"></div>
     </div>
 
-    <!-- ===== MỤC 2: CHỈNH GIÁ RIÊNG USER ===== -->
     <div class="panel pink">
       <div class="sec-title">💸 MỤC 2 — Chỉnh giá RIÊNG cho từng người dùng</div>
       <div class="hint" style="margin-bottom:10px">Chỉ người dùng được chọn mới thấy giá riêng. Chọn user → chỉnh giá sản phẩm → nhấn 💾 LƯU.</div>
-
       <div class="user-select-box">
         <select id="perUserSelect" onchange="window.__renderPerUserPrices()">
           <option value="">-- Chọn người dùng --</option>
         </select>
       </div>
-
       <div id="perUserPriceList"></div>
     </div>
 
@@ -1118,10 +622,7 @@ try {
   } catch (e) { console.error('Firebase init error:', e); }
 
   var DB = {
-    users: {},
-    deposits: [],
-    orders: [],
-    reviews: [],
+    users: {}, deposits: [], orders: [], reviews: [],
     config: { prices: {}, bulkDiscount: 0 }
   };
   var CUR = null;
@@ -1131,28 +632,19 @@ try {
   var IMG = 'https://raw.githubusercontent.com/proxyvipivn/Shop-blox-fruit-/main/';
   var _notifyCheckedThisSession = false;
 
-  /* ===== SẢN PHẨM ===== */
   var IOS = [
-    {
-      name: 'TROLL MODZ IOS ADR', img: IMG + 'IMG_8158.jpeg',
+    { name: 'TROLL MODZ IOS ADR', img: IMG + 'IMG_8158.jpeg',
       desc: 'Antiban 80-90%\nSiêu bá\nTải app để cài',
-      plans: [{ l: '1 Giờ', p: 10000 },{ l: '1 Ngày', p: 25000 },{ l: '7 Ngày', p: 100000 },{ l: '30 Ngày', p: 170000 }]
-    },
-    {
-      name: 'PROXY IOS IPA', img: IMG + 'IMG_8160.jpeg',
+      plans: [{ l: '1 Giờ', p: 10000 },{ l: '1 Ngày', p: 25000 },{ l: '7 Ngày', p: 100000 },{ l: '30 Ngày', p: 170000 }] },
+    { name: 'PROXY IOS IPA', img: IMG + 'IMG_8160.jpeg',
       desc: 'Antiban 90%\nNhiều chức năng khác nhau\nCần esgin để cài',
-      plans: [{ l: '1 Ngày', p: 20000 },{ l: '7 Ngày', p: 60000 },{ l: '30 Ngày', p: 150000 },{ l: 'Vĩnh viễn', p: 360000 }]
-    },
-    {
-      name: 'MIGUL BAGIC VN', img: IMG + 'IMG_8155.jpeg',
+      plans: [{ l: '1 Ngày', p: 20000 },{ l: '7 Ngày', p: 60000 },{ l: '30 Ngày', p: 150000 },{ l: 'Vĩnh viễn', p: 360000 }] },
+    { name: 'MIGUL BAGIC VN', img: IMG + 'IMG_8155.jpeg',
       desc: 'Antiban siêu bá\nCần esgin để cài\nMenu đầy đủ chức năng',
-      plans: [{ l: '1 Ngày', p: 70000 },{ l: '7 Ngày', p: 200000 },{ l: '30 Ngày', p: 420000 }]
-    },
-    {
-      name: 'MIGUL PRO VN', img: IMG + 'IMG_8156.jpeg',
+      plans: [{ l: '1 Ngày', p: 70000 },{ l: '7 Ngày', p: 200000 },{ l: '30 Ngày', p: 420000 }] },
+    { name: 'MIGUL PRO VN', img: IMG + 'IMG_8156.jpeg',
       desc: 'Antiban hơn magic nhiều\nCần esgin để cài\nMenu nhiều chắc chắn siêu bá',
-      plans: [{ l: '1 Giờ', p: 20000 },{ l: '1 Ngày', p: 120000 },{ l: '7 Ngày', p: 250000 },{ l: '30 Ngày', p: 550000 }]
-    }
+      plans: [{ l: '1 Giờ', p: 20000 },{ l: '1 Ngày', p: 120000 },{ l: '7 Ngày', p: 250000 },{ l: '30 Ngày', p: 550000 }] }
   ];
 
   var ESGIN = [
@@ -1165,12 +657,9 @@ try {
     return (productName + '||' + planLabel).replace(/[.#$\[\]\/]/g, '_');
   }
 
-  /* Lấy giá gốc sau khi áp dụng: user custom price → global price → original */
   function getBasePrice(productName, planLabel, originalPrice) {
     var key = priceKey(productName, planLabel);
     var basePrice = originalPrice;
-
-    // 1. User custom price (cao nhất)
     if (CUR) {
       var u = DB.users[CUR] || {};
       if (u.customPrices && u.customPrices[key] != null && u.customPrices[key] !== '') {
@@ -1178,38 +667,25 @@ try {
         if (!isNaN(up) && up > 0) return up;
       }
     }
-
-    // 2. Global override
     if (DB.config.prices && DB.config.prices[key] != null && DB.config.prices[key] !== '') {
       var gp = Number(DB.config.prices[key]);
       if (!isNaN(gp) && gp > 0) return gp;
     }
-
-    // 3. Original
     return originalPrice;
   }
 
-  /* Áp dụng bulk discount + user discount */
   function getFinalPrice(productName, planLabel, originalPrice) {
     var base = getBasePrice(productName, planLabel, originalPrice);
-
     var bulk = Number(DB.config.bulkDiscount) || 0;
-    if (bulk > 0 && bulk <= 100) {
-      base = base * (100 - bulk) / 100;
-    }
-
+    if (bulk > 0 && bulk <= 100) base = base * (100 - bulk) / 100;
     if (CUR) {
       var uu = DB.users[CUR] || {};
       var ud = Number(uu.discount) || 0;
-      if (ud > 0 && ud <= 100) {
-        base = base * (100 - ud) / 100;
-      }
+      if (ud > 0 && ud <= 100) base = base * (100 - ud) / 100;
     }
-
     return Math.round(base);
   }
 
-  /* % giảm giá user */
   function getMyDiscount() {
     if (!CUR) return 0;
     var u = DB.users[CUR] || {};
@@ -1219,16 +695,14 @@ try {
     return d;
   }
 
-  /* ===== 300 SAO + SAO BĂNG ===== */
+  /* ===== SAO + SAO BĂNG ===== */
   (function () {
     try {
       var c = document.getElementById('stars');
       var x = c.getContext('2d');
       var W, H, starList = [], meteors = [];
-
       function resize() { W = c.width = innerWidth; H = c.height = innerHeight; }
       resize(); addEventListener('resize', resize);
-
       for (var i = 0; i < 300; i++) {
         starList.push({
           x: Math.random() * W, y: Math.random() * H,
@@ -1241,7 +715,6 @@ try {
                  Math.random() < 0.1 ? '#ffe600' : '#ffffff'
         });
       }
-
       function spawnMeteor() {
         if (meteors.length < 6 && Math.random() < 0.7) {
           meteors.push({
@@ -1255,7 +728,6 @@ try {
         setTimeout(spawnMeteor, Math.random() * 500 + 400);
       }
       spawnMeteor();
-
       function loop() {
         x.clearRect(0, 0, W, H);
         for (var i = 0; i < starList.length; i++) {
@@ -1267,7 +739,6 @@ try {
           x.beginPath(); x.arc(s.x, s.y, s.r, 0, Math.PI * 2); x.fill();
         }
         x.globalAlpha = 1; x.shadowBlur = 0;
-
         for (var j = meteors.length - 1; j >= 0; j--) {
           var m = meteors[j];
           var tx = m.x - Math.cos(m.ang) * m.len;
@@ -1305,7 +776,6 @@ try {
     { name: 'Cute Remix', src: 'https://raw.githubusercontent.com/proxyvipivn/SHOP-STORE-ALL-FF/refs/heads/main/cute.mp3.mp3' }
   ];
   var bgMusic = null, curTrack = -1, playing = false;
-
   function initMusic() {
     try {
       bgMusic = new Audio();
@@ -1398,17 +868,86 @@ try {
   }
   window.__copyKey = copyText;
 
-  /* ===== ORDER NOTIFICATION ===== */
-  function showOrderNotify(msg, isDone) {
-    var el = document.getElementById('orderNotification');
-    if (!el) return;
-    el.textContent = msg;
-    el.className = isDone ? 'show done' : 'show';
-    setTimeout(function () { el.className = ''; }, 5000);
+  /* ==========================================================
+     HỆ THỐNG THÔNG BÁO QUEUE — HIỆN LẦN LƯỢT 5 GIÂY
+     ========================================================== */
+  var notifyQueue = [];
+  var notifying = false;
+
+  function queueNotify(msg, type) {
+    // type: 'pending' | 'done' | 'warn'
+    notifyQueue.push({ msg: msg, type: type });
+    if (!notifying) processNotifyQueue();
   }
 
+  function processNotifyQueue() {
+    if (notifyQueue.length === 0) { notifying = false; return; }
+    notifying = true;
+    var item = notifyQueue.shift();
+    var el = document.getElementById('orderNotification');
+    if (!el) { notifying = false; return; }
+    el.textContent = item.msg;
+    el.className = '';
+    if (item.type === 'done') el.className = 'show done';
+    else if (item.type === 'warn') el.className = 'show warn';
+    else el.className = 'show';
+
+    setTimeout(function () {
+      el.className = '';
+      setTimeout(processNotifyQueue, 400);
+    }, 5000);
+  }
+
+  /* ==========================================================
+     KIỂM TRA THÔNG BÁO NẠP TIỀN
+     ========================================================== */
+  function checkDepositNotify() {
+    if (!CUR) return;
+
+    var myDeps = [];
+    for (var i = 0; i < DB.deposits.length; i++) {
+      if (DB.deposits[i].user === CUR) myDeps.push(DB.deposits[i]);
+    }
+
+    /* ===== PHẦN 1: ĐƠN ĐANG XỬ LÝ — HIỆN MỖI LẦN TẢI LẠI ===== */
+    var hasQRPending = false;
+    var hasCardPending = false;
+    for (var j = 0; j < myDeps.length; j++) {
+      if (myDeps[j].status === 'wait') {
+        if (myDeps[j].type === 'QR') hasQRPending = true;
+        if (myDeps[j].type === 'CARD') hasCardPending = true;
+      }
+    }
+    if (hasQRPending) queueNotify('Đơn hàng nạp MÃ QR đang được xử lý 🕠', 'warn');
+    if (hasCardPending) queueNotify('Đơn hàng nạp Thẻ car đang được xử lý 🕠', 'warn');
+
+    /* ===== PHẦN 2: ĐƠN ĐÃ XỬ LÝ — CHỈ HIỆN 1 LẦN ===== */
+    var keyD = 'ff_dep_notif_' + CUR;
+    var notified = [];
+    try { notified = JSON.parse(localStorage.getItem(keyD) || '[]'); } catch (e) { notified = []; }
+
+    for (var k = 0; k < myDeps.length; k++) {
+      var d = myDeps[k];
+      // Đơn đã xử lý thành công — chưa thông báo
+      if (d.status === 'done' && notified.indexOf(d.id) === -1) {
+        var amt = d.type === 'QR' ? d.amount : d.receive;
+        queueNotify('Nạp thành công ' + fmt(amt) + ' 🎉', 'done');
+        notified.push(d.id);
+      }
+      // Đơn bị huỷ — đánh dấu luôn để không hiện lại
+      if (d.status === 'cancel' && notified.indexOf(d.id) === -1) {
+        notified.push(d.id);
+      }
+    }
+    try { localStorage.setItem(keyD, JSON.stringify(notified)); } catch (e) {}
+  }
+
+  /* ==========================================================
+     KIỂM TRA THÔNG BÁO ĐƠN MUA
+     ========================================================== */
   function checkOrderNotify() {
     if (!CUR) return;
+
     var myOrders = [];
     for (var i = 0; i < DB.orders.length; i++) {
       if (DB.orders[i].user === CUR) myOrders.push(DB.orders[i]);
@@ -1421,26 +960,26 @@ try {
     try { notifiedP = JSON.parse(localStorage.getItem(keyP) || '[]'); } catch (e) { notifiedP = []; }
     try { notifiedD = JSON.parse(localStorage.getItem(keyD) || '[]'); } catch (e) { notifiedD = []; }
 
-    // Đơn đang xử lý — chỉ đơn MỚI
+    // Đơn đang xử lý — đơn mới
     var pendingShown = false;
     for (var a = 0; a < myOrders.length; a++) {
       var o = myOrders[a];
       if (o.status === 'wait' && notifiedP.indexOf(o.id) === -1) {
         if (!pendingShown) {
-          showOrderNotify('Sản phẩm vẫn đang trong quá trình xử lý ⚡️', false);
+          queueNotify('Sản phẩm vẫn đang trong quá trình xử lý ⚡️', 'pending');
           pendingShown = true;
         }
         notifiedP.push(o.id);
       }
     }
 
-    // Đơn đã xử lý (có key) — chỉ đơn MỚI
+    // Đơn đã xử lý (có key) — đơn mới
     var doneShown = false;
     for (var b = 0; b < myOrders.length; b++) {
       var oo = myOrders[b];
       if (oo.status === 'done' && oo.key && notifiedD.indexOf(oo.id) === -1) {
         if (!doneShown) {
-          showOrderNotify('Đơn hàng của bạn đã được xử lý🎉', true);
+          queueNotify('Đơn hàng của bạn đã được xử lý🎉', 'done');
           doneShown = true;
         }
         notifiedD.push(oo.id);
@@ -1449,6 +988,11 @@ try {
 
     try { localStorage.setItem(keyP, JSON.stringify(notifiedP)); } catch (e) {}
     try { localStorage.setItem(keyD, JSON.stringify(notifiedD)); } catch (e) {}
+  }
+
+  function runAllNotifies() {
+    checkDepositNotify();
+    checkOrderNotify();
   }
 
   function getS() { try { return JSON.parse(localStorage.getItem('ff_session')); } catch (e) { return null; } }
@@ -1460,12 +1004,7 @@ try {
 
     db.ref('users').on('value', function (s) {
       DB.users = s.val() || {};
-      if (CUR) {
-        upUI();
-        renderDiscountBanner();
-        renderIOS();
-        renderEsgin();
-      }
+      if (CUR) { upUI(); renderDiscountBanner(); renderIOS(); renderEsgin(); }
       if (document.getElementById('adminPanel').style.display === 'block') renderAdmin();
     });
 
@@ -1473,6 +1012,11 @@ try {
       DB.deposits = s.val() || [];
       if (CUR && document.getElementById('page-history').classList.contains('active')) renderHist();
       if (document.getElementById('adminPanel').style.display === 'block') renderAdmin();
+      // Khi data thay đổi và user đang login → check notification mới (không spam pending)
+      if (CUR && _notifyCheckedThisSession) {
+        checkDepositNotify();
+        checkOrderNotify();
+      }
     });
 
     db.ref('orders').on('value', function (s) {
@@ -1482,6 +1026,9 @@ try {
         if (document.getElementById('page-history').classList.contains('active')) renderHist();
       }
       if (document.getElementById('adminPanel').style.display === 'block') renderAdmin();
+      if (CUR && _notifyCheckedThisSession) {
+        checkOrderNotify();
+      }
     });
 
     db.ref('reviews').on('value', function (s) {
@@ -1495,8 +1042,7 @@ try {
         prices: d.prices || {},
         bulkDiscount: Number(d.bulkDiscount) || 0
       };
-      renderIOS();
-      renderEsgin();
+      renderIOS(); renderEsgin();
       if (document.getElementById('adminPanel').style.display === 'block') renderAdmin();
     });
   }
@@ -1529,7 +1075,6 @@ try {
     var m = document.getElementById('authMsg');
     m.textContent = t; m.className = 'msg ' + (ok ? 'ok' : 'err');
   }
-
   function bootAuth() {
     var s = getS();
     if (s && s.user && s.exp > now() && DB.users[s.user]) {
@@ -1541,7 +1086,6 @@ try {
     if (s) setS(null);
     document.getElementById('auth').style.display = 'flex';
   }
-
   function doRegister() {
     var u = document.getElementById('rgUser').value.trim();
     var p = document.getElementById('rgPass').value;
@@ -1551,7 +1095,6 @@ try {
     if (p.length < 4) return aMsg('⚠️ Mật khẩu phải từ 4 ký tự trở lên');
     if (p !== p2) return aMsg('⚠️ Mật khẩu nhập lại không khớp');
     if (!db) return aMsg('❌ Chưa kết nối máy chủ.');
-
     db.ref('users/' + u).once('value').then(function (s) {
       if (s.exists()) { aMsg('❌ Tên tài khoản "' + u + '" đã được đăng ký!'); return; }
       db.ref('users/' + u).set({
@@ -1567,21 +1110,17 @@ try {
       }).catch(function (e) { aMsg('❌ Lỗi: ' + e.message); });
     }).catch(function (e) { aMsg('❌ Lỗi: ' + e.message); });
   }
-
   function doLogin() {
     var u = document.getElementById('lgUser').value.trim();
     var p = document.getElementById('lgPass').value;
     if (!u || !p) return aMsg('⚠️ Vui lòng nhập tên tài khoản và mật khẩu');
     if (!db) return aMsg('❌ Chưa kết nối máy chủ.');
-
     db.ref('users/' + u).once('value').then(function (s) {
       var user = s.val();
       if (!user) return aMsg('❌ Tài khoản không tồn tại!');
       if (user.password !== p) return aMsg('❌ Mật khẩu không đúng!');
-
       setS({ user: u, exp: now() + 12 * 60 * 60 * 1000 });
       aMsg('✅ Đăng nhập thành công!', true);
-
       setTimeout(function () {
         document.getElementById('auth').style.display = 'none';
         document.getElementById('lgUser').value = '';
@@ -1592,10 +1131,11 @@ try {
       }, 520);
     }).catch(function (e) { aMsg('❌ Lỗi: ' + e.message); });
   }
-
   function logout() {
     setS(null); CUR = null;
     _notifyCheckedThisSession = false;
+    notifyQueue = [];
+    notifying = false;
     document.getElementById('app').style.display = 'none';
     document.getElementById('sidebar').classList.remove('open');
     document.getElementById('overlay').classList.remove('show');
@@ -1615,11 +1155,11 @@ try {
     renderIOS();
     renderEsgin();
     navigate('account');
-    // Check notification sau khi vào app
+    // Chạy tất cả thông báo sau khi vào app
     setTimeout(function () {
       if (!_notifyCheckedThisSession) {
         _notifyCheckedThisSession = true;
-        checkOrderNotify();
+        runAllNotifies();
       }
     }, 1200);
   }
@@ -1629,15 +1169,12 @@ try {
   function upUI() {
     var u = uObj();
     document.getElementById('hdrBal').textContent = fmt(u.balance);
-
     var dc = getMyDiscount();
     var dcText = dc > 0 ? '<br><span class="dc">💸 Giảm giá: -' + dc + '%</span>' : '';
-
     document.getElementById('sideUser').innerHTML =
       '👤 <b>' + CUR + '</b><br>' +
       '<span class="ib">🔢 Số IB: ' + u.ib + '</span><br>' +
       '💰 Số dư: <b>' + fmt(u.balance) + '</b>' + dcText;
-
     document.getElementById('acName').textContent = CUR;
     document.getElementById('acIb').textContent = u.ib;
     document.getElementById('acDep').textContent = fmt(u.totalDeposit);
@@ -1650,14 +1187,12 @@ try {
     var dc = getMyDiscount();
     var bulk = Number(DB.config.bulkDiscount) || 0;
     var html = '';
-
     if (dc > 0 || bulk > 0) {
       var parts = [];
       if (bulk > 0) parts.push('SHOP GIẢM ' + bulk + '%');
       if (dc > 0) parts.push('BẠN ĐƯỢC GIẢM THÊM ' + dc + '%');
       html = '<div class="discount-banner">💸 <b>' + parts.join(' + ') + '</b> cho tất cả sản phẩm! 🎉</div>';
     }
-
     ['discountBannerAcc', 'discountBannerIos', 'discountBannerEsgin'].forEach(function (id) {
       var el = document.getElementById(id);
       if (el) el.innerHTML = html;
@@ -1669,16 +1204,13 @@ try {
     document.getElementById('overlay').classList.toggle('show');
     document.getElementById('burger').classList.toggle('open');
   }
-
   function navigate(p) {
     var pages = document.querySelectorAll('.page');
     for (var i = 0; i < pages.length; i++) pages[i].classList.remove('active');
     var el = document.getElementById('page-' + p);
     if (el) el.classList.add('active');
     var lis = document.querySelectorAll('#menuList li[data-page]');
-    for (var j = 0; j < lis.length; j++) {
-      lis[j].classList.toggle('active', lis[j].getAttribute('data-page') === p);
-    }
+    for (var j = 0; j < lis.length; j++) lis[j].classList.toggle('active', lis[j].getAttribute('data-page') === p);
     document.getElementById('sidebar').classList.remove('open');
     document.getElementById('overlay').classList.remove('show');
     document.getElementById('burger').classList.remove('open');
@@ -1689,11 +1221,9 @@ try {
     if (p === 'account') upUI();
   }
 
-  /* ===== RENDER PRICE HTML ===== */
   function renderPriceHTML(originalPrice, productName, planLabel) {
     var base = getBasePrice(productName, planLabel, originalPrice);
     var final = getFinalPrice(productName, planLabel, originalPrice);
-
     if (final < base) {
       var diff = Math.round((base - final) / base * 100);
       return '<div class="price-group">' +
@@ -1705,7 +1235,6 @@ try {
     return '<span class="pr">' + fmt(final) + '</span>';
   }
 
-  /* ===== RENDER SẢN PHẨM ===== */
   function renderIOS() {
     var h = '';
     for (var i = 0; i < IOS.length; i++) {
@@ -1755,17 +1284,14 @@ try {
       '</div></div>';
   }
 
-  /* ===== MUA HÀNG ===== */
   window.__buy = function (name, plan, finalPrice, basePrice) {
     var u = uObj();
     var priceToUse = (typeof finalPrice === 'number' && finalPrice > 0) ? finalPrice : basePrice;
-
     if ((u.balance || 0) < priceToUse) {
       toast('❌ Bạn cần nạp thêm tiền để mua! Thiếu ' + fmt(priceToUse - (u.balance || 0)), true);
       return;
     }
     if (!db) return toast('❌ Chưa kết nối máy chủ', true);
-
     db.ref('users/' + CUR).once('value').then(function (s) {
       var f = s.val();
       if (!f) return;
@@ -1776,7 +1302,6 @@ try {
       f.balance -= priceToUse;
       f.totalSpent = (f.totalSpent || 0) + priceToUse;
       db.ref('users/' + CUR).set(f);
-
       var o = DB.orders.slice();
       o.unshift({
         id: rand(8), user: CUR, name: name, plan: plan,
@@ -1788,18 +1313,15 @@ try {
       });
       DB.orders = o;
       db.ref('orders').set(o);
-
       upUI();
       toast('🎉 Chức mừng bạn đã mua hàng thành công! Vui lòng chờ 1-30 phút đơn hàng sẽ được xử lý.');
     }).catch(function (e) { toast('❌ Lỗi: ' + e.message, true); });
   };
 
-  /* ===== QR ===== */
   function createQR() {
     var amt = Number(document.getElementById('qrAmount').value);
     if (!amt || amt < 5000) return toast('⚠️ Số tiền tối thiểu là 5.000đ', true);
     if (amt > 5000000) return toast('⚠️ Số tiền tối đa là 5.000.000đ', true);
-
     var code = rand(6);
     var d = {
       id: rand(8), user: CUR, type: 'QR', amount: amt,
@@ -1807,7 +1329,6 @@ try {
     };
     DB.deposits.unshift(d);
     if (db) db.ref('deposits').set(DB.deposits);
-
     document.getElementById('qrResult').innerHTML =
       '<div class="qr-box">' +
       '<img src="' + IMG + 'IMG_8134.jpeg" alt="QR">' +
@@ -1824,14 +1345,9 @@ try {
     toast('✅ Đã tạo mã QR! Vui lòng chuyển khoản đúng nội dung.');
   }
 
-  /* ===== THẺ CAR (RATE MỚI) ===== */
   var RATE = {
-    10000: 8500,
-    20000: 18000,
-    50000: 47000,
-    100000: 96500,
-    200000: 195000,
-    500000: 490000
+    10000: 8500, 20000: 18000, 50000: 47000,
+    100000: 96500, 200000: 195000, 500000: 490000
   };
 
   function submitCard() {
@@ -1839,10 +1355,8 @@ try {
     var type = document.getElementById('cardType').value;
     var code = document.getElementById('cardCode').value.trim();
     var seri = document.getElementById('cardSeri').value.trim();
-
     if (!code || !seri) return toast('⚠️ Vui lòng nhập đầy đủ Mã thẻ và Seri!', true);
     if (code.length < 6 || seri.length < 6) return toast('⚠️ Mã thẻ hoặc Seri không hợp lệ!', true);
-
     var d = {
       id: rand(8), user: CUR, type: 'CARD', amount: amt,
       receive: RATE[amt] || 0, cardType: type,
@@ -1851,13 +1365,11 @@ try {
     };
     DB.deposits.unshift(d);
     if (db) db.ref('deposits').set(DB.deposits);
-
     document.getElementById('cardCode').value = '';
     document.getElementById('cardSeri').value = '';
     toast('✅ Đã gửi thẻ! Admin đang kiểm tra và xử lý.');
   }
 
-  /* ===== LỊCH SỬ ===== */
   function switchHist(m) {
     histMode = m;
     var t = document.querySelectorAll('.subtab');
@@ -1868,7 +1380,6 @@ try {
   function renderHist() {
     var box = document.getElementById('histBox');
     var h = '';
-
     if (histMode === 'dep') {
       var mine = [];
       for (var i = 0; i < DB.deposits.length; i++) if (DB.deposits[i].user === CUR) mine.push(DB.deposits[i]);
@@ -1925,7 +1436,6 @@ try {
     box.innerHTML = h;
   }
 
-  /* ===== ĐÁNH GIÁ ===== */
   (function () {
     var s = document.querySelectorAll('#starPick span');
     for (var i = 0; i < s.length; i++) {
@@ -1953,7 +1463,6 @@ try {
 
   function openLink(u) { window.open(u, '_blank'); }
 
-  /* ===== ADMIN GATE ===== */
   function openAdminGate() {
     document.getElementById('adminModal').classList.add('show');
     document.getElementById('adminPass').value = '';
@@ -1975,7 +1484,6 @@ try {
   }
   function closeAdminPanel() { document.getElementById('adminPanel').style.display = 'none'; }
 
-  /* ===== BULK DISCOUNT (MỤC 1) ===== */
   window.__saveBulkDiscount = function () {
     var inp = document.getElementById('bulkDiscountInput');
     if (!inp) return;
@@ -1990,7 +1498,6 @@ try {
       renderBulkStatus();
     }).catch(function (e) { toast('❌ Lỗi: ' + e.message, true); });
   };
-
   window.__resetBulkDiscount = function () {
     if (!db) return;
     db.ref('config/bulkDiscount').set(0).then(function () {
@@ -2002,24 +1509,18 @@ try {
       renderBulkStatus();
     }).catch(function (e) { toast('❌ Lỗi: ' + e.message, true); });
   };
-
   function renderBulkStatus() {
     var el = document.getElementById('bulkStatus');
     if (!el) return;
     var b = Number(DB.config.bulkDiscount) || 0;
-    el.innerHTML = b > 0
-      ? '🔥 Đang giảm <b style="color:#00ff88">' + b + '%</b> cho TẤT CẢ sản phẩm'
-      : '⚪ Chưa áp dụng giảm giá toàn shop';
-    if (b > 0) el.style.color = '#00ff88';
-    else el.style.color = '#c9a8e0';
+    el.innerHTML = b > 0 ? '🔥 Đang giảm <b style="color:#00ff88">' + b + '%</b> cho TẤT CẢ sản phẩm' : '⚪ Chưa áp dụng giảm giá toàn shop';
+    el.style.color = b > 0 ? '#00ff88' : '#c9a8e0';
   }
 
-  /* ===== GLOBAL PRICE (MỤC 1) ===== */
   function renderGlobalPrices() {
     var box = document.getElementById('globalPrices');
     if (!box) return;
     var h = '';
-
     h += '<div class="price-group-title">📱 HACK - All IOS (TOÀN SHOP)</div>';
     for (var i = 0; i < IOS.length; i++) {
       var pr = IOS[i];
@@ -2029,12 +1530,11 @@ try {
         var cur = getBasePrice(pr.name, p.l, p.p);
         h += '<div class="price-row">' +
           '<div class="pr-info"><b>' + pr.name + '</b><small>Gói: ' + p.l + ' — Giá gốc: ' + fmt(p.p) + '</small></div>' +
-          '<input class="pr-input" type="number" id="gp_' + k + '" value="' + cur + '" min="0" step="1000" placeholder="Giá mới">' +
+          '<input class="pr-input" type="number" id="gp_' + k + '" value="' + cur + '" min="0" step="1000">' +
           '<button class="pr-save" onclick="window.__saveGlobalPrice(\'' + pr.name.replace(/'/g, "\\'") + '\',\'' + p.l.replace(/'/g, "\\'") + '\',\'' + k + '\')">💾 LƯU</button>' +
           '</div>';
       }
     }
-
     h += '<div class="price-group-title">🔑 Esgin = IOS (TOÀN SHOP)</div>';
     for (var a = 0; a < ESGIN.length; a++) {
       var g = ESGIN[a];
@@ -2043,7 +1543,7 @@ try {
       var cur2 = getBasePrice('ESGIN = IOS', label, g.price);
       h += '<div class="price-row">' +
         '<div class="pr-info"><b>ESGIN = IOS</b><small>Gói: ' + g.name + ' — Giá gốc: ' + fmt(g.price) + '</small></div>' +
-        '<input class="pr-input" type="number" id="gp_' + k2 + '" value="' + cur2 + '" min="0" step="1000" placeholder="Giá mới">' +
+        '<input class="pr-input" type="number" id="gp_' + k2 + '" value="' + cur2 + '" min="0" step="1000">' +
         '<button class="pr-save" onclick="window.__saveGlobalPrice(\'ESGIN = IOS\',\'' + label.replace(/'/g, "\\'") + '\',\'' + k2 + '\')">💾 LƯU</button>' +
         '</div>';
     }
@@ -2056,7 +1556,6 @@ try {
     var newPrice = Number(inp.value);
     if (isNaN(newPrice) || newPrice < 0) return toast('⚠️ Giá không hợp lệ!', true);
     if (!db) return toast('❌ Chưa kết nối máy chủ', true);
-
     db.ref('config/prices/' + key).set(newPrice).then(function () {
       toast('✅ Đã đổi giá toàn shop: ' + fmt(newPrice));
       DB.config.prices[key] = newPrice;
@@ -2064,16 +1563,13 @@ try {
     }).catch(function (e) { toast('❌ Lỗi: ' + e.message, true); });
   };
 
-  /* ===== PER-USER PRICES (MỤC 2) ===== */
   function renderUserSelect() {
     var sel = document.getElementById('perUserSelect');
     if (!sel) return;
     var old = sel.value;
     var uk = Object.keys(DB.users);
     var h = '<option value="">-- Chọn người dùng --</option>';
-    for (var i = 0; i < uk.length; i++) {
-      h += '<option value="' + uk[i].replace(/"/g, '&quot;') + '">' + uk[i] + '</option>';
-    }
+    for (var i = 0; i < uk.length; i++) h += '<option value="' + uk[i].replace(/"/g, '&quot;') + '">' + uk[i] + '</option>';
     sel.innerHTML = h;
     if (old && DB.users[old]) sel.value = old;
   }
@@ -2085,12 +1581,10 @@ try {
     var userName = sel.value;
     if (!userName) { box.innerHTML = ''; return; }
     if (!DB.users[userName]) { box.innerHTML = '<div class="empty">Không tìm thấy user</div>'; return; }
-
     var u = DB.users[userName] || {};
     var cp = u.customPrices || {};
     var h = '<div style="font-size:13px;font-weight:900;color:#ff9eb5;margin-bottom:10px">👤 Đang chỉnh giá cho: <b style="color:#fff">' + userName + '</b></div>';
 
-    // IOS
     h += '<div class="price-group-title" style="color:#ff9eb5;border-bottom-color:rgba(255,0,224,.3)">📱 HACK - All IOS</div>';
     for (var i = 0; i < IOS.length; i++) {
       var pr = IOS[i];
@@ -2102,14 +1596,12 @@ try {
         var isCustom = cp[k] != null && cp[k] !== '';
         h += '<div class="price-row" style="border-color:rgba(255,0,224,.3)">' +
           '<div class="pr-info"><b style="color:#ff9eb5">' + pr.name + '</b><small>Gói: ' + p.l + ' — Giá gốc shop: ' + fmt(globalPrice) + (isCustom ? ' <span style="color:#00ff88">(Đã chỉnh riêng)</span>' : '') + '</small></div>' +
-          '<input class="pr-input" type="number" id="up_' + userName + '_' + k + '" value="' + cur + '" min="0" step="1000" placeholder="Giá riêng" style="border-color:rgba(255,0,224,.5);color:#ff9eb5">' +
+          '<input class="pr-input" type="number" id="up_' + userName + '_' + k + '" value="' + cur + '" min="0" step="1000" style="border-color:rgba(255,0,224,.5);color:#ff9eb5">' +
           '<button class="pr-save" onclick="window.__saveUserPrice(\'' + userName.replace(/'/g, "\\'") + '\',\'' + k + '\')" style="background:linear-gradient(90deg,#ff00e0,#ff7a00);color:#fff">💾 LƯU</button>' +
           '<button class="pr-save" onclick="window.__resetUserPrice(\'' + userName.replace(/'/g, "\\'") + '\',\'' + k + '\')" style="background:transparent;color:#c9a8e0;border:1px solid rgba(255,255,255,.3)">✖ XOÁ</button>' +
           '</div>';
       }
     }
-
-    // ESGIN
     h += '<div class="price-group-title" style="color:#ff9eb5;border-bottom-color:rgba(255,0,224,.3)">🔑 Esgin = IOS</div>';
     for (var a = 0; a < ESGIN.length; a++) {
       var g = ESGIN[a];
@@ -2120,12 +1612,11 @@ try {
       var isCustom2 = cp[k2] != null && cp[k2] !== '';
       h += '<div class="price-row" style="border-color:rgba(255,0,224,.3)">' +
         '<div class="pr-info"><b style="color:#ff9eb5">ESGIN = IOS</b><small>Gói: ' + g.name + ' — Giá gốc shop: ' + fmt(globalPrice2) + (isCustom2 ? ' <span style="color:#00ff88">(Đã chỉnh riêng)</span>' : '') + '</small></div>' +
-        '<input class="pr-input" type="number" id="up_' + userName + '_' + k2 + '" value="' + cur2 + '" min="0" step="1000" placeholder="Giá riêng" style="border-color:rgba(255,0,224,.5);color:#ff9eb5">' +
+        '<input class="pr-input" type="number" id="up_' + userName + '_' + k2 + '" value="' + cur2 + '" min="0" step="1000" style="border-color:rgba(255,0,224,.5);color:#ff9eb5">' +
         '<button class="pr-save" onclick="window.__saveUserPrice(\'' + userName.replace(/'/g, "\\'") + '\',\'' + k2 + '\')" style="background:linear-gradient(90deg,#ff00e0,#ff7a00);color:#fff">💾 LƯU</button>' +
         '<button class="pr-save" onclick="window.__resetUserPrice(\'' + userName.replace(/'/g, "\\'") + '\',\'' + k2 + '\')" style="background:transparent;color:#c9a8e0;border:1px solid rgba(255,255,255,.3)">✖ XOÁ</button>' +
         '</div>';
     }
-
     box.innerHTML = h;
   };
 
@@ -2136,7 +1627,6 @@ try {
     if (isNaN(newPrice) || newPrice < 0) return toast('⚠️ Giá không hợp lệ!', true);
     if (!db) return toast('❌ Chưa kết nối máy chủ', true);
     if (!DB.users[userName]) return toast('❌ Không tìm thấy user!', true);
-
     var u = DB.users[userName];
     if (!u.customPrices) u.customPrices = {};
     u.customPrices[key] = newPrice;
@@ -2150,44 +1640,30 @@ try {
     if (!db) return;
     if (!DB.users[userName]) return;
     var u = DB.users[userName];
-    if (u.customPrices && u.customPrices[key] != null) {
-      delete u.customPrices[key];
-    }
+    if (u.customPrices && u.customPrices[key] != null) delete u.customPrices[key];
     db.ref('users/' + userName).set(u).then(function () {
       toast('✖ Đã xoá giá riêng của ' + userName);
       window.__renderPerUserPrices();
     }).catch(function (e) { toast('❌ Lỗi: ' + e.message, true); });
   };
 
-  /* ===== ADMIN RENDER ===== */
   function renderAdmin() {
     var uk = Object.keys(DB.users);
     document.getElementById('stUsers').textContent = uk.length;
-
     var wd = 0;
     for (var i = 0; i < DB.deposits.length; i++) if (DB.deposits[i].status === 'wait') wd++;
     document.getElementById('stDep').textContent = wd;
-
     var wo = 0;
     for (var j = 0; j < DB.orders.length; j++) if (DB.orders[j].status === 'wait') wo++;
     document.getElementById('stOrd').textContent = wo;
-
     document.getElementById('stRv').textContent = DB.reviews.length;
 
-    // Bulk status
     var bulkInp = document.getElementById('bulkDiscountInput');
-    if (bulkInp && !bulkInp.value) {
-      bulkInp.value = Number(DB.config.bulkDiscount) || '';
-    }
+    if (bulkInp && !bulkInp.value) bulkInp.value = Number(DB.config.bulkDiscount) || '';
     renderBulkStatus();
-
-    // Global prices
     renderGlobalPrices();
-
-    // User select
     renderUserSelect();
 
-    // USERS LIST
     var h1 = '';
     if (!uk.length) h1 = '<div class="empty">Chưa có người đăng ký</div>';
     else for (var a = 0; a < uk.length; a++) {
@@ -2204,7 +1680,6 @@ try {
     }
     document.getElementById('adUsers').innerHTML = h1;
 
-    // DEPOSITS
     var h2 = '';
     if (!DB.deposits.length) h2 = '<div class="empty">Chưa có yêu cầu nạp tiền</div>';
     else for (var b = 0; b < DB.deposits.length; b++) {
@@ -2220,7 +1695,6 @@ try {
     }
     document.getElementById('adDeps').innerHTML = h2;
 
-    // ORDERS
     var h3 = '';
     if (!DB.orders.length) h3 = '<div class="empty">Chưa có đơn hàng</div>';
     else for (var c = 0; c < DB.orders.length; c++) {
@@ -2235,7 +1709,6 @@ try {
     }
     document.getElementById('adOrds').innerHTML = h3;
 
-    // REVIEWS
     var h4 = '';
     if (!DB.reviews.length) h4 = '<div class="empty">Chưa có đánh giá</div>';
     else for (var e = 0; e < DB.reviews.length; e++) {
@@ -2245,7 +1718,6 @@ try {
     document.getElementById('adRevs').innerHTML = h4;
   }
 
-  /* ===== ADMIN ACTIONS ===== */
   window.__appr = function (id) {
     if (!db) return toast('❌ Chưa kết nối máy chủ', true);
     db.ref('deposits').once('value').then(function (s) {
@@ -2255,7 +1727,7 @@ try {
       d.status = 'done';
       db.ref('deposits').set(deps);
       db.ref('users/' + d.user).once('value').then(function (us) {
-        var u = us.val(); if (!u) return;
+        var u = us.val(); ifu (!) return;
         var add = d.type === 'QR' ? d.amount : d.receive;
         u.balance = (u.balance || 0) + add;
         u.totalDeposit = (u.totalDeposit || 0) + add;
@@ -2284,15 +1756,12 @@ try {
       var ords = s.val() || []; var o = null;
       for (var i = 0; i < ords.length; i++) if (ords[i].id === id) o = ords[i];
       if (!o) return;
-      o.key = key;
-      o.status = 'done';
-      o.doneAt = now();
+      o.key = key; o.status = 'done'; o.doneAt = now();
       db.ref('orders').set(ords);
       toast('🔑 Đã gửi key cho ' + o.user);
     });
   };
 
-  /* ===== MENU BINDING ===== */
   (function () {
     var lis = document.querySelectorAll('#menuList li[data-page]');
     for (var i = 0; i < lis.length; i++) {
@@ -2302,7 +1771,6 @@ try {
     }
   })();
 
-  /* ===== START ===== */
   bootAuth();
   initMusic();
 
