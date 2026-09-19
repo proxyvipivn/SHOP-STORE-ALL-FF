@@ -1771,6 +1771,11 @@ main {
           <span class="mi-name">Cute Remix</span>
           <span class="mi-check">✓</span>
         </div>
+        <div class="music-item" data-idx="3" onclick="selectTrack(3)">
+          <span class="mi-ico">♪</span>
+          <span class="mi-name">Remix 3</span>
+          <span class="mi-check">✓</span>
+        </div>
         <button class="music-play" id="musicPlayBtn" onclick="togglePlay()">▶ PHÁT NHẠC</button>
         <div class="music-note" id="musicNote">Chọn 1 bài rồi nhấn phát</div>
       </div>
@@ -2481,7 +2486,8 @@ try {
   var TRACKS = [
     { name: 'Remix 1', src: 'https://raw.githubusercontent.com/proxyvipivn/SHOP-STORE-ALL-FF/refs/heads/main/Remix2.mp3.mp3' },
     { name: 'Remix 2', src: 'https://raw.githubusercontent.com/proxyvipivn/SHOP-STORE-ALL-FF/refs/heads/main/Remix.mp3%20.mp3' },
-    { name: 'Cute Remix', src: 'https://raw.githubusercontent.com/proxyvipivn/SHOP-STORE-ALL-FF/refs/heads/main/cute.mp3.mp3' }
+    { name: 'Cute Remix', src: 'https://raw.githubusercontent.com/proxyvipivn/SHOP-STORE-ALL-FF/refs/heads/main/cute.mp3.mp3' },
+    { name: 'Remix 3', src: 'https://raw.githubusercontent.com/proxyvipivn/SHOP-STORE-ALL-FF/refs/heads/main/Remix3.mp3.mp3' }
   ];
 
   var bgMusic = null;
@@ -3869,9 +3875,10 @@ try {
     var userKeys = Object.keys(DB.users);
     document.getElementById('stUsers').textContent = userKeys.length;
 
+    /* Chỉ đếm những deposit CHƯA bị admin ẩn */
     var waitDep = 0;
     for (var i = 0; i < DB.deposits.length; i++) {
-      if (DB.deposits[i].status === 'wait') waitDep++;
+      if (DB.deposits[i].status === 'wait' && !DB.deposits[i].adminDeleted) waitDep++;
     }
     document.getElementById('stDep').textContent = waitDep;
 
@@ -3919,13 +3926,18 @@ try {
     }
     document.getElementById('adUsers').innerHTML = usersHTML;
 
-    /* Deposits */
+    /* Deposits — BỎ QUA những cái có adminDeleted */
     var depsHTML = '';
-    if (!DB.deposits.length) {
+    var visibleDeps = [];
+    for (var x = 0; x < DB.deposits.length; x++) {
+      if (!DB.deposits[x].adminDeleted) visibleDeps.push(DB.deposits[x]);
+    }
+
+    if (!visibleDeps.length) {
       depsHTML = '<div class="empty">Chưa có yêu cầu nạp tiền</div>';
     } else {
-      for (var b = 0; b < DB.deposits.length; b++) {
-        var d = DB.deposits[b];
+      for (var b = 0; b < visibleDeps.length; b++) {
+        var d = visibleDeps[b];
         var info = d.type === 'QR'
           ? '🏦 QR — Nội dung: <b style="color:#ffe600">' + d.code + '</b> — Số tiền: <b style="color:#00ff88">' + fmt(d.amount) + '</b>'
           : '💳 Thẻ ' + d.cardType + ' — Mệnh giá ' + fmt(d.amount) +
@@ -3937,11 +3949,18 @@ try {
           badge = '<div style="display:flex;gap:7px;flex-wrap:wrap">' +
             '<button class="btn sm" onclick="window.__appr(\'' + d.id + '\')">✔ XÁC NHẬN</button>' +
             '<button class="btn sm pink" onclick="window.__cnl(\'' + d.id + '\')">✖ HUỶ</button>' +
+            '<button class="btn sm" onclick="window.__delDep(\'' + d.id + '\')" style="background:linear-gradient(90deg,#ff0055,#ff7a00);color:#fff">🗑 XOÁ</button>' +
             '</div>';
         } else if (d.status === 'done') {
-          badge = '<span class="badge done">HOÀN THÀNH</span>';
+          badge = '<div style="display:flex;gap:7px;flex-wrap:wrap;align-items:center">' +
+            '<span class="badge done">HOÀN THÀNH</span>' +
+            '<button class="btn sm" onclick="window.__delDep(\'' + d.id + '\')" style="background:linear-gradient(90deg,#ff0055,#ff7a00);color:#fff">🗑 XOÁ</button>' +
+            '</div>';
         } else {
-          badge = '<span class="badge cancel">ĐÃ HUỶ</span>';
+          badge = '<div style="display:flex;gap:7px;flex-wrap:wrap;align-items:center">' +
+            '<span class="badge cancel">ĐÃ HUỶ</span>' +
+            '<button class="btn sm" onclick="window.__delDep(\'' + d.id + '\')" style="background:linear-gradient(90deg,#ff0055,#ff7a00);color:#fff">🗑 XOÁ</button>' +
+            '</div>';
         }
 
         depsHTML += '<div class="item">' +
@@ -4011,7 +4030,7 @@ try {
   }
 
   /* ================================================================
-     3.3.27. ADMIN — ACTIONS (DUYỆT NẠP, GỬI KEY)
+     3.3.27. ADMIN — ACTIONS (DUYỆT NẠP, GỬI KEY, XOÁ LỊCH SỬ)
      ================================================================ */
   window.__appr = function(id) {
     if (!db) return toast('❌ Chưa kết nối máy chủ', true);
@@ -4051,6 +4070,32 @@ try {
         }
         db.ref('deposits').set(deps);
         toast('✖ Đã huỷ yêu cầu nạp tiền', true);
+      });
+  };
+
+  /* XOÁ LỊCH SỬ NẠP — chỉ ẩn bên admin, user vẫn thấy bình thường */
+  window.__delDep = function(id) {
+    if (!db) return toast('❌ Chưa kết nối máy chủ', true);
+
+    db.ref('deposits').once('value')
+      .then(function(snap) {
+        var deps = snap.val() || [];
+        var found = false;
+        for (var i = 0; i < deps.length; i++) {
+          if (deps[i].id === id) {
+            deps[i].adminDeleted = true;
+            found = true;
+          }
+        }
+        if (!found) return toast('❌ Không tìm thấy đơn!', true);
+
+        db.ref('deposits').set(deps)
+          .then(function() {
+            toast('🗑 Đã xoá lịch sử nạp (chỉ ẩn bên admin)');
+          })
+          .catch(function(err) {
+            toast('❌ Lỗi: ' + err.message, true);
+          });
       });
   };
 
