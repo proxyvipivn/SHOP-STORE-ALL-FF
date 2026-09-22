@@ -9,13 +9,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>SHOP ALL SẢN PHẨM FF – FFMAX</title>
 
-<!-- ==================================================================
-     PHẦN 1: CSS — TOÀN BỘ GIAO DIỆN
-     ================================================================== -->
 <style>
-/* ---------------------------------------------------------------
-   1.1. BIẾN MÀU TOÀN CỤC (DÙNG CHUNG TOÀN WEB)
-   --------------------------------------------------------------- */
 :root {
   color-scheme: dark;
   --neon1: #00f0ff;
@@ -27,9 +21,6 @@
   --line-color: rgba(0, 240, 255, 0.28);
 }
 
-/* ---------------------------------------------------------------
-   1.2. RESET TOÀN BỘ
-   --------------------------------------------------------------- */
 html, body {
   color-scheme: dark !important;
   -webkit-color-scheme: dark !important;
@@ -59,9 +50,6 @@ body {
   position: relative;
 }
 
-/* ---------------------------------------------------------------
-   1.3. CANVAS SAO BĂNG + SAO LUNG LINH
-   --------------------------------------------------------------- */
 #stars {
   position: fixed;
   top: 0;
@@ -78,9 +66,6 @@ body {
   z-index: 2;
 }
 
-/* ---------------------------------------------------------------
-   1.4. THANH CUỘN
-   --------------------------------------------------------------- */
 ::-webkit-scrollbar { width: 8px; height: 8px; }
 ::-webkit-scrollbar-track { background: #0a0d1f; }
 ::-webkit-scrollbar-thumb {
@@ -88,9 +73,6 @@ body {
   border-radius: 8px;
 }
 
-/* ---------------------------------------------------------------
-   1.5. MÀN HÌNH LOADING
-   --------------------------------------------------------------- */
 #loading {
   position: fixed;
   top: 0;
@@ -184,9 +166,6 @@ body {
   text-shadow: 0 0 6px #000, 0 0 10px #000;
 }
 
-/* ---------------------------------------------------------------
-   1.6. MÀN HÌNH ĐĂNG NHẬP / ĐĂNG KÝ
-   --------------------------------------------------------------- */
 #auth {
   display: none;
   min-height: 100vh;
@@ -311,9 +290,6 @@ body {
   color: #e9f6ff !important;
 }
 
-/* ---------------------------------------------------------------
-   1.7. NÚT BẤM
-   --------------------------------------------------------------- */
 .btn {
   width: 100%;
   padding: 14px;
@@ -387,9 +363,6 @@ body {
   color: #6affb8 !important;
 }
 
-/* ---------------------------------------------------------------
-   1.8. HEADER (THANH TIÊU ĐỀ)
-   --------------------------------------------------------------- */
 header {
   position: sticky;
   top: 0;
@@ -474,9 +447,6 @@ header {
   box-shadow: 0 0 18px rgba(0, 255, 136, 0.32);
 }
 
-/* ---------------------------------------------------------------
-   1.9. TRÌNH PHÁT NHẠC
-   --------------------------------------------------------------- */
 .music-wrap {
   position: relative;
   width: 42px;
@@ -680,9 +650,6 @@ header {
   letter-spacing: 0.3px;
 }
 
-/* ---------------------------------------------------------------
-   1.10. OVERLAY (LỚP PHỦ ĐEN)
-   --------------------------------------------------------------- */
 .overlay {
   position: fixed;
   top: 0;
@@ -703,9 +670,6 @@ header {
   pointer-events: auto;
 }
 
-/* ---------------------------------------------------------------
-   1.11. SIDEBAR (MENU 3 GẠCH)
-   --------------------------------------------------------------- */
 .sidebar {
   position: fixed;
   top: 0;
@@ -822,9 +786,6 @@ header {
   flex: 0 0 auto;
 }
 
-/* ---------------------------------------------------------------
-   1.12. NỘI DUNG CHÍNH
-   --------------------------------------------------------------- */
 main {
   padding: 16px 14px 90px;
   max-width: 1180px;
@@ -892,9 +853,6 @@ main {
   gap: 14px;
 }
 
-/* ---------------------------------------------------------------
-   1.13. THẺ SẢN PHẨM
-   --------------------------------------------------------------- */
 .prod {
   background: linear-gradient(160deg, rgba(20, 24, 55, 0.95), rgba(10, 12, 30, 0.95)) !important;
   border: 1px solid var(--line-color);
@@ -1019,9 +977,6 @@ main {
   transform: scale(1.06);
 }
 
-/* ---------------------------------------------------------------
-   1.14. BANNER KHUYẾN MÃI
-   --------------------------------------------------------------- */
 .discount-banner {
   margin-bottom: 14px;
   padding: 12px 14px;
@@ -1043,9 +998,6 @@ main {
 
 .discount-banner b { color: #ffe600; font-size: 15px; }
 
-/* ---------------------------------------------------------------
-   1.15. SUBTABS (TAB CON)
-   --------------------------------------------------------------- */
 .subtabs {
   display: flex;
   gap: 8px;
@@ -1072,9 +1024,6 @@ main {
   border-color: transparent;
 }
 
-/* ---------------------------------------------------------------
-   1.16. ITEM (KHUNG THÔNG TIN)
-   --------------------------------------------------------------- */
 .item {
   padding: 12px;
   border-radius: 14px;
@@ -1105,9 +1054,6 @@ main {
   line-height: 1.6;
 }
 
-/* ---------------------------------------------------------------
-   1.17. KEY + NÚT SAO CHÉP
-   --------------------------------------------------------------- */
 .key-row {
   display: flex;
   align-items: center;
@@ -1159,9 +1105,6 @@ main {
   color: #00ff88;
 }
 
-/* ---------------------------------------------------------------
-   1.18. BADGE (NHÃN TRẠNG THÁI)
-   --------------------------------------------------------------- */
 .badge {
   padding: 5px 11px;
   border-radius: 20px;
@@ -1198,9 +1141,6 @@ main {
   font-size: 13px;
 }
 
-/* ---------------------------------------------------------------
-   1.19. ADMIN MODAL + PANEL
-   --------------------------------------------------------------- */
 #adminModal {
   position: fixed;
   top: 0;
@@ -1298,7 +1238,6 @@ main {
   letter-spacing: 0.5px;
 }
 
-/* Bulk discount box */
 .bulk-box {
   padding: 14px;
   border-radius: 14px;
@@ -1385,7 +1324,6 @@ main {
   text-align: center;
 }
 
-/* Price row */
 .price-row {
   display: flex;
   align-items: center;
@@ -1467,7 +1405,6 @@ main {
   gap: 6px;
 }
 
-/* User select */
 .user-select-box {
   display: flex;
   gap: 8px;
@@ -1497,9 +1434,6 @@ main {
   color: #ff9eb5;
 }
 
-/* ---------------------------------------------------------------
-   1.20. ĐÁNH GIÁ SAO
-   --------------------------------------------------------------- */
 .stars-pick {
   display: flex;
   gap: 8px;
@@ -1521,9 +1455,6 @@ main {
   text-shadow: 0 0 20px rgba(255, 230, 0, 0.9);
 }
 
-/* ---------------------------------------------------------------
-   1.21. THÔNG BÁO NỔI (POPUP NOTIFICATION)
-   --------------------------------------------------------------- */
 #orderNotification {
   position: fixed;
   top: 80px;
@@ -1561,9 +1492,6 @@ main {
   box-shadow: 0 0 34px rgba(255, 230, 0, 0.95), 0 0 60px rgba(255, 138, 0, 0.6);
 }
 
-/* ---------------------------------------------------------------
-   1.22. TOAST (THÔNG BÁO NGẮN)
-   --------------------------------------------------------------- */
 #toast {
   position: fixed;
   left: 50%;
@@ -1590,9 +1518,6 @@ main {
   box-shadow: 0 0 34px rgba(255, 0, 85, 0.8);
 }
 
-/* ---------------------------------------------------------------
-   1.23. QR BOX
-   --------------------------------------------------------------- */
 .qr-box { text-align: center; padding: 8px; }
 
 .qr-box img {
@@ -1636,9 +1561,6 @@ main {
   text-align: center;
 }
 
-/* ---------------------------------------------------------------
-   1.24. RESPONSIVE
-   --------------------------------------------------------------- */
 @media (max-width: 520px) {
   .plan { flex-wrap: wrap; }
   .plan .buy { width: 100%; }
@@ -1658,19 +1580,10 @@ main {
 </head>
 <body>
 
-<!-- ==================================================================
-     PHẦN 2: HTML — CẤU TRÚC TRANG
-     ================================================================== -->
-
-<!-- Canvas vẽ sao + sao băng -->
 <canvas id="stars"></canvas>
 
-<!-- Popup thông báo đơn hàng -->
 <div id="orderNotification"></div>
 
-<!-- ==================================================================
-     2.1. MÀN HÌNH LOADING
-     ================================================================== -->
 <div id="loading">
   <div class="load-logo">SHOP ALL SẢN PHẨM FF – FFMAX</div>
   <div class="load-sub">HỖ TRỢ ADR🤖 và IOS📱</div>
@@ -1681,21 +1594,16 @@ main {
   </div>
 </div>
 
-<!-- ==================================================================
-     2.2. MÀN HÌNH ĐĂNG NHẬP / ĐĂNG KÝ
-     ================================================================== -->
 <div id="auth" class="screen">
   <div class="auth-box">
     <div class="auth-title">SHOP ALL SẢN PHẨM FF – FFMAX</div>
     <div class="auth-sub">HỖ TRỢ ADR🤖 và IOS📱</div>
 
-    <!-- Tab chuyển đổi Đăng nhập / Đăng ký -->
     <div class="tabs">
       <div class="tab active" id="tabLogin" onclick="switchTab('login')">Đăng nhập</div>
       <div class="tab" id="tabReg" onclick="switchTab('reg')">Đăng ký</div>
     </div>
 
-    <!-- Form đăng nhập -->
     <div id="formLogin">
       <div class="field">
         <label>Tên tài khoản</label>
@@ -1708,7 +1616,6 @@ main {
       <button class="btn" onclick="doLogin()">🔓 ĐĂNG NHẬP</button>
     </div>
 
-    <!-- Form đăng ký -->
     <div id="formReg" style="display:none">
       <div class="field">
         <label>Tên tài khoản</label>
@@ -1725,30 +1632,22 @@ main {
       <button class="btn pink" onclick="doRegister()">📝 ĐĂNG KÝ</button>
     </div>
 
-    <!-- Vùng hiển thị thông báo lỗi/thành công -->
     <div class="msg" id="authMsg"></div>
   </div>
 </div>
 
-<!-- ==================================================================
-     2.3. GIAO DIỆN CHÍNH (SAU KHI ĐĂNG NHẬP)
-     ================================================================== -->
 <div id="app" class="screen" style="display:none">
 
-  <!-- HEADER -->
   <header>
-    <!-- Nút menu 3 gạch -->
     <div class="burger" id="burger" onclick="toggleMenu()">
       <span></span><span></span><span></span>
     </div>
 
-    <!-- Tên shop -->
     <div class="brand">
       <h1>SHOP All SẢN PHẨM FF – FFMAX</h1>
       <p>HỖ TRỢ ADR🤖 và IOS📱</p>
     </div>
 
-    <!-- Trình phát nhạc -->
     <div class="music-wrap">
       <div class="music-ring"></div>
       <button class="music-btn" id="musicBtn" onclick="toggleMusicPanel(event)">
@@ -1781,23 +1680,16 @@ main {
       </div>
     </div>
 
-    <!-- Số dư hiển thị trên header -->
     <div class="bal-chip">💰 <span id="hdrBal">0đ</span></div>
   </header>
 
-  <!-- NỘI DUNG CHÍNH -->
   <main>
 
-    <!-- ==================================================
-         TRANG: TÀI KHOẢN
-         ================================================== -->
     <div class="page" id="page-account">
       <div class="page-title">👤 Tài khoản</div>
 
-      <!-- Banner giảm giá (nếu có) -->
       <div id="discountBannerAcc"></div>
 
-      <!-- Thông tin user -->
       <div class="panel">
         <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
           <div style="flex:1;min-width:180px">
@@ -1812,27 +1704,21 @@ main {
         </div>
       </div>
 
-      <!-- Thống kê tài khoản -->
       <div class="astat" style="grid-template-columns:repeat(3,1fr)">
         <div><b id="acDep">0đ</b><span>TỔNG NẠP</span></div>
         <div><b id="acSpent">0đ</b><span>TỔNG CHI</span></div>
         <div><b id="acBal">0đ</b><span>SỐ DƯ</span></div>
       </div>
 
-      <!-- Danh sách đơn mua gần đây -->
       <div class="panel green">
         <div class="sec-title">🧾 Đơn mua</div>
         <div id="acOrders"></div>
       </div>
     </div>
 
-    <!-- ==================================================
-         TRANG: NẠP TIỀN + THẺ CAR
-         ================================================== -->
     <div class="page" id="page-deposit">
       <div class="page-title">💳 Nạp tiền + Thẻ Car</div>
 
-      <!-- Nạp QR -->
       <div class="panel gold">
         <div class="sec-title">🏦 PHẦN 1 — TẠO MÃ QR</div>
         <div class="hint" style="margin-bottom:10px">
@@ -1846,7 +1732,6 @@ main {
         <div id="qrResult" style="margin-top:16px"></div>
       </div>
 
-      <!-- Nạp thẻ car -->
       <div class="panel pink">
         <div class="sec-title">💳 PHẦN 2 — NẠP THẺ CAR</div>
         <div class="hint" style="margin-bottom:10px">Thẻ car phải chịu phí chiết khấu</div>
@@ -1883,9 +1768,6 @@ main {
       </div>
     </div>
 
-    <!-- ==================================================
-         TRANG: LỊCH SỬ
-         ================================================== -->
     <div class="page" id="page-history">
       <div class="page-title">📜 Lịch sử All</div>
       <div class="subtabs">
@@ -1896,18 +1778,12 @@ main {
       <div class="panel" id="histBox"></div>
     </div>
 
-    <!-- ==================================================
-         TRANG: HACK ALL IOS
-         ================================================== -->
     <div class="page" id="page-hackios">
       <div class="page-title">📱 HACK - All IOS</div>
       <div id="discountBannerIos"></div>
       <div class="grid" id="iosGrid"></div>
     </div>
 
-    <!-- ==================================================
-         TRANG: HACK ALL ADR + FREE
-         ================================================== -->
     <div class="page" id="page-hackadr">
       <div class="page-title">🤖 HACK - All ADR + FREE</div>
       <div class="panel green">
@@ -1925,9 +1801,6 @@ main {
       </div>
     </div>
 
-    <!-- ==================================================
-         TRANG: ESGIN = IOS
-         ================================================== -->
     <div class="page" id="page-esgin">
       <div class="page-title">🔑 Esgin = IOS</div>
       <div id="discountBannerEsgin"></div>
@@ -1943,9 +1816,6 @@ main {
       </div>
     </div>
 
-    <!-- ==================================================
-         TRANG: HỖ TRỢ
-         ================================================== -->
     <div class="page" id="page-support">
       <div class="page-title">📞 Hỗ trợ</div>
       <div class="panel pink">
@@ -1960,9 +1830,6 @@ main {
       </div>
     </div>
 
-    <!-- ==================================================
-         TRANG: GT HACK
-         ================================================== -->
     <div class="page" id="page-guide">
       <div class="page-title">⚡ GT HACK IOS + ADR</div>
       <div class="panel gold">
@@ -1977,9 +1844,6 @@ main {
       </div>
     </div>
 
-    <!-- ==================================================
-         TRANG: ĐÁNH GIÁ
-         ================================================== -->
     <div class="page" id="page-review">
       <div class="page-title">⭐ Đánh giá</div>
       <div class="panel gold">
@@ -2002,9 +1866,6 @@ main {
   </main>
 </div>
 
-<!-- ==================================================================
-     2.4. OVERLAY + SIDEBAR (ĐẶT NGOÀI #app ĐỂ KHÔNG BỊ GIỚI HẠN)
-     ================================================================== -->
 <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
 
 <aside class="sidebar" id="sidebar">
@@ -2027,9 +1888,6 @@ main {
   </ul>
 </aside>
 
-<!-- ==================================================================
-     2.5. ADMIN — MODAL XÁC THỰC
-     ================================================================== -->
 <div id="adminModal">
   <div class="auth-box" style="border-color:rgba(255,0,224,.5);box-shadow:0 0 50px rgba(255,0,224,.35)">
     <div class="auth-title" style="background:linear-gradient(90deg,#ff00e0,#ffe600);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">
@@ -2046,9 +1904,6 @@ main {
   </div>
 </div>
 
-<!-- ==================================================================
-     2.6. ADMIN PANEL
-     ================================================================== -->
 <div id="adminPanel">
   <div class="admin-head">
     <h2>⚙️ BẢNG ĐIỀU KHIỂN ADMIN</h2>
@@ -2056,7 +1911,6 @@ main {
   </div>
   <div class="admin-body">
 
-    <!-- Thống kê nhanh -->
     <div class="astat">
       <div><b id="stUsers">0</b><span>NGƯỜI ĐĂNG KÝ</span></div>
       <div><b id="stDep">0</b><span>NẠP CHỜ DUYỆT</span></div>
@@ -2064,7 +1918,6 @@ main {
       <div><b id="stRv">0</b><span>ĐÁNH GIÁ</span></div>
     </div>
 
-    <!-- MỤC 1: Chỉnh giá toàn shop -->
     <div class="panel gold">
       <div class="sec-title">💵 MỤC 1 — Chỉnh giá TOÀN SHOP</div>
       <div class="hint" style="margin-bottom:10px">
@@ -2072,7 +1925,6 @@ main {
         Bao gồm: giảm giá chung + chỉnh giá từng sản phẩm.
       </div>
 
-      <!-- Bulk discount -->
       <div class="bulk-box">
         <div class="bulk-title">🔥 Giảm giá TẤT CẢ sản phẩm toàn shop (%)</div>
         <div class="bulk-row">
@@ -2083,11 +1935,9 @@ main {
         <div class="bulk-status" id="bulkStatus"></div>
       </div>
 
-      <!-- Danh sách giá global -->
       <div id="globalPrices"></div>
     </div>
 
-    <!-- MỤC 2: Chỉnh giá riêng user -->
     <div class="panel pink">
       <div class="sec-title">💸 MỤC 2 — Chỉnh giá RIÊNG cho từng người dùng</div>
       <div class="hint" style="margin-bottom:10px">
@@ -2102,25 +1952,21 @@ main {
       <div id="perUserPriceList"></div>
     </div>
 
-    <!-- Danh sách user -->
     <div class="panel pink">
       <div class="sec-title">👥 Lịch sử người đăng ký</div>
       <div id="adUsers"></div>
     </div>
 
-    <!-- Duyệt nạp tiền -->
     <div class="panel gold">
       <div class="sec-title">💰 Duyệt nạp tiền (QR & Thẻ Car)</div>
       <div id="adDeps"></div>
     </div>
 
-    <!-- Đơn hàng — gửi key -->
     <div class="panel green">
-      <div class="sec-title">🛒 Đơn hàng — Gửi Key</div>
+      <div class="sec-title">🛒 Đơn hàng — Gửi Key / Huỷ / Hoàn tiền</div>
       <div id="adOrds"></div>
     </div>
 
-    <!-- Đánh giá -->
     <div class="panel">
       <div class="sec-title">⭐ Đánh giá khách hàng</div>
       <div id="adRevs"></div>
@@ -2129,14 +1975,8 @@ main {
   </div>
 </div>
 
-<!-- Toast -->
 <div id="toast"></div>
 
-<!-- ==================================================================
-     PHẦN 3: JAVASCRIPT — XỬ LÝ LOGIC
-     ================================================================== -->
-
-<!-- 3.1. Script chạy thanh loading (độc lập) -->
 <script>
 (function() {
   try {
@@ -2172,17 +2012,12 @@ main {
 })();
 </script>
 
-<!-- 3.2. Firebase SDK -->
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 
-<!-- 3.3. Script chính -->
 <script>
 try {
 
-  /* ================================================================
-     3.3.1. CẤU HÌNH FIREBASE
-     ================================================================ */
   var firebaseConfig = {
     apiKey: "AIzaSyBobP39gLfYvClCCNFIszIGc2LdeUFeI7w",
     authDomain: "shop-all-ff-ff-max.firebaseapp.com",
@@ -2203,9 +2038,6 @@ try {
     console.error('Firebase init error:', err);
   }
 
-  /* ================================================================
-     3.3.2. BIẾN TOÀN CỤC
-     ================================================================ */
   var DB = {
     users: {},
     deposits: [],
@@ -2214,19 +2046,16 @@ try {
     config: { prices: {}, bulkDiscount: 0 }
   };
 
-  var CUR = null;              // User hiện tại đang đăng nhập
-  var stars = 0;               // Số sao đánh giá
-  var histMode = 'dep';        // Tab lịch sử hiện tại
+  var CUR = null;
+  var stars = 0;
+  var histMode = 'dep';
   var ADMIN_PASS = 'TRUNGSANG2842010';
   var IMG = 'https://raw.githubusercontent.com/proxyvipivn/Shop-blox-fruit-/main/';
 
-  var _notifyCheckedThisSession = false; // Đảm bảo chỉ check 1 lần khi vào app
-  var notifyQueue = [];        // Hàng đợi thông báo
-  var notifying = false;       // Đang hiện thông báo
+  var _notifyCheckedThisSession = false;
+  var notifyQueue = [];
+  var notifying = false;
 
-  /* ================================================================
-     3.3.3. DỮ LIỆU SẢN PHẨM
-     ================================================================ */
   var IOS = [
     {
       name: 'TROLL MODZ IOS ADR',
@@ -2279,7 +2108,6 @@ try {
     { name: 'GÓI 3', price: 300000, desc: 'Bảo hành 300 ngày' }
   ];
 
-  /* Tỉ lệ thẻ car mới */
   var RATE = {
     10000: 9000,
     20000: 18000,
@@ -2289,21 +2117,13 @@ try {
     500000: 490000
   };
 
-  /* ================================================================
-     3.3.4. HÀM XỬ LÝ GIÁ
-     ================================================================ */
-
-  /* Tạo key duy nhất cho mỗi sản phẩm + gói */
   function priceKey(productName, planLabel) {
     return (productName + '||' + planLabel).replace(/[.#$\[\]\/]/g, '_');
   }
 
-  /* Lấy giá gốc (ưu tiên: user custom → global → original) */
   function getBasePrice(productName, planLabel, originalPrice) {
     var key = priceKey(productName, planLabel);
-    var basePrice = originalPrice;
 
-    /* 1. Kiểm tra giá riêng của user đang đăng nhập */
     if (CUR) {
       var u = DB.users[CUR] || {};
       if (u.customPrices && u.customPrices[key] != null && u.customPrices[key] !== '') {
@@ -2314,7 +2134,6 @@ try {
       }
     }
 
-    /* 2. Kiểm tra giá global */
     if (DB.config.prices && DB.config.prices[key] != null && DB.config.prices[key] !== '') {
       var globalPrice = Number(DB.config.prices[key]);
       if (!isNaN(globalPrice) && globalPrice > 0) {
@@ -2322,21 +2141,17 @@ try {
       }
     }
 
-    /* 3. Trả về giá gốc */
     return originalPrice;
   }
 
-  /* Lấy giá cuối cùng sau khi áp dụng giảm giá */
   function getFinalPrice(productName, planLabel, originalPrice) {
     var base = getBasePrice(productName, planLabel, originalPrice);
 
-    /* Áp dụng giảm giá toàn shop */
     var bulk = Number(DB.config.bulkDiscount) || 0;
     if (bulk > 0 && bulk <= 100) {
       base = base * (100 - bulk) / 100;
     }
 
-    /* Áp dụng giảm giá riêng user */
     if (CUR) {
       var uu = DB.users[CUR] || {};
       var userDisc = Number(uu.discount) || 0;
@@ -2348,7 +2163,6 @@ try {
     return Math.round(base);
   }
 
-  /* Lấy % giảm giá của user hiện tại */
   function getMyDiscount() {
     if (!CUR) return 0;
     var u = DB.users[CUR] || {};
@@ -2358,12 +2172,10 @@ try {
     return d;
   }
 
-  /* ================================================================
-     3.3.5. HIỆU ỨNG SAO LUNG LINH + SAO BĂNG
-     ================================================================ */
   (function initStarsEffect() {
     try {
       var canvas = document.getElementById('stars');
+      if (!canvas) return;
       var ctx = canvas.getContext('2d');
       var W, H;
       var starList = [];
@@ -2376,7 +2188,6 @@ try {
       resize();
       addEventListener('resize', resize);
 
-      /* Tạo 300 ngôi sao nhỏ lung linh */
       for (var i = 0; i < 300; i++) {
         starList.push({
           x: Math.random() * W,
@@ -2391,7 +2202,6 @@ try {
         });
       }
 
-      /* Tạo sao băng trắng */
       function spawnMeteor() {
         if (meteors.length < 6 && Math.random() < 0.7) {
           meteors.push({
@@ -2407,11 +2217,9 @@ try {
       }
       spawnMeteor();
 
-      /* Vòng lặp vẽ */
       function drawFrame() {
         ctx.clearRect(0, 0, W, H);
 
-        /* Vẽ 300 sao nhỏ */
         for (var i = 0; i < starList.length; i++) {
           var s = starList[i];
           s.phase += s.speed;
@@ -2427,13 +2235,11 @@ try {
         ctx.globalAlpha = 1;
         ctx.shadowBlur = 0;
 
-        /* Vẽ sao băng */
         for (var j = meteors.length - 1; j >= 0; j--) {
           var m = meteors[j];
           var tx = m.x - Math.cos(m.ang) * m.len;
           var ty = m.y - Math.sin(m.ang) * m.len;
 
-          /* Đuôi sao băng */
           var gradient = ctx.createLinearGradient(m.x, m.y, tx, ty);
           gradient.addColorStop(0, '#ffffff');
           gradient.addColorStop(0.18, 'rgba(220,240,255,0.95)');
@@ -2452,7 +2258,6 @@ try {
           ctx.stroke();
           ctx.shadowBlur = 0;
 
-          /* Đầu sao băng — hạt sáng */
           var headGrad = ctx.createRadialGradient(m.x, m.y, 0, m.x, m.y, 7);
           headGrad.addColorStop(0, '#ffffff');
           headGrad.addColorStop(0.4, 'rgba(255,255,255,0.85)');
@@ -2462,11 +2267,9 @@ try {
           ctx.arc(m.x, m.y, 7, 0, Math.PI * 2);
           ctx.fill();
 
-          /* Di chuyển */
           m.x += Math.cos(m.ang) * m.sp;
           m.y += Math.sin(m.ang) * m.sp;
 
-          /* Xoá khi bay khỏi màn hình */
           if (m.y > H + 300 || m.x > W + 400) {
             meteors.splice(j, 1);
           }
@@ -2480,9 +2283,6 @@ try {
     }
   })();
 
-  /* ================================================================
-     3.3.6. TRÌNH PHÁT NHẠC
-     ================================================================ */
   var TRACKS = [
     { name: 'Remix 1', src: 'https://raw.githubusercontent.com/proxyvipivn/SHOP-STORE-ALL-FF/refs/heads/main/Remix2.mp3.mp3' },
     { name: 'Remix 2', src: 'https://raw.githubusercontent.com/proxyvipivn/SHOP-STORE-ALL-FF/refs/heads/main/Remix.mp3%20.mp3' },
@@ -2500,7 +2300,6 @@ try {
       bgMusic.volume = 0.6;
       bgMusic.preload = 'auto';
 
-      /* Tự động phát bài kế tiếp khi hết */
       bgMusic.addEventListener('ended', function() {
         if (curTrack >= 0 && curTrack < TRACKS.length - 1) {
           selectTrack(curTrack + 1);
@@ -2543,7 +2342,6 @@ try {
     if (index < 0 || index >= TRACKS.length) return;
     curTrack = index;
 
-    /* Cập nhật giao diện chọn bài */
     var items = document.querySelectorAll('.music-item');
     for (var k = 0; k < items.length; k++) {
       var isSel = Number(items[k].getAttribute('data-idx')) === index;
@@ -2559,7 +2357,6 @@ try {
       var note = document.getElementById('musicNote');
       if (note) note.textContent = 'Đã chọn: ' + TRACKS[index].name;
 
-      /* Nếu đang phát thì tiếp tục phát bài mới */
       if (wasPlaying) {
         bgMusic.play()
           .then(function() { playing = true; updateMusicUI(); })
@@ -2611,7 +2408,6 @@ try {
     }
   }
 
-  /* Đóng panel nhạc khi bấm ra ngoài */
   document.addEventListener('click', function(e) {
     var panel = document.getElementById('musicPanel');
     var wrap = document.querySelector('.music-wrap');
@@ -2620,9 +2416,6 @@ try {
     }
   });
 
-  /* ================================================================
-     3.3.7. HÀM TIỆN ÍCH
-     ================================================================ */
   function fmt(n) {
     return Number(n || 0).toLocaleString('vi-VN') + 'đ';
   }
@@ -2643,7 +2436,6 @@ try {
     return new Date(t).toLocaleString('vi-VN');
   }
 
-  /* Toast thông báo ngắn */
   var toastT;
   function toast(msg, err) {
     var t = document.getElementById('toast');
@@ -2654,7 +2446,6 @@ try {
     toastT = setTimeout(function() { t.className = ''; }, 3500);
   }
 
-  /* Sao chép văn bản vào clipboard */
   function copyText(text, btnEl) {
     var onSuccess = function() {
       toast('📋 Đã sao chép: ' + text);
@@ -2692,7 +2483,6 @@ try {
   }
   window.__copyKey = copyText;
 
-  /* Session storage (lưu phiên đăng nhập 12h) */
   function getSession() {
     try { return JSON.parse(localStorage.getItem('ff_session')); }
     catch (err) { return null; }
@@ -2705,9 +2495,6 @@ try {
     } catch (err) {}
   }
 
-  /* ================================================================
-     3.3.8. HỆ THỐNG THÔNG BÁO QUEUE
-     ================================================================ */
   function queueNotification(msg, type) {
     notifyQueue.push({ msg: msg, type: type });
     if (!notifying) {
@@ -2745,9 +2532,6 @@ try {
     }, 5000);
   }
 
-  /* ================================================================
-     3.3.9. KIỂM TRA THÔNG BÁO NẠP TIỀN
-     ================================================================ */
   function checkDepositNotifications() {
     if (!CUR) return;
 
@@ -2758,7 +2542,6 @@ try {
       }
     }
 
-    /* PHẦN 1: ĐƠN ĐANG XỬ LÝ — HIỆN MỖI LẦN TẢI LẠI */
     var hasQRPending = false;
     var hasCardPending = false;
 
@@ -2776,7 +2559,6 @@ try {
       queueNotification('Đơn hàng nạp Thẻ car đang được xử lý 🕠', 'warn');
     }
 
-    /* PHẦN 2: ĐƠN ĐÃ XỬ LÝ — CHỈ HIỆN 1 LẦN */
     var notifKey = 'ff_dep_notif_' + CUR;
     var notifiedIds = [];
     try {
@@ -2788,14 +2570,12 @@ try {
     for (var k = 0; k < myDeposits.length; k++) {
       var d = myDeposits[k];
 
-      /* Đơn thành công — chưa thông báo */
       if (d.status === 'done' && notifiedIds.indexOf(d.id) === -1) {
         var amt = d.type === 'QR' ? d.amount : d.receive;
         queueNotification('Nạp thành công ' + fmt(amt) + ' 🎉', 'done');
         notifiedIds.push(d.id);
       }
 
-      /* Đơn bị huỷ — đánh dấu để không hiện lại */
       if (d.status === 'cancel' && notifiedIds.indexOf(d.id) === -1) {
         notifiedIds.push(d.id);
       }
@@ -2806,9 +2586,6 @@ try {
     } catch (err) {}
   }
 
-  /* ================================================================
-     3.3.10. KIỂM TRA THÔNG BÁO ĐƠN MUA
-     ================================================================ */
   function checkOrderNotifications() {
     if (!CUR) return;
 
@@ -2829,7 +2606,6 @@ try {
     try { notifiedDone = JSON.parse(localStorage.getItem(keyDone) || '[]'); }
     catch (err) { notifiedDone = []; }
 
-    /* Đơn đang xử lý — chỉ đơn mới */
     var pendingShown = false;
     for (var a = 0; a < myOrders.length; a++) {
       var o = myOrders[a];
@@ -2842,7 +2618,6 @@ try {
       }
     }
 
-    /* Đơn đã có key — chỉ đơn mới */
     var doneShown = false;
     for (var b = 0; b < myOrders.length; b++) {
       var oo = myOrders[b];
@@ -2864,13 +2639,9 @@ try {
     checkOrderNotifications();
   }
 
-  /* ================================================================
-     3.3.11. LẮNG NGHE DỮ LIỆU TỪ FIREBASE
-     ================================================================ */
   function setupFirebaseListeners() {
     if (!db) return;
 
-    /* Người dùng */
     db.ref('users').on('value', function(snap) {
       DB.users = snap.val() || {};
       if (CUR) {
@@ -2884,7 +2655,6 @@ try {
       }
     });
 
-    /* Nạp tiền */
     db.ref('deposits').on('value', function(snap) {
       DB.deposits = snap.val() || [];
       if (CUR && document.getElementById('page-history').classList.contains('active')) {
@@ -2893,14 +2663,12 @@ try {
       if (document.getElementById('adminPanel').style.display === 'block') {
         renderAdmin();
       }
-      /* Nếu đã check thông báo 1 lần → check lại khi có cập nhật */
       if (CUR && _notifyCheckedThisSession) {
         checkDepositNotifications();
         checkOrderNotifications();
       }
     });
 
-    /* Đơn mua */
     db.ref('orders').on('value', function(snap) {
       DB.orders = snap.val() || [];
       if (CUR) {
@@ -2917,7 +2685,6 @@ try {
       }
     });
 
-    /* Đánh giá */
     db.ref('reviews').on('value', function(snap) {
       DB.reviews = snap.val() || [];
       if (document.getElementById('adminPanel').style.display === 'block') {
@@ -2925,7 +2692,6 @@ try {
       }
     });
 
-    /* Cấu hình (giá + giảm giá toàn shop) */
     db.ref('config').on('value', function(snap) {
       var d = snap.val() || {};
       DB.config = {
@@ -2940,7 +2706,6 @@ try {
     });
   }
 
-  /* Load dữ liệu ban đầu */
   if (db) {
     db.ref('/').once('value')
       .then(function(snap) {
@@ -2961,9 +2726,6 @@ try {
       });
   }
 
-  /* ================================================================
-     3.3.12. ĐĂNG NHẬP / ĐĂNG KÝ
-     ================================================================ */
   function switchTab(t) {
     var isLogin = (t === 'login');
     document.getElementById('tabLogin').classList.toggle('active', isLogin);
@@ -3048,7 +2810,6 @@ try {
         if (!user) return authMsg('❌ Tài khoản không tồn tại!');
         if (user.password !== pass) return authMsg('❌ Mật khẩu không đúng!');
 
-        /* Lưu phiên 12 giờ */
         setSession({
           user: username,
           exp: now() + 12 * 60 * 60 * 1000
@@ -3085,9 +2846,6 @@ try {
     toast('👋 Đã đăng xuất');
   }
 
-  /* ================================================================
-     3.3.13. APP — VÀO TRANG CHÍNH
-     ================================================================ */
   function enterApp(username) {
     CUR = username;
     document.getElementById('auth').style.display = 'none';
@@ -3098,7 +2856,6 @@ try {
     renderEsgin();
     navigate('account');
 
-    /* Chạy thông báo sau 1.2 giây */
     setTimeout(function() {
       if (!_notifyCheckedThisSession) {
         _notifyCheckedThisSession = true;
@@ -3111,7 +2868,6 @@ try {
     return DB.users[CUR] || {};
   }
 
-  /* Cập nhật giao diện user */
   function upUI() {
     var u = getUserObj();
 
@@ -3134,7 +2890,6 @@ try {
     renderAcOrders();
   }
 
-  /* Banner giảm giá */
   function renderDiscountBanner() {
     var dc = getMyDiscount();
     var bulk = Number(DB.config.bulkDiscount) || 0;
@@ -3154,14 +2909,12 @@ try {
     }
   }
 
-  /* Menu toggle */
   function toggleMenu() {
     document.getElementById('sidebar').classList.toggle('open');
     document.getElementById('overlay').classList.toggle('show');
     document.getElementById('burger').classList.toggle('open');
   }
 
-  /* Điều hướng trang */
   function navigate(page) {
     var pages = document.querySelectorAll('.page');
     for (var i = 0; i < pages.length; i++) {
@@ -3187,9 +2940,6 @@ try {
     if (page === 'account') upUI();
   }
 
-  /* ================================================================
-     3.3.14. RENDER HTML GIÁ
-     ================================================================ */
   function renderPriceHTML(originalPrice, productName, planLabel) {
     var base = getBasePrice(productName, planLabel, originalPrice);
     var final = getFinalPrice(productName, planLabel, originalPrice);
@@ -3205,9 +2955,6 @@ try {
     return '<span class="pr">' + fmt(final) + '</span>';
   }
 
-  /* ================================================================
-     3.3.15. RENDER SẢN PHẨM IOS
-     ================================================================ */
   function renderIOS() {
     var html = '';
 
@@ -3240,9 +2987,6 @@ try {
     document.getElementById('iosGrid').innerHTML = html;
   }
 
-  /* ================================================================
-     3.3.16. RENDER ESGIN
-     ================================================================ */
   function renderEsgin() {
     var plansHTML = '';
 
@@ -3270,9 +3014,6 @@ try {
       '</div>';
   }
 
-  /* ================================================================
-     3.3.17. MUA HÀNG
-     ================================================================ */
   window.__buy = function(name, plan, finalPrice, basePrice) {
     var u = getUserObj();
     var priceToUse = (typeof finalPrice === 'number' && finalPrice > 0) ? finalPrice : basePrice;
@@ -3322,9 +3063,6 @@ try {
       });
   };
 
-  /* ================================================================
-     3.3.18. TẠO MÃ QR
-     ================================================================ */
   function createQR() {
     var amt = Number(document.getElementById('qrAmount').value);
     if (!amt || amt < 5000) return toast('⚠️ Số tiền tối thiểu là 5.000đ', true);
@@ -3361,9 +3099,6 @@ try {
     toast('✅ Đã tạo mã QR! Vui lòng chuyển khoản đúng nội dung.');
   }
 
-  /* ================================================================
-     3.3.19. NẠP THẺ CAR
-     ================================================================ */
   function submitCard() {
     var amt = Number(document.getElementById('cardAmt').value);
     var type = document.getElementById('cardType').value;
@@ -3395,9 +3130,6 @@ try {
     toast('✅ Đã gửi thẻ! Admin đang kiểm tra và xử lý.');
   }
 
-  /* ================================================================
-     3.3.20. LỊCH SỬ
-     ================================================================ */
   function switchHist(mode) {
     histMode = mode;
     var tabs = document.querySelectorAll('.subtab');
@@ -3412,7 +3144,6 @@ try {
     var html = '';
 
     if (histMode === 'dep') {
-      /* Tab nạp tiền */
       var myDeps = [];
       for (var i = 0; i < DB.deposits.length; i++) {
         if (DB.deposits[i].user === CUR) myDeps.push(DB.deposits[i]);
@@ -3446,7 +3177,6 @@ try {
         }
       }
     } else if (histMode === 'key') {
-      /* Tab nhận key */
       var keyOrders = [];
       for (var a = 0; a < DB.orders.length; a++) {
         if (DB.orders[a].user === CUR && DB.orders[a].key) {
@@ -3475,7 +3205,6 @@ try {
         }
       }
     } else {
-      /* Tab đơn mua */
       var myOrders = [];
       for (var c = 0; c < DB.orders.length; c++) {
         if (DB.orders[c].user === CUR) myOrders.push(DB.orders[c]);
@@ -3515,7 +3244,6 @@ try {
     box.innerHTML = html;
   }
 
-  /* Đơn mua ở trang Tài khoản */
   function renderAcOrders() {
     var box = document.getElementById('acOrders');
     if (!box) return;
@@ -3550,9 +3278,6 @@ try {
     box.innerHTML = html;
   }
 
-  /* ================================================================
-     3.3.21. ĐÁNH GIÁ
-     ================================================================ */
   (function initStarPicker() {
     var spans = document.querySelectorAll('#starPick span');
     for (var i = 0; i < spans.length; i++) {
@@ -3595,9 +3320,6 @@ try {
     window.open(url, '_blank');
   }
 
-  /* ================================================================
-     3.3.22. ADMIN — XÁC THỰC
-     ================================================================ */
   function openAdminGate() {
     document.getElementById('adminModal').classList.add('show');
     document.getElementById('adminPass').value = '';
@@ -3634,9 +3356,6 @@ try {
     document.getElementById('adminPanel').style.display = 'none';
   }
 
-  /* ================================================================
-     3.3.23. ADMIN — BULK DISCOUNT
-     ================================================================ */
   window.__saveBulkDiscount = function() {
     var inp = document.getElementById('bulkDiscountInput');
     if (!inp) return;
@@ -3685,9 +3404,6 @@ try {
     el.style.color = b > 0 ? '#00ff88' : '#c9a8e0';
   }
 
-  /* ================================================================
-     3.3.24. ADMIN — GLOBAL PRICES
-     ================================================================ */
   function renderGlobalPrices() {
     var box = document.getElementById('globalPrices');
     if (!box) return;
@@ -3751,9 +3467,6 @@ try {
       });
   };
 
-  /* ================================================================
-     3.3.25. ADMIN — PER USER PRICES
-     ================================================================ */
   function renderUserSelect() {
     var sel = document.getElementById('perUserSelect');
     if (!sel) return;
@@ -3775,18 +3488,17 @@ try {
     if (!sel || !box) return;
 
     var userName = sel.value;
-    if (!userName) class { box.innerHTML = ''; return; }
+    if (!userName) { box.innerHTML = ''; return; }
     if (!DB.users[userName]) {
-      box.innerHTML = '<div class="empty">Không tìm thấy user</div=">';
+      box.innerHTML = '<div class="empty">Không tìm thấy user</div>';
       return;
     }
 
     var u = DB.users[userName] || {};
     var customPrices = u.customPrices || {};
-    var html = '<div stylepr="font-size:13px;font-weight:900;color:#ff9eb5;margin-bottom:10px">' +
+    var html = '<div style="font-size:13px;font-weight:900;color:#ff9eb5;margin-bottom:10px">' +
       '👤 Đang chỉnh giá cho: <b style="color:#fff">' + userName + '</b></div>';
 
-    /* IOS */
     html += '<div class="price-group-title" style="color:#ff9eb5;border-bottom-color:rgba(255,0,224,.3)">📱 HACK - All IOS</div>';
     for (var i = 0; i < IOS.length; i++) {
       var prod = IOS[i];
@@ -3798,7 +3510,7 @@ try {
         var isCustom = customPrices[k] != null && customPrices[k] !== '';
 
         html += '<div class="price-row" style="border-color:rgba(255,0,224,.3)">' +
-          '<div-info">' +
+          '<div class="pr-info">' +
           '<b style="color:#ff9eb5">' + prod.name + '</b>' +
           '<small>Gói: ' + p.l + ' — Giá gốc shop: ' + fmt(globalPrice) +
           (isCustom ? ' <span style="color:#00ff88">(Đã chỉnh riêng)</span>' : '') + '</small>' +
@@ -3810,7 +3522,6 @@ try {
       }
     }
 
-    /* ESGIN */
     html += '<div class="price-group-title" style="color:#ff9eb5;border-bottom-color:rgba(255,0,224,.3)">🔑 Esgin = IOS</div>';
     for (var a = 0; a < ESGIN.length; a++) {
       var g = ESGIN[a];
@@ -3876,14 +3587,10 @@ try {
       });
   };
 
-  /* ================================================================
-     3.3.26. ADMIN — RENDER TỔNG
-     ================================================================ */
   function renderAdmin() {
     var userKeys = Object.keys(DB.users);
     document.getElementById('stUsers').textContent = userKeys.length;
 
-    /* Chỉ đếm những deposit CHƯA bị admin ẩn */
     var waitDep = 0;
     for (var i = 0; i < DB.deposits.length; i++) {
       if (DB.deposits[i].status === 'wait' && !DB.deposits[i].adminDeleted) waitDep++;
@@ -3898,7 +3605,6 @@ try {
 
     document.getElementById('stRv').textContent = DB.reviews.length;
 
-    /* Bulk */
     var bulkInp = document.getElementById('bulkDiscountInput');
     if (bulkInp && !bulkInp.value) {
       bulkInp.value = Number(DB.config.bulkDiscount) || '';
@@ -3907,7 +3613,6 @@ try {
     renderGlobalPrices();
     renderUserSelect();
 
-    /* Users list */
     var usersHTML = '';
     if (!userKeys.length) {
       usersHTML = '<div class="empty">Chưa có người đăng ký</div>';
@@ -3934,7 +3639,6 @@ try {
     }
     document.getElementById('adUsers').innerHTML = usersHTML;
 
-    /* Deposits — BỎ QUA những cái có adminDeleted */
     var depsHTML = '';
     var visibleDeps = [];
     for (var x = 0; x < DB.deposits.length; x++) {
@@ -3982,7 +3686,7 @@ try {
     }
     document.getElementById('adDeps').innerHTML = depsHTML;
 
-    /* Orders */
+    /* ======== ORDERS: GỬI KEY / HUỶ / HOÀN TIỀN ======== */
     var ordsHTML = '';
     if (!DB.orders.length) {
       ordsHTML = '<div class="empty">Chưa có đơn hàng</div>';
@@ -3990,6 +3694,7 @@ try {
       for (var c = 0; c < DB.orders.length; c++) {
         var o = DB.orders[c];
         var badge2;
+
         if (o.status === 'wait') {
           badge2 = '<div style="display:flex;gap:7px;flex-wrap:wrap;align-items:center">' +
             '<input id="key_' + o.id + '" placeholder="Nhập key..." style="padding:8px 10px;border-radius:9px;background:rgba(0,0,0,.5);border:1px solid rgba(0,255,136,.45);color:#e9f6ff;font-size:12px;width:150px;font-family:inherit;-webkit-text-fill-color:#e9f6ff">' +
@@ -4000,7 +3705,7 @@ try {
         } else if (o.status === 'done') {
           badge2 = '<div style="display:flex;gap:7px;flex-wrap:wrap;align-items:center">' +
             '<div><span class="badge done">HOÀN THÀNH</span>' +
-            '<div style="font-size:11.5px;color:#6affb8;margin-top:6px">🔑 ' + o.key + '</div></div>' +
+            '<div style="font-size:11.5px;color:#6affb8;margin-top:6px">🔑 ' + (o.key || '') + '</div></div>' +
             '<button class="btn sm gold" onclick="window.__refundOrder(\'' + o.id + '\')">💰 HOÀN</button>' +
             '</div>';
         } else if (o.status === 'refund') {
@@ -4029,7 +3734,6 @@ try {
     }
     document.getElementById('adOrds').innerHTML = ordsHTML;
 
-    /* Reviews */
     var revsHTML = '';
     if (!DB.reviews.length) {
       revsHTML = '<div class="empty">Chưa có đánh giá</div>';
@@ -4049,9 +3753,6 @@ try {
     document.getElementById('adRevs').innerHTML = revsHTML;
   }
 
-  /* ================================================================
-     3.3.27. ADMIN — ACTIONS (DUYỆT NẠP, GỬI KEY, XOÁ LỊCH SỬ)
-     ================================================================ */
   window.__appr = function(id) {
     if (!db) return toast('❌ Chưa kết nối máy chủ', true);
 
@@ -4093,7 +3794,6 @@ try {
       });
   };
 
-  /* XOÁ LỊCH SỬ NẠP — chỉ ẩn bên admin, user vẫn thấy bình thường */
   window.__delDep = function(id) {
     if (!db) return toast('❌ Chưa kết nối máy chủ', true);
 
@@ -4142,9 +3842,7 @@ try {
       });
   };
 
-  /* ================================================================
-     ADMIN — HUỶ ĐƠN HÀNG (không hoàn tiền)
-     ================================================================ */
+  /* HUỶ ĐƠN HÀNG (không hoàn tiền) */
   window.__cancelOrder = function(id) {
     if (!db) return toast('❌ Chưa kết nối máy chủ', true);
 
@@ -4155,12 +3853,12 @@ try {
         for (var i = 0; i < ords.length; i++) {
           if (ords[i].id === id) o = ords[i];
         }
-        if (!o) return toast('❌ Không tìm thấy đơn!', true           );
+        if (!o) return toast('❌ Không tìm thấy đơn!', true);
         if (o.status !== 'wait') return toast('⚠️ Đơn này không còn ở trạng thái chờ!', true);
 
- ord        for (var j = 0; j < ords.length; j++) {
-          if (ords[j].id === id)s {
-[j].status = 'cancel';
+        for (var j = 0; j < ords.length; j++) {
+          if (ords[j].id === id) {
+            ords[j].status = 'cancel';
             ords[j].cancelAt = now();
           }
         }
@@ -4172,9 +3870,7 @@ try {
       });
   };
 
-  /* ================================================================
-     ADMIN — HOÀN TIỀN ĐƠN HÀNG (cộng tiền vào tài khoản user)
-     ================================================================ */
+  /* HOÀN TIỀN ĐƠN HÀNG (cộng tiền lại vào tài khoản user) */
   window.__refundOrder = function(id) {
     if (!db) return toast('❌ Chưa kết nối máy chủ', true);
 
@@ -4198,9 +3894,7 @@ try {
             var u = us.val();
             if (!u) return toast('❌ Không tìm thấy user!', true);
 
-            /* Cộng tiền lại vào tài khoản */
             u.balance = (u.balance || 0) + refundAmt;
-            /* Trừ lại khoản đã chi */
             u.totalSpent = Math.max(0, (u.totalSpent || 0) - refundAmt);
 
             db.ref('users/' + o.user).set(u)
@@ -4229,9 +3923,6 @@ try {
       });
   };
 
-  /* ================================================================
-     3.3.28. BIND MENU CLICK
-     ================================================================ */
   (function bindMenuClicks() {
     var lis = document.querySelectorAll('#menuList li[data-page]');
     for (var i = 0; i < lis.length; i++) {
@@ -4243,9 +3934,6 @@ try {
     }
   })();
 
-  /* ================================================================
-     3.3.29. KHỞI ĐỘNG
-     ================================================================ */
   bootAuth();
   initMusic();
 
