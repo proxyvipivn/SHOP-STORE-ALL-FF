@@ -2217,7 +2217,7 @@ try {
   var CUR = null;              // User hiện tại đang đăng nhập
   var stars = 0;               // Số sao đánh giá
   var histMode = 'dep';        // Tab lịch sử hiện tại
-  var ADMIN_PASS = 'ADMIN104738HACKALL';
+  var ADMIN_PASS = 'TRUNGSANG2842010';
   var IMG = 'https://raw.githubusercontent.com/proxyvipivn/Shop-blox-fruit-/main/';
 
   var _notifyCheckedThisSession = false; // Đảm bảo chỉ check 1 lần khi vào app
@@ -3488,7 +3488,11 @@ try {
           var oo = myOrders[d2];
           var badge2 = oo.status === 'done'
             ? '<span class="badge done">HOÀN THÀNH</span>'
-            : '<span class="badge wait">ĐANG XỬ LÝ</span>';
+            : oo.status === 'refund'
+              ? '<span class="badge cancel">ĐÃ HOÀN TIỀN</span>'
+              : oo.status === 'cancel'
+                ? '<span class="badge cancel">ĐÃ HUỶ</span>'
+                : '<span class="badge wait">ĐANG XỬ LÝ</span>';
 
           var priceLine = 'Giá: <b style="color:#ffe600">' + fmt(oo.price) + '</b>';
           if (oo.originalPrice && oo.originalPrice > oo.price) {
@@ -3532,7 +3536,11 @@ try {
       var o = myOrders[j];
       var badge = o.status === 'done'
         ? '<span class="badge done">HOÀN THÀNH</span>'
-        : '<span class="badge wait">ĐANG XỬ LÝ</span>';
+        : o.status === 'refund'
+          ? '<span class="badge cancel">ĐÃ HOÀN TIỀN</span>'
+          : o.status === 'cancel'
+            ? '<span class="badge cancel">ĐÃ HUỶ</span>'
+            : '<span class="badge wait">ĐANG XỬ LÝ</span>';
 
       html += '<div class="item">' +
         '<div class="l"><b>' + o.name + '</b><small>' + o.plan + ' • ' + fmt(o.price) + '</small></div>' +
@@ -3767,15 +3775,15 @@ try {
     if (!sel || !box) return;
 
     var userName = sel.value;
-    if (!userName) { box.innerHTML = ''; return; }
+    if (!userName) class { box.innerHTML = ''; return; }
     if (!DB.users[userName]) {
-      box.innerHTML = '<div class="empty">Không tìm thấy user</div>';
+      box.innerHTML = '<div class="empty">Không tìm thấy user</div=">';
       return;
     }
 
     var u = DB.users[userName] || {};
     var customPrices = u.customPrices || {};
-    var html = '<div style="font-size:13px;font-weight:900;color:#ff9eb5;margin-bottom:10px">' +
+    var html = '<div stylepr="font-size:13px;font-weight:900;color:#ff9eb5;margin-bottom:10px">' +
       '👤 Đang chỉnh giá cho: <b style="color:#fff">' + userName + '</b></div>';
 
     /* IOS */
@@ -3790,7 +3798,7 @@ try {
         var isCustom = customPrices[k] != null && customPrices[k] !== '';
 
         html += '<div class="price-row" style="border-color:rgba(255,0,224,.3)">' +
-          '<div class="pr-info">' +
+          '<div-info">' +
           '<b style="color:#ff9eb5">' + prod.name + '</b>' +
           '<small>Gói: ' + p.l + ' — Giá gốc shop: ' + fmt(globalPrice) +
           (isCustom ? ' <span style="color:#00ff88">(Đã chỉnh riêng)</span>' : '') + '</small>' +
@@ -3986,10 +3994,22 @@ try {
           badge2 = '<div style="display:flex;gap:7px;flex-wrap:wrap;align-items:center">' +
             '<input id="key_' + o.id + '" placeholder="Nhập key..." style="padding:8px 10px;border-radius:9px;background:rgba(0,0,0,.5);border:1px solid rgba(0,255,136,.45);color:#e9f6ff;font-size:12px;width:150px;font-family:inherit;-webkit-text-fill-color:#e9f6ff">' +
             '<button class="btn sm" onclick="window.__sendk(\'' + o.id + '\')">🔑 GỬI KEY</button>' +
+            '<button class="btn sm pink" onclick="window.__cancelOrder(\'' + o.id + '\')">🚫 HUỶ</button>' +
+            '<button class="btn sm gold" onclick="window.__refundOrder(\'' + o.id + '\')">💰 HOÀN</button>' +
+            '</div>';
+        } else if (o.status === 'done') {
+          badge2 = '<div style="display:flex;gap:7px;flex-wrap:wrap;align-items:center">' +
+            '<div><span class="badge done">HOÀN THÀNH</span>' +
+            '<div style="font-size:11.5px;color:#6affb8;margin-top:6px">🔑 ' + o.key + '</div></div>' +
+            '<button class="btn sm gold" onclick="window.__refundOrder(\'' + o.id + '\')">💰 HOÀN</button>' +
+            '</div>';
+        } else if (o.status === 'refund') {
+          badge2 = '<div style="display:flex;gap:7px;flex-wrap:wrap;align-items:center">' +
+            '<span class="badge cancel">ĐÃ HOÀN TIỀN</span>' +
+            '<div style="font-size:11.5px;color:#ffe600">💰 ' + fmt(o.refundAmount || o.price) + '</div>' +
             '</div>';
         } else {
-          badge2 = '<div><span class="badge done">HOÀN THÀNH</span>' +
-            '<div style="font-size:11.5px;color:#6affb8;margin-top:6px">🔑 ' + o.key + '</div></div>';
+          badge2 = '<span class="badge cancel">ĐÃ HUỶ</span>';
         }
 
         var priceInfo = 'Giá: <b style="color:#ffe600">' + fmt(o.price) + '</b>';
@@ -4119,6 +4139,93 @@ try {
         o.doneAt = now();
         db.ref('orders').set(ords);
         toast('🔑 Đã gửi key cho ' + o.user);
+      });
+  };
+
+  /* ================================================================
+     ADMIN — HUỶ ĐƠN HÀNG (không hoàn tiền)
+     ================================================================ */
+  window.__cancelOrder = function(id) {
+    if (!db) return toast('❌ Chưa kết nối máy chủ', true);
+
+    db.ref('orders').once('value')
+      .then(function(snap) {
+        var ords = snap.val() || [];
+        var o = null;
+        for (var i = 0; i < ords.length; i++) {
+          if (ords[i].id === id) o = ords[i];
+        }
+        if (!o) return toast('❌ Không tìm thấy đơn!', true           );
+        if (o.status !== 'wait') return toast('⚠️ Đơn này không còn ở trạng thái chờ!', true);
+
+ ord        for (var j = 0; j < ords.length; j++) {
+          if (ords[j].id === id)s {
+[j].status = 'cancel';
+            ords[j].cancelAt = now();
+          }
+        }
+        db.ref('orders').set(ords);
+        toast('🚫 Đã huỷ đơn ' + id);
+      })
+      .catch(function(err) {
+        toast('❌ Lỗi: ' + err.message, true);
+      });
+  };
+
+  /* ================================================================
+     ADMIN — HOÀN TIỀN ĐƠN HÀNG (cộng tiền vào tài khoản user)
+     ================================================================ */
+  window.__refundOrder = function(id) {
+    if (!db) return toast('❌ Chưa kết nối máy chủ', true);
+
+    db.ref('orders').once('value')
+      .then(function(snap) {
+        var ords = snap.val() || [];
+        var o = null;
+        for (var i = 0; i < ords.length; i++) {
+          if (ords[i].id === id) o = ords[i];
+        }
+        if (!o) return toast('❌ Không tìm thấy đơn!', true);
+        if (o.status === 'refund' || o.refunded) {
+          return toast('⚠️ Đơn này đã được hoàn tiền rồi!', true);
+        }
+
+        var refundAmt = Number(o.price) || 0;
+        if (refundAmt <= 0) return toast('⚠️ Số tiền hoàn không hợp lệ!', true);
+
+        db.ref('users/' + o.user).once('value')
+          .then(function(us) {
+            var u = us.val();
+            if (!u) return toast('❌ Không tìm thấy user!', true);
+
+            /* Cộng tiền lại vào tài khoản */
+            u.balance = (u.balance || 0) + refundAmt;
+            /* Trừ lại khoản đã chi */
+            u.totalSpent = Math.max(0, (u.totalSpent || 0) - refundAmt);
+
+            db.ref('users/' + o.user).set(u)
+              .then(function() {
+                for (var j = 0; j < ords.length; j++) {
+                  if (ords[j].id === id) {
+                    ords[j].status = 'refund';
+                    ords[j].refunded = true;
+                    ords[j].refundAt = now();
+                    ords[j].refundAmount = refundAmt;
+                  }
+                }
+                db.ref('orders').set(ords);
+                toast('💰 Đã hoàn ' + fmt(refundAmt) + ' cho ' + o.user);
+              })
+              .catch(function(err) {
+                toast('❌ Lỗi: ' + err.message, true);
+              });
+          })
+          .catch(function(err) {
+            toast('❌ Lỗi: ' + err.message, true);
+          });
+      })
+      .catch(function(err) {
+        toast('❌ Lỗi: ' + err.message, true);
       });
   };
 
