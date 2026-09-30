@@ -4,28 +4,37 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="color-scheme" content="dark">
-<meta name="theme-color" content="#05060f">
+<meta name="theme-color" content="#06121f">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>SHOP ALL SẢN PHẨM FF – FFMAX</title>
 
 <style>
+/* ============================================================
+   THEME MÙA ĐÔNG — BĂNG GIÁ
+   ============================================================ */
 :root {
   color-scheme: dark;
-  --neon1: #00f0ff;
-  --neon2: #ff00e0;
-  --neon3: #ffe600;
-  --neon4: #00ff88;
-  --bg-main: #05060f;
-  --card-bg: rgba(15, 18, 40, 0.72);
-  --line-color: rgba(0, 240, 255, 0.28);
+  --ice1: #7dd3fc;      /* Băng sáng */
+  --ice2: #38bdf8;      /* Băng trung */
+  --ice3: #0ea5e9;      /* Băng đậm */
+  --ice4: #bae6fd;      /* Băng nhạt */
+  --snow: #f0f9ff;      /* Tuyết trắng */
+  --frost: #e0f2fe;     /* Sương giá */
+  --cyan: #22d3ee;      /* Cyan lấp lánh */
+  --cyan2: #67e8f9;     /* Cyan nhạt */
+  --gold: #fde047;      /* Vàng gold */
+  --red: #f43f5e;       /* Đỏ */
+  --bg-main: #06121f;   /* Nền đêm xanh */
+  --card-bg: rgba(12, 30, 50, 0.72);
+  --line-color: rgba(125, 211, 252, 0.35);
 }
 
 html, body {
   color-scheme: dark !important;
   -webkit-color-scheme: dark !important;
   height: 100%;
-  background: #05060f !important;
+  background: #06121f !important;
 }
 
 * {
@@ -38,11 +47,11 @@ html, body {
 body {
   font-family: 'Segoe UI', system-ui, -apple-system, Roboto, sans-serif;
   background:
-    radial-gradient(circle at 15% 10%, #1a0a35 0%, transparent 45%),
-    radial-gradient(circle at 85% 20%, #00243a 0%, transparent 45%),
-    radial-gradient(circle at 50% 95%, #2a0033 0%, transparent 50%),
-    #05060f !important;
-  color: #e9f6ff !important;
+    radial-gradient(circle at 15% 10%, #1e3a5f 0%, transparent 45%),
+    radial-gradient(circle at 85% 20%, #0c4a6e 0%, transparent 45%),
+    radial-gradient(circle at 50% 95%, #082f49 0%, transparent 50%),
+    #06121f !important;
+  color: #e8f4ff !important;
   min-height: 100vh;
   overflow-x: hidden;
   -webkit-text-size-adjust: 100%;
@@ -50,7 +59,7 @@ body {
   position: relative;
 }
 
-#stars {
+#snowfall {
   position: fixed;
   top: 0;
   left: 0;
@@ -67,12 +76,15 @@ body {
 }
 
 ::-webkit-scrollbar { width: 8px; height: 8px; }
-::-webkit-scrollbar-track { background: #0a0d1f; }
+::-webkit-scrollbar-track { background: #0a1e33; }
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, var(--neon1), var(--neon2));
+  background: linear-gradient(180deg, var(--ice1), var(--ice3));
   border-radius: 8px;
 }
 
+/* ============================================================
+   LOADING
+   ============================================================ */
 #loading {
   position: fixed;
   top: 0;
@@ -87,8 +99,8 @@ body {
   gap: 26px;
   padding: 24px;
   text-align: center;
-  background: radial-gradient(circle at 50% 40%, #0b1030 0%, #05060f 70%) !important;
-  color: #e9f6ff !important;
+  background: radial-gradient(circle at 50% 40%, #0c2540 0%, #06121f 70%) !important;
+  color: #e8f4ff !important;
   animation: autoHideLoading 0.5s ease 3s forwards;
 }
 
@@ -100,14 +112,14 @@ body {
   font-size: clamp(20px, 5.5vw, 38px);
   font-weight: 900;
   letter-spacing: 2px;
-  background: linear-gradient(90deg, var(--neon1), var(--neon2), var(--neon3), var(--neon1));
+  background: linear-gradient(90deg, var(--ice4), var(--ice1), var(--snow), var(--ice1));
   background-size: 300% 100%;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
   animation: shineAnimation 3s linear infinite;
-  filter: drop-shadow(0 0 18px rgba(0, 240, 255, 0.55));
+  filter: drop-shadow(0 0 18px rgba(125, 211, 252, 0.6));
 }
 
 @keyframes shineAnimation {
@@ -115,7 +127,7 @@ body {
 }
 
 .load-sub {
-  color: #8fb6d6 !important;
+  color: #93c5fd !important;
   font-size: clamp(12px, 3.2vw, 15px);
   letter-spacing: 1px;
 }
@@ -123,8 +135,8 @@ body {
 .load-status {
   font-size: clamp(12px, 3.4vw, 16px);
   font-weight: 700;
-  color: var(--neon4) !important;
-  text-shadow: 0 0 14px rgba(0, 255, 136, 0.7);
+  color: var(--cyan) !important;
+  text-shadow: 0 0 14px rgba(34, 211, 238, 0.7);
   min-height: 22px;
   letter-spacing: 0.5px;
 }
@@ -137,17 +149,17 @@ body {
   background: rgba(255, 255, 255, 0.06) !important;
   border: 1px solid var(--line-color);
   overflow: hidden;
-  box-shadow: 0 0 24px rgba(0, 240, 255, 0.28), inset 0 0 20px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 24px rgba(125, 211, 252, 0.3), inset 0 0 20px rgba(0, 0, 0, 0.6);
 }
 
 .load-bar {
   height: 100%;
   width: 0%;
   border-radius: 30px;
-  background: linear-gradient(90deg, #00ff88, #00f0ff, #ff00e0, #ffe600);
+  background: linear-gradient(90deg, #e0f2fe, #7dd3fc, #38bdf8, #bae6fd);
   background-size: 300% 100%;
   animation: shineAnimation 2s linear infinite;
-  box-shadow: 0 0 22px rgba(0, 240, 255, 0.9);
+  box-shadow: 0 0 22px rgba(186, 230, 253, 0.9);
   transition: width 0.28s ease;
 }
 
@@ -162,10 +174,13 @@ body {
   justify-content: center;
   font-size: 12px;
   font-weight: 900;
-  color: #ffffff !important;
-  text-shadow: 0 0 6px #000, 0 0 10px #000;
+  color: #06121f !important;
+  text-shadow: 0 0 6px rgba(255, 255, 255, 0.6);
 }
 
+/* ============================================================
+   AUTH
+   ============================================================ */
 #auth {
   display: none;
   min-height: 100vh;
@@ -183,10 +198,10 @@ body {
   border-radius: 22px;
   padding: 26px 22px;
   box-shadow:
-    0 0 40px rgba(0, 240, 255, 0.22),
-    0 0 90px rgba(255, 0, 224, 0.13),
+    0 0 40px rgba(125, 211, 252, 0.22),
+    0 0 90px rgba(56, 189, 248, 0.13),
     inset 0 0 40px rgba(0, 0, 0, 0.5);
-  color: #e9f6ff !important;
+  color: #e8f4ff !important;
 }
 
 .auth-title {
@@ -194,7 +209,7 @@ body {
   font-size: clamp(17px, 4.8vw, 23px);
   font-weight: 900;
   letter-spacing: 1px;
-  background: linear-gradient(90deg, var(--neon1), var(--neon2), var(--neon3));
+  background: linear-gradient(90deg, var(--ice4), var(--snow), var(--ice1));
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -204,7 +219,7 @@ body {
 
 .auth-sub {
   text-align: center;
-  color: #7fa8c9 !important;
+  color: #93c5fd !important;
   font-size: 12px;
   margin-bottom: 18px;
   letter-spacing: 0.5px;
@@ -227,16 +242,16 @@ body {
   cursor: pointer;
   font-weight: 800;
   font-size: 14px;
-  color: #7fa8c9 !important;
+  color: #93c5fd !important;
   transition: 0.25s;
   border: 1px solid transparent;
   background: transparent !important;
 }
 
 .tab.active {
-  color: #001018 !important;
-  background: linear-gradient(90deg, var(--neon1), var(--neon4)) !important;
-  box-shadow: 0 0 20px rgba(0, 240, 255, 0.55);
+  color: #06121f !important;
+  background: linear-gradient(90deg, var(--ice1), var(--cyan)) !important;
+  box-shadow: 0 0 20px rgba(125, 211, 252, 0.55);
   border-color: rgba(255, 255, 255, 0.3);
 }
 
@@ -245,7 +260,7 @@ body {
 .field label {
   display: block;
   font-size: 12px;
-  color: #8fb6d6 !important;
+  color: #93c5fd !important;
   margin-bottom: 6px;
   font-weight: 700;
   letter-spacing: 0.4px;
@@ -258,36 +273,36 @@ body {
   padding: 13px 14px;
   border-radius: 12px;
   background: rgba(0, 0, 0, 0.45) !important;
-  border: 1px solid rgba(0, 240, 255, 0.25);
-  color: #e9f6ff !important;
-  -webkit-text-fill-color: #e9f6ff !important;
+  border: 1px solid rgba(125, 211, 252, 0.3);
+  color: #e8f4ff !important;
+  -webkit-text-fill-color: #e8f4ff !important;
   font-size: 14px;
   outline: none;
   transition: 0.22s;
   font-family: inherit;
-  caret-color: #00f0ff;
+  caret-color: var(--ice1);
   appearance: none;
   -webkit-appearance: none;
 }
 
 .field input::placeholder,
 .field textarea::placeholder {
-  color: #5c7d99 !important;
-  -webkit-text-fill-color: #5c7d99 !important;
+  color: #64748b !important;
+  -webkit-text-fill-color: #64748b !important;
   opacity: 1;
 }
 
 .field input:focus,
 .field select:focus,
 .field textarea:focus {
-  border-color: var(--neon1);
-  box-shadow: 0 0 0 3px rgba(0, 240, 255, 0.14), 0 0 18px rgba(0, 240, 255, 0.3);
+  border-color: var(--ice1);
+  box-shadow: 0 0 0 3px rgba(125, 211, 252, 0.18), 0 0 18px rgba(125, 211, 252, 0.35);
   background: rgba(0, 0, 0, 0.6) !important;
 }
 
 .field select option {
-  background: #0a0d1f !important;
-  color: #e9f6ff !important;
+  background: #0a1e33 !important;
+  color: #e8f4ff !important;
 }
 
 .btn {
@@ -299,9 +314,9 @@ body {
   font-weight: 900;
   font-size: 15px;
   letter-spacing: 0.7px;
-  color: #001018 !important;
-  background: linear-gradient(90deg, var(--neon1), var(--neon4));
-  box-shadow: 0 0 24px rgba(0, 240, 255, 0.5);
+  color: #06121f !important;
+  background: linear-gradient(90deg, var(--ice4), var(--ice1));
+  box-shadow: 0 0 24px rgba(125, 211, 252, 0.5);
   transition: 0.22s;
   font-family: inherit;
   -webkit-appearance: none;
@@ -309,26 +324,27 @@ body {
 
 .btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 0 34px rgba(0, 240, 255, 0.85);
+  box-shadow: 0 0 34px rgba(125, 211, 252, 0.85);
 }
 
 .btn:active { transform: scale(0.98); }
 
 .btn.pink {
-  background: linear-gradient(90deg, var(--neon2), #ff7a00) !important;
-  box-shadow: 0 0 24px rgba(255, 0, 224, 0.5);
+  background: linear-gradient(90deg, var(--ice2), var(--ice3)) !important;
+  color: #fff !important;
+  box-shadow: 0 0 24px rgba(56, 189, 248, 0.6);
 }
 
 .btn.gold {
-  background: linear-gradient(90deg, var(--neon3), #ff8a00) !important;
-  box-shadow: 0 0 24px rgba(255, 230, 0, 0.5);
+  background: linear-gradient(90deg, var(--ice1), var(--cyan)) !important;
+  box-shadow: 0 0 24px rgba(34, 211, 238, 0.5);
 }
 
 .btn.ghost {
   background: transparent !important;
   border: 1px solid var(--line-color);
-  color: #bfe6ff !important;
-  -webkit-text-fill-color: #bfe6ff !important;
+  color: var(--ice4) !important;
+  -webkit-text-fill-color: var(--ice4) !important;
   box-shadow: none;
 }
 
@@ -351,18 +367,21 @@ body {
 
 .msg.err {
   display: block;
-  background: rgba(255, 0, 60, 0.14) !important;
-  border: 1px solid rgba(255, 0, 60, 0.5);
-  color: #ff7d96 !important;
+  background: rgba(244, 63, 94, 0.14) !important;
+  border: 1px solid rgba(244, 63, 94, 0.5);
+  color: #fda4af !important;
 }
 
 .msg.ok {
   display: block;
-  background: rgba(0, 255, 136, 0.12) !important;
-  border: 1px solid rgba(0, 255, 136, 0.5);
-  color: #6affb8 !important;
+  background: rgba(34, 211, 238, 0.12) !important;
+  border: 1px solid rgba(34, 211, 238, 0.5);
+  color: #67e8f9 !important;
 }
 
+/* ============================================================
+   HEADER
+   ============================================================ */
 header {
   position: sticky;
   top: 0;
@@ -371,11 +390,11 @@ header {
   align-items: center;
   gap: 10px;
   padding: 12px 14px;
-  background: rgba(6, 8, 22, 0.9) !important;
+  background: rgba(6, 18, 31, 0.92) !important;
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--line-color);
-  box-shadow: 0 0 26px rgba(0, 240, 255, 0.18);
+  box-shadow: 0 0 26px rgba(125, 211, 252, 0.22);
 }
 
 .burger {
@@ -389,7 +408,7 @@ header {
   gap: 5px;
   cursor: pointer;
   flex: 0 0 auto;
-  background: linear-gradient(135deg, rgba(0, 240, 255, 0.14), rgba(255, 0, 224, 0.14)) !important;
+  background: linear-gradient(135deg, rgba(125, 211, 252, 0.18), rgba(14, 165, 233, 0.18)) !important;
   border: 1px solid var(--line-color);
   transition: 0.22s;
 }
@@ -398,9 +417,10 @@ header {
   width: 22px;
   height: 2.5px;
   border-radius: 3px;
-  background: linear-gradient(90deg, var(--neon1), var(--neon2));
+  background: linear-gradient(90deg, var(--ice1), var(--snow));
   display: block;
   transition: 0.25s;
+  box-shadow: 0 0 8px rgba(186, 230, 253, 0.6);
 }
 
 .burger.open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
@@ -416,7 +436,7 @@ header {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  background: linear-gradient(90deg, var(--neon1), var(--neon3), var(--neon2));
+  background: linear-gradient(90deg, var(--ice4), var(--snow), var(--ice1));
   background-size: 200% 100%;
   -webkit-background-clip: text;
   background-clip: text;
@@ -427,7 +447,7 @@ header {
 
 .brand p {
   font-size: 10px;
-  color: #7fa8c9 !important;
+  color: #93c5fd !important;
   letter-spacing: 0.4px;
   margin-top: 2px;
 }
@@ -439,14 +459,17 @@ header {
   padding: 8px 12px;
   border-radius: 30px;
   flex: 0 0 auto;
-  background: linear-gradient(90deg, rgba(0, 255, 136, 0.16), rgba(0, 240, 255, 0.16)) !important;
-  border: 1px solid rgba(0, 255, 136, 0.45);
+  background: linear-gradient(90deg, rgba(186, 230, 253, 0.2), rgba(125, 211, 252, 0.2)) !important;
+  border: 1px solid rgba(186, 230, 253, 0.55);
   font-weight: 900;
   font-size: 12.5px;
-  color: #6affb8 !important;
-  box-shadow: 0 0 18px rgba(0, 255, 136, 0.32);
+  color: var(--snow) !important;
+  box-shadow: 0 0 18px rgba(125, 211, 252, 0.4);
 }
 
+/* ============================================================
+   MUSIC
+   ============================================================ */
 .music-wrap {
   position: relative;
   width: 42px;
@@ -463,11 +486,11 @@ header {
   bottom: -3px;
   border-radius: 50%;
   background: conic-gradient(from 0deg,
-    #ff9eb5, #ffc0cb, #ffd6e0, #ffb6c1, #ff8fb1, #ffc0cb, #ff9eb5);
+    #e0f2fe, #bae6fd, #7dd3fc, #38bdf8, #e0f2fe, #7dd3fc, #e0f2fe);
   animation: spinRing 3s linear infinite;
   z-index: 0;
   filter: blur(0.3px);
-  box-shadow: 0 0 14px rgba(255, 182, 193, 0.7);
+  box-shadow: 0 0 14px rgba(186, 230, 253, 0.8);
 }
 
 .music-ring::after {
@@ -478,7 +501,7 @@ header {
   right: 2px;
   bottom: 2px;
   border-radius: 50%;
-  background: #05060f;
+  background: #06121f;
 }
 
 @keyframes spinRing {
@@ -492,7 +515,7 @@ header {
   width: 42px;
   height: 42px;
   border-radius: 50%;
-  background: radial-gradient(circle at 40% 35%, #1a1e4a, #05060f);
+  background: radial-gradient(circle at 40% 35%, #1e3a5f, #06121f);
   border: none;
   cursor: pointer;
   font-size: 17px;
@@ -527,11 +550,11 @@ header {
   top: 56px;
   right: 0;
   width: min(280px, 86vw);
-  background: linear-gradient(160deg, rgba(15, 18, 40, 0.98), rgba(8, 10, 25, 0.98));
-  border: 1px solid rgba(255, 182, 193, 0.5);
+  background: linear-gradient(160deg, rgba(12, 30, 50, 0.98), rgba(6, 18, 31, 0.98));
+  border: 1px solid rgba(186, 230, 253, 0.55);
   border-radius: 16px;
   padding: 12px;
-  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.9), 0 0 40px rgba(255, 182, 193, 0.25);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.9), 0 0 40px rgba(125, 211, 252, 0.3);
   display: none;
   z-index: 200;
   backdrop-filter: blur(14px);
@@ -553,10 +576,10 @@ header {
   margin-bottom: 8px;
   text-align: center;
   padding-bottom: 8px;
-  border-bottom: 1px solid rgba(255, 182, 193, 0.25);
-  color: #ffb6c1 !important;
-  -webkit-text-fill-color: #ffb6c1 !important;
-  text-shadow: 0 0 12px rgba(255, 182, 193, 0.5);
+  border-bottom: 1px solid rgba(186, 230, 253, 0.25);
+  color: var(--ice4) !important;
+  -webkit-text-fill-color: var(--ice4) !important;
+  text-shadow: 0 0 12px rgba(125, 211, 252, 0.6);
 }
 
 .music-item {
@@ -568,7 +591,7 @@ header {
   cursor: pointer;
   font-size: 12.5px;
   font-weight: 700;
-  color: #bfe0f5 !important;
+  color: #cbe9ff !important;
   margin-bottom: 5px;
   border: 1px solid transparent;
   transition: 0.18s;
@@ -578,10 +601,10 @@ header {
 .music-item:active { transform: scale(0.98); }
 
 .music-item.sel {
-  background: linear-gradient(90deg, rgba(255, 182, 193, 0.22), rgba(255, 105, 180, 0.15)) !important;
-  border-color: rgba(255, 182, 193, 0.7);
+  background: linear-gradient(90deg, rgba(186, 230, 253, 0.25), rgba(56, 189, 248, 0.15)) !important;
+  border-color: rgba(186, 230, 253, 0.75);
   color: #fff !important;
-  box-shadow: 0 0 16px rgba(255, 182, 193, 0.4);
+  box-shadow: 0 0 16px rgba(186, 230, 253, 0.5);
 }
 
 .music-item .mi-ico {
@@ -593,12 +616,12 @@ header {
   justify-content: center;
   font-size: 11px;
   flex: 0 0 auto;
-  background: linear-gradient(135deg, #ff9eb5, #ff69b4);
-  color: #001018;
+  background: linear-gradient(135deg, var(--ice4), var(--ice2));
+  color: #06121f;
 }
 
 .music-item.sel .mi-ico {
-  background: linear-gradient(135deg, #ffb6c1, #ff69b4);
+  background: linear-gradient(135deg, var(--snow), var(--ice1));
 }
 
 .music-item .mi-name {
@@ -611,7 +634,7 @@ header {
 
 .music-item .mi-check {
   font-size: 14px;
-  color: #ffb6c1;
+  color: var(--ice4);
   opacity: 0;
 }
 
@@ -625,12 +648,12 @@ header {
   font-weight: 900;
   font-size: 13px;
   letter-spacing: 0.5px;
-  color: #001018 !important;
-  background: linear-gradient(90deg, #ffb6c1, #ff69b4);
+  color: #06121f !important;
+  background: linear-gradient(90deg, var(--ice4), var(--ice1));
   border: none;
   margin-top: 6px;
   font-family: inherit;
-  box-shadow: 0 0 20px rgba(255, 182, 193, 0.55);
+  box-shadow: 0 0 20px rgba(186, 230, 253, 0.6);
   transition: 0.2s;
   -webkit-appearance: none;
 }
@@ -638,18 +661,22 @@ header {
 .music-play:active { transform: scale(0.97); }
 
 .music-play.playing {
-  background: linear-gradient(90deg, #ff0055, #ff7a00) !important;
-  box-shadow: 0 0 20px rgba(255, 0, 85, 0.6);
+  background: linear-gradient(90deg, var(--ice2), var(--ice3)) !important;
+  color: #fff !important;
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.7);
 }
 
 .music-note {
   text-align: center;
   font-size: 10.5px;
-  color: #7fa8c9 !important;
+  color: #93c5fd !important;
   margin-top: 7px;
   letter-spacing: 0.3px;
 }
 
+/* ============================================================
+   OVERLAY + SIDEBAR
+   ============================================================ */
 .overlay {
   position: fixed;
   top: 0;
@@ -677,15 +704,15 @@ header {
   width: min(310px, 84vw);
   height: 100vh;
   z-index: 9996;
-  background: linear-gradient(180deg, rgba(10, 14, 36, 0.99), rgba(7, 9, 26, 0.99)) !important;
+  background: linear-gradient(180deg, rgba(10, 26, 43, 0.99), rgba(6, 18, 31, 0.99)) !important;
   border-right: 1px solid var(--line-color);
   transform: translateX(-105%);
   transition: transform 0.32s cubic-bezier(0.3, 0.8, 0.3, 1);
   display: flex;
   flex-direction: column;
-  box-shadow: 8px 0 50px rgba(0, 0, 0, 0.95);
+  box-shadow: 8px 0 50px rgba(0, 0, 0, 0.95), 0 0 40px rgba(125, 211, 252, 0.15);
   overflow-y: auto;
-  color: #e9f6ff !important;
+  color: #e8f4ff !important;
 }
 
 .sidebar.open { transform: translateX(0); }
@@ -693,13 +720,13 @@ header {
 .side-head {
   padding: 20px 18px;
   border-bottom: 1px solid var(--line-color);
-  background: linear-gradient(135deg, rgba(0, 240, 255, 0.1), rgba(255, 0, 224, 0.1)) !important;
+  background: linear-gradient(135deg, rgba(125, 211, 252, 0.15), rgba(14, 165, 233, 0.12)) !important;
 }
 
 .side-head h2 {
   font-size: 15px;
   font-weight: 900;
-  background: linear-gradient(90deg, var(--neon1), var(--neon2));
+  background: linear-gradient(90deg, var(--ice4), var(--snow));
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -708,7 +735,7 @@ header {
 
 .side-head p {
   font-size: 11px;
-  color: #7fa8c9 !important;
+  color: #93c5fd !important;
   margin-top: 4px;
 }
 
@@ -719,13 +746,13 @@ header {
   background: rgba(0, 0, 0, 0.4) !important;
   border: 1px solid var(--line-color);
   font-size: 12px;
-  color: #9fc9e6 !important;
+  color: #a5d8ff !important;
   line-height: 1.7;
 }
 
 .side-user b { color: #ffffff !important; font-size: 13.5px; }
-.side-user .ib { color: var(--neon3) !important; }
-.side-user .dc { color: var(--neon2) !important; }
+.side-user .ib { color: var(--gold) !important; }
+.side-user .dc { color: var(--ice1) !important; }
 
 .menu {
   list-style: none;
@@ -742,7 +769,7 @@ header {
   cursor: pointer;
   font-size: 13.6px;
   font-weight: 700;
-  color: #bfe0f5 !important;
+  color: #cbe9ff !important;
   transition: 0.22s;
   border: 1px solid transparent;
   position: relative;
@@ -757,13 +784,14 @@ header {
   top: 0;
   bottom: 0;
   width: 3px;
-  background: linear-gradient(180deg, var(--neon1), var(--neon2));
+  background: linear-gradient(180deg, var(--ice1), var(--ice2));
   opacity: 0;
   transition: 0.22s;
+  box-shadow: 0 0 10px rgba(125, 211, 252, 0.8);
 }
 
 .menu li:hover {
-  background: rgba(0, 240, 255, 0.1) !important;
+  background: rgba(125, 211, 252, 0.12) !important;
   border-color: var(--line-color);
   transform: translateX(3px);
 }
@@ -771,10 +799,10 @@ header {
 .menu li:hover::before { opacity: 1; }
 
 .menu li.active {
-  background: linear-gradient(90deg, rgba(0, 240, 255, 0.2), rgba(255, 0, 224, 0.12)) !important;
-  border-color: rgba(0, 240, 255, 0.5);
+  background: linear-gradient(90deg, rgba(125, 211, 252, 0.22), rgba(56, 189, 248, 0.12)) !important;
+  border-color: rgba(125, 211, 252, 0.55);
   color: #fff !important;
-  box-shadow: 0 0 20px rgba(0, 240, 255, 0.25);
+  box-shadow: 0 0 20px rgba(125, 211, 252, 0.3);
 }
 
 .menu li.active::before { opacity: 1; }
@@ -786,6 +814,9 @@ header {
   flex: 0 0 auto;
 }
 
+/* ============================================================
+   MAIN + PANEL
+   ============================================================ */
 main {
   padding: 16px 14px 90px;
   max-width: 1180px;
@@ -804,7 +835,7 @@ main {
   display: flex;
   align-items: center;
   gap: 9px;
-  background: linear-gradient(90deg, var(--neon1), var(--neon3), var(--neon2));
+  background: linear-gradient(90deg, var(--ice4), var(--snow), var(--ice1));
   background-size: 200% 100%;
   -webkit-background-clip: text;
   background-clip: text;
@@ -822,19 +853,19 @@ main {
   border-radius: 18px;
   padding: 16px;
   margin-bottom: 14px;
-  box-shadow: 0 0 28px rgba(0, 240, 255, 0.12), inset 0 0 30px rgba(0, 0, 0, 0.35);
-  color: #e9f6ff !important;
+  box-shadow: 0 0 28px rgba(125, 211, 252, 0.15), inset 0 0 30px rgba(0, 0, 0, 0.35);
+  color: #e8f4ff !important;
 }
 
-.panel.gold { border-color: rgba(255, 230, 0, 0.42); box-shadow: 0 0 28px rgba(255, 230, 0, 0.16); }
-.panel.pink { border-color: rgba(255, 0, 224, 0.42); box-shadow: 0 0 28px rgba(255, 0, 224, 0.16); }
-.panel.green { border-color: rgba(0, 255, 136, 0.42); box-shadow: 0 0 28px rgba(0, 255, 136, 0.16); }
+.panel.gold { border-color: rgba(125, 211, 252, 0.5); box-shadow: 0 0 28px rgba(125, 211, 252, 0.2); }
+.panel.pink { border-color: rgba(56, 189, 248, 0.5); box-shadow: 0 0 28px rgba(56, 189, 248, 0.2); }
+.panel.green { border-color: rgba(34, 211, 238, 0.5); box-shadow: 0 0 28px rgba(34, 211, 238, 0.2); }
 
 .sec-title {
   font-size: 14.5px;
   font-weight: 900;
   margin-bottom: 11px;
-  color: #dff3ff !important;
+  color: #dff5ff !important;
   letter-spacing: 0.5px;
   display: flex;
   align-items: center;
@@ -843,7 +874,7 @@ main {
 
 .hint {
   font-size: 12px;
-  color: #8fb6d6 !important;
+  color: #93c5fd !important;
   line-height: 1.65;
 }
 
@@ -853,20 +884,71 @@ main {
   gap: 14px;
 }
 
+/* ============================================================
+   STAT CARDS — ĐÃ FIX LỖI HIỂN THỊ
+   ============================================================ */
+.astat {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.astat > div {
+  padding: 14px 10px;
+  border-radius: 15px;
+  background: linear-gradient(160deg, rgba(12, 40, 65, 0.85), rgba(6, 22, 40, 0.9)) !important;
+  border: 1px solid rgba(125, 211, 252, 0.35);
+  text-align: center;
+  box-shadow: 0 0 20px rgba(125, 211, 252, 0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 78px;
+}
+
+.astat > div > b {
+  display: block !important;
+  font-size: clamp(15px, 4vw, 19px);
+  font-weight: 900;
+  color: var(--ice1) !important;
+  text-shadow: 0 0 14px rgba(125, 211, 252, 0.7);
+  line-height: 1.15;
+  margin: 0 !important;
+  padding: 0 !important;
+  word-break: break-word;
+}
+
+.astat > div > span {
+  display: block !important;
+  font-size: 10.5px;
+  color: #93c5fd !important;
+  letter-spacing: 0.7px;
+  line-height: 1.2;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-weight: 700;
+}
+
+/* ============================================================
+   PRODUCT CARD
+   ============================================================ */
 .prod {
-  background: linear-gradient(160deg, rgba(20, 24, 55, 0.95), rgba(10, 12, 30, 0.95)) !important;
+  background: linear-gradient(160deg, rgba(15, 40, 65, 0.95), rgba(8, 22, 38, 0.95)) !important;
   border: 1px solid var(--line-color);
   border-radius: 18px;
   overflow: hidden;
   transition: 0.28s;
   position: relative;
-  box-shadow: 0 0 22px rgba(0, 240, 255, 0.1);
+  box-shadow: 0 0 22px rgba(125, 211, 252, 0.12);
 }
 
 .prod:hover {
   transform: translateY(-5px);
-  border-color: rgba(0, 240, 255, 0.65);
-  box-shadow: 0 0 40px rgba(0, 240, 255, 0.35), 0 0 70px rgba(255, 0, 224, 0.18);
+  border-color: rgba(125, 211, 252, 0.75);
+  box-shadow: 0 0 40px rgba(125, 211, 252, 0.45), 0 0 70px rgba(56, 189, 248, 0.25);
 }
 
 .prod img {
@@ -874,7 +956,7 @@ main {
   height: 172px;
   object-fit: cover;
   display: block;
-  background: #0a0d1f !important;
+  background: #0a1e33 !important;
 }
 
 .prod-body { padding: 13px; }
@@ -883,7 +965,7 @@ main {
   font-size: 14.5px;
   font-weight: 900;
   margin-bottom: 7px;
-  background: linear-gradient(90deg, var(--neon1), var(--neon2));
+  background: linear-gradient(90deg, var(--ice1), var(--snow));
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -892,7 +974,7 @@ main {
 
 .prod-desc {
   font-size: 11.6px;
-  color: #8fb6d6 !important;
+  color: #93c5fd !important;
   line-height: 1.6;
   margin-bottom: 11px;
   white-space: pre-line;
@@ -908,26 +990,26 @@ main {
   padding: 9px 11px;
   border-radius: 11px;
   background: rgba(0, 0, 0, 0.55) !important;
-  border: 1px solid rgba(0, 240, 255, 0.18);
+  border: 1px solid rgba(125, 211, 252, 0.2);
   transition: 0.22s;
   flex-wrap: wrap;
 }
 
-.plan:hover { border-color: var(--neon4); box-shadow: 0 0 16px rgba(0, 255, 136, 0.3); }
-.plan .lb { font-size: 12.2px; font-weight: 700; color: #cfe9ff !important; }
+.plan:hover { border-color: var(--cyan); box-shadow: 0 0 16px rgba(34, 211, 238, 0.35); }
+.plan .lb { font-size: 12.2px; font-weight: 700; color: #cbe9ff !important; }
 
 .plan .pr {
   font-size: 12.4px;
   font-weight: 900;
-  color: var(--neon3) !important;
+  color: var(--gold) !important;
   white-space: nowrap;
-  text-shadow: 0 0 10px rgba(255, 230, 0, 0.5);
+  text-shadow: 0 0 10px rgba(253, 224, 71, 0.5);
 }
 
 .plan .pr-original {
   font-size: 11px;
   font-weight: 700;
-  color: #ff7d96;
+  color: #fda4af;
   text-decoration: line-through;
   white-space: nowrap;
   opacity: 0.85;
@@ -936,9 +1018,9 @@ main {
 .plan .pr-final {
   font-size: 13px;
   font-weight: 900;
-  color: #00ff88;
+  color: var(--cyan) !important;
   white-space: nowrap;
-  text-shadow: 0 0 10px rgba(0, 255, 136, 0.6);
+  text-shadow: 0 0 10px rgba(34, 211, 238, 0.6);
 }
 
 .plan .pr-discount-badge {
@@ -946,10 +1028,10 @@ main {
   font-weight: 900;
   padding: 2px 6px;
   border-radius: 8px;
-  background: linear-gradient(90deg, #ff00e0, #ff7a00);
-  color: #fff;
+  background: linear-gradient(90deg, var(--ice1), var(--ice3));
+  color: #06121f;
   white-space: nowrap;
-  box-shadow: 0 0 10px rgba(255, 0, 224, 0.5);
+  box-shadow: 0 0 10px rgba(125, 211, 252, 0.6);
 }
 
 .plan .price-group {
@@ -966,38 +1048,44 @@ main {
   cursor: pointer;
   font-weight: 900;
   font-size: 11px;
-  background: linear-gradient(90deg, var(--neon4), var(--neon1)) !important;
-  color: #001018 !important;
+  background: linear-gradient(90deg, var(--ice1), var(--snow)) !important;
+  color: #06121f !important;
   transition: 0.2s;
   font-family: inherit;
 }
 
 .plan .buy:hover {
-  box-shadow: 0 0 18px rgba(0, 255, 136, 0.7);
+  box-shadow: 0 0 18px rgba(186, 230, 253, 0.8);
   transform: scale(1.06);
 }
 
+/* ============================================================
+   DISCOUNT BANNER
+   ============================================================ */
 .discount-banner {
   margin-bottom: 14px;
   padding: 12px 14px;
   border-radius: 14px;
-  background: linear-gradient(90deg, rgba(255, 0, 224, 0.2), rgba(255, 122, 0, 0.2)) !important;
-  border: 1px solid rgba(255, 0, 224, 0.6);
+  background: linear-gradient(90deg, rgba(125, 211, 252, 0.22), rgba(56, 189, 248, 0.22)) !important;
+  border: 1px solid rgba(125, 211, 252, 0.65);
   color: #fff;
   font-weight: 800;
   font-size: 13px;
   text-align: center;
-  box-shadow: 0 0 24px rgba(255, 0, 224, 0.4);
+  box-shadow: 0 0 24px rgba(125, 211, 252, 0.45);
   animation: pulseDiscountBanner 2s ease-in-out infinite;
 }
 
 @keyframes pulseDiscountBanner {
-  0%, 100% { box-shadow: 0 0 24px rgba(255, 0, 224, 0.4); }
-  50% { box-shadow: 0 0 40px rgba(255, 0, 224, 0.75); }
+  0%, 100% { box-shadow: 0 0 24px rgba(125, 211, 252, 0.45); }
+  50% { box-shadow: 0 0 40px rgba(125, 211, 252, 0.85); }
 }
 
-.discount-banner b { color: #ffe600; font-size: 15px; }
+.discount-banner b { color: var(--snow); font-size: 15px; }
 
+/* ============================================================
+   SUBTABS
+   ============================================================ */
 .subtabs {
   display: flex;
   gap: 8px;
@@ -1013,22 +1101,25 @@ main {
   font-weight: 800;
   background: rgba(0, 0, 0, 0.5) !important;
   border: 1px solid var(--line-color);
-  color: #8fb6d6 !important;
+  color: #93c5fd !important;
   transition: 0.22s;
 }
 
 .subtab.active {
-  background: linear-gradient(90deg, var(--neon1), var(--neon2)) !important;
-  color: #001018 !important;
-  box-shadow: 0 0 20px rgba(0, 240, 255, 0.5);
+  background: linear-gradient(90deg, var(--ice1), var(--ice2)) !important;
+  color: #06121f !important;
+  box-shadow: 0 0 20px rgba(125, 211, 252, 0.6);
   border-color: transparent;
 }
 
+/* ============================================================
+   ITEM
+   ============================================================ */
 .item {
   padding: 12px;
   border-radius: 14px;
   background: rgba(0, 0, 0, 0.5) !important;
-  border: 1px solid rgba(0, 240, 255, 0.16);
+  border: 1px solid rgba(125, 211, 252, 0.2);
   margin-bottom: 9px;
   font-size: 12.4px;
   display: flex;
@@ -1036,24 +1127,27 @@ main {
   gap: 10px;
   flex-wrap: wrap;
   align-items: center;
-  color: #e9f6ff !important;
+  color: #e8f4ff !important;
 }
 
 .item .l { flex: 1; min-width: 180px; }
 
 .item .l b {
-  color: var(--neon1) !important;
+  color: var(--ice1) !important;
   font-size: 13px;
   display: block;
   margin-bottom: 4px;
 }
 
 .item .l small {
-  color: #8fb6d6 !important;
+  color: #93c5fd !important;
   display: block;
   line-height: 1.6;
 }
 
+/* ============================================================
+   KEY
+   ============================================================ */
 .key-row {
   display: flex;
   align-items: center;
@@ -1063,12 +1157,12 @@ main {
 }
 
 .key-text {
-  color: #00ff88;
+  color: var(--cyan);
   font-weight: 900;
   font-size: 14px;
   font-family: 'Courier New', monospace;
   word-break: break-all;
-  text-shadow: 0 0 10px rgba(0, 255, 136, 0.4);
+  text-shadow: 0 0 10px rgba(34, 211, 238, 0.5);
 }
 
 .copy-btn {
@@ -1079,32 +1173,35 @@ main {
   height: 30px;
   padding: 0 8px;
   border-radius: 8px;
-  background: linear-gradient(135deg, rgba(0, 240, 255, 0.2), rgba(0, 255, 136, 0.2)) !important;
-  border: 1px solid rgba(0, 240, 255, 0.6);
+  background: linear-gradient(135deg, rgba(125, 211, 252, 0.25), rgba(34, 211, 238, 0.25)) !important;
+  border: 1px solid rgba(125, 211, 252, 0.65);
   cursor: pointer;
-  color: #00f0ff;
+  color: var(--ice1);
   font-size: 14px;
   transition: 0.2s;
   flex: 0 0 auto;
   font-family: inherit;
   -webkit-appearance: none;
-  box-shadow: 0 0 12px rgba(0, 240, 255, 0.3);
+  box-shadow: 0 0 12px rgba(125, 211, 252, 0.35);
 }
 
 .copy-btn:hover {
-  background: linear-gradient(135deg, rgba(0, 240, 255, 0.4), rgba(0, 255, 136, 0.4)) !important;
-  box-shadow: 0 0 18px rgba(0, 240, 255, 0.6);
+  background: linear-gradient(135deg, rgba(125, 211, 252, 0.45), rgba(34, 211, 238, 0.45)) !important;
+  box-shadow: 0 0 18px rgba(125, 211, 252, 0.7);
   transform: scale(1.05);
 }
 
 .copy-btn:active { transform: scale(0.92); }
 
 .copy-btn.copied {
-  background: linear-gradient(135deg, rgba(0, 255, 136, 0.5), rgba(0, 255, 136, 0.3)) !important;
-  border-color: #00ff88;
-  color: #00ff88;
+  background: linear-gradient(135deg, rgba(34, 211, 238, 0.5), rgba(34, 211, 238, 0.3)) !important;
+  border-color: var(--cyan);
+  color: var(--cyan);
 }
 
+/* ============================================================
+   BADGE
+   ============================================================ */
 .badge {
   padding: 5px 11px;
   border-radius: 20px;
@@ -1115,32 +1212,35 @@ main {
 }
 
 .badge.wait {
-  background: rgba(255, 230, 0, 0.15) !important;
-  border: 1px solid rgba(255, 230, 0, 0.6);
-  color: #ffe600 !important;
-  box-shadow: 0 0 14px rgba(255, 230, 0, 0.3);
+  background: rgba(253, 224, 71, 0.15) !important;
+  border: 1px solid rgba(253, 224, 71, 0.6);
+  color: var(--gold) !important;
+  box-shadow: 0 0 14px rgba(253, 224, 71, 0.35);
 }
 
 .badge.done {
-  background: rgba(0, 255, 136, 0.15) !important;
-  border: 1px solid rgba(0, 255, 136, 0.6);
-  color: #6affb8 !important;
-  box-shadow: 0 0 14px rgba(0, 255, 136, 0.3);
+  background: rgba(34, 211, 238, 0.15) !important;
+  border: 1px solid rgba(34, 211, 238, 0.6);
+  color: var(--cyan2) !important;
+  box-shadow: 0 0 14px rgba(34, 211, 238, 0.35);
 }
 
 .badge.cancel {
-  background: rgba(255, 0, 60, 0.15) !important;
-  border: 1px solid rgba(255, 0, 60, 0.6);
-  color: #ff7d96 !important;
+  background: rgba(244, 63, 94, 0.15) !important;
+  border: 1px solid rgba(244, 63, 94, 0.6);
+  color: #fda4af !important;
 }
 
 .empty {
   text-align: center;
   padding: 32px 14px;
-  color: #5f87a8 !important;
+  color: #64748b !important;
   font-size: 13px;
 }
 
+/* ============================================================
+   STARS
+   ============================================================ */
 .stars-pick {
   display: flex;
   gap: 8px;
@@ -1159,9 +1259,12 @@ main {
 .stars-pick span.on {
   filter: none;
   transform: scale(1.16);
-  text-shadow: 0 0 20px rgba(255, 230, 0, 0.9);
+  text-shadow: 0 0 20px rgba(253, 224, 71, 0.9);
 }
 
+/* ============================================================
+   NOTIFICATION
+   ============================================================ */
 #orderNotification {
   position: fixed;
   top: 80px;
@@ -1177,10 +1280,10 @@ main {
   pointer-events: none;
   opacity: 0;
   transition: all 0.5s cubic-bezier(0.3, 1.4, 0.5, 1);
-  background: linear-gradient(90deg, #00f0ff, #00ff88);
-  color: #001018;
-  box-shadow: 0 0 34px rgba(0, 240, 255, 0.95), 0 0 60px rgba(0, 255, 136, 0.5);
-  border: 2px solid rgba(255, 255, 255, 0.6);
+  background: linear-gradient(90deg, var(--ice1), var(--snow));
+  color: #06121f;
+  box-shadow: 0 0 34px rgba(125, 211, 252, 0.95), 0 0 60px rgba(186, 230, 253, 0.6);
+  border: 2px solid rgba(255, 255, 255, 0.7);
 }
 
 #orderNotification.show {
@@ -1189,16 +1292,19 @@ main {
 }
 
 #orderNotification.done {
-  background: linear-gradient(90deg, #00ff88, #ffe600);
-  box-shadow: 0 0 34px rgba(0, 255, 136, 0.95), 0 0 60px rgba(255, 230, 0, 0.6);
+  background: linear-gradient(90deg, var(--cyan), var(--ice1));
+  box-shadow: 0 0 34px rgba(34, 211, 238, 0.95), 0 0 60px rgba(125, 211, 252, 0.7);
 }
 
 #orderNotification.warn {
-  background: linear-gradient(90deg, #ffe600, #ff8a00);
-  color: #001018;
-  box-shadow: 0 0 34px rgba(255, 230, 0, 0.95), 0 0 60px rgba(255, 138, 0, 0.6);
+  background: linear-gradient(90deg, var(--gold), var(--ice1));
+  color: #06121f;
+  box-shadow: 0 0 34px rgba(253, 224, 71, 0.9), 0 0 60px rgba(125, 211, 252, 0.6);
 }
 
+/* ============================================================
+   TOAST
+   ============================================================ */
 #toast {
   position: fixed;
   left: 50%;
@@ -1209,9 +1315,9 @@ main {
   border-radius: 30px;
   font-weight: 800;
   font-size: 13.4px;
-  background: linear-gradient(90deg, rgba(0, 240, 255, 0.95), rgba(0, 255, 136, 0.95)) !important;
-  color: #001018 !important;
-  box-shadow: 0 0 34px rgba(0, 240, 255, 0.8);
+  background: linear-gradient(90deg, var(--ice1), var(--snow)) !important;
+  color: #06121f !important;
+  box-shadow: 0 0 34px rgba(125, 211, 252, 0.85);
   transition: 0.4s cubic-bezier(0.3, 1.4, 0.5, 1);
   max-width: 90vw;
   text-align: center;
@@ -1220,18 +1326,21 @@ main {
 #toast.show { transform: translateX(-50%) translateY(0); }
 
 #toast.err {
-  background: linear-gradient(90deg, #ff0055, #ff7a00) !important;
+  background: linear-gradient(90deg, var(--red), #fb7185) !important;
   color: #fff !important;
-  box-shadow: 0 0 34px rgba(255, 0, 85, 0.8);
+  box-shadow: 0 0 34px rgba(244, 63, 94, 0.85);
 }
 
+/* ============================================================
+   QR
+   ============================================================ */
 .qr-box { text-align: center; padding: 8px; }
 
 .qr-box img {
   width: min(290px, 82vw);
   border-radius: 16px;
-  border: 2px solid var(--neon1);
-  box-shadow: 0 0 34px rgba(0, 240, 255, 0.5);
+  border: 2px solid var(--ice1);
+  box-shadow: 0 0 34px rgba(125, 211, 252, 0.6);
   background: #fff !important;
 }
 
@@ -1244,13 +1353,13 @@ main {
   padding: 14px;
   border-radius: 14px;
   border: 1px solid var(--line-color);
-  color: #e9f6ff !important;
+  color: #e8f4ff !important;
 }
 
-.bank-info b { color: var(--neon3) !important; }
+.bank-info b { color: var(--gold) !important; }
 
 .bank-info .hl {
-  color: var(--neon4) !important;
+  color: var(--cyan) !important;
   font-weight: 900;
   font-size: 15px;
   letter-spacing: 1px;
@@ -1262,37 +1371,50 @@ main {
   border-radius: 12px;
   font-size: 12px;
   font-weight: 700;
-  background: rgba(255, 230, 0, 0.15) !important;
-  border: 1px solid rgba(255, 230, 0, 0.45);
-  color: #ffe600 !important;
+  background: rgba(253, 224, 71, 0.15) !important;
+  border: 1px solid rgba(253, 224, 71, 0.5);
+  color: var(--gold) !important;
   text-align: center;
 }
 
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
 @media (max-width: 520px) {
   .plan { flex-wrap: wrap; }
   .plan .buy { width: 100%; }
   main { padding: 14px 11px 90px; }
-  .astat { grid-template-columns: repeat(2, 1fr); }
+  .astat { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .astat > div { padding: 11px 6px; min-height: 70px; }
+  .astat > div > b { font-size: 14px; }
+  .astat > div > span { font-size: 9.5px; letter-spacing: 0.3px; }
   .bal-chip { padding: 7px 10px; font-size: 11.5px; }
+}
+
+@media (max-width: 360px) {
+  .astat { grid-template-columns: 1fr 1fr 1fr; gap: 6px; }
+  .astat > div { padding: 9px 4px; min-height: 64px; }
+  .astat > div > b { font-size: 12.5px; }
+  .astat > div > span { font-size: 8.5px; }
 }
 
 @media (prefers-color-scheme: light) {
   html, body {
-    background: #05060f !important;
-    color: #e9f6ff !important;
+    background: #06121f !important;
+    color: #e8f4ff !important;
   }
 }
 </style>
 </head>
 <body>
 
-<canvas id="stars"></canvas>
+<canvas id="snowfall"></canvas>
 
 <div id="orderNotification"></div>
 
 <div id="loading">
   <div class="load-logo">SHOP ALL SẢN PHẨM FF – FFMAX</div>
-  <div class="load-sub">HỖ TRỢ ADR🤖 và IOS📱</div>
+  <div class="load-sub">❄️ HỖ TRỢ ADR🤖 và IOS📱</div>
   <div class="load-status" id="loadStatus">Đang xác thực web...</div>
   <div class="load-bar-wrap">
     <div class="load-bar" id="loadBar"></div>
@@ -1303,7 +1425,7 @@ main {
 <div id="auth" class="screen">
   <div class="auth-box">
     <div class="auth-title">SHOP ALL SẢN PHẨM FF – FFMAX</div>
-    <div class="auth-sub">HỖ TRỢ ADR🤖 và IOS📱</div>
+    <div class="auth-sub">❄️ HỖ TRỢ ADR🤖 và IOS📱</div>
 
     <div class="tabs">
       <div class="tab active" id="tabLogin" onclick="switchTab('login')">Đăng nhập</div>
@@ -1351,7 +1473,7 @@ main {
 
     <div class="brand">
       <h1>SHOP All SẢN PHẨM FF – FFMAX</h1>
-      <p>HỖ TRỢ ADR🤖 và IOS📱</p>
+      <p>❄️ HỖ TRỢ ADR🤖 và IOS📱</p>
     </div>
 
     <div class="music-wrap">
@@ -1386,7 +1508,7 @@ main {
       </div>
     </div>
 
-    <div class="bal-chip">💰 <span id="hdrBal">0đ</span></div>
+    <div class="bal-chip">❄️ <span id="hdrBal">0đ</span></div>
   </header>
 
   <main>
@@ -1399,21 +1521,30 @@ main {
       <div class="panel">
         <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
           <div style="flex:1;min-width:180px">
-            <div style="font-size:12px;color:#8fb6d6">Tên người đăng ký</div>
+            <div style="font-size:12px;color:#93c5fd">Tên người đăng ký</div>
             <div style="font-size:19px;font-weight:900;color:#ffffff" id="acName">-</div>
           </div>
           <div style="text-align:right">
-            <div style="font-size:12px;color:#8fb6d6">Số IB</div>
-            <div style="font-size:19px;font-weight:900;color:var(--neon3)" id="acIb">-</div>
+            <div style="font-size:12px;color:#93c5fd">Số IB</div>
+            <div style="font-size:19px;font-weight:900;color:var(--gold)" id="acIb">-</div>
           </div>
           <div class="btn sm ghost" style="cursor:default">👤</div>
         </div>
       </div>
 
       <div class="astat" style="grid-template-columns:repeat(3,1fr)">
-        <div><b id="acDep">0đ</b><span>TỔNG NẠP</span></div>
-        <div><b id="acSpent">0đ</b><span>TỔNG CHI</span></div>
-        <div><b id="acBal">0đ</b><span>SỐ DƯ</span></div>
+        <div>
+          <b id="acDep">0đ</b>
+          <span>TỔNG NẠP</span>
+        </div>
+        <div>
+          <b id="acSpent">0đ</b>
+          <span>TỔNG CHI</span>
+        </div>
+        <div>
+          <b id="acBal">0đ</b>
+          <span>SỐ DƯ</span>
+        </div>
       </div>
 
       <div class="panel green">
@@ -1428,7 +1559,7 @@ main {
       <div class="panel gold">
         <div class="sec-title">🏦 PHẦN 1 — TẠO MÃ QR</div>
         <div class="hint" style="margin-bottom:10px">
-          Tối thiểu <b style="color:#ffe600">5.000đ</b> — Tối đa <b style="color:#ffe600">5.000.000đ</b>
+          Tối thiểu <b style="color:var(--gold)">5.000đ</b> — Tối đa <b style="color:var(--gold)">5.000.000đ</b>
         </div>
         <div class="field">
           <label>Số tiền muốn nạp (VNĐ)</label>
@@ -1495,9 +1626,9 @@ main {
       <div class="panel green">
         <div class="sec-title">🔥 KHO HACK ADR + FREE</div>
         <div class="hint">
-          Rất nhiều Hack vừa có bản để mua và có cả bản <b style="color:#00ff88">FREE</b>.<br>
-          Muốn mua hoặc dùng free vui lòng liên hệ phần <b style="color:#00f0ff">Hỗ trợ 📞</b>.<br><br>
-          ⚠️ <b style="color:#ffe600">Lưu ý:</b> Hack ADR ít khi được free vì làm khó và tốn nhiều thời gian,
+          Rất nhiều Hack vừa có bản để mua và có cả bản <b style="color:var(--cyan)">FREE</b>.<br>
+          Muốn mua hoặc dùng free vui lòng liên hệ phần <b style="color:var(--ice1)">Hỗ trợ 📞</b>.<br><br>
+          ⚠️ <b style="color:var(--gold)">Lưu ý:</b> Hack ADR ít khi được free vì làm khó và tốn nhiều thời gian,
           nhưng khi mua nhiều sẽ được giảm giá.
         </div>
       </div>
@@ -1514,10 +1645,10 @@ main {
       <div class="panel gold">
         <div class="sec-title">📖 Tác dụng của Esgin</div>
         <div class="hint">
-          Tải app cho iOS gọi tắt là <b style="color:#ffe600">IPA</b>. Khi có Esgin sẽ hỗ trợ được rất nhiều cho người dùng,
+          Tải app cho iOS gọi tắt là <b style="color:var(--gold)">IPA</b>. Khi có Esgin sẽ hỗ trợ được rất nhiều cho người dùng,
           kể cả hack FF và hỗ trợ nhiều app khác khi có IPA.<br><br>
-          <b style="color:#00ff88">Phần không bảo hành và có bảo hành:</b> Khi có bảo hành, Esgin lỗi hoặc không dùng được
-          vui lòng liên hệ để được đổi Esgin mới — <b style="color:#ff00e0">lỗi 1 đổi 1</b>.
+          <b style="color:var(--cyan)">Phần không bảo hành và có bảo hành:</b> Khi có bảo hành, Esgin lỗi hoặc không dùng được
+          vui lòng liên hệ để được đổi Esgin mới — <b style="color:var(--ice1)">lỗi 1 đổi 1</b>.
         </div>
       </div>
     </div>
@@ -1531,7 +1662,7 @@ main {
       </div>
       <div class="panel green">
         <div class="sec-title">💬 PHẦN 2 — ZALO</div>
-        <div class="hint" style="margin-bottom:11px">Zalo: <b style="color:#00ff88">0372822927</b></div>
+        <div class="hint" style="margin-bottom:11px">Zalo: <b style="color:var(--cyan)">0372822927</b></div>
         <button class="btn" onclick="openLink('https://zalo.me/0372822927')">💬 MỞ ZALO</button>
       </div>
     </div>
@@ -1541,10 +1672,10 @@ main {
       <div class="panel gold">
         <div class="hint">
           Hack ADR ít khi được free vì làm khó và tốn nhiều thời gian nhưng khi mua nhiều sẽ được giảm giá.<br><br>
-          <b style="color:#ff3d00">Lưu ý quan trọng:</b> Hack chắc chắn sẽ ban và tùy lúc ban,
+          <b style="color:var(--red)">Lưu ý quan trọng:</b> Hack chắc chắn sẽ ban và tùy lúc ban,
           chứ không có hack nào là antiban 100% cả.<br><br>
           Hack ADR thì sẽ được free nhiều vì nó không như iOS dễ và tiện lợi, và giá sẽ mềm hơn iOS.<br><br>
-          <b style="color:#ff3d00">Lưu ý quan trọng:</b> Hack chắc chắn sẽ ban và tùy lúc ban,
+          <b style="color:var(--red)">Lưu ý quan trọng:</b> Hack chắc chắn sẽ ban và tùy lúc ban,
           chứ không có hack nào là antiban 100% cả.
         </div>
       </div>
@@ -1576,7 +1707,7 @@ main {
 
 <aside class="sidebar" id="sidebar">
   <div class="side-head">
-    <h2>⚡ MENU SHOP</h2>
+    <h2>❄️ MENU SHOP</h2>
     <p>HỖ TRỢ ADR🤖 và IOS📱</p>
   </div>
   <div class="side-user" id="sideUser"></div>
@@ -1790,14 +1921,16 @@ try {
     return d;
   }
 
-  (function initStarsEffect() {
+  /* ============================================================
+     HIỆU ỨNG TUYẾT RƠI ❄️
+     ============================================================ */
+  (function initSnowfall() {
     try {
-      var canvas = document.getElementById('stars');
+      var canvas = document.getElementById('snowfall');
       if (!canvas) return;
       var ctx = canvas.getContext('2d');
       var W, H;
-      var starList = [];
-      var meteors = [];
+      var flakes = [];
 
       function resize() {
         W = canvas.width = innerWidth;
@@ -1806,90 +1939,87 @@ try {
       resize();
       addEventListener('resize', resize);
 
-      for (var i = 0; i < 300; i++) {
-        starList.push({
+      /* Tạo 140 bông tuyết, 30 bông đầu là bông lớn (6 cánh) */
+      for (var i = 0; i < 140; i++) {
+        var isBig = i < 30;
+        flakes.push({
           x: Math.random() * W,
           y: Math.random() * H,
-          r: Math.random() * 1.4 + 0.3,
-          baseAlpha: Math.random() * 0.5 + 0.3,
+          r: isBig ? (Math.random() * 4 + 5) : (Math.random() * 1.8 + 0.4),
+          speed: isBig ? (Math.random() * 0.5 + 0.6) : (Math.random() * 0.9 + 0.3),
+          drift: (Math.random() - 0.5) * 0.6,
           phase: Math.random() * Math.PI * 2,
-          speed: Math.random() * 0.03 + 0.008,
-          color: Math.random() < 0.15 ? '#00f0ff' :
-                 Math.random() < 0.15 ? '#ffb6c1' :
-                 Math.random() < 0.1 ? '#ffe600' : '#ffffff'
+          wobble: Math.random() * 0.6 + 0.3,
+          alpha: isBig ? (Math.random() * 0.4 + 0.5) : (Math.random() * 0.6 + 0.3),
+          rotation: Math.random() * Math.PI * 2,
+          rotSpeed: (Math.random() - 0.5) * 0.02,
+          isBig: isBig
         });
       }
 
-      function spawnMeteor() {
-        if (meteors.length < 6 && Math.random() < 0.7) {
-          meteors.push({
-            x: Math.random() * W * 1.4 - W * 0.2,
-            y: -100,
-            len: Math.random() * 220 + 180,
-            sp: Math.random() * 12 + 18,
-            ang: Math.PI / 3.5 + (Math.random() * 0.32 - 0.16),
-            width: Math.random() * 1.2 + 2
-          });
+      function drawSnowflake(x, y, size, alpha, rotation) {
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.rotate(rotation);
+        ctx.strokeStyle = 'rgba(240, 249, 255, ' + alpha + ')';
+        ctx.lineWidth = Math.max(0.8, size * 0.14);
+        ctx.lineCap = 'round';
+        ctx.shadowBlur = 12;
+        ctx.shadowColor = 'rgba(186, 230, 253, 0.9)';
+
+        for (var a = 0; a < 6; a++) {
+          var ang = a * Math.PI / 3;
+          var dx = Math.cos(ang) * size;
+          var dy = Math.sin(ang) * size;
+          ctx.beginPath();
+          ctx.moveTo(0, 0);
+          ctx.lineTo(dx, dy);
+
+          /* Nhánh phụ nhỏ 2 bên */
+          var bx1 = Math.cos(ang) * size * 0.55;
+          var by1 = Math.sin(ang) * size * 0.55;
+          var perp = ang + Math.PI / 2;
+          var branchLen = size * 0.32;
+          ctx.moveTo(bx1, by1);
+          ctx.lineTo(bx1 + Math.cos(perp) * branchLen, by1 + Math.sin(perp) * branchLen);
+          ctx.moveTo(bx1, by1);
+          ctx.lineTo(bx1 - Math.cos(perp) * branchLen, by1 - Math.sin(perp) * branchLen);
+
+          ctx.stroke();
         }
-        setTimeout(spawnMeteor, Math.random() * 500 + 400);
+        ctx.restore();
       }
-      spawnMeteor();
 
       function drawFrame() {
         ctx.clearRect(0, 0, W, H);
 
-        for (var i = 0; i < starList.length; i++) {
-          var s = starList[i];
-          s.phase += s.speed;
-          var alpha = s.baseAlpha * (0.4 + 0.6 * (Math.sin(s.phase) * 0.5 + 0.5));
-          ctx.globalAlpha = alpha;
-          ctx.shadowBlur = 6;
-          ctx.shadowColor = s.color;
-          ctx.fillStyle = s.color;
-          ctx.beginPath();
-          ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-          ctx.fill();
-        }
-        ctx.globalAlpha = 1;
-        ctx.shadowBlur = 0;
+        for (var i = 0; i < flakes.length; i++) {
+          var f = flakes[i];
+          f.phase += 0.02;
+          f.rotation += f.rotSpeed;
 
-        for (var j = meteors.length - 1; j >= 0; j--) {
-          var m = meteors[j];
-          var tx = m.x - Math.cos(m.ang) * m.len;
-          var ty = m.y - Math.sin(m.ang) * m.len;
+          f.x += f.drift + Math.sin(f.phase) * f.wobble;
+          f.y += f.speed;
 
-          var gradient = ctx.createLinearGradient(m.x, m.y, tx, ty);
-          gradient.addColorStop(0, '#ffffff');
-          gradient.addColorStop(0.18, 'rgba(220,240,255,0.95)');
-          gradient.addColorStop(0.45, 'rgba(150,200,255,0.5)');
-          gradient.addColorStop(0.75, 'rgba(100,160,255,0.15)');
-          gradient.addColorStop(1, 'transparent');
+          if (f.y > H + 30) {
+            f.y = -30;
+            f.x = Math.random() * W;
+          }
+          if (f.x < -30) f.x = W + 30;
+          if (f.x > W + 30) f.x = -30;
 
-          ctx.strokeStyle = gradient;
-          ctx.lineWidth = m.width;
-          ctx.lineCap = 'round';
-          ctx.shadowBlur = 20;
-          ctx.shadowColor = '#ffffff';
-          ctx.beginPath();
-          ctx.moveTo(m.x, m.y);
-          ctx.lineTo(tx, ty);
-          ctx.stroke();
-          ctx.shadowBlur = 0;
-
-          var headGrad = ctx.createRadialGradient(m.x, m.y, 0, m.x, m.y, 7);
-          headGrad.addColorStop(0, '#ffffff');
-          headGrad.addColorStop(0.4, 'rgba(255,255,255,0.85)');
-          headGrad.addColorStop(1, 'rgba(150,200,255,0)');
-          ctx.fillStyle = headGrad;
-          ctx.beginPath();
-          ctx.arc(m.x, m.y, 7, 0, Math.PI * 2);
-          ctx.fill();
-
-          m.x += Math.cos(m.ang) * m.sp;
-          m.y += Math.sin(m.ang) * m.sp;
-
-          if (m.y > H + 300 || m.x > W + 400) {
-            meteors.splice(j, 1);
+          if (f.isBig) {
+            drawSnowflake(f.x, f.y, f.r, f.alpha, f.rotation);
+          } else {
+            ctx.globalAlpha = f.alpha;
+            ctx.fillStyle = '#ffffff';
+            ctx.shadowBlur = 8;
+            ctx.shadowColor = 'rgba(186, 230, 253, 0.9)';
+            ctx.beginPath();
+            ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.globalAlpha = 1;
+            ctx.shadowBlur = 0;
           }
         }
 
@@ -1897,10 +2027,13 @@ try {
       }
       drawFrame();
     } catch (err) {
-      console.error('Stars effect error:', err);
+      console.error('Snowfall effect error:', err);
     }
   })();
 
+  /* ============================================================
+     NHẠC
+     ============================================================ */
   var TRACKS = [
     { name: 'Remix 1', src: 'https://raw.githubusercontent.com/proxyvipivn/SHOP-STORE-ALL-FF/refs/heads/main/Remix2.mp3.mp3' },
     { name: 'Remix 2', src: 'https://raw.githubusercontent.com/proxyvipivn/SHOP-STORE-ALL-FF/refs/heads/main/Remix.mp3%20.mp3' },
@@ -1921,25 +2054,15 @@ try {
       bgMusic.addEventListener('ended', function() {
         if (curTrack >= 0 && curTrack < TRACKS.length - 1) {
           selectTrack(curTrack + 1);
-          bgMusic.play()
-            .then(function() { playing = true; updateMusicUI(); })
-            .catch(function() {});
+          bgMusic.play().then(function() { playing = true; updateMusicUI(); }).catch(function() {});
         } else {
           playing = false;
           updateMusicUI();
         }
       });
 
-      bgMusic.addEventListener('play', function() {
-        playing = true;
-        updateMusicUI();
-      });
-
-      bgMusic.addEventListener('pause', function() {
-        playing = false;
-        updateMusicUI();
-      });
-
+      bgMusic.addEventListener('play', function() { playing = true; updateMusicUI(); });
+      bgMusic.addEventListener('pause', function() { playing = false; updateMusicUI(); });
       bgMusic.addEventListener('error', function() {
         toast('⚠️ Không tải được nhạc. Kiểm tra lại link!', true);
         playing = false;
@@ -1976,9 +2099,7 @@ try {
       if (note) note.textContent = 'Đã chọn: ' + TRACKS[index].name;
 
       if (wasPlaying) {
-        bgMusic.play()
-          .then(function() { playing = true; updateMusicUI(); })
-          .catch(function() {});
+        bgMusic.play().then(function() { playing = true; updateMusicUI(); }).catch(function() {});
       }
     }
   }
@@ -2034,6 +2155,9 @@ try {
     }
   });
 
+  /* ============================================================
+     UTILS
+     ============================================================ */
   function fmt(n) {
     return Number(n || 0).toLocaleString('vi-VN') + 'đ';
   }
@@ -2113,6 +2237,9 @@ try {
     } catch (err) {}
   }
 
+  /* ============================================================
+     THÔNG BÁO QUEUE
+     ============================================================ */
   function queueNotification(msg, type) {
     notifyQueue.push({ msg: msg, type: type });
     if (!notifying) {
@@ -2257,6 +2384,9 @@ try {
     checkOrderNotifications();
   }
 
+  /* ============================================================
+     FIREBASE LISTENERS
+     ============================================================ */
   function setupFirebaseListeners() {
     if (!db) return;
 
@@ -2329,6 +2459,9 @@ try {
       });
   }
 
+  /* ============================================================
+     AUTH
+     ============================================================ */
   function switchTab(t) {
     var isLogin = (t === 'login');
     document.getElementById('tabLogin').classList.toggle('active', isLogin);
@@ -2502,7 +2635,7 @@ try {
       var parts = [];
       if (bulk > 0) parts.push('SHOP GIẢM ' + bulk + '%');
       if (dc > 0) parts.push('BẠN ĐƯỢC GIẢM THÊM ' + dc + '%');
-      html = '<div class="discount-banner">💸 <b>' + parts.join(' + ') + '</b> cho tất cả sản phẩm! 🎉</div>';
+      html = '<div class="discount-banner">❄️ <b>' + parts.join(' + ') + '</b> cho tất cả sản phẩm! 🎉</div>';
     }
 
     var ids = ['discountBannerAcc', 'discountBannerIos', 'discountBannerEsgin'];
@@ -2659,7 +2792,7 @@ try {
         db.ref('orders').set(orders);
 
         upUI();
-        toast('🎉 Chức mừng bạn đã mua hàng thành công! Vui lòng chờ 1-30 phút đơn hàng sẽ được xử lý.');
+        toast('❄️ Chức mừng bạn đã mua hàng thành công! Vui lòng chờ 1-30 phút đơn hàng sẽ được xử lý.');
       })
       .catch(function(err) {
         toast('❌ Lỗi: ' + err.message, true);
@@ -2764,7 +2897,7 @@ try {
               : '<span class="badge cancel">ĐÃ HUỶ</span>';
 
           var info = d.type === 'QR'
-            ? '💳 Nạp QR — Nội dung: <b style="color:#ffe600">' + d.code + '</b>'
+            ? '💳 Nạp QR — Nội dung: <b style="color:var(--gold)">' + d.code + '</b>'
             : '💳 Thẻ ' + d.cardType + ' — Mệnh giá ' + fmt(d.amount) + ' → nhận ' + fmt(d.receive);
 
           var amountShow = d.type === 'QR' ? d.amount : d.receive;
@@ -2773,7 +2906,7 @@ try {
             '<div class="l">' +
             '<b>Mã đơn: ' + d.id + '</b>' +
             '<small>' + info + '</small>' +
-            '<small>Số tiền: <b style="color:#00ff88">' + fmt(amountShow) + '</b></small>' +
+            '<small>Số tiền: <b style="color:var(--cyan)">' + fmt(amountShow) + '</b></small>' +
             '<small>🕐 ' + timeStr(d.createdAt) + '</small>' +
             '</div>' + badge +
             '</div>';
@@ -2826,10 +2959,10 @@ try {
                 ? '<span class="badge cancel">ĐÃ HUỶ</span>'
                 : '<span class="badge wait">ĐANG XỬ LÝ</span>';
 
-          var priceLine = 'Giá: <b style="color:#ffe600">' + fmt(oo.price) + '</b>';
+          var priceLine = 'Giá: <b style="color:var(--gold)">' + fmt(oo.price) + '</b>';
           if (oo.originalPrice && oo.originalPrice > oo.price) {
-            priceLine = 'Giá gốc: <span style="text-decoration:line-through;color:#ff7d96">' +
-              fmt(oo.originalPrice) + '</span> → <b style="color:#00ff88">' + fmt(oo.price) + '</b>';
+            priceLine = 'Giá gốc: <span style="text-decoration:line-through;color:#fda4af">' +
+              fmt(oo.originalPrice) + '</span> → <b style="color:var(--cyan)">' + fmt(oo.price) + '</b>';
           }
 
           html += '<div class="item">' +
