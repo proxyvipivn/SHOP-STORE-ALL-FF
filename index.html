@@ -452,6 +452,10 @@ header {
   font-size: 12.5px;
   color: var(--snow) !important;
   box-shadow: 0 0 18px rgba(125, 211, 252, 0.4);
+  max-width: 140px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .music-wrap {
@@ -860,6 +864,62 @@ main {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(255px, 1fr));
   gap: 14px;
+}
+
+/* ============================================================
+   STAT CARDS — ĐÃ SỬA CỰC KỲ CHẮC CHẮN (SỐ TRÊN, CHỮ DƯỚI)
+   ============================================================ */
+.astat {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 8px !important;
+  margin-bottom: 16px !important;
+  width: 100% !important;
+}
+
+.astat > div {
+  display: block !important;
+  width: 100% !important;
+  padding: 14px 6px !important;
+  border-radius: 15px !important;
+  background: linear-gradient(160deg, rgba(12, 40, 65, 0.85), rgba(6, 22, 40, 0.9)) !important;
+  border: 1px solid rgba(125, 211, 252, 0.35) !important;
+  text-align: center !important;
+  box-shadow: 0 0 20px rgba(125, 211, 252, 0.15) !important;
+  min-height: 82px !important;
+  overflow: hidden !important;
+  position: relative !important;
+}
+
+.astat > div > b {
+  display: block !important;
+  width: 100% !important;
+  font-size: 15px !important;
+  font-weight: 900 !important;
+  color: #7dd3fc !important;
+  -webkit-text-fill-color: #7dd3fc !important;
+  text-shadow: 0 0 14px rgba(125, 211, 252, 0.7) !important;
+  line-height: 1.2 !important;
+  margin: 0 0 6px 0 !important;
+  padding: 0 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  font-family: inherit !important;
+}
+
+.astat > div > span {
+  display: block !important;
+  width: 100% !important;
+  font-size: 10px !important;
+  color: #93c5fd !important;
+  -webkit-text-fill-color: #93c5fd !important;
+  letter-spacing: 0.6px !important;
+  line-height: 1.2 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-weight: 700 !important;
+  font-family: inherit !important;
 }
 
 .prod {
@@ -1281,18 +1341,17 @@ main {
   .plan { flex-wrap: wrap; }
   .plan .buy { width: 100%; }
   main { padding: 14px 11px 90px; }
-  .astat { grid-template-columns: repeat(3, 1fr); gap: 8px; }
-  .astat > div { padding: 11px 6px; min-height: 70px; }
-  .astat > div > b { font-size: 14px; }
-  .astat > div > span { font-size: 9.5px; letter-spacing: 0.3px; }
-  .bal-chip { padding: 7px 10px; font-size: 11.5px; }
+  .bal-chip { padding: 7px 10px; font-size: 11.5px; max-width: 110px; }
+  .astat > div { padding: 12px 5px !important; min-height: 78px !important; }
+  .astat > div > b { font-size: 14px !important; }
+  .astat > div > span { font-size: 9.5px !important; letter-spacing: 0.3px !important; }
 }
 
 @media (max-width: 360px) {
-  .astat { grid-template-columns: 1fr 1fr 1fr; gap: 6px; }
-  .astat > div { padding: 9px 4px; min-height: 64px; }
-  .astat > div > b { font-size: 12.5px; }
-  .astat > div > span { font-size: 8.5px; }
+  .astat { gap: 6px !important; }
+  .astat > div { padding: 10px 4px !important; min-height: 70px !important; }
+  .astat > div > b { font-size: 12.5px !important; }
+  .astat > div > span { font-size: 8.5px !important; }
 }
 
 @media (prefers-color-scheme: light) {
@@ -1429,7 +1488,7 @@ main {
         </div>
       </div>
 
-      <div class="astat" style="grid-template-columns:repeat(3,1fr)">
+      <div class="astat">
         <div>
           <b id="acDep">0đ</b>
           <span>TỔNG NẠP</span>
@@ -1708,9 +1767,9 @@ try {
       img: 'https://raw.githubusercontent.com/proxyvipivn/SHOP-STORE-ALL-FF/refs/heads/main/IMG_8334.jpeg',
       desc: 'Hỗ trợ all ios.\nCân acc chính.\nAntiban✅.',
       plans: [
-        { l: 'Ngày', p: 50000 },
-        { l: 'Tuần', p: 150000 },
-        { l: 'Tháng', p: 320000 }
+        { l: '1 Ngày', p: 50000 },
+        { l: '7 Ngày', p: 150000 },
+        { l: '30 Ngày', p: 320000 }
       ]
     },
     {
