@@ -866,9 +866,6 @@ main {
   gap: 14px;
 }
 
-/* ============================================================
-   STAT CARDS — ĐÃ SỬA CỰC KỲ CHẮC CHẮN (SỐ TRÊN, CHỮ DƯỚI)
-   ============================================================ */
 .astat {
   display: grid !important;
   grid-template-columns: repeat(3, 1fr) !important;
@@ -1365,7 +1362,6 @@ main {
 <body>
 
 <canvas id="snowfall"></canvas>
-
 <div id="orderNotification"></div>
 
 <div id="loading">
@@ -1382,56 +1378,32 @@ main {
   <div class="auth-box">
     <div class="auth-title">SHOP ALL SẢN PHẨM FF – FFMAX</div>
     <div class="auth-sub">❄️ HỖ TRỢ ADR🤖 và IOS📱</div>
-
     <div class="tabs">
       <div class="tab active" id="tabLogin" onclick="switchTab('login')">Đăng nhập</div>
       <div class="tab" id="tabReg" onclick="switchTab('reg')">Đăng ký</div>
     </div>
-
     <div id="formLogin">
-      <div class="field">
-        <label>Tên tài khoản</label>
-        <input id="lgUser" placeholder="Nhập tên tài khoản" autocomplete="username">
-      </div>
-      <div class="field">
-        <label>Mật khẩu</label>
-        <input id="lgPass" type="password" placeholder="Nhập mật khẩu" autocomplete="current-password">
-      </div>
+      <div class="field"><label>Tên tài khoản</label><input id="lgUser" placeholder="Nhập tên tài khoản" autocomplete="username"></div>
+      <div class="field"><label>Mật khẩu</label><input id="lgPass" type="password" placeholder="Nhập mật khẩu" autocomplete="current-password"></div>
       <button class="btn" onclick="doLogin()">🔓 ĐĂNG NHẬP</button>
     </div>
-
     <div id="formReg" style="display:none">
-      <div class="field">
-        <label>Tên tài khoản</label>
-        <input id="rgUser" placeholder="Nhập tên tài khoản" autocomplete="off">
-      </div>
-      <div class="field">
-        <label>Mật khẩu</label>
-        <input id="rgPass" type="password" placeholder="Nhập mật khẩu" autocomplete="new-password">
-      </div>
-      <div class="field">
-        <label>Nhập lại mật khẩu</label>
-        <input id="rgPass2" type="password" placeholder="Nhập lại mật khẩu" autocomplete="new-password">
-      </div>
+      <div class="field"><label>Tên tài khoản</label><input id="rgUser" placeholder="Nhập tên tài khoản" autocomplete="off"></div>
+      <div class="field"><label>Mật khẩu</label><input id="rgPass" type="password" placeholder="Nhập mật khẩu" autocomplete="new-password"></div>
+      <div class="field"><label>Nhập lại mật khẩu</label><input id="rgPass2" type="password" placeholder="Nhập lại mật khẩu" autocomplete="new-password"></div>
       <button class="btn pink" onclick="doRegister()">📝 ĐĂNG KÝ</button>
     </div>
-
     <div class="msg" id="authMsg"></div>
   </div>
 </div>
 
 <div id="app" class="screen" style="display:none">
-
   <header>
-    <div class="burger" id="burger" onclick="toggleMenu()">
-      <span></span><span></span><span></span>
-    </div>
-
+    <div class="burger" id="burger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
     <div class="brand">
       <h1>SHOP All SẢN PHẨM FF – FFMAX</h1>
       <p>❄️ HỖ TRỢ ADR🤖 và IOS📱</p>
     </div>
-
     <div class="music-wrap">
       <div class="music-ring"></div>
       <button class="music-btn" id="musicBtn" onclick="toggleMusicPanel(event)">
@@ -1439,41 +1411,21 @@ main {
       </button>
       <div class="music-panel" id="musicPanel" onclick="event.stopPropagation()">
         <div class="music-title">🎵 CHỌN NHẠC NỀN</div>
-        <div class="music-item" data-idx="0" onclick="selectTrack(0)">
-          <span class="mi-ico">♪</span>
-          <span class="mi-name">Remix 1</span>
-          <span class="mi-check">✓</span>
-        </div>
-        <div class="music-item" data-idx="1" onclick="selectTrack(1)">
-          <span class="mi-ico">♪</span>
-          <span class="mi-name">Remix 2</span>
-          <span class="mi-check">✓</span>
-        </div>
-        <div class="music-item" data-idx="2" onclick="selectTrack(2)">
-          <span class="mi-ico">♪</span>
-          <span class="mi-name">Cute Remix</span>
-          <span class="mi-check">✓</span>
-        </div>
-        <div class="music-item" data-idx="3" onclick="selectTrack(3)">
-          <span class="mi-ico">♪</span>
-          <span class="mi-name">Remix 3</span>
-          <span class="mi-check">✓</span>
-        </div>
+        <div class="music-item" data-idx="0" onclick="selectTrack(0)"><span class="mi-ico">♪</span><span class="mi-name">Remix 1</span><span class="mi-check">✓</span></div>
+        <div class="music-item" data-idx="1" onclick="selectTrack(1)"><span class="mi-ico">♪</span><span class="mi-name">Remix 2</span><span class="mi-check">✓</span></div>
+        <div class="music-item" data-idx="2" onclick="selectTrack(2)"><span class="mi-ico">♪</span><span class="mi-name">Cute Remix</span><span class="mi-check">✓</span></div>
+        <div class="music-item" data-idx="3" onclick="selectTrack(3)"><span class="mi-ico">♪</span><span class="mi-name">Remix 3</span><span class="mi-check">✓</span></div>
         <button class="music-play" id="musicPlayBtn" onclick="togglePlay()">▶ PHÁT NHẠC</button>
         <div class="music-note" id="musicNote">Chọn 1 bài rồi nhấn phát</div>
       </div>
     </div>
-
     <div class="bal-chip">❄️ <span id="hdrBal">0đ</span></div>
   </header>
 
   <main>
-
     <div class="page" id="page-account">
       <div class="page-title">👤 Tài khoản</div>
-
       <div id="discountBannerAcc"></div>
-
       <div class="panel">
         <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
           <div style="flex:1;min-width:180px">
@@ -1487,22 +1439,11 @@ main {
           <div class="btn sm ghost" style="cursor:default">👤</div>
         </div>
       </div>
-
       <div class="astat">
-        <div>
-          <b id="acDep">0đ</b>
-          <span>TỔNG NẠP</span>
-        </div>
-        <div>
-          <b id="acSpent">0đ</b>
-          <span>TỔNG CHI</span>
-        </div>
-        <div>
-          <b id="acBal">0đ</b>
-          <span>SỐ DƯ</span>
-        </div>
+        <div><b id="acDep">0đ</b><span>TỔNG NẠP</span></div>
+        <div><b id="acSpent">0đ</b><span>TỔNG CHI</span></div>
+        <div><b id="acBal">0đ</b><span>SỐ DƯ</span></div>
       </div>
-
       <div class="panel green">
         <div class="sec-title">🧾 Đơn mua</div>
         <div id="acOrders"></div>
@@ -1511,25 +1452,17 @@ main {
 
     <div class="page" id="page-deposit">
       <div class="page-title">💳 Nạp tiền + Thẻ Car</div>
-
       <div class="panel gold">
         <div class="sec-title">🏦 PHẦN 1 — TẠO MÃ QR</div>
-        <div class="hint" style="margin-bottom:10px">
-          Tối thiểu <b style="color:var(--gold)">5.000đ</b> — Tối đa <b style="color:var(--gold)">5.000.000đ</b>
-        </div>
-        <div class="field">
-          <label>Số tiền muốn nạp (VNĐ)</label>
-          <input id="qrAmount" type="number" placeholder="Ví dụ: 50000" min="5000" max="5000000">
-        </div>
+        <div class="hint" style="margin-bottom:10px">Tối thiểu <b style="color:var(--gold)">5.000đ</b> — Tối đa <b style="color:var(--gold)">5.000.000đ</b></div>
+        <div class="field"><label>Số tiền muốn nạp (VNĐ)</label><input id="qrAmount" type="number" placeholder="Ví dụ: 50000" min="5000" max="5000000"></div>
         <button class="btn gold" onclick="createQR()">📷 TẠO MÃ QR</button>
         <div id="qrResult" style="margin-top:16px"></div>
       </div>
-
       <div class="panel pink">
         <div class="sec-title">💳 PHẦN 2 — NẠP THẺ CAR</div>
         <div class="hint" style="margin-bottom:10px">Thẻ car phải chịu phí chiết khấu</div>
-        <div class="field">
-          <label>Chọn mệnh giá</label>
+        <div class="field"><label>Chọn mệnh giá</label>
           <select id="cardAmt">
             <option value="10000">10.000đ → nhận 9.000đ</option>
             <option value="20000">20.000đ → nhận 18.000đ</option>
@@ -1539,24 +1472,11 @@ main {
             <option value="500000">500.000đ → nhận 490.000đ</option>
           </select>
         </div>
-        <div class="field">
-          <label>Chọn loại thẻ</label>
-          <select id="cardType">
-            <option>Viettel</option>
-            <option>Mobifone</option>
-            <option>Garena</option>
-            <option>Vinaphone</option>
-            <option>Zing</option>
-          </select>
+        <div class="field"><label>Chọn loại thẻ</label>
+          <select id="cardType"><option>Viettel</option><option>Mobifone</option><option>Garena</option><option>Vinaphone</option><option>Zing</option></select>
         </div>
-        <div class="field">
-          <label>Nhập Mã thẻ</label>
-          <input id="cardCode" placeholder="Nhập mã thẻ...">
-        </div>
-        <div class="field">
-          <label>Nhập Seri</label>
-          <input id="cardSeri" placeholder="Nhập seri...">
-        </div>
+        <div class="field"><label>Nhập Mã thẻ</label><input id="cardCode" placeholder="Nhập mã thẻ..."></div>
+        <div class="field"><label>Nhập Seri</label><input id="cardSeri" placeholder="Nhập seri..."></div>
         <button class="btn pink" onclick="submitCard()">✅ XÁC NHẬN THẺ</button>
       </div>
     </div>
@@ -1642,20 +1562,12 @@ main {
       <div class="panel gold">
         <div class="sec-title">Chọn số sao (1 - 5 ⭐)</div>
         <div class="stars-pick" id="starPick">
-          <span data-s="1">⭐</span>
-          <span data-s="2">⭐</span>
-          <span data-s="3">⭐</span>
-          <span data-s="4">⭐</span>
-          <span data-s="5">⭐</span>
+          <span data-s="1">⭐</span><span data-s="2">⭐</span><span data-s="3">⭐</span><span data-s="4">⭐</span><span data-s="5">⭐</span>
         </div>
-        <div class="field">
-          <label>Mô tả trải nghiệm của bạn</label>
-          <textarea id="rvText" rows="4" placeholder="Nhập cảm nhận của bạn về shop..."></textarea>
-        </div>
+        <div class="field"><label>Mô tả trải nghiệm của bạn</label><textarea id="rvText" rows="4" placeholder="Nhập cảm nhận của bạn về shop..."></textarea></div>
         <button class="btn gold" onclick="sendReview()">🚀 GỬI ĐÁNH GIÁ</button>
       </div>
     </div>
-
   </main>
 </div>
 
@@ -1690,15 +1602,7 @@ main {
     var bar = document.getElementById('loadBar');
     var pct = document.getElementById('loadPct');
     var statusEl = document.getElementById('loadStatus');
-    var messages = [
-      'Đang xác thực web',
-      'Đang tải web',
-      'Xác thực tài khoản',
-      'Đang load',
-      'Chuẩn bị mở web',
-      'Hoàn tất! Đang vào shop'
-    ];
-
+    var messages = ['Đang xác thực web','Đang tải web','Xác thực tài khoản','Đang load','Chuẩn bị mở web','Hoàn tất! Đang vào shop'];
     var timer = setInterval(function() {
       progress += 3;
       if (progress > 100) progress = 100;
@@ -1708,13 +1612,9 @@ main {
         var idx = Math.min(Math.floor(progress / 18), 5);
         statusEl.textContent = messages[idx] + '...';
       }
-      if (progress >= 100) {
-        clearInterval(timer);
-      }
+      if (progress >= 100) clearInterval(timer);
     }, 70);
-  } catch (err) {
-    console.error('Loading script error:', err);
-  }
+  } catch (err) { console.error('Loading script error:', err); }
 })();
 </script>
 
@@ -1752,6 +1652,11 @@ try {
     config: { prices: {}, bulkDiscount: 0 }
   };
 
+  /* ============================================================
+     SẢN PHẨM — LƯU TRÊN FIREBASE
+     ============================================================ */
+  var PRODUCTS = { IOS: [], ESGIN: [] };
+
   var CUR = null;
   var stars = 0;
   var histMode = 'dep';
@@ -1761,67 +1666,33 @@ try {
   var notifyQueue = [];
   var notifying = false;
 
-  var IOS = [
-    {
-      name: 'SOPHIA CHEAT',
-      img: 'https://raw.githubusercontent.com/proxyvipivn/SHOP-STORE-ALL-FF/refs/heads/main/IMG_8334.jpeg',
-      desc: 'Hỗ trợ all ios.\nCân acc chính.\nAntiban✅.',
-      plans: [
-        { l: '1 Ngày', p: 50000 },
-        { l: '7 Ngày', p: 150000 },
-        { l: '30 Ngày', p: 320000 }
-      ]
-    },
-    {
-      name: 'TROLL MODZ IOS ADR',
-      img: IMG + 'IMG_8158.jpeg',
-      desc: 'Antiban 80-90%\nSiêu bá\nTải app để cài',
-      plans: [
-        { l: '1 Giờ', p: 10000 },
-        { l: '1 Ngày', p: 25000 },
-        { l: '7 Ngày', p: 100000 },
-        { l: '30 Ngày', p: 170000 }
-      ]
-    },
-    {
-      name: 'PROXY IOS IPA',
-      img: IMG + 'IMG_8160.jpeg',
-      desc: '<span style="color:#ff2d2d;font-weight:900;text-shadow:0 0 12px rgba(255,45,45,0.7)">HACK LỖI❌</span>\nAntiban 90%\nNhiều chức năng khác nhau\nCần esgin để cài',
-      plans: [
-        { l: '1 Ngày', p: 20000 },
-        { l: '7 Ngày', p: 60000 },
-        { l: '30 Ngày', p: 150000 },
-        { l: 'Vĩnh viễn', p: 360000 }
-      ]
-    },
-    {
-      name: 'MIGUL BAGIC VN',
-      img: IMG + 'IMG_8155.jpeg',
-      desc: 'Antiban siêu bá\nCần esgin để cài\nMenu đầy đủ chức năng',
-      plans: [
-        { l: '1 Ngày', p: 70000 },
-        { l: '7 Ngày', p: 200000 },
-        { l: '30 Ngày', p: 420000 }
-      ]
-    },
-    {
-      name: 'MIGUL PRO VN',
-      img: IMG + 'IMG_8156.jpeg',
-      desc: 'Antiban hơn magic nhiều\nCần esgin để cài\nMenu nhiều chắc chắn siêu bá',
-      plans: [
-        { l: '1 Giờ', p: 20000 },
-        { l: '1 Ngày', p: 120000 },
-        { l: '7 Ngày', p: 250000 },
-        { l: '30 Ngày', p: 550000 }
-      ]
-    }
-  ];
-
-  var ESGIN = [
-    { name: 'GÓI 1', price: 140000, desc: 'Không bảo hành' },
-    { name: 'GÓI 2', price: 200000, desc: 'Bảo hành 40 ngày' },
-    { name: 'GÓI 3', price: 300000, desc: 'Bảo hành 300 ngày' }
-  ];
+  /* Dữ liệu mặc định — seed lần đầu khi Firebase trống */
+  function getDefaultIOS() {
+    return [
+      { id: 'ios_1', name: 'SOPHIA CHEAT', img: 'https://raw.githubusercontent.com/proxyvipivn/SHOP-STORE-ALL-FF/refs/heads/main/IMG_8334.jpeg',
+        desc: 'Hỗ trợ all ios.\nCân acc chính.\nAntiban✅.',
+        plans: [{l:'1 Ngày',p:50000},{l:'7 Ngày',p:150000},{l:'30 Ngày',p:320000}], order: 1 },
+      { id: 'ios_2', name: 'TROLL MODZ IOS ADR', img: IMG+'IMG_8158.jpeg',
+        desc: 'Antiban 80-90%\nSiêu bá\nTải app để cài',
+        plans: [{l:'1 Giờ',p:10000},{l:'1 Ngày',p:25000},{l:'7 Ngày',p:100000},{l:'30 Ngày',p:170000}], order: 2 },
+      { id: 'ios_3', name: 'PROXY IOS IPA', img: IMG+'IMG_8160.jpeg',
+        desc: '<span style="color:#ff2d2d;font-weight:900;text-shadow:0 0 12px rgba(255,45,45,0.7)">HACK LỖI❌</span>\nAntiban 90%\nNhiều chức năng khác nhau\nCần esgin để cài',
+        plans: [{l:'1 Ngày',p:20000},{l:'7 Ngày',p:60000},{l:'30 Ngày',p:150000},{l:'Vĩnh viễn',p:360000}], order: 3 },
+      { id: 'ios_4', name: 'MIGUL BAGIC VN', img: IMG+'IMG_8155.jpeg',
+        desc: 'Antiban siêu bá\nCần esgin để cài\nMenu đầy đủ chức năng',
+        plans: [{l:'1 Ngày',p:70000},{l:'7 Ngày',p:200000},{l:'30 Ngày',p:420000}], order: 4 },
+      { id: 'ios_5', name: 'MIGUL PRO VN', img: IMG+'IMG_8156.jpeg',
+        desc: 'Antiban hơn magic nhiều\nCần esgin để cài\nMenu nhiều chắc chắn siêu bá',
+        plans: [{l:'1 Giờ',p:20000},{l:'1 Ngày',p:120000},{l:'7 Ngày',p:250000},{l:'30 Ngày',p:550000}], order: 5 }
+    ];
+  }
+  function getDefaultESGIN() {
+    return [
+      { id: 'eg_1', name: 'GÓI 1', desc: 'Không bảo hành', price: 140000, order: 1 },
+      { id: 'eg_2', name: 'GÓI 2', desc: 'Bảo hành 40 ngày', price: 200000, order: 2 },
+      { id: 'eg_3', name: 'GÓI 3', desc: 'Bảo hành 300 ngày', price: 300000, order: 3 }
+    ];
+  }
 
   var RATE = {
     10000: 9000,
@@ -1838,43 +1709,29 @@ try {
 
   function getBasePrice(productName, planLabel, originalPrice) {
     var key = priceKey(productName, planLabel);
-
     if (CUR) {
       var u = DB.users[CUR] || {};
       if (u.customPrices && u.customPrices[key] != null && u.customPrices[key] !== '') {
         var userPrice = Number(u.customPrices[key]);
-        if (!isNaN(userPrice) && userPrice > 0) {
-          return userPrice;
-        }
+        if (!isNaN(userPrice) && userPrice > 0) return userPrice;
       }
     }
-
     if (DB.config.prices && DB.config.prices[key] != null && DB.config.prices[key] !== '') {
       var globalPrice = Number(DB.config.prices[key]);
-      if (!isNaN(globalPrice) && globalPrice > 0) {
-        return globalPrice;
-      }
+      if (!isNaN(globalPrice) && globalPrice > 0) return globalPrice;
     }
-
     return originalPrice;
   }
 
   function getFinalPrice(productName, planLabel, originalPrice) {
     var base = getBasePrice(productName, planLabel, originalPrice);
-
     var bulk = Number(DB.config.bulkDiscount) || 0;
-    if (bulk > 0 && bulk <= 100) {
-      base = base * (100 - bulk) / 100;
-    }
-
+    if (bulk > 0 && bulk <= 100) base = base * (100 - bulk) / 100;
     if (CUR) {
       var uu = DB.users[CUR] || {};
       var userDisc = Number(uu.discount) || 0;
-      if (userDisc > 0 && userDisc <= 100) {
-        base = base * (100 - userDisc) / 100;
-      }
+      if (userDisc > 0 && userDisc <= 100) base = base * (100 - userDisc) / 100;
     }
-
     return Math.round(base);
   }
 
@@ -1887,6 +1744,9 @@ try {
     return d;
   }
 
+  /* ============================================================
+     SNOWFALL ❄️🎄
+     ============================================================ */
   (function initSnowfall() {
     try {
       var canvas = document.getElementById('snowfall');
@@ -1905,8 +1765,7 @@ try {
 
       for (var i = 0; i < 25; i++) {
         flakes.push({
-          x: Math.random() * W,
-          y: Math.random() * H,
+          x: Math.random() * W, y: Math.random() * H,
           r: Math.random() * 3.5 + 5,
           speed: Math.random() * 0.4 + 0.5,
           drift: (Math.random() - 0.5) * 0.5,
@@ -1918,11 +1777,9 @@ try {
           isBig: true
         });
       }
-
       for (var j = 0; j < 45; j++) {
         flakes.push({
-          x: Math.random() * W,
-          y: Math.random() * H,
+          x: Math.random() * W, y: Math.random() * H,
           r: Math.random() * 1.6 + 0.4,
           speed: Math.random() * 0.7 + 0.3,
           drift: (Math.random() - 0.5) * 0.5,
@@ -1932,11 +1789,9 @@ try {
           isBig: false
         });
       }
-
       for (var k = 0; k < 15; k++) {
         trees.push({
-          x: Math.random() * W,
-          y: Math.random() * H,
+          x: Math.random() * W, y: Math.random() * H,
           size: Math.random() * 8 + 14,
           speed: Math.random() * 0.5 + 0.35,
           drift: (Math.random() - 0.5) * 0.4,
@@ -1956,7 +1811,6 @@ try {
         ctx.lineCap = 'round';
         ctx.shadowBlur = 12;
         ctx.shadowColor = 'rgba(186, 230, 253, 0.9)';
-
         for (var a = 0; a < 6; a++) {
           var ang = a * Math.PI / 3;
           var dx = Math.cos(ang) * size;
@@ -1964,7 +1818,6 @@ try {
           ctx.beginPath();
           ctx.moveTo(0, 0);
           ctx.lineTo(dx, dy);
-
           var bx1 = Math.cos(ang) * size * 0.55;
           var by1 = Math.sin(ang) * size * 0.55;
           var perp = ang + Math.PI / 2;
@@ -1973,7 +1826,6 @@ try {
           ctx.lineTo(bx1 + Math.cos(perp) * branchLen, by1 + Math.sin(perp) * branchLen);
           ctx.moveTo(bx1, by1);
           ctx.lineTo(bx1 - Math.cos(perp) * branchLen, by1 - Math.sin(perp) * branchLen);
-
           ctx.stroke();
         }
         ctx.restore();
@@ -1981,29 +1833,21 @@ try {
 
       function drawFrame() {
         ctx.clearRect(0, 0, W, H);
-
         for (var i = 0; i < flakes.length; i++) {
           var f = flakes[i];
           f.phase += 0.02;
-
           if (f.isBig) {
             f.rotation += f.rotSpeed;
             f.x += f.drift + Math.sin(f.phase) * f.wobble;
             f.y += f.speed;
-            if (f.y > H + 30) {
-              f.y = -30;
-              f.x = Math.random() * W;
-            }
+            if (f.y > H + 30) { f.y = -30; f.x = Math.random() * W; }
             if (f.x < -30) f.x = W + 30;
             if (f.x > W + 30) f.x = -30;
             drawSnowflake(f.x, f.y, f.r, f.alpha, f.rotation);
           } else {
             f.x += f.drift + Math.sin(f.phase) * f.wobble;
             f.y += f.speed;
-            if (f.y > H + 20) {
-              f.y = -20;
-              f.x = Math.random() * W;
-            }
+            if (f.y > H + 20) { f.y = -20; f.x = Math.random() * W; }
             if (f.x < -20) f.x = W + 20;
             if (f.x > W + 20) f.x = -20;
             ctx.globalAlpha = f.alpha;
@@ -2017,20 +1861,14 @@ try {
             ctx.shadowBlur = 0;
           }
         }
-
         for (var k = 0; k < trees.length; k++) {
           var tr = trees[k];
           tr.phase += 0.02;
           tr.x += tr.drift + Math.sin(tr.phase) * tr.wobble;
           tr.y += tr.speed;
-
-          if (tr.y > H + 30) {
-            tr.y = -30;
-            tr.x = Math.random() * W;
-          }
+          if (tr.y > H + 30) { tr.y = -30; tr.x = Math.random() * W; }
           if (tr.x < -30) tr.x = W + 30;
           if (tr.x > W + 30) tr.x = -30;
-
           ctx.save();
           ctx.globalAlpha = tr.alpha;
           ctx.translate(tr.x, tr.y);
@@ -2041,15 +1879,15 @@ try {
           ctx.fillText('🎄', 0, 0);
           ctx.restore();
         }
-
         requestAnimationFrame(drawFrame);
       }
       drawFrame();
-    } catch (err) {
-      console.error('Snowfall effect error:', err);
-    }
+    } catch (err) { console.error('Snowfall effect error:', err); }
   })();
 
+  /* ============================================================
+     NHẠC
+     ============================================================ */
   var TRACKS = [
     { name: 'Remix 1', src: 'https://raw.githubusercontent.com/proxyvipivn/SHOP-STORE-ALL-FF/refs/heads/main/Remix2.mp3.mp3' },
     { name: 'Remix 2', src: 'https://raw.githubusercontent.com/proxyvipivn/SHOP-STORE-ALL-FF/refs/heads/main/Remix.mp3%20.mp3' },
@@ -2066,37 +1904,20 @@ try {
       bgMusic = new Audio();
       bgMusic.volume = 0.6;
       bgMusic.preload = 'auto';
-
       bgMusic.addEventListener('ended', function() {
         if (curTrack >= 0 && curTrack < TRACKS.length - 1) {
           selectTrack(curTrack + 1);
-          bgMusic.play()
-            .then(function() { playing = true; updateMusicUI(); })
-            .catch(function() {});
-        } else {
-          playing = false;
-          updateMusicUI();
-        }
+          bgMusic.play().then(function() { playing = true; updateMusicUI(); }).catch(function() {});
+        } else { playing = false; updateMusicUI(); }
       });
-
-      bgMusic.addEventListener('play', function() {
-        playing = true;
-        updateMusicUI();
-      });
-
-      bgMusic.addEventListener('pause', function() {
-        playing = false;
-        updateMusicUI();
-      });
-
+      bgMusic.addEventListener('play', function() { playing = true; updateMusicUI(); });
+      bgMusic.addEventListener('pause', function() { playing = false; updateMusicUI(); });
       bgMusic.addEventListener('error', function() {
         toast('⚠️ Không tải được nhạc. Kiểm tra lại link!', true);
         playing = false;
         updateMusicUI();
       });
-    } catch (err) {
-      console.error('Music init error:', err);
-    }
+    } catch (err) { console.error('Music init error:', err); }
   }
 
   function toggleMusicPanel(e) {
@@ -2108,54 +1929,35 @@ try {
   function selectTrack(index) {
     if (index < 0 || index >= TRACKS.length) return;
     curTrack = index;
-
     var items = document.querySelectorAll('.music-item');
     for (var k = 0; k < items.length; k++) {
       var isSel = Number(items[k].getAttribute('data-idx')) === index;
       items[k].classList.toggle('sel', isSel);
     }
-
     if (bgMusic) {
       var wasPlaying = playing;
       bgMusic.pause();
       bgMusic.src = TRACKS[index].src;
       bgMusic.load();
-
       var note = document.getElementById('musicNote');
       if (note) note.textContent = 'Đã chọn: ' + TRACKS[index].name;
-
       if (wasPlaying) {
-        bgMusic.play()
-          .then(function() { playing = true; updateMusicUI(); })
-          .catch(function() {});
+        bgMusic.play().then(function() { playing = true; updateMusicUI(); }).catch(function() {});
       }
     }
   }
 
   function togglePlay() {
     if (curTrack < 0) selectTrack(0);
-    if (!bgMusic) {
-      toast('⚠️ Trình duyệt không hỗ trợ nhạc', true);
-      return;
-    }
-
-    if (playing) {
-      bgMusic.pause();
-      playing = false;
-      updateMusicUI();
-    } else {
-      if (!bgMusic.src && curTrack >= 0) {
-        bgMusic.src = TRACKS[curTrack].src;
-      }
-      bgMusic.play()
-        .then(function() {
-          playing = true;
-          updateMusicUI();
-          toast('🎵 Đang phát: ' + TRACKS[curTrack].name);
-        })
-        .catch(function() {
-          toast('⚠️ Không phát được nhạc', true);
-        });
+    if (!bgMusic) { toast('⚠️ Trình duyệt không hỗ trợ nhạc', true); return; }
+    if (playing) { bgMusic.pause(); playing = false; updateMusicUI(); }
+    else {
+      if (!bgMusic.src && curTrack >= 0) bgMusic.src = TRACKS[curTrack].src;
+      bgMusic.play().then(function() {
+        playing = true;
+        updateMusicUI();
+        toast('🎵 Đang phát: ' + TRACKS[curTrack].name);
+      }).catch(function() { toast('⚠️ Không phát được nhạc', true); });
     }
   }
 
@@ -2163,7 +1965,6 @@ try {
     var btn = document.getElementById('musicBtn');
     var playBtn = document.getElementById('musicPlayBtn');
     if (!btn || !playBtn) return;
-
     if (playing) {
       btn.classList.add('playing');
       playBtn.classList.add('playing');
@@ -2183,25 +1984,14 @@ try {
     }
   });
 
-  function fmt(n) {
-    return Number(n || 0).toLocaleString('vi-VN') + 'đ';
-  }
-
-  function rand(len) {
-    var s = '';
-    for (var i = 0; i < len; i++) {
-      s += (Math.floor(Math.random() * 9) + 1);
-    }
-    return s;
-  }
-
-  function now() {
-    return Date.now();
-  }
-
-  function timeStr(t) {
-    return new Date(t).toLocaleString('vi-VN');
-  }
+  /* ============================================================
+     UTILS
+     ============================================================ */
+  function fmt(n) { return Number(n || 0).toLocaleString('vi-VN') + 'đ'; }
+  function rand(len) { var s = ''; for (var i = 0; i < len; i++) s += (Math.floor(Math.random() * 9) + 1); return s; }
+  function now() { return Date.now(); }
+  function timeStr(t) { return new Date(t).toLocaleString('vi-VN'); }
+  function esc(s) { return String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
 
   var toastT;
   function toast(msg, err) {
@@ -2216,198 +2006,148 @@ try {
   function copyText(text, btnEl) {
     var onSuccess = function() {
       toast('📋 Đã sao chép: ' + text);
-      if (btnEl) {
-        btnEl.classList.add('copied');
-        setTimeout(function() { btnEl.classList.remove('copied'); }, 1200);
-      }
+      if (btnEl) { btnEl.classList.add('copied'); setTimeout(function() { btnEl.classList.remove('copied'); }, 1200); }
     };
-
     var fallback = function() {
       try {
         var ta = document.createElement('textarea');
         ta.value = text;
-        ta.style.position = 'fixed';
-        ta.style.opacity = '0';
-        ta.style.top = '0';
-        ta.style.left = '0';
-        document.body.appendChild(ta);
-        ta.focus();
-        ta.select();
+        ta.style.position = 'fixed'; ta.style.opacity = '0';
+        document.body.appendChild(ta); ta.focus(); ta.select();
         var ok = document.execCommand('copy');
         document.body.removeChild(ta);
-        if (ok) onSuccess();
-        else toast('❌ Không sao chép được.', true);
-      } catch (err) {
-        toast('❌ Không sao chép được.', true);
-      }
+        if (ok) onSuccess(); else toast('❌ Không sao chép được.', true);
+      } catch (err) { toast('❌ Không sao chép được.', true); }
     };
-
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(text).then(onSuccess).catch(fallback);
-    } else {
-      fallback();
-    }
+    } else fallback();
   }
   window.__copyKey = copyText;
 
-  function getSession() {
-    try { return JSON.parse(localStorage.getItem('ff_session')); }
-    catch (err) { return null; }
-  }
-
+  function getSession() { try { return JSON.parse(localStorage.getItem('ff_session')); } catch (err) { return null; } }
   function setSession(v) {
-    try {
-      if (v) localStorage.setItem('ff_session', JSON.stringify(v));
-      else localStorage.removeItem('ff_session');
-    } catch (err) {}
+    try { if (v) localStorage.setItem('ff_session', JSON.stringify(v)); else localStorage.removeItem('ff_session'); } catch (err) {}
   }
 
-  function queueNotification(msg, type) {
-    notifyQueue.push({ msg: msg, type: type });
-    if (!notifying) {
-      processNotificationQueue();
-    }
-  }
+  function queueNotification(msg, type) { notifyQueue.push({ msg: msg, type: type }); if (!notifying) processNotificationQueue(); }
 
   function processNotificationQueue() {
-    if (notifyQueue.length === 0) {
-      notifying = false;
-      return;
-    }
+    if (notifyQueue.length === 0) { notifying = false; return; }
     notifying = true;
-
     var item = notifyQueue.shift();
     var el = document.getElementById('orderNotification');
-    if (!el) {
-      notifying = false;
-      return;
-    }
-
+    if (!el) { notifying = false; return; }
     el.textContent = item.msg;
     el.className = '';
-    if (item.type === 'done') {
-      el.className = 'show done';
-    } else if (item.type === 'warn') {
-      el.className = 'show warn';
-    } else {
-      el.className = 'show';
-    }
-
-    setTimeout(function() {
-      el.className = '';
-      setTimeout(processNotificationQueue, 400);
-    }, 5000);
+    if (item.type === 'done') el.className = 'show done';
+    else if (item.type === 'warn') el.className = 'show warn';
+    else el.className = 'show';
+    setTimeout(function() { el.className = ''; setTimeout(processNotificationQueue, 400); }, 5000);
   }
 
   function checkDepositNotifications() {
     if (!CUR) return;
-
     var myDeposits = [];
     for (var i = 0; i < DB.deposits.length; i++) {
-      if (DB.deposits[i].user === CUR) {
-        myDeposits.push(DB.deposits[i]);
-      }
+      if (DB.deposits[i].user === CUR) myDeposits.push(DB.deposits[i]);
     }
-
-    var hasQRPending = false;
-    var hasCardPending = false;
-
+    var hasQRPending = false, hasCardPending = false;
     for (var j = 0; j < myDeposits.length; j++) {
       if (myDeposits[j].status === 'wait') {
         if (myDeposits[j].type === 'QR') hasQRPending = true;
         if (myDeposits[j].type === 'CARD') hasCardPending = true;
       }
     }
-
-    if (hasQRPending) {
-      queueNotification('Đơn hàng nạp MÃ QR đang được xử lý 🕠', 'warn');
-    }
-    if (hasCardPending) {
-      queueNotification('Đơn hàng nạp Thẻ car đang được xử lý 🕠', 'warn');
-    }
-
+    if (hasQRPending) queueNotification('Đơn hàng nạp MÃ QR đang được xử lý 🕠', 'warn');
+    if (hasCardPending) queueNotification('Đơn hàng nạp Thẻ car đang được xử lý 🕠', 'warn');
     var notifKey = 'ff_dep_notif_' + CUR;
     var notifiedIds = [];
-    try {
-      notifiedIds = JSON.parse(localStorage.getItem(notifKey) || '[]');
-    } catch (err) {
-      notifiedIds = [];
-    }
-
+    try { notifiedIds = JSON.parse(localStorage.getItem(notifKey) || '[]'); } catch (err) { notifiedIds = []; }
     for (var k = 0; k < myDeposits.length; k++) {
       var d = myDeposits[k];
-
       if (d.status === 'done' && notifiedIds.indexOf(d.id) === -1) {
         var amt = d.type === 'QR' ? d.amount : d.receive;
         queueNotification('Nạp thành công ' + fmt(amt) + ' 🎉', 'done');
         notifiedIds.push(d.id);
       }
-
-      if (d.status === 'cancel' && notifiedIds.indexOf(d.id) === -1) {
-        notifiedIds.push(d.id);
-      }
+      if (d.status === 'cancel' && notifiedIds.indexOf(d.id) === -1) notifiedIds.push(d.id);
     }
-
-    try {
-      localStorage.setItem(notifKey, JSON.stringify(notifiedIds));
-    } catch (err) {}
+    try { localStorage.setItem(notifKey, JSON.stringify(notifiedIds)); } catch (err) {}
   }
 
   function checkOrderNotifications() {
     if (!CUR) return;
-
     var myOrders = [];
     for (var i = 0; i < DB.orders.length; i++) {
-      if (DB.orders[i].user === CUR) {
-        myOrders.push(DB.orders[i]);
-      }
+      if (DB.orders[i].user === CUR) myOrders.push(DB.orders[i]);
     }
-
     var keyPending = 'ff_notif_p_' + CUR;
     var keyDone = 'ff_notif_d_' + CUR;
-    var notifiedPending = [];
-    var notifiedDone = [];
-
-    try { notifiedPending = JSON.parse(localStorage.getItem(keyPending) || '[]'); }
-    catch (err) { notifiedPending = []; }
-    try { notifiedDone = JSON.parse(localStorage.getItem(keyDone) || '[]'); }
-    catch (err) { notifiedDone = []; }
-
+    var notifiedPending = [], notifiedDone = [];
+    try { notifiedPending = JSON.parse(localStorage.getItem(keyPending) || '[]'); } catch (err) { notifiedPending = []; }
+    try { notifiedDone = JSON.parse(localStorage.getItem(keyDone) || '[]'); } catch (err) { notifiedDone = []; }
     var pendingShown = false;
     for (var a = 0; a < myOrders.length; a++) {
       var o = myOrders[a];
       if (o.status === 'wait' && notifiedPending.indexOf(o.id) === -1) {
-        if (!pendingShown) {
-          queueNotification('Sản phẩm vẫn đang trong quá trình xử lý ⚡️', 'pending');
-          pendingShown = true;
-        }
+        if (!pendingShown) { queueNotification('Sản phẩm vẫn đang trong quá trình xử lý ⚡️', 'pending'); pendingShown = true; }
         notifiedPending.push(o.id);
       }
     }
-
     var doneShown = false;
     for (var b = 0; b < myOrders.length; b++) {
       var oo = myOrders[b];
       if (oo.status === 'done' && oo.key && notifiedDone.indexOf(oo.id) === -1) {
-        if (!doneShown) {
-          queueNotification('Đơn hàng của bạn đã được xử lý🎉', 'done');
-          doneShown = true;
-        }
+        if (!doneShown) { queueNotification('Đơn hàng của bạn đã được xử lý🎉', 'done'); doneShown = true; }
         notifiedDone.push(oo.id);
       }
     }
-
     try { localStorage.setItem(keyPending, JSON.stringify(notifiedPending)); } catch (err) {}
     try { localStorage.setItem(keyDone, JSON.stringify(notifiedDone)); } catch (err) {}
   }
 
-  function runAllNotifications() {
-    checkDepositNotifications();
-    checkOrderNotifications();
+  function runAllNotifications() { checkDepositNotifications(); checkOrderNotifications(); }
+
+  /* ============================================================
+     FIREBASE — ĐỌC SẢN PHẨM TỪ /products
+     ============================================================ */
+  function arrayFromFB(obj) {
+    if (!obj) return [];
+    if (Array.isArray(obj)) return obj.filter(Boolean);
+    var arr = [];
+    var keys = Object.keys(obj);
+    for (var i = 0; i < keys.length; i++) arr.push(obj[keys[i]]);
+    arr.sort(function(a, b) { return (a.order || 0) - (b.order || 0); });
+    return arr;
+  }
+
+  function seedProducts() {
+    var ios = getDefaultIOS();
+    var esgin = getDefaultESGIN();
+    var objIOS = {}, objEG = {};
+    for (var i = 0; i < ios.length; i++) objIOS[ios[i].id] = ios[i];
+    for (var j = 0; j < esgin.length; j++) objEG[esgin[j].id] = esgin[j];
+    db.ref('products').set({ IOS: objIOS, ESGIN: objEG });
   }
 
   function setupFirebaseListeners() {
     if (!db) return;
+
+    /* SẢN PHẨM — realtime, admin sửa là shop tự cập nhật */
+    db.ref('products').on('value', function(snap) {
+      var d = snap.val() || {};
+      var hasIOS = d.IOS && Object.keys(d.IOS).length > 0;
+      var hasEG = d.ESGIN && Object.keys(d.ESGIN).length > 0;
+      if (!hasIOS && !hasEG) {
+        seedProducts();
+      } else {
+        PRODUCTS.IOS = arrayFromFB(d.IOS);
+        PRODUCTS.ESGIN = arrayFromFB(d.ESGIN);
+        renderIOS();
+        renderEsgin();
+      }
+    });
 
     db.ref('users').on('value', function(snap) {
       DB.users = snap.val() || {};
@@ -2421,63 +2161,50 @@ try {
 
     db.ref('deposits').on('value', function(snap) {
       DB.deposits = snap.val() || [];
-      if (CUR && document.getElementById('page-history').classList.contains('active')) {
-        renderHist();
-      }
-      if (CUR && _notifyCheckedThisSession) {
-        checkDepositNotifications();
-        checkOrderNotifications();
-      }
+      if (CUR && document.getElementById('page-history').classList.contains('active')) renderHist();
+      if (CUR && _notifyCheckedThisSession) { checkDepositNotifications(); checkOrderNotifications(); }
     });
 
     db.ref('orders').on('value', function(snap) {
       DB.orders = snap.val() || [];
       if (CUR) {
         upUI();
-        if (document.getElementById('page-history').classList.contains('active')) {
-          renderHist();
-        }
+        if (document.getElementById('page-history').classList.contains('active')) renderHist();
       }
-      if (CUR && _notifyCheckedThisSession) {
-        checkOrderNotifications();
-      }
+      if (CUR && _notifyCheckedThisSession) checkOrderNotifications();
     });
 
-    db.ref('reviews').on('value', function(snap) {
-      DB.reviews = snap.val() || [];
-    });
+    db.ref('reviews').on('value', function(snap) { DB.reviews = snap.val() || []; });
 
     db.ref('config').on('value', function(snap) {
       var d = snap.val() || {};
-      DB.config = {
-        prices: d.prices || {},
-        bulkDiscount: Number(d.bulkDiscount) || 0
-      };
+      DB.config = { prices: d.prices || {}, bulkDiscount: Number(d.bulkDiscount) || 0 };
       renderIOS();
       renderEsgin();
     });
   }
 
   if (db) {
-    db.ref('/').once('value')
-      .then(function(snap) {
-        var d = snap.val() || {};
-        DB.users = d.users || {};
-        DB.deposits = d.deposits || [];
-        DB.orders = d.orders || [];
-        DB.reviews = d.reviews || [];
-        DB.config = {
-          prices: (d.config && d.config.prices) || {},
-          bulkDiscount: (d.config && Number(d.config.bulkDiscount)) || 0
-        };
-        setupFirebaseListeners();
-      })
-      .catch(function(err) {
-        console.error('Load data error:', err);
-        setupFirebaseListeners();
-      });
+    db.ref('/').once('value').then(function(snap) {
+      var d = snap.val() || {};
+      DB.users = d.users || {};
+      DB.deposits = d.deposits || [];
+      DB.orders = d.orders || [];
+      DB.reviews = d.reviews || [];
+      DB.config = {
+        prices: (d.config && d.config.prices) || {},
+        bulkDiscount: (d.config && Number(d.config.bulkDiscount)) || 0
+      };
+      setupFirebaseListeners();
+    }).catch(function(err) {
+      console.error('Load data error:', err);
+      setupFirebaseListeners();
+    });
   }
 
+  /* ============================================================
+     AUTH
+     ============================================================ */
   function switchTab(t) {
     var isLogin = (t === 'login');
     document.getElementById('tabLogin').classList.toggle('active', isLogin);
@@ -2509,78 +2236,52 @@ try {
     var username = document.getElementById('rgUser').value.trim();
     var pass = document.getElementById('rgPass').value;
     var pass2 = document.getElementById('rgPass2').value;
-
     if (!username || !pass) return authMsg('⚠️ Vui lòng nhập đầy đủ tên tài khoản và mật khẩu');
     if (username.length < 3) return authMsg('⚠️ Tên tài khoản phải từ 3 ký tự trở lên');
     if (pass.length < 4) return authMsg('⚠️ Mật khẩu phải từ 4 ký tự trở lên');
     if (pass !== pass2) return authMsg('⚠️ Mật khẩu nhập lại không khớp');
     if (!db) return authMsg('❌ Chưa kết nối máy chủ. Vui lòng tải lại trang.');
 
-    db.ref('users/' + username).once('value')
-      .then(function(snap) {
-        if (snap.exists()) {
-          authMsg('❌ Tên tài khoản "' + username + '" đã được đăng ký! Vui lòng chọn tên khác.');
-          return;
-        }
-
-        db.ref('users/' + username).set({
-          password: pass,
-          ib: rand(7),
-          balance: 0,
-          totalDeposit: 0,
-          totalSpent: 0,
-          discount: 0,
-          customPrices: {},
-          createdAt: now()
-        })
-          .then(function() {
-            authMsg('✅ Đăng ký thành công! Hãy đăng nhập ngay.', true);
-            document.getElementById('rgUser').value = '';
-            document.getElementById('rgPass').value = '';
-            document.getElementById('rgPass2').value = '';
-            setTimeout(function() { switchTab('login'); }, 1100);
-          })
-          .catch(function(err) {
-            authMsg('❌ Lỗi: ' + err.message);
-          });
-      })
-      .catch(function(err) {
-        authMsg('❌ Lỗi: ' + err.message);
-      });
+    db.ref('users/' + username).once('value').then(function(snap) {
+      if (snap.exists()) {
+        authMsg('❌ Tên tài khoản "' + username + '" đã được đăng ký! Vui lòng chọn tên khác.');
+        return;
+      }
+      db.ref('users/' + username).set({
+        password: pass, ib: rand(7), balance: 0,
+        totalDeposit: 0, totalSpent: 0, discount: 0,
+        customPrices: {}, createdAt: now()
+      }).then(function() {
+        authMsg('✅ Đăng ký thành công! Hãy đăng nhập ngay.', true);
+        document.getElementById('rgUser').value = '';
+        document.getElementById('rgPass').value = '';
+        document.getElementById('rgPass2').value = '';
+        setTimeout(function() { switchTab('login'); }, 1100);
+      }).catch(function(err) { authMsg('❌ Lỗi: ' + err.message); });
+    }).catch(function(err) { authMsg('❌ Lỗi: ' + err.message); });
   }
 
   function doLogin() {
     var username = document.getElementById('lgUser').value.trim();
     var pass = document.getElementById('lgPass').value;
-
     if (!username || !pass) return authMsg('⚠️ Vui lòng nhập tên tài khoản và mật khẩu');
     if (!db) return authMsg('❌ Chưa kết nối máy chủ. Vui lòng tải lại trang.');
 
-    db.ref('users/' + username).once('value')
-      .then(function(snap) {
-        var user = snap.val();
-        if (!user) return authMsg('❌ Tài khoản không tồn tại!');
-        if (user.password !== pass) return authMsg('❌ Mật khẩu không đúng!');
-
-        setSession({
-          user: username,
-          exp: now() + 12 * 60 * 60 * 1000
-        });
-
-        authMsg('✅ Đăng nhập thành công!', true);
-
-        setTimeout(function() {
-          document.getElementById('auth').style.display = 'none';
-          document.getElementById('lgUser').value = '';
-          document.getElementById('lgPass').value = '';
-          document.getElementById('authMsg').className = 'msg';
-          document.getElementById('app').style.display = 'block';
-          enterApp(username);
-        }, 520);
-      })
-      .catch(function(err) {
-        authMsg('❌ Lỗi: ' + err.message);
-      });
+    db.ref('users/' + username).once('value').then(function(snap) {
+      var user = snap.val();
+      if (!user) return authMsg('❌ Tài khoản không tồn tại!');
+      if (user.password !== pass) return authMsg('❌ Mật khẩu không đúng!');
+      setSession({ user: username, exp: now() + 12 * 60 * 60 * 1000 });
+      authMsg('✅ Đăng nhập thành công!', true);
+      setTimeout(function() {
+        document.getElementById('auth').style.display = 'none';
+        document.getElementById('lgUser').value = '';
+        document.getElementById('lgPass').value = '';
+        document.getElementById('authMsg').className = 'msg';
+        document.getElementById('app').style.display = 'block';
+        enterApp(username);
+      }, 520);
+    }).catch(function(err) { authMsg('❌ Lỗi: ' + err.message); });
   }
 
   function logout() {
@@ -2607,7 +2308,6 @@ try {
     renderIOS();
     renderEsgin();
     navigate('account');
-
     setTimeout(function() {
       if (!_notifyCheckedThisSession) {
         _notifyCheckedThisSession = true;
@@ -2616,29 +2316,22 @@ try {
     }, 1200);
   }
 
-  function getUserObj() {
-    return DB.users[CUR] || {};
-  }
+  function getUserObj() { return DB.users[CUR] || {}; }
 
   function upUI() {
     var u = getUserObj();
-
     document.getElementById('hdrBal').textContent = fmt(u.balance);
-
     var dc = getMyDiscount();
     var dcText = dc > 0 ? '<br><span class="dc">💸 Giảm giá: -' + dc + '%</span>' : '';
-
     document.getElementById('sideUser').innerHTML =
-      '👤 <b>' + CUR + '</b><br>' +
-      '<span class="ib">🔢 Số IB: ' + u.ib + '</span><br>' +
+      '👤 <b>' + esc(CUR) + '</b><br>' +
+      '<span class="ib">🔢 Số IB: ' + esc(u.ib) + '</span><br>' +
       '💰 Số dư: <b>' + fmt(u.balance) + '</b>' + dcText;
-
     document.getElementById('acName').textContent = CUR;
     document.getElementById('acIb').textContent = u.ib;
     document.getElementById('acDep').textContent = fmt(u.totalDeposit);
     document.getElementById('acSpent').textContent = fmt(u.totalSpent);
     document.getElementById('acBal').textContent = fmt(u.balance);
-
     renderAcOrders();
   }
 
@@ -2646,14 +2339,12 @@ try {
     var dc = getMyDiscount();
     var bulk = Number(DB.config.bulkDiscount) || 0;
     var html = '';
-
     if (dc > 0 || bulk > 0) {
       var parts = [];
       if (bulk > 0) parts.push('SHOP GIẢM ' + bulk + '%');
       if (dc > 0) parts.push('BẠN ĐƯỢC GIẢM THÊM ' + dc + '%');
       html = '<div class="discount-banner">❄️ <b>' + parts.join(' + ') + '</b> cho tất cả sản phẩm! 🎉</div>';
     }
-
     var ids = ['discountBannerAcc', 'discountBannerIos', 'discountBannerEsgin'];
     for (var i = 0; i < ids.length; i++) {
       var el = document.getElementById(ids[i]);
@@ -2669,23 +2360,17 @@ try {
 
   function navigate(page) {
     var pages = document.querySelectorAll('.page');
-    for (var i = 0; i < pages.length; i++) {
-      pages[i].classList.remove('active');
-    }
+    for (var i = 0; i < pages.length; i++) pages[i].classList.remove('active');
     var el = document.getElementById('page-' + page);
     if (el) el.classList.add('active');
-
     var lis = document.querySelectorAll('#menuList li[data-page]');
     for (var j = 0; j < lis.length; j++) {
       lis[j].classList.toggle('active', lis[j].getAttribute('data-page') === page);
     }
-
     document.getElementById('sidebar').classList.remove('open');
     document.getElementById('overlay').classList.remove('show');
     document.getElementById('burger').classList.remove('open');
-
     window.scrollTo({ top: 0, behavior: 'smooth' });
-
     if (page === 'history') renderHist();
     if (page === 'hackios') renderIOS();
     if (page === 'esgin') renderEsgin();
@@ -2695,7 +2380,6 @@ try {
   function renderPriceHTML(originalPrice, productName, planLabel) {
     var base = getBasePrice(productName, planLabel, originalPrice);
     var final = getFinalPrice(productName, planLabel, originalPrice);
-
     if (final < base) {
       var diff = Math.round((base - final) / base * 100);
       return '<div class="price-group">' +
@@ -2707,133 +2391,111 @@ try {
     return '<span class="pr">' + fmt(final) + '</span>';
   }
 
+  /* ============================================================
+     RENDER SẢN PHẨM — ĐỌC TỪ PRODUCTS (FIREBASE)
+     ============================================================ */
   function renderIOS() {
+    var grid = document.getElementById('iosGrid');
+    if (!grid) return;
+    if (!PRODUCTS.IOS || !PRODUCTS.IOS.length) {
+      grid.innerHTML = '<div class="empty" style="grid-column:1/-1">📦 Đang tải sản phẩm...</div>';
+      return;
+    }
     var html = '';
-
-    for (var i = 0; i < IOS.length; i++) {
-      var prod = IOS[i];
+    for (var i = 0; i < PRODUCTS.IOS.length; i++) {
+      var prod = PRODUCTS.IOS[i];
       var plansHTML = '';
-
-      for (var j = 0; j < prod.plans.length; j++) {
-        var plan = prod.plans[j];
+      var plans = prod.plans || [];
+      for (var j = 0; j < plans.length; j++) {
+        var plan = plans[j];
         var base = getBasePrice(prod.name, plan.l, plan.p);
         var finalPrice = getFinalPrice(prod.name, plan.l, plan.p);
-
         plansHTML += '<div class="plan">' +
-          '<span class="lb">' + plan.l + '</span>' +
+          '<span class="lb">' + esc(plan.l) + '</span>' +
           renderPriceHTML(plan.p, prod.name, plan.l) +
-          '<button class="buy" onclick="window.__buy(\'' + prod.name + '\',\'' + plan.l + '\',' + finalPrice + ',' + base + ')">MUA</button>' +
+          '<button class="buy" onclick="window.__buy(\'' + String(prod.name).replace(/'/g, "\\'") + '\',\'' + String(plan.l).replace(/'/g, "\\'") + '\',' + finalPrice + ',' + base + ')">MUA</button>' +
           '</div>';
       }
-
       html += '<div class="prod">' +
-        '<img src="' + prod.img + '" loading="lazy" onerror="this.style.opacity=.35">' +
+        '<img src="' + esc(prod.img || '') + '" loading="lazy" onerror="this.style.opacity=.35">' +
         '<div class="prod-body">' +
-        '<div class="prod-name">' + prod.name + '</div>' +
-        '<div class="prod-desc">' + prod.desc + '</div>' +
+        '<div class="prod-name">' + esc(prod.name) + '</div>' +
+        '<div class="prod-desc">' + (prod.desc || '') + '</div>' +
         '<div class="plans">' + plansHTML + '</div>' +
-        '</div>' +
-        '</div>';
+        '</div></div>';
     }
-
-    document.getElementById('iosGrid').innerHTML = html;
+    grid.innerHTML = html;
   }
 
   function renderEsgin() {
+    var grid = document.getElementById('esginGrid');
+    if (!grid) return;
+    if (!PRODUCTS.ESGIN || !PRODUCTS.ESGIN.length) {
+      grid.innerHTML = '<div class="empty" style="grid-column:1/-1">🔑 Đang tải gói...</div>';
+      return;
+    }
     var plansHTML = '';
-
-    for (var i = 0; i < ESGIN.length; i++) {
-      var g = ESGIN[i];
+    for (var i = 0; i < PRODUCTS.ESGIN.length; i++) {
+      var g = PRODUCTS.ESGIN[i];
       var label = g.name + ' - ' + g.desc;
       var base = getBasePrice('ESGIN = IOS', label, g.price);
       var finalPrice = getFinalPrice('ESGIN = IOS', label, g.price);
-
       plansHTML += '<div class="plan">' +
-        '<span class="lb">' + g.name + ' — ' + g.desc + '</span>' +
+        '<span class="lb">' + esc(g.name) + ' — ' + esc(g.desc) + '</span>' +
         renderPriceHTML(g.price, 'ESGIN = IOS', label) +
-        '<button class="buy" onclick="window.__buy(\'ESGIN = IOS\',\'' + label + '\',' + finalPrice + ',' + base + ')">MUA</button>' +
+        '<button class="buy" onclick="window.__buy(\'ESGIN = IOS\',\'' + String(label).replace(/'/g, "\\'") + '\',' + finalPrice + ',' + base + ')">MUA</button>' +
         '</div>';
     }
-
-    document.getElementById('esginGrid').innerHTML =
+    grid.innerHTML =
       '<div class="prod">' +
       '<img src="' + IMG + 'IMG_8154.jpeg" loading="lazy" onerror="this.style.opacity=.35">' +
       '<div class="prod-body">' +
       '<div class="prod-name">ESGIN = IOS 📱</div>' +
       '<div class="prod-desc">Tất cả các gói đều 1 năm\nHỗ trợ cài IPA, hack FF & nhiều app khác</div>' +
       '<div class="plans">' + plansHTML + '</div>' +
-      '</div>' +
-      '</div>';
+      '</div></div>';
   }
 
   window.__buy = function(name, plan, finalPrice, basePrice) {
     var u = getUserObj();
     var priceToUse = (typeof finalPrice === 'number' && finalPrice > 0) ? finalPrice : basePrice;
-
     if ((u.balance || 0) < priceToUse) {
       toast('❌ Bạn cần nạp thêm tiền để mua! Thiếu ' + fmt(priceToUse - (u.balance || 0)), true);
       return;
     }
     if (!db) return toast('❌ Chưa kết nối máy chủ', true);
-
-    db.ref('users/' + CUR).once('value')
-      .then(function(snap) {
-        var fresh = snap.val();
-        if (!fresh) return;
-
-        if ((fresh.balance || 0) < priceToUse) {
-          toast('❌ Số dư không đủ! Vui lòng nạp thêm.', true);
-          return;
-        }
-
-        fresh.balance -= priceToUse;
-        fresh.totalSpent = (fresh.totalSpent || 0) + priceToUse;
-        db.ref('users/' + CUR).set(fresh);
-
-        var orders = DB.orders.slice();
-        orders.unshift({
-          id: rand(8),
-          user: CUR,
-          name: name,
-          plan: plan,
-          price: priceToUse,
-          originalPrice: basePrice || priceToUse,
-          discount: getMyDiscount(),
-          bulkDiscount: Number(DB.config.bulkDiscount) || 0,
-          status: 'wait',
-          key: '',
-          createdAt: now()
-        });
-        DB.orders = orders;
-        db.ref('orders').set(orders);
-
-        upUI();
-        toast('❄️ Chức mừng bạn đã mua hàng thành công! Vui lòng chờ 1-30 phút đơn hàng sẽ được xử lý.');
-      })
-      .catch(function(err) {
-        toast('❌ Lỗi: ' + err.message, true);
+    db.ref('users/' + CUR).once('value').then(function(snap) {
+      var fresh = snap.val();
+      if (!fresh) return;
+      if ((fresh.balance || 0) < priceToUse) {
+        toast('❌ Số dư không đủ! Vui lòng nạp thêm.', true);
+        return;
+      }
+      fresh.balance -= priceToUse;
+      fresh.totalSpent = (fresh.totalSpent || 0) + priceToUse;
+      db.ref('users/' + CUR).set(fresh);
+      var orders = DB.orders.slice();
+      orders.unshift({
+        id: rand(8), user: CUR, name: name, plan: plan, price: priceToUse,
+        originalPrice: basePrice || priceToUse, discount: getMyDiscount(),
+        bulkDiscount: Number(DB.config.bulkDiscount) || 0,
+        status: 'wait', key: '', createdAt: now()
       });
+      DB.orders = orders;
+      db.ref('orders').set(orders);
+      upUI();
+      toast('❄️ Chức mừng bạn đã mua hàng thành công! Vui lòng chờ 1-30 phút.');
+    }).catch(function(err) { toast('❌ Lỗi: ' + err.message, true); });
   };
 
   function createQR() {
     var amt = Number(document.getElementById('qrAmount').value);
     if (!amt || amt < 5000) return toast('⚠️ Số tiền tối thiểu là 5.000đ', true);
     if (amt > 5000000) return toast('⚠️ Số tiền tối đa là 5.000.000đ', true);
-
     var code = rand(6);
-    var dep = {
-      id: rand(8),
-      user: CUR,
-      type: 'QR',
-      amount: amt,
-      code: code,
-      status: 'wait',
-      createdAt: now()
-    };
-
+    var dep = { id: rand(8), user: CUR, type: 'QR', amount: amt, code: code, status: 'wait', createdAt: now() };
     DB.deposits.unshift(dep);
     if (db) db.ref('deposits').set(DB.deposits);
-
     document.getElementById('qrResult').innerHTML =
       '<div class="qr-box">' +
       '<img src="' + IMG + 'IMG_8134.jpeg" alt="QR">' +
@@ -2845,9 +2507,8 @@ try {
       '📝 Nội dung CK: <b class="hl">' + code + '</b><br>' +
       '🧾 Mã đơn: <b>' + dep.id + '</b>' +
       '</div>' +
-      '<div class="note-warn">⚠️ LƯU Ý: Chuyển khoản ĐÚNG nội dung "' + code + '"<br>Admin sẽ xác nhận và cộng tiền vào tài khoản.</div>' +
+      '<div class="note-warn">⚠️ LƯU Ý: Chuyển khoản ĐÚNG nội dung "' + code + '"<br>Admin sẽ xác nhận và cộng tiền.</div>' +
       '</div>';
-
     toast('✅ Đã tạo mã QR! Vui lòng chuyển khoản đúng nội dung.');
   }
 
@@ -2856,176 +2517,98 @@ try {
     var type = document.getElementById('cardType').value;
     var code = document.getElementById('cardCode').value.trim();
     var seri = document.getElementById('cardSeri').value.trim();
-
     if (!code || !seri) return toast('⚠️ Vui lòng nhập đầy đủ Mã thẻ và Seri!', true);
     if (code.length < 6 || seri.length < 6) return toast('⚠️ Mã thẻ hoặc Seri không hợp lệ (quá ngắn)!', true);
-
     var dep = {
-      id: rand(8),
-      user: CUR,
-      type: 'CARD',
-      amount: amt,
-      receive: RATE[amt] || 0,
-      cardType: type,
-      cardCode: code,
-      cardSeri: seri,
-      status: 'wait',
-      createdAt: now()
+      id: rand(8), user: CUR, type: 'CARD', amount: amt,
+      receive: RATE[amt] || 0, cardType: type,
+      cardCode: code, cardSeri: seri, status: 'wait', createdAt: now()
     };
-
     DB.deposits.unshift(dep);
     if (db) db.ref('deposits').set(DB.deposits);
-
     document.getElementById('cardCode').value = '';
     document.getElementById('cardSeri').value = '';
-
     toast('✅ Đã gửi thẻ! Admin đang kiểm tra và xử lý.');
   }
 
   function switchHist(mode) {
     histMode = mode;
     var tabs = document.querySelectorAll('.subtab');
-    for (var i = 0; i < tabs.length; i++) {
-      tabs[i].classList.toggle('active', tabs[i].getAttribute('data-h') === mode);
-    }
+    for (var i = 0; i < tabs.length; i++) tabs[i].classList.toggle('active', tabs[i].getAttribute('data-h') === mode);
     renderHist();
   }
 
   function renderHist() {
     var box = document.getElementById('histBox');
     var html = '';
-
     if (histMode === 'dep') {
       var myDeps = [];
-      for (var i = 0; i < DB.deposits.length; i++) {
-        if (DB.deposits[i].user === CUR) myDeps.push(DB.deposits[i]);
-      }
-
-      if (!myDeps.length) {
-        html = '<div class="empty">📭 Chưa có giao dịch nạp tiền nào</div>';
-      } else {
+      for (var i = 0; i < DB.deposits.length; i++) if (DB.deposits[i].user === CUR) myDeps.push(DB.deposits[i]);
+      if (!myDeps.length) html = '<div class="empty">📭 Chưa có giao dịch nạp tiền nào</div>';
+      else {
         for (var j = 0; j < myDeps.length; j++) {
           var d = myDeps[j];
           var badge = d.status === 'wait'
             ? '<span class="badge wait">ĐANG XỬ LÝ</span>'
-            : d.status === 'done'
-              ? '<span class="badge done">HOÀN THÀNH</span>'
-              : '<span class="badge cancel">ĐÃ HUỶ</span>';
-
+            : d.status === 'done' ? '<span class="badge done">HOÀN THÀNH</span>'
+            : '<span class="badge cancel">ĐÃ HUỶ</span>';
           var info = d.type === 'QR'
-            ? '💳 Nạp QR — Nội dung: <b style="color:var(--gold)">' + d.code + '</b>'
-            : '💳 Thẻ ' + d.cardType + ' — Mệnh giá ' + fmt(d.amount) + ' → nhận ' + fmt(d.receive);
-
+            ? '💳 Nạp QR — Nội dung: <b style="color:var(--gold)">' + esc(d.code) + '</b>'
+            : '💳 Thẻ ' + esc(d.cardType) + ' — Mệnh giá ' + fmt(d.amount) + ' → nhận ' + fmt(d.receive);
           var amountShow = d.type === 'QR' ? d.amount : d.receive;
-
-          html += '<div class="item">' +
-            '<div class="l">' +
-            '<b>Mã đơn: ' + d.id + '</b>' +
-            '<small>' + info + '</small>' +
-            '<small>Số tiền: <b style="color:var(--cyan)">' + fmt(amountShow) + '</b></small>' +
-            '<small>🕐 ' + timeStr(d.createdAt) + '</small>' +
-            '</div>' + badge +
-            '</div>';
+          html += '<div class="item"><div class="l"><b>Mã đơn: ' + esc(d.id) + '</b><small>' + info + '</small><small>Số tiền: <b style="color:var(--cyan)">' + fmt(amountShow) + '</b></small><small>🕐 ' + timeStr(d.createdAt) + '</small></div>' + badge + '</div>';
         }
       }
     } else if (histMode === 'key') {
       var keyOrders = [];
-      for (var a = 0; a < DB.orders.length; a++) {
-        if (DB.orders[a].user === CUR && DB.orders[a].key) {
-          keyOrders.push(DB.orders[a]);
-        }
-      }
-
-      if (!keyOrders.length) {
-        html = '<div class="empty">🔑 Chưa có key nào được gửi</div>';
-      } else {
+      for (var a = 0; a < DB.orders.length; a++) if (DB.orders[a].user === CUR && DB.orders[a].key) keyOrders.push(DB.orders[a]);
+      if (!keyOrders.length) html = '<div class="empty">🔑 Chưa có key nào được gửi</div>';
+      else {
         for (var b = 0; b < keyOrders.length; b++) {
           var o = keyOrders[b];
           var keyEsc = String(o.key).replace(/'/g, "\\'").replace(/"/g, '&quot;');
-
-          html += '<div class="item">' +
-            '<div class="l">' +
-            '<b>' + o.name + ' — ' + o.plan + '</b>' +
-            '<div class="key-row">' +
-            '<span class="key-text">🔑 ' + o.key + '</span>' +
-            '<button class="copy-btn" onclick="window.__copyKey(\'' + keyEsc + '\', this)" title="Sao chép key">📋</button>' +
-            '</div>' +
-            '<small>🕐 ' + timeStr(o.createdAt) + '</small>' +
-            '</div>' +
-            '<span class="badge done">HOÀN THÀNH</span>' +
-            '</div>';
+          html += '<div class="item"><div class="l"><b>' + esc(o.name) + ' — ' + esc(o.plan) + '</b><div class="key-row"><span class="key-text">🔑 ' + esc(o.key) + '</span><button class="copy-btn" onclick="window.__copyKey(\'' + keyEsc + '\', this)" title="Sao chép key">📋</button></div><small>🕐 ' + timeStr(o.createdAt) + '</small></div><span class="badge done">HOÀN THÀNH</span></div>';
         }
       }
     } else {
       var myOrders = [];
-      for (var c = 0; c < DB.orders.length; c++) {
-        if (DB.orders[c].user === CUR) myOrders.push(DB.orders[c]);
-      }
-
-      if (!myOrders.length) {
-        html = '<div class="empty">🛒 Chưa có đơn mua nào</div>';
-      } else {
+      for (var c = 0; c < DB.orders.length; c++) if (DB.orders[c].user === CUR) myOrders.push(DB.orders[c]);
+      if (!myOrders.length) html = '<div class="empty">🛒 Chưa có đơn mua nào</div>';
+      else {
         for (var d2 = 0; d2 < myOrders.length; d2++) {
           var oo = myOrders[d2];
           var badge2 = oo.status === 'done'
             ? '<span class="badge done">HOÀN THÀNH</span>'
-            : oo.status === 'refund'
-              ? '<span class="badge cancel">ĐÃ HOÀN TIỀN</span>'
-              : oo.status === 'cancel'
-                ? '<span class="badge cancel">ĐÃ HUỶ</span>'
-                : '<span class="badge wait">ĐANG XỬ LÝ</span>';
-
+            : oo.status === 'refund' ? '<span class="badge cancel">ĐÃ HOÀN TIỀN</span>'
+            : oo.status === 'cancel' ? '<span class="badge cancel">ĐÃ HUỶ</span>'
+            : '<span class="badge wait">ĐANG XỬ LÝ</span>';
           var priceLine = 'Giá: <b style="color:var(--gold)">' + fmt(oo.price) + '</b>';
           if (oo.originalPrice && oo.originalPrice > oo.price) {
-            priceLine = 'Giá gốc: <span style="text-decoration:line-through;color:#fda4af">' +
-              fmt(oo.originalPrice) + '</span> → <b style="color:var(--cyan)">' + fmt(oo.price) + '</b>';
+            priceLine = 'Giá gốc: <span style="text-decoration:line-through;color:#fda4af">' + fmt(oo.originalPrice) + '</span> → <b style="color:var(--cyan)">' + fmt(oo.price) + '</b>';
           }
-
-          html += '<div class="item">' +
-            '<div class="l">' +
-            '<b>' + oo.name + '</b>' +
-            '<small>Gói: ' + oo.plan + '</small>' +
-            '<small>' + priceLine + '</small>' +
-            '<small>Mã đơn: ' + oo.id + ' • 🕐 ' + timeStr(oo.createdAt) + '</small>' +
-            '</div>' + badge2 +
-            '</div>';
+          html += '<div class="item"><div class="l"><b>' + esc(oo.name) + '</b><small>Gói: ' + esc(oo.plan) + '</small><small>' + priceLine + '</small><small>Mã đơn: ' + esc(oo.id) + ' • 🕐 ' + timeStr(oo.createdAt) + '</small></div>' + badge2 + '</div>';
         }
       }
     }
-
     box.innerHTML = html;
   }
 
   function renderAcOrders() {
     var box = document.getElementById('acOrders');
     if (!box) return;
-
     var myOrders = [];
-    for (var i = 0; i < DB.orders.length; i++) {
-      if (DB.orders[i].user === CUR) myOrders.push(DB.orders[i]);
-    }
-
-    if (!myOrders.length) {
-      box.innerHTML = '<div class="empty">Chưa có đơn mua nào</div>';
-      return;
-    }
-
+    for (var i = 0; i < DB.orders.length; i++) if (DB.orders[i].user === CUR) myOrders.push(DB.orders[i]);
+    if (!myOrders.length) { box.innerHTML = '<div class="empty">Chưa có đơn mua nào</div>'; return; }
     var html = '';
     var limit = Math.min(myOrders.length, 10);
     for (var j = 0; j < limit; j++) {
       var o = myOrders[j];
       var badge = o.status === 'done'
         ? '<span class="badge done">HOÀN THÀNH</span>'
-        : o.status === 'refund'
-          ? '<span class="badge cancel">ĐÃ HOÀN TIỀN</span>'
-          : o.status === 'cancel'
-            ? '<span class="badge cancel">ĐÃ HUỶ</span>'
-            : '<span class="badge wait">ĐANG XỬ LÝ</span>';
-
-      html += '<div class="item">' +
-        '<div class="l"><b>' + o.name + '</b><small>' + o.plan + ' • ' + fmt(o.price) + '</small></div>' +
-        badge +
-        '</div>';
+        : o.status === 'refund' ? '<span class="badge cancel">ĐÃ HOÀN TIỀN</span>'
+        : o.status === 'cancel' ? '<span class="badge cancel">ĐÃ HUỶ</span>'
+        : '<span class="badge wait">ĐANG XỬ LÝ</span>';
+      html += '<div class="item"><div class="l"><b>' + esc(o.name) + '</b><small>' + esc(o.plan) + ' • ' + fmt(o.price) + '</small></div>' + badge + '</div>';
     }
     box.innerHTML = html;
   }
@@ -3047,38 +2630,23 @@ try {
 
   function sendReview() {
     if (!stars) return toast('⚠️ Vui lòng chọn số sao từ 1-5 ⭐', true);
-
     var text = document.getElementById('rvText').value.trim();
-
-    DB.reviews.unshift({
-      id: rand(6),
-      user: CUR,
-      stars: stars,
-      text: text,
-      createdAt: now()
-    });
+    DB.reviews.unshift({ id: rand(6), user: CUR, stars: stars, text: text, createdAt: now() });
     if (db) db.ref('reviews').set(DB.reviews);
-
     document.getElementById('rvText').value = '';
     stars = 0;
-
     var all = document.querySelectorAll('#starPick span');
     for (var i = 0; i < all.length; i++) all[i].classList.remove('on');
-
     toast('🎉 Cảm ơn bạn đã gửi đánh giá!');
   }
 
-  function openLink(url) {
-    window.open(url, '_blank');
-  }
+  function openLink(url) { window.open(url, '_blank'); }
 
   (function bindMenuClicks() {
     var lis = document.querySelectorAll('#menuList li[data-page]');
     for (var i = 0; i < lis.length; i++) {
       (function(li) {
-        li.addEventListener('click', function() {
-          navigate(li.getAttribute('data-page'));
-        });
+        li.addEventListener('click', function() { navigate(li.getAttribute('data-page')); });
       })(lis[i]);
     }
   })();
