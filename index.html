@@ -961,6 +961,40 @@ main {
   white-space: pre-line;
 }
 
+/*N VÀO ĐÂY — SAU DẤU } ĐÓNG CỦA .prod-desc */
+
+.prod-stock {
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.4px;
+  margin-bottom: 10px;
+  background: rgba(34, 211, 238, 0.15);
+  border: 1px solid rgba(34, 211, 238, 0.6);
+  color: var(--cyan);
+  box-shadow: 0 0 12px rgba(34, 211, 238, 0.3);
+}
+.prod-stock.out {
+  background: rgba(255, 45, 45, 0.15);
+  border: 1px solid rgba(255, 45, 45, 0.75);
+  color: #ff2d2d;
+  box-shadow: 0 0 12px rgba(255, 45, 45, 0.5);
+  animation: pulseOut 1.5s ease-in-out infinite;
+}
+@keyframes pulseOut {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.55; }
+}
+.plan .buy.disabled,
+.plan .buy:disabled {
+  background: rgba(100, 100, 100, 0.3) !important;
+  color: #64748b !important;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
 .plans { display: flex; flex-direction: column; gap: 7px; }
 
 .plan {
@@ -2413,11 +2447,21 @@ try {
           '<button class="buy" onclick="window.__buy(\'' + String(prod.name).replace(/'/g, "\\'") + '\',\'' + String(plan.l).replace(/'/g, "\\'") + '\',' + finalPrice + ',' + base + ')">MUA</button>' +
           '</div>';
       }
+     var stockVal = Number(prod.stock) || 0;
+      var stockHTML = stockVal > 0
+        ? '<div class="prod-stock">📦 CÒN ' + stockVal + ' KEY</div>'
+        : '<div class="prod-stock out">❌ KEY ĐÃ HẾT</div>';
+
+      if (stockVal <= 0) {
+        plansHTML = plansHTML.replace(/<button class="buy"/g, '<button class="buy disabled" disabled');
+      }
+
       html += '<div class="prod">' +
         '<img src="' + esc(prod.img || '') + '" loading="lazy" onerror="this.style.opacity=.35">' +
         '<div class="prod-body">' +
         '<div class="prod-name">' + esc(prod.name) + '</div>' +
         '<div class="prod-desc">' + (prod.desc || '') + '</div>' +
+        stockHTML +
         '<div class="plans">' + plansHTML + '</div>' +
         '</div></div>';
     }
@@ -2456,33 +2500,73 @@ try {
   window.__buy = function(name, plan, finalPrice, basePrice) {
     var u = getUserObj();
     var priceToUse = (typeof finalPrice === 'number' && finalPrice > 0) ? finalPrice : basePrice;
+
+    /* Tìm sản phẩm IOS theo tên để check stock */
+    var productId = null;
+    var stockLeft = -1;
+    for (var pi = 0; pi < PRODUCTS.IOS.length; pi++) {
+      if (PRODUCTS.IOS[pi].name === name) {
+        productId = PRODUCTS.IOS[pi].id;
+        stockLeft = Number(PRODUCTS.IOS[pi].stock) || 0;
+        break;
+      }
+    }
+
+    /* Nếu là sản phẩm IOS → kiểm tra stock trước */
+    if (productId !== null && stockLeft <= 0) {
+      toast('❌ Sản phẩm đã hết key! Vui lòng chọn sản phẩm khác.', true);
+      return;
+    }
+
     if ((u.balance || 0) < priceToUse) {
       toast('❌ Bạn cần nạp thêm tiền để mua! Thiếu ' + fmt(priceToUse - (u.balance || 0)), true);
       return;
     }
     if (!db) return toast('❌ Chưa kết nối máy chủ', true);
+
     db.ref('users/' + CUR).once('value').then(function(snap) {
       var fresh = snap.val();
       if (!fresh) return;
+
       if ((fresh.balance || 0) < priceToUse) {
         toast('❌ Số dư không đủ! Vui lòng nạp thêm.', true);
         return;
       }
+
+      /* Trừ tiền user + cập nhật tổng chi */
       fresh.balance -= priceToUse;
       fresh.totalSpent = (fresh.totalSpent || 0) + priceToUse;
       db.ref('users/' + CUR).set(fresh);
+
+      /* Tạo đơn hàng mới */
       var orders = DB.orders.slice();
       orders.unshift({
-        id: rand(8), user: CUR, name: name, plan: plan, price: priceToUse,
-        originalPrice: basePrice || priceToUse, discount: getMyDiscount(),
+        id: rand(8),
+        user: CUR,
+        name: name,
+        plan: plan,
+        price: priceToUse,
+        originalPrice: basePrice || priceToUse,
+        discount: getMyDiscount(),
         bulkDiscount: Number(DB.config.bulkDiscount) || 0,
-        status: 'wait', key: '', createdAt: now()
+        status: 'wait',
+        key: '',
+        createdAt: now()
       });
       DB.orders = orders;
       db.ref('orders').set(orders);
+
+      /* Trừ stock nếu là sản phẩm IOS */
+      if (productId !== null) {
+        var newStock = Math.max(0, stockLeft - 1);
+        db.ref('products/IOS/' + productId + '/stock').set(newStock);
+      }
+
       upUI();
-      toast('❄️ Chức mừng bạn đã mua hàng thành công! Vui lòng chờ 1-30 phút.');
-    }).catch(function(err) { toast('❌ Lỗi: ' + err.message, true); });
+      toast('❄️ Chúc mừng bạn đã mua thành công! Chờ 1-30 phút xử lý.');
+    }).catch(function(err) {
+      toast('❌ Lỗi: ' + err.message, true);
+    });
   };
 
   function createQR() {
