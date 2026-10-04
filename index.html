@@ -983,6 +983,24 @@ main {
   box-shadow: 0 0 12px rgba(255, 45, 45, 0.5);
   animation: pulseOut 1.5s ease-in-out infinite;
 }
+.plan-stock {
+  display: inline-block;
+  padding: 3px 9px;
+  border-radius: 14px;
+  font-size: 10.5px;
+  font-weight: 900;
+  letter-spacing: 0.3px;
+  background: rgba(34, 211, 238, 0.15);
+  border: 1px solid rgba(34, 211, 238, 0.55);
+  color: var(--cyan);
+  white-space: nowrap;
+}
+.plan-stock.out {
+  background: rgba(255, 45, 45, 0.15);
+  border: 1px solid rgba(255, 45, 45, 0.75);
+  color: #ff2d2d;
+  animation: pulseOut 1.5s ease-in-out infinite;
+}
 @keyframes pulseOut {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.55; }
@@ -2441,27 +2459,26 @@ try {
         var plan = plans[j];
         var base = getBasePrice(prod.name, plan.l, plan.p);
         var finalPrice = getFinalPrice(prod.name, plan.l, plan.p);
+        var planStock = Number(plan.s) || 0;
+        var stockBadge = planStock > 0
+          ? '<span class="plan-stock">📦 ' + planStock + ' key</span>'
+          : '<span class="plan-stock out">❌ Hết key</span>';
+        var btnHTML = planStock > 0
+          ? '<button class="buy" onclick="window.__buy(\'' + String(prod.name).replace(/'/g, "\\'") + '\',\'' + String(plan.l).replace(/'/g, "\\'") + '\',' + finalPrice + ',' + base + ')">MUA</button>'
+          : '<button class="buy disabled" disabled>HẾT KEY</button>';
         plansHTML += '<div class="plan">' +
           '<span class="lb">' + esc(plan.l) + '</span>' +
           renderPriceHTML(plan.p, prod.name, plan.l) +
-          '<button class="buy" onclick="window.__buy(\'' + String(prod.name).replace(/'/g, "\\'") + '\',\'' + String(plan.l).replace(/'/g, "\\'") + '\',' + finalPrice + ',' + base + ')">MUA</button>' +
+          stockBadge +
+          btnHTML +
           '</div>';
       }
-     var stockVal = Number(prod.stock) || 0;
-      var stockHTML = stockVal > 0
-        ? '<div class="prod-stock">📦 CÒN ' + stockVal + ' KEY</div>'
-        : '<div class="prod-stock out">❌ KEY ĐÃ HẾT</div>';
-
-      if (stockVal <= 0) {
-        plansHTML = plansHTML.replace(/<button class="buy"/g, '<button class="buy disabled" disabled');
-      }
-
+     
       html += '<div class="prod">' +
         '<img src="' + esc(prod.img || '') + '" loading="lazy" onerror="this.style.opacity=.35">' +
         '<div class="prod-body">' +
         '<div class="prod-name">' + esc(prod.name) + '</div>' +
         '<div class="prod-desc">' + (prod.desc || '') + '</div>' +
-        stockHTML +
         '<div class="plans">' + plansHTML + '</div>' +
         '</div></div>';
     }
@@ -2501,20 +2518,28 @@ try {
     var u = getUserObj();
     var priceToUse = (typeof finalPrice === 'number' && finalPrice > 0) ? finalPrice : basePrice;
 
-    /* Tìm sản phẩm IOS theo tên để check stock */
+    /* Tìm sản phẩm + gói để check stock */
     var productId = null;
-    var stockLeft = -1;
+    var planIndex = -1;
+    var planStock = -1;
     for (var pi = 0; pi < PRODUCTS.IOS.length; pi++) {
       if (PRODUCTS.IOS[pi].name === name) {
         productId = PRODUCTS.IOS[pi].id;
-        stockLeft = Number(PRODUCTS.IOS[pi].stock) || 0;
+        var plans = PRODUCTS.IOS[pi].plans || [];
+        for (var pj = 0; pj < plans.length; pj++) {
+          if (plans[pj].l === plan) {
+            planIndex = pj;
+            planStock = Number(plans[pj].s) || 0;
+            break;
+          }
+        }
         break;
       }
     }
 
-    /* Nếu là sản phẩm IOS → kiểm tra stock trước */
-    if (productId !== null && stockLeft <= 0) {
-      toast('❌ Sản phẩm đã hết key! Vui lòng chọn sản phẩm khác.', true);
+    /* Nếu là sản phẩm IOS → kiểm tra stock của gói */
+    if (productId !== null && planIndex !== -1 && planStock <= 0) {
+      toast('❌ Gói này đã hết key! Vui lòng chọn gói khác.', true);
       return;
     }
 
@@ -2533,12 +2558,12 @@ try {
         return;
       }
 
-      /* Trừ tiền user + cập nhật tổng chi */
+      /* Trừ tiền user */
       fresh.balance -= priceToUse;
       fresh.totalSpent = (fresh.totalSpent || 0) + priceToUse;
       db.ref('users/' + CUR).set(fresh);
 
-      /* Tạo đơn hàng mới */
+      /* Tạo đơn */
       var orders = DB.orders.slice();
       orders.unshift({
         id: rand(8),
@@ -2556,10 +2581,10 @@ try {
       DB.orders = orders;
       db.ref('orders').set(orders);
 
-      /* Trừ stock nếu là sản phẩm IOS */
-      if (productId !== null) {
-        var newStock = Math.max(0, stockLeft - 1);
-        db.ref('products/IOS/' + productId + '/stock').set(newStock);
+      /* Trừ stock của gói */
+      if (productId !== null && planIndex !== -1) {
+        var newStock = Math.max(0, planStock - 1);
+        db.ref('products/IOS/' + productId + '/plans/' + planIndex + '/s').set(newStock);
       }
 
       upUI();
