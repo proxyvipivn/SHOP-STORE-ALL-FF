@@ -2042,12 +2042,15 @@ try {
   function timeStr(t) { return new Date(t).toLocaleString('vi-VN'); }
   function esc(s) { return String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
 
-  var toastT;
+  var toast;
   function toast(msg, err) {
     var t = document.getElementById('toast');
     if (!t) return;
     t.textContent = msg;
     t.className = err ? 'show err' : 'show';
+    if (err && typeof SoundFX !== 'undefined') {
+      try { SoundFX.error(); } catch (e) {}
+    }
     clearTimeout(toastT);
     toastT = setTimeout(function() { t.className = ''; }, 3500);
   }
@@ -2055,6 +2058,7 @@ try {
   function copyText(text, btnEl) {
     var onSuccess = function() {
       toast('📋 Đã sao chép: ' + text);
+      try { SoundFX.click(); } catch (err) {}
       if (btnEl) { btnEl.classList.add('copied'); setTimeout(function() { btnEl.classList.remove('copied'); }, 1200); }
     };
     var fallback = function() {
@@ -2118,6 +2122,7 @@ try {
       if (d.status === 'done' && notifiedIds.indexOf(d.id) === -1) {
         var amt = d.type === 'QR' ? d.amount : d.receive;
         queueNotification('Nạp thành công ' + fmt(amt) + ' 🎉', 'done');
+        try { SoundFX.success(); } catch (err) {}
         notifiedIds.push(d.id);
       }
       if (d.status === 'cancel' && notifiedIds.indexOf(d.id) === -1) notifiedIds.push(d.id);
@@ -2302,6 +2307,7 @@ try {
         customPrices: {}, createdAt: now()
       }).then(function() {
         authMsg('✅ Đăng ký thành công! Hãy đăng nhập ngay.', true);
+        try { SoundFX.success(); } catch (err) {}
         document.getElementById('rgUser').value = '';
         document.getElementById('rgPass').value = '';
         document.getElementById('rgPass2').value = '';
@@ -2322,6 +2328,7 @@ try {
       if (user.password !== pass) return authMsg('❌ Mật khẩu không đúng!');
       setSession({ user: username, exp: now() + 12 * 60 * 60 * 1000 });
       authMsg('✅ Đăng nhập thành công!', true);
+      try { SoundFX.login(); } catch (err) {}
       setTimeout(function() {
         document.getElementById('auth').style.display = 'none';
         document.getElementById('lgUser').value = '';
@@ -2589,6 +2596,7 @@ try {
 
       upUI();
       toast('❄️ Chúc mừng bạn đã mua thành công! Chờ 1-30 phút xử lý.');
+      try { SoundFX.purchase(); } catch (err) {}
     }).catch(function(err) {
       toast('❌ Lỗi: ' + err.message, true);
     });
@@ -2616,6 +2624,7 @@ try {
       '<div class="note-warn">⚠️ LƯU Ý: Chuyển khoản ĐÚNG nội dung "' + code + '"<br>Admin sẽ xác nhận và cộng tiền.</div>' +
       '</div>';
     toast('✅ Đã tạo mã QR! Vui lòng chuyển khoản đúng nội dung.');
+    try { SoundFX.sent(); } catch (err) {}
   }
 
   function submitCard() {
@@ -2635,6 +2644,7 @@ try {
     document.getElementById('cardCode').value = '';
     document.getElementById('cardSeri').value = '';
     toast('✅ Đã gửi thẻ! Admin đang kiểm tra và xử lý.');
+    try { SoundFX.sent(); } catch (err) {}
   }
 
   function switchHist(mode) {
