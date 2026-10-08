@@ -2042,7 +2042,7 @@ try {
   function timeStr(t) { return new Date(t).toLocaleString('vi-VN'); }
   function esc(s) { return String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
 
-  var toast;
+  var toastT;
   function toast(msg, err) {
     var t = document.getElementById('toast');
     if (!t) return;
