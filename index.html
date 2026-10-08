@@ -2756,6 +2756,106 @@ try {
       })(lis[i]);
     }
   })();
+  
+/* ============================================================
+     HỆ THỐNG ÂM THANH — WEB AUDIO API
+     ============================================================ */
+  var SoundFX = (function() {
+    var ctx = null;
+    var enabled = true;
+
+    function initCtx() {
+      try {
+        if (!ctx) {
+          var AC = window.AudioContext || window.webkitAudioContext;
+          if (AC) ctx = new AC();
+        }
+        if (ctx && ctx.state === 'suspended') ctx.resume();
+      } catch (err) { console.error('Audio error:', err); }
+    }
+
+    /* Tạo 1 nốt nhạc */
+    function playNote(freq, duration, volume, type, delay) {
+      if (!enabled) return;
+      initCtx();
+      if (!ctx) return;
+      try {
+        var osc = ctx.createOscillator();
+        var gain = ctx.createGain();
+        osc.type = type || 'sine';
+        osc.frequency.value = freq;
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        var now = ctx.currentTime + (delay || 0);
+        gain.gain.setValueAtTime(0, now);
+        gain.gain.linearRampToValueAtTime(volume || 0.15, now + 0.01);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + duration);
+        osc.start(now);
+        osc.stop(now + duration);
+      } catch (err) {}
+    }
+
+    /* Các loại âm thanh */
+    return {
+      /* Click nhẹ — dùng khi bấm nút, menu */
+      click: function() {
+        playNote(800, 0.06, 0.08, 'sine', 0);
+      },
+      /* Nạp tiền thành công — ting ting 2 nốt */
+      success: function() {
+        playNote(880, 0.15, 0.15, 'sine', 0);
+        playNote(1175, 0.25, 0.15, 'sine', 0.12);
+      },
+      /* Mua hàng thành công — 3 nốt hân hoan */
+      purchase: function() {
+        playNote(523, 0.12, 0.15, 'sine', 0);
+        playNote(659, 0.12, 0.15, 'sine', 0.1);
+        playNote(880, 0.28, 0.18, 'sine', 0.2);
+      },
+      /* Đăng nhập thành công */
+      login: function() {
+        playNote(659, 0.1, 0.13, 'sine', 0);
+        playNote(880, 0.2, 0.13, 'sine', 0.1);
+      },
+      /* Gửi thẻ/QR thành công — bíp */
+      sent: function() {
+        playNote(700, 0.08, 0.12, 'square', 0);
+        playNote(900, 0.12, 0.12, 'square', 0.08);
+      },
+      /* Lỗi — bụp trầm */
+      error: function() {
+        playNote(200, 0.15, 0.15, 'sawtooth', 0);
+        playNote(150, 0.2, 0.12, 'sawtooth', 0.1);
+      },
+      /* Thông báo mới — chuông */
+      notify: function() {
+        playNote(1047, 0.1, 0.12, 'sine', 0);
+        playNote(1319, 0.1, 0.12, 'sine', 0.08);
+        playNote(1047, 0.2, 0.15, 'sine', 0.16);
+      },
+      /* Bật/tắt */
+      toggle: function(v) { enabled = v; },
+      isEnabled: function() { return enabled; }
+    };
+  })();
+  window.SoundFX = SoundFX;
+
+/* Tự động gắn âm thanh click cho mọi nút bấm */
+  (function() {
+    document.addEventListener('click', function(e) {
+      var target = e.target;
+      /* Bỏ qua nếu click vào input, textarea */
+      if (!target) return;
+      var tag = target.tagName.toLowerCase();
+      if (tag === 'input' || tag === 'textarea' || tag === 'select') return;
+
+      /* Tìm button/li/a gần nhất */
+      var clickable = target.closest('button, .btn, .menu li, .buy, .tab, .subtab, .music-item, .copy-btn, .burger');
+      if (clickable) {
+        try { SoundFX.click(); } catch (err) {}
+      }
+    }, true);
+  })();
 
   bootAuth();
   initMusic();
