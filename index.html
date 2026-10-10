@@ -1764,9 +1764,18 @@ try {
         var userPrice = Number(u.customPrices[key]);
         if (!isNaN(userPrice) && userPrice > 0) return userPrice;
       }
+    }
+    if (DB.config.prices && DB.config.prices[key] != null && DB.config.prices[key] !== '') {
+      var globalPrice = Number(DB.config.prices[key]);
+      if (!isNaN(globalPrice) && globalPrice > 0) return globalPrice;
+    }
+    return originalPrice;
+  }
 
   function getFinalPrice(productName, planLabel, originalPrice) {
     var base = getBasePrice(productName, planLabel, originalPrice);
+    var bulk = Number(DB.config.bulkDiscount) || 0;
+    if (bulk > 0 && bulk <= 100) base = base * (100 - bulk) / 100;
     if (CUR) {
       var uu = DB.users[CUR] || {};
       var userDisc = Number(uu.discount) || 0;
@@ -2384,9 +2393,13 @@ try {
 
   function renderDiscountBanner() {
     var dc = getMyDiscount();
+    var bulk = Number(DB.config.bulkDiscount) || 0;
     var html = '';
-    if (dc > 0) {
-      html = '<div class="discount-banner">❄️ <b>BẠN ĐƯỢC GIẢM THÊM ' + dc + '%</b> cho tất cả sản phẩm! 🎉</div>';
+    if (dc > 0 || bulk > 0) {
+      var parts = [];
+      if (bulk > 0) parts.push('SHOP GIẢM ' + bulk + '%');
+      if (dc > 0) parts.push('BẠN ĐƯỢC GIẢM THÊM ' + dc + '%');
+      html = '<div class="discount-banner">❄️ <b>' + parts.join(' + ') + '</b> cho tất cả sản phẩm! 🎉</div>';
     }
     var ids = ['discountBannerAcc', 'discountBannerIos', 'discountBannerEsgin'];
     for (var i = 0; i < ids.length; i++) {
@@ -2394,7 +2407,7 @@ try {
       if (el) el.innerHTML = html;
     }
   }
-  
+
   function toggleMenu() {
     document.getElementById('sidebar').classList.toggle('open');
     document.getElementById('overlay').classList.toggle('show');
