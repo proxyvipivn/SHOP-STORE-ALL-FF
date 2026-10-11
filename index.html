@@ -1765,10 +1765,6 @@ try {
         if (!isNaN(userPrice) && userPrice > 0) return userPrice;
       }
     }
-    if (DB.config.prices && DB.config.prices[key] != null && DB.config.prices[key] !== '') {
-      var globalPrice = Number(DB.config.prices[key]);
-      if (!isNaN(globalPrice) && globalPrice > 0) return globalPrice;
-    }
     return originalPrice;
   }
 
