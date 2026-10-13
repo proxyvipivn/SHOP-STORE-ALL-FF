@@ -1505,12 +1505,22 @@ main {
         <div class="sec-title">🏦 PHẦN 1 — TẠO MÃ QR</div>
         <div class="hint" style="margin-bottom:10px">Tối thiểu <b style="color:var(--gold)">5.000đ</b> — Tối đa <b style="color:var(--gold)">5.000.000đ</b></div>
         <div class="field"><label>Số tiền muốn nạp (VNĐ)</label><input id="qrAmount" type="number" placeholder="Ví dụ: 50000" min="5000" max="5000000"></div>
+        <div class="note-warn" style="margin-bottom:14px;background:rgba(255,45,45,0.15) !important;border-color:rgba(255,45,45,0.6) !important;color:#ff2d2d !important;font-weight:900;line-height:1.6">
+          ⚠️ <b>LƯU Ý QUAN TRỌNG:</b><br>
+          Tiền nạp sẽ <b>KHÔNG được chuyển khoản lại</b> và <b>KHÔNG được hoàn tiền</b>.<br>
+          Chỉ được hoàn khi mua sản phẩm <b>bị lỗi</b>.
+        </div>
         <button class="btn gold" onclick="createQR()">📷 TẠO MÃ QR</button>
         <div id="qrResult" style="margin-top:16px"></div>
       </div>
       <div class="panel pink">
         <div class="sec-title">💳 PHẦN 2 — NẠP THẺ CAR</div>
         <div class="hint" style="margin-bottom:10px">Thẻ car phải chịu phí chiết khấu</div>
+        <div class="note-warn" style="margin-bottom:14px;background:rgba(255,45,45,0.15) !important;border-color:rgba(255,45,45,0.6) !important;color:#ff2d2d !important;font-weight:900;line-height:1.6">
+          ⚠️ <b>LƯU Ý QUAN TRỌNG:</b><br>
+          Tiền nạp sẽ <b>KHÔNG được chuyển khoản lại</b> và <b>KHÔNG được hoàn tiền</b>.<br>
+          Chỉ được hoàn khi mua sản phẩm <b>bị lỗi</b>.
+        </div>
         <div class="field"><label>Chọn mệnh giá</label>
           <select id="cardAmt">
             <option value="10000">10.000đ → nhận 9.000đ</option>
@@ -2115,7 +2125,7 @@ try {
       var d = myDeposits[k];
       if (d.status === 'done' && notifiedIds.indexOf(d.id) === -1) {
         var amt = d.type === 'QR' ? d.amount : d.receive;
-        queueNotification('Nạp thành công ' + fmt(amt) + ' 🎉', 'done');
+        queueNotification('🎉 Nạp thành công ' + fmt(amt) + '! Tiền nạp không hoàn lại — chỉ hoàn khi sản phẩm bị lỗi.', 'done');
         try { SoundFX.success(); } catch (err) {}
         notifiedIds.push(d.id);
       }
