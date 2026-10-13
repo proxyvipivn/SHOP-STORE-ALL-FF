@@ -1770,8 +1770,6 @@ try {
 
   function getFinalPrice(productName, planLabel, originalPrice) {
     var base = getBasePrice(productName, planLabel, originalPrice);
-    var bulk = Number(DB.config.bulkDiscount) || 0;
-    if (bulk > 0 && bulk <= 100) base = base * (100 - bulk) / 100;
     if (CUR) {
       var uu = DB.users[CUR] || {};
       var userDisc = Number(uu.discount) || 0;
