@@ -1503,6 +1503,32 @@ main {
       <div class="page-title">💳 Nạp tiền + Thẻ Car</div>
       <div class="panel gold">
         <div class="sec-title">🏦 PHẦN 1 — TẠO MÃ QR</div>
+        <!-- CHUYỂN KHOẢN LẠI - HOÀN TIỀN -->
+      <div class="panel" style="border-color:rgba(255,45,45,0.5);box-shadow:0 0 28px rgba(255,45,45,0.2)">
+        <div class="sec-title" style="color:#ff2d2d">🔄 Chuyển khoản lại → Hoàn tiền</div>
+        <div class="hint" style="margin-bottom:12px">
+          Shop không có chức năng hoàn lại nhưng shop sẽ cố gắng hoàn — khách hàng phải chịu phí khá cao khi hoàn lại.
+        </div>
+        <button class="btn" onclick="openRefundForm()" style="background:linear-gradient(90deg,#ff2d2d,#ff8a00);color:#fff;font-weight:900">🔄 YÊU CẦU HOÀN TIỀN</button>
+        <div id="refundForm" style="display:none;margin-top:16px">
+          <div class="field"><label>Ngân hàng</label><input id="rfBank" placeholder="Ví dụ: MB Bank"></div>
+          <div class="field"><label>Số tài khoản</label><input id="rfAccount" placeholder="Ví dụ: 0123456789"></div>
+          <div class="field"><label>Tên chủ tài khoản</label><input id="rfName" placeholder="Ví dụ: NGUYEN VAN A"></div>
+          <div class="field"><label>Số tiền muốn hoàn (VNĐ)</label><input id="rfAmount" type="number" placeholder="Ví dụ: 100000" min="10000" oninput="updateRefundPreview()"></div>
+          <div class="note-warn" style="background:rgba(255,45,45,0.15) !important;border-color:rgba(255,45,45,0.6) !important;color:#ff2d2d !important;font-weight:900;line-height:1.7;text-align:left">
+            ⚠️ <b>Phí hoàn lại 60%</b><br>
+            Ví dụ: Muốn hoàn 100.000đ → phí 60.000đ → thực nhận <b>40.000đ</b><br>
+            Số dư tài khoản phải đủ số tiền muốn hoàn mới hoàn được.<br>
+            Vui lòng điền đúng thông tin!
+          </div>
+          <div class="field" style="margin-top:14px">
+            <label>Thực nhận (sau phí 60%)</label>
+            <div id="rfPreview" style="padding:13px;border-radius:11px;background:rgba(0,0,0,0.5);border:1.5px solid rgba(34,211,238,0.6);color:#22d3ee;font-weight:900;text-align:center;font-size:16px;text-shadow:0 0 12px rgba(34,211,238,0.5)">0đ</div>
+          </div>
+          <button class="btn pink" onclick="submitRefund()" style="margin-top:10px">✅ XÁC NHẬN YÊU CẦU HOÀN</button>
+          <button class="btn ghost" onclick="closeRefundForm()" style="margin-top:8px">✖ Đóng</button>
+        </div>
+      </div>
         <div class="hint" style="margin-bottom:10px">Tối thiểu <b style="color:var(--gold)">5.000đ</b> — Tối đa <b style="color:var(--gold)">5.000.000đ</b></div>
         <div class="field"><label>Số tiền muốn nạp (VNĐ)</label><input id="qrAmount" type="number" placeholder="Ví dụ: 50000" min="5000" max="5000000"></div>
         <div class="note-warn" style="margin-bottom:14px;background:rgba(255,45,45,0.15) !important;border-color:rgba(255,45,45,0.6) !important;color:#ff2d2d !important;font-weight:900;line-height:1.6">
@@ -1708,6 +1734,7 @@ try {
     deposits: [],
     orders: [],
     reviews: [],
+    refunds: [],
     config: { prices: {}, bulkDiscount: 0 }
   };
 
@@ -2233,6 +2260,9 @@ try {
     });
 
     db.ref('reviews').on('value', function(snap) { DB.reviews = snap.val() || []; });
+    db.ref('refunds').on('value', function(snap) {
+      DB.refunds = snap.val() || [];
+    });
 
     db.ref('config').on('value', function(snap) {
       var d = snap.val() || {};
@@ -2761,6 +2791,88 @@ try {
   }
 
   function openLink(url) { window.open(url, '_blank'); }
+  
+  /* ============================================================
+     XỬ LÝ YÊU CẦU HOÀN TIỀN
+     ============================================================ */
+  var _REFUND_FEE = 0.6; /* Phí 60% */
+
+  function openRefundForm() {
+    var f = document.getElementById('refundForm');
+    if (!f) return;
+    f.style.display = 'block';
+    var el1 = document.getElementById('rfBank'); if (el1) el1.value = '';
+    var el2 = document.getElementById('rfAccount'); if (el2) el2.value = '';
+    var el3 = document.getElementById('rfName'); if (el3) el3.value = '';
+    var el4 = document.getElementById('rfAmount'); if (el4) el4.value = '';
+    var el5 = document.getElementById('rfPreview'); if (el5) el5.textContent = '0đ';
+  }
+  window.openRefundForm = openRefundForm;
+
+  function closeRefundForm() {
+    var f = document.getElementById('refundForm');
+    if (f) f.style.display = 'none';
+  }
+  window.closeRefundForm = closeRefundForm;
+
+  function updateRefundPreview() {
+    var amt = Number(document.getElementById('rfAmount').value) || 0;
+    var preview = document.getElementById('rfPreview');
+    if (!preview) return;
+    if (amt <= 0) {
+      preview.textContent = '0đ';
+      return;
+    }
+    var fee = Math.round(amt * _REFUND_FEE);
+    var receive = amt - fee;
+    preview.textContent = fmt(amt) + ' - ' + fmt(fee) + ' phí = ' + fmt(receive);
+  }
+  window.updateRefundPreview = updateRefundPreview;
+
+  function submitRefund() {
+    var bank = (document.getElementById('rfBank').value || '').trim();
+    var account = (document.getElementById('rfAccount').value || '').trim();
+    var name = (document.getElementById('rfName').value || '').trim();
+    var amount = Number(document.getElementById('rfAmount').value) || 0;
+
+    if (!bank) return toast('⚠️ Vui lòng nhập tên ngân hàng', true);
+    if (!account) return toast('⚠️ Vui lòng nhập số tài khoản', true);
+    if (!name) return toast('⚠️ Vui lòng nhập tên chủ tài khoản', true);
+    if (!amount || amount < 10000) return toast('⚠️ Số tiền hoàn tối thiểu 10.000đ', true);
+
+    var u = getUserObj();
+    if ((u.balance || 0) < amount) {
+      return toast('❌ Số dư không đủ! Hiện có ' + fmt(u.balance) + ', cần ' + fmt(amount), true);
+    }
+    if (!db) return toast('❌ Chưa kết nối máy chủ', true);
+
+    var fee = Math.round(amount * _REFUND_FEE);
+    var receive = amount - fee;
+
+    db.ref('refunds').once('value').then(function(snap) {
+      var refunds = snap.val() || [];
+      if (!Array.isArray(refunds)) refunds = [];
+      refunds.unshift({
+        id: rand(8),
+        user: CUR,
+        bank: bank,
+        account: account,
+        name: name,
+        amount: amount,
+        fee: fee,
+        receive: receive,
+        status: 'wait',
+        createdAt: now()
+      });
+      db.ref('refunds').set(refunds).then(function() {
+        toast('✅ Đã gửi yêu cầu hoàn ' + fmt(receive) + '! Admin sẽ xử lý trong 24h.');
+        closeRefundForm();
+      }).catch(function(err) {
+        toast('❌ Lỗi: ' + err.message, true);
+      });
+    });
+  }
+  window.submitRefund = submitRefund;
 
   (function bindMenuClicks() {
     var lis = document.querySelectorAll('#menuList li[data-page]');
