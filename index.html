@@ -2723,7 +2723,7 @@ try {
         for (var b = 0; b < keyOrders.length; b++) {
           var o = keyOrders[b];
           var keyEsc = String(o.key).replace(/'/g, "\\'").replace(/"/g, '&quot;');
-          html += '<div class="item"><div class="l"><b>' + esc(o.name) + ' — ' + esc(o.plan) + '</b><div class="key-row"><span class="key-text">🔑 ' + esc(o.key) + '</span>'<button class="copy-btn" onclick="window.__copyKey(\'' + keyEsc + '\', this)" title="Sao chép key"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2.5" ry="2.5"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>' +
+          html += '<div class="item"><div class="l"><b>' + esc(o.name) + ' — ' + esc(o.plan) + '</b><div class="key-row"><span class="key-text">🔑 ' + esc(o.key) + '</span>'<button class="copy-btn" onclick="window.__copyKey(\'' + keyEsc + '\', this)" title="Sao chép key">'</span>' + '<button class="copy-btn" onclick="window.__copyKey(\'' + keyEsc + '\', this)" title="Sao chép key">⧉</button>' +
         }
       }
     } else {
