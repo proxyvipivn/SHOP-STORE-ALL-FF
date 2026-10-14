@@ -2877,77 +2877,128 @@ try {
   var SoundFX = (function() {
     var ctx = null;
     var enabled = true;
+    var masterGain = null;
 
     function initCtx() {
       try {
         if (!ctx) {
           var AC = window.AudioContext || window.webkitAudioContext;
-          if (AC) ctx = new AC();
+          if (AC) {
+            ctx = new AC();
+            masterGain = ctx.createGain();
+            masterGain.gain.value = 0.7;
+            masterGain.connect(ctx.destination);
+          }
         }
         if (ctx && ctx.state === 'suspended') ctx.resume();
-      } catch (err) { console.error('Audio error:', err); }
-    }
-
-    /* Tạo 1 nốt nhạc */
-    function playNote(freq, duration, volume, type, delay) {
-      if (!enabled) return;
-      initCtx();
-      if (!ctx) return;
-      try {
-        var osc = ctx.createOscillator();
-        var gain = ctx.createGain();
-        osc.type = type || 'sine';
-        osc.frequency.value = freq;
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-        var now = ctx.currentTime + (delay || 0);
-        gain.gain.setValueAtTime(0, now);
-        gain.gain.linearRampToValueAtTime(volume || 0.15, now + 0.01);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + duration);
-        osc.start(now);
-        osc.stop(now + duration);
       } catch (err) {}
     }
 
-    /* Các loại âm thanh */
+    /* Tạo 1 nốt có harmonics — âm giàu, mềm, không chói */
+    function playBell(freq, duration, volume, delay, decay, type) {
+      if (!enabled || !ctx) return;
+      try {
+        var now = ctx.currentTime + (delay || 0);
+        var harmonics = type === 'bell'
+          ? [{ mul: 1, vol: 1 }, { mul: 2, vol: 0.45 }, { mul: 3, vol: 0.22 }, { mul: 4.2, vol: 0.08 }]
+          : type === 'soft'
+            ? [{ mul: 1, vol: 1 }, { mul: 2, vol: 0.35 }]
+            : [{ mul: 1, vol: 1 }];
+
+        for (var h = 0; h < harmonics.length; h++) {
+          var hm = harmonics[h];
+          var osc = ctx.createOscillator();
+          var gain = ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.value = freq * hm.mul;
+          osc.connect(gain);
+          gain.connect(masterGain);
+
+          var vol = (volume || 0.15) * hm.vol;
+          var dec = (decay || duration) * (1 - h * 0.15);
+          gain.gain.setValueAtTime(0, now);
+          gain.gain.linearRampToValueAtTime(vol, now + 0.008);
+          gain.gain.exponentialRampToValueAtTime(0.0001, now + dec);
+
+          osc.start(now);
+          osc.stop(now + dec + 0.05);
+        }
+      } catch (err) {}
+    }
+
+    /* Tạo tiếng "whoosh" mềm — quét tần số */
+    function playWhoosh(startFreq, endFreq, duration, volume, delay) {
+      if (!enabled || !ctx) return;
+      try {
+        var now = ctx.currentTime + (delay || 0);
+        var osc = ctx.createOscillator();
+        var gain = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(startFreq, now);
+        osc.frequency.exponentialRampToValueAtTime(endFreq, now + duration);
+        osc.connect(gain);
+        gain.connect(masterGain);
+        gain.gain.setValueAtTime(0, now);
+        gain.gain.linearRampToValueAtTime(volume || 0.12, now + 0.02);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
+        osc.start(now);
+        osc.stop(now + duration + 0.05);
+      } catch (err) {}
+    }
+
     return {
-      /* Click nhẹ — dùng khi bấm nút, menu */
+      /* Click — tiếng "pop" mềm, không tít */
       click: function() {
-        playNote(800, 0.06, 0.08, 'sine', 0);
+        initCtx();
+        playWhoosh(450, 280, 0.09, 0.06, 0);
       },
-      /* Nạp tiền thành công — ting ting 2 nốt */
+
+      /* Nạp tiền thành công — chuông 3 nốt hài hoà (C6 - E6 - G6) */
       success: function() {
-        playNote(880, 0.15, 0.15, 'sine', 0);
-        playNote(1175, 0.25, 0.15, 'sine', 0.12);
+        initCtx();
+        playBell(1047, 0.35, 0.13, 0, 0.55, 'bell');   /* C6 */
+        playBell(1319, 0.35, 0.13, 0.09, 0.55, 'bell');  /* E6 */
+        playBell(1568, 0.55, 0.15, 0.18, 0.8, 'bell');   /* G6 */
       },
-      /* Mua hàng thành công — 3 nốt hân hoan */
+
+      /* Mua hàng thành công — dãy "level up" 4 nốt tăng dần */
       purchase: function() {
-        playNote(523, 0.12, 0.15, 'sine', 0);
-        playNote(659, 0.12, 0.15, 'sine', 0.1);
-        playNote(880, 0.28, 0.18, 'sine', 0.2);
+        initCtx();
+        playBell(784, 0.2, 0.12, 0, 0.35, 'soft');       /* G5 */
+        playBell(988, 0.2, 0.12, 0.07, 0.35, 'soft');    /* B5 */
+        playBell(1319, 0.3, 0.14, 0.14, 0.5, 'bell');    /* E6 */
+        playBell(1568, 0.6, 0.16, 0.22, 0.9, 'bell');    /* G6 */
       },
-      /* Đăng nhập thành công */
+
+      /* Đăng nhập thành công — chuông đôi ngọt ngào */
       login: function() {
-        playNote(659, 0.1, 0.13, 'sine', 0);
-        playNote(880, 0.2, 0.13, 'sine', 0.1);
+        initCtx();
+        playBell(880, 0.3, 0.13, 0, 0.5, 'bell');        /* A5 */
+        playBell(1319, 0.5, 0.15, 0.1, 0.75, 'bell');    /* E6 */
       },
-      /* Gửi thẻ/QR thành công — bíp */
+
+      /* Gửi thẻ/QR — whoosh mềm 2 lớp */
       sent: function() {
-        playNote(700, 0.08, 0.12, 'square', 0);
-        playNote(900, 0.12, 0.12, 'square', 0.08);
+        initCtx();
+        playWhoosh(600, 900, 0.15, 0.1, 0);
+        playBell(1047, 0.25, 0.1, 0.1, 0.4, 'soft');
       },
-      /* Lỗi — bụp trầm */
+
+      /* Lỗi — bụp trầm nhẹ, không chói */
       error: function() {
-        playNote(200, 0.15, 0.15, 'sawtooth', 0);
-        playNote(150, 0.2, 0.12, 'sawtooth', 0.1);
+        initCtx();
+        playBell(220, 0.25, 0.12, 0, 0.35, 'soft');      /* A3 */
+        playBell(165, 0.35, 0.13, 0.08, 0.5, 'soft');    /* E3 */
       },
-      /* Thông báo mới — chuông */
+
+      /* Thông báo — chuông 3 nốt mềm */
       notify: function() {
-        playNote(1047, 0.1, 0.12, 'sine', 0);
-        playNote(1319, 0.1, 0.12, 'sine', 0.08);
-        playNote(1047, 0.2, 0.15, 'sine', 0.16);
+        initCtx();
+        playBell(988, 0.25, 0.12, 0, 0.4, 'soft');       /* B5 */
+        playBell(1319, 0.25, 0.13, 0.08, 0.4, 'bell');   /* E6 */
+        playBell(1568, 0.4, 0.14, 0.16, 0.7, 'bell');    /* G6 */
       },
-      /* Bật/tắt */
+
       toggle: function(v) { enabled = v; },
       isEnabled: function() { return enabled; }
     };
