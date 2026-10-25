@@ -1,4 +1,4 @@
-i<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="vi" style="color-scheme:dark">
 <head>
 <meta charset="UTF-8">
@@ -961,8 +961,6 @@ main {
   white-space: pre-line;
 }
 
-/*N VÀO ĐÂY — SAU DẤU } ĐÓNG CỦA .prod-desc */
-
 .prod-stock {
   display: inline-block;
   padding: 5px 12px;
@@ -1406,6 +1404,43 @@ main {
     color: #e8f4ff !important;
   }
 }
+/* ===== SINH LỜI TẾT ===== */
+.sl-clocks{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+@media(max-width:520px){.sl-clocks{grid-template-columns:1fr}}
+.sl-clock{padding:14px;border-radius:16px;background:linear-gradient(135deg,rgba(244,63,94,.18),rgba(253,224,71,.18));border:1.5px solid rgba(253,224,71,.55);text-align:center;box-shadow:0 0 22px rgba(253,224,71,.28)}
+.sl-clock .lbl{font-size:11px;color:#fde047;font-weight:900;letter-spacing:1px;margin-bottom:6px}
+.sl-clock .val{font-size:15px;color:#fff;font-weight:900;font-family:'Courier New',monospace;letter-spacing:.5px}
+.sl-clock .date{font-size:10.5px;color:#93c5fd;margin-top:6px}
+.sl-toolbar{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap;padding:12px;border-radius:14px;background:rgba(0,0,0,.45);border:1px solid rgba(253,224,71,.35)}
+.sl-toolbar .txt{font-size:12px;color:#93c5fd;line-height:1.6}
+.sl-toolbar .txt b{color:#fde047}
+.sl-wd-btn{padding:11px 18px;border-radius:12px;background:linear-gradient(90deg,#fde047,#fbbf24);border:none;color:#06121f;font-weight:900;font-size:13px;cursor:pointer;font-family:inherit;box-shadow:0 0 22px rgba(253,224,71,.6);transition:.2s;white-space:nowrap;-webkit-appearance:none}
+.sl-wd-btn:hover{transform:translateY(-2px);box-shadow:0 0 30px rgba(253,224,71,.9)}
+.sl-wd-btn:active{transform:scale(.96)}
+.sl-pack{padding:16px;border-radius:16px;background:linear-gradient(160deg,rgba(40,25,5,.95),rgba(20,10,5,.95));border:1.5px solid rgba(253,224,71,.55);margin-bottom:12px;box-shadow:0 0 26px rgba(253,224,71,.22);position:relative;overflow:hidden}
+.sl-pack.vip{border-color:rgba(255,100,200,.7);box-shadow:0 0 32px rgba(255,100,200,.42);background:linear-gradient(160deg,rgba(45,15,40,.95),rgba(20,5,20,.95))}
+.sl-pack-badge{position:absolute;top:10px;right:10px;padding:4px 10px;border-radius:20px;font-size:10px;font-weight:900;background:linear-gradient(90deg,#ff8ae2,#f472b6);color:#fff;letter-spacing:.5px}
+.sl-pack-name{font-size:16px;font-weight:900;color:#fde047;margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.sl-pack.vip .sl-pack-name{color:#ff8ae2}
+.sl-pack-info{font-size:12.5px;color:#cbe9ff;line-height:1.9;margin-bottom:14px}
+.sl-pack-info b{color:#22d3ee}
+.sl-pack-price{font-size:20px;font-weight:900;color:#fde047;margin-bottom:12px;text-shadow:0 0 14px rgba(253,224,71,.6)}
+.sl-pack.vip .sl-pack-price{color:#ff8ae2;text-shadow:0 0 14px rgba(255,138,226,.6)}
+.sl-pack-btn{width:100%;padding:13px;border-radius:11px;border:none;cursor:pointer;font-weight:900;font-size:14px;background:linear-gradient(90deg,#fde047,#fbbf24);color:#06121f;font-family:inherit;box-shadow:0 0 20px rgba(253,224,71,.55);transition:.2s;-webkit-appearance:none}
+.sl-pack.vip .sl-pack-btn{background:linear-gradient(90deg,#ff8ae2,#f472b6);color:#fff;box-shadow:0 0 20px rgba(255,138,226,.6)}
+.sl-pack-btn:hover{transform:translateY(-2px)}
+.sl-pack-btn:active{transform:scale(.97)}
+.sl-mypack{padding:14px;border-radius:14px;background:rgba(0,0,0,.55);border:1.5px solid rgba(253,224,71,.4);margin-bottom:10px;font-size:12.5px;color:#cbe9ff;line-height:1.9}
+.sl-mypack b{color:#fde047}
+.sl-mypack .next{color:#22d3ee;font-weight:900}
+.sl-modal{position:fixed;inset:0;background:rgba(0,0,0,.88);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);z-index:9998;display:none;align-items:center;justify-content:center;padding:20px}
+.sl-modal.show{display:flex}
+.sl-modal-box{width:min(430px,94vw);background:linear-gradient(180deg,#0a1a2c,#06121f);border:1.5px solid rgba(253,224,71,.6);border-radius:20px;padding:22px 18px;box-shadow:0 0 50px rgba(253,224,71,.4);max-height:90vh;overflow-y:auto;animation:slUp .3s ease}
+@keyframes slUp{from{transform:translateY(30px);opacity:0}to{transform:none;opacity:1}}
+.sl-modal-title{font-size:17px;font-weight:900;color:#fde047;margin-bottom:8px;text-align:center}
+.sl-modal-sub{font-size:12px;color:#93c5fd;margin-bottom:16px;text-align:center;line-height:1.7}
+.sl-modal-sub b{color:#fde047}
+.sl-close-btn{width:100%;padding:11px;border-radius:11px;background:transparent;border:1.5px solid rgba(125,211,252,.5);color:#bae6fd;font-weight:900;font-size:13px;cursor:pointer;margin-top:8px;font-family:inherit;-webkit-appearance:none}
 </style>
 </head>
 <body>
@@ -1514,34 +1549,65 @@ main {
       </div>
     </div>
 
+    <div class="page" id="page-sinhloi">
+      <div class="page-title">🧧 Sinh Lời Tết</div>
+
+      <div class="sl-clocks">
+        <div class="sl-clock">
+          <div class="lbl">🎊 TẾT DƯƠNG</div>
+          <div class="val" id="slClockDuong">--</div>
+          <div class="date" id="slDateDuong">--</div>
+        </div>
+        <div class="sl-clock">
+          <div class="lbl">🧧 TẾT ÂM</div>
+          <div class="val" id="slClockAm">--</div>
+          <div class="date" id="slDateAm">--</div>
+        </div>
+      </div>
+
+      <div class="sl-toolbar">
+        <div class="txt">⏰ Mở rút tiền: <b>25/1/2027</b></div>
+        <button class="sl-wd-btn" onclick="window.SL_openWithdraw()">💰 RÚT TIỀN</button>
+      </div>
+
+      <div class="panel gold">
+        <div class="sec-title">🎁 CÁC GÓI SINH LỜI</div>
+        <div id="slPackages"></div>
+      </div>
+
+      <div class="panel">
+        <div class="sec-title">📦 GÓI ĐÃ MUA</div>
+        <div id="slMyPurchases"></div>
+      </div>
+    </div>
+
     <div class="page" id="page-deposit">
       <div class="page-title">💳 Nạp tiền + Thẻ Car</div>
       <div class="panel gold">
         <div class="sec-title">🏦 PHẦN 1 — TẠO MÃ QR</div>
-        <!-- CHUYỂN KHOẢN LẠI - HOÀN TIỀN -->
-      <div class="panel" style="border-color:rgba(255,45,45,0.5);box-shadow:0 0 28px rgba(255,45,45,0.2)">
-        <div class="sec-title" style="color:#ff2d2d">🔄 Chuyển khoản lại → Hoàn tiền</div>
-        <div class="hint" style="margin-bottom:12px">
-          Shop không có chức năng hoàn lại nhưng shop sẽ cố gắng hoàn — khách hàng phải chịu phí khá cao khi hoàn lại.
-        </div>
-        <button class="btn" onclick="openRefundForm()" style="background:linear-gradient(90deg,#ff2d2d,#ff8a00);color:#fff;font-weight:900">🔄 YÊU CẦU HOÀN TIỀN</button>
-        <div id="refundForm" style="display:none;margin-top:16px">
-          <div class="field"><label>Ngân hàng</label><input id="rfBank" placeholder="Ví dụ: MB Bank"></div>
-          <div class="field"><label>Số tài khoản</label><input id="rfAccount" placeholder="Ví dụ: 0123456789"></div>
-          <div class="field"><label>Tên chủ tài khoản</label><input id="rfName" placeholder="Ví dụ: NGUYEN VAN A"></div>
-          <div class="field"><label>Số tiền muốn hoàn (VNĐ)</label><input id="rfAmount" type="number" placeholder="Ví dụ: 100000" min="10000" oninput="updateRefundPreview()"></div>
-          <div class="note-warn" style="background:rgba(255,45,45,0.15) !important;border-color:rgba(255,45,45,0.6) !important;color:#ff2d2d !important;font-weight:900;line-height:1.7;text-align:left">
-            ⚠️ <b>Phí hoàn lại 60%</b><br>
-            Vui lòng điền đúng thông tin!
+        <div class="panel" style="border-color:rgba(255,45,45,0.5);box-shadow:0 0 28px rgba(255,45,45,0.2)">
+          <div class="sec-title" style="color:#ff2d2d">🔄 Chuyển khoản lại → Hoàn tiền</div>
+          <div class="hint" style="margin-bottom:12px">
+            Shop không có chức năng hoàn lại nhưng shop sẽ cố gắng hoàn — khách hàng phải chịu phí khá cao khi hoàn lại.
           </div>
-          <div class="field" style="margin-top:14px">
-            <label>Thực nhận (sau phí 60%)</label>
-            <div id="rfPreview" style="padding:13px;border-radius:11px;background:rgba(0,0,0,0.5);border:1.5px solid rgba(34,211,238,0.6);color:#22d3ee;font-weight:900;text-align:center;font-size:16px;text-shadow:0 0 12px rgba(34,211,238,0.5)">0đ</div>
+          <button class="btn" onclick="openRefundForm()" style="background:linear-gradient(90deg,#ff2d2d,#ff8a00);color:#fff;font-weight:900">🔄 YÊU CẦU HOÀN TIỀN</button>
+          <div id="refundForm" style="display:none;margin-top:16px">
+            <div class="field"><label>Ngân hàng</label><input id="rfBank" placeholder="Ví dụ: MB Bank"></div>
+            <div class="field"><label>Số tài khoản</label><input id="rfAccount" placeholder="Ví dụ: 0123456789"></div>
+            <div class="field"><label>Tên chủ tài khoản</label><input id="rfName" placeholder="Ví dụ: NGUYEN VAN A"></div>
+            <div class="field"><label>Số tiền muốn hoàn (VNĐ)</label><input id="rfAmount" type="number" placeholder="Ví dụ: 100000" min="10000" oninput="updateRefundPreview()"></div>
+            <div class="note-warn" style="background:rgba(255,45,45,0.15) !important;border-color:rgba(255,45,45,0.6) !important;color:#ff2d2d !important;font-weight:900;line-height:1.7;text-align:left">
+              ⚠️ <b>Phí hoàn lại 60%</b><br>
+              Vui lòng điền đúng thông tin!
+            </div>
+            <div class="field" style="margin-top:14px">
+              <label>Thực nhận (sau phí 60%)</label>
+              <div id="rfPreview" style="padding:13px;border-radius:11px;background:rgba(0,0,0,0.5);border:1.5px solid rgba(34,211,238,0.6);color:#22d3ee;font-weight:900;text-align:center;font-size:16px;text-shadow:0 0 12px rgba(34,211,238,0.5)">0đ</div>
+            </div>
+            <button class="btn pink" onclick="submitRefund()" style="margin-top:10px">✅ XÁC NHẬN YÊU CẦU HOÀN</button>
+            <button class="btn ghost" onclick="closeRefundForm()" style="margin-top:8px">✖ Đóng</button>
           </div>
-          <button class="btn pink" onclick="submitRefund()" style="margin-top:10px">✅ XÁC NHẬN YÊU CẦU HOÀN</button>
-          <button class="btn ghost" onclick="closeRefundForm()" style="margin-top:8px">✖ Đóng</button>
         </div>
-      </div>
         <div class="hint" style="margin-bottom:10px">Tối thiểu <b style="color:var(--gold)">5.000đ</b> — Tối đa <b style="color:var(--gold)">5.000.000đ</b></div>
         <div class="field"><label>Số tiền muốn nạp (VNĐ)</label><input id="qrAmount" type="number" placeholder="Ví dụ: 50000" min="5000" max="5000000"></div>
         <button class="btn gold" onclick="createQR()">📷 TẠO MÃ QR</button>
@@ -1669,6 +1735,7 @@ main {
   <div class="side-user" id="sideUser"></div>
   <ul class="menu" id="menuList">
     <li data-page="account"><span class="ico">👤</span> Tài khoản</li>
+    <li data-page="sinhloi"><span class="ico">🧧</span> Sinh lời tết</li>
     <li data-page="deposit"><span class="ico">💳</span> Nạp tiền + Thẻ Car</li>
     <li data-page="history"><span class="ico">📜</span> Lịch sử All</li>
     <li data-page="hackios"><span class="ico">📱</span> HACK - All IOS</li>
@@ -1680,6 +1747,10 @@ main {
     <li onclick="logout()"><span class="ico">🚪</span> Đăng xuất</li>
   </ul>
 </aside>
+
+<div class="sl-modal" id="slWithdrawModal">
+  <div class="sl-modal-box" id="slWithdrawBox"></div>
+</div>
 
 <div id="toast"></div>
 
@@ -1738,12 +1809,11 @@ try {
     orders: [],
     reviews: [],
     refunds: [],
+    sinhloi_purchases: [],
+    withdraw_requests: [],
     config: { prices: {}, bulkDiscount: 0 }
   };
 
-  /* ============================================================
-     SẢN PHẨM — LƯU TRÊN FIREBASE
-     ============================================================ */
   var PRODUCTS = { IOS: [], ESGIN: [] };
 
   var CUR = null;
@@ -1755,7 +1825,6 @@ try {
   var notifyQueue = [];
   var notifying = false;
 
-  /* Dữ liệu mặc định — seed lần đầu khi Firebase trống */
   function getDefaultIOS() {
     return [
       { id: 'ios_1', name: 'SOPHIA CHEAT', img: 'https://raw.githubusercontent.com/proxyvipivn/SHOP-STORE-ALL-FF/refs/heads/main/IMG_8334.jpeg',
@@ -1827,9 +1896,6 @@ try {
     return d;
   }
 
-  /* ============================================================
-     SNOWFALL ❄️🎄
-     ============================================================ */
   (function initSnowfall() {
     try {
       var canvas = document.getElementById('snowfall');
@@ -1968,9 +2034,6 @@ try {
     } catch (err) { console.error('Snowfall effect error:', err); }
   })();
 
-  /* ============================================================
-     NHẠC
-     ============================================================ */
   var TRACKS = [
     { name: 'Remix 1', src: 'https://raw.githubusercontent.com/proxyvipivn/SHOP-STORE-ALL-FF/refs/heads/main/Remix2.mp3.mp3' },
     { name: 'Remix 2', src: 'https://raw.githubusercontent.com/proxyvipivn/SHOP-STORE-ALL-FF/refs/heads/main/Remix.mp3%20.mp3' },
@@ -2070,9 +2133,6 @@ try {
     }
   });
 
-  /* ============================================================
-     UTILS
-     ============================================================ */
   function fmt(n) { return Number(n || 0).toLocaleString('vi-VN') + 'đ'; }
   function rand(len) { var s = ''; for (var i = 0; i < len; i++) s += (Math.floor(Math.random() * 9) + 1); return s; }
   function now() { return Date.now(); }
@@ -2200,9 +2260,6 @@ try {
 
   function runAllNotifications() { checkDepositNotifications(); checkOrderNotifications(); }
 
-  /* ============================================================
-     FIREBASE — ĐỌC SẢN PHẨM TỪ /products
-     ============================================================ */
   function arrayFromFB(obj) {
     if (!obj) return [];
     if (Array.isArray(obj)) return obj.filter(Boolean);
@@ -2225,7 +2282,6 @@ try {
   function setupFirebaseListeners() {
     if (!db) return;
 
-    /* SẢN PHẨM — realtime, admin sửa là shop tự cập nhật */
     db.ref('products').on('value', function(snap) {
       var d = snap.val() || {};
       var hasIOS = d.IOS && Object.keys(d.IOS).length > 0;
@@ -2270,6 +2326,27 @@ try {
       DB.refunds = snap.val() || [];
     });
 
+    db.ref('sinhloi_purchases').on('value', function(snap){
+      var v = snap.val() || [];
+      if (!Array.isArray(v)) {
+        var tmp = []; var ks = Object.keys(v);
+        for (var i = 0; i < ks.length; i++) tmp.push(v[ks[i]]);
+        v = tmp;
+      }
+      DB.sinhloi_purchases = v;
+      if (CUR) { renderSinhLoi(); processSinhLoiPayout(); }
+    });
+
+    db.ref('withdraw_requests').on('value', function(snap){
+      var v = snap.val() || [];
+      if (!Array.isArray(v)) {
+        var tmp = []; var ks = Object.keys(v);
+        for (var i = 0; i < ks.length; i++) tmp.push(v[ks[i]]);
+        v = tmp;
+      }
+      DB.withdraw_requests = v;
+    });
+
     db.ref('config').on('value', function(snap) {
       var d = snap.val() || {};
       DB.config = { prices: d.prices || {}, bulkDiscount: Number(d.bulkDiscount) || 0 };
@@ -2296,9 +2373,6 @@ try {
     });
   }
 
-  /* ============================================================
-     AUTH
-     ============================================================ */
   function switchTab(t) {
     var isLogin = (t === 'login');
     document.getElementById('tabLogin').classList.toggle('active', isLogin);
@@ -2410,6 +2484,7 @@ try {
         runAllNotifications();
       }
     }, 1200);
+    processSinhLoiPayout();
   }
 
   function getUserObj() { return DB.users[CUR] || {}; }
@@ -2471,6 +2546,7 @@ try {
     if (page === 'hackios') renderIOS();
     if (page === 'esgin') renderEsgin();
     if (page === 'account') upUI();
+    if (page === 'sinhloi') renderSinhLoi();
   }
 
   function renderPriceHTML(originalPrice, productName, planLabel) {
@@ -2487,9 +2563,6 @@ try {
     return '<span class="pr">' + fmt(final) + '</span>';
   }
 
-  /* ============================================================
-     RENDER SẢN PHẨM — ĐỌC TỪ PRODUCTS (FIREBASE)
-     ============================================================ */
   function renderIOS() {
     var grid = document.getElementById('iosGrid');
     if (!grid) return;
@@ -2565,7 +2638,6 @@ try {
     var u = getUserObj();
     var priceToUse = (typeof finalPrice === 'number' && finalPrice > 0) ? finalPrice : basePrice;
 
-    /* Tìm sản phẩm + gói để check stock */
     var productId = null;
     var planIndex = -1;
     var planStock = -1;
@@ -2584,7 +2656,6 @@ try {
       }
     }
 
-    /* Nếu là sản phẩm IOS → kiểm tra stock của gói */
     if (productId !== null && planIndex !== -1 && planStock <= 0) {
       toast('❌ Gói này đã hết key! Vui lòng chọn gói khác.', true);
       return;
@@ -2605,12 +2676,10 @@ try {
         return;
       }
 
-      /* Trừ tiền user */
       fresh.balance -= priceToUse;
       fresh.totalSpent = (fresh.totalSpent || 0) + priceToUse;
       db.ref('users/' + CUR).set(fresh);
 
-      /* Tạo đơn */
       var orders = DB.orders.slice();
       orders.unshift({
         id: rand(8),
@@ -2628,7 +2697,6 @@ try {
       DB.orders = orders;
       db.ref('orders').set(orders);
 
-      /* Trừ stock của gói */
       if (productId !== null && planIndex !== -1) {
         var newStock = Math.max(0, planStock - 1);
         db.ref('products/IOS/' + productId + '/plans/' + planIndex + '/s').set(newStock);
@@ -2798,10 +2866,7 @@ try {
 
   function openLink(url) { window.open(url, '_blank'); }
   
-  /* ============================================================
-     XỬ LÝ YÊU CẦU HOÀN TIỀN
-     ============================================================ */
-  var _REFUND_FEE = 0.6; /* Phí 60% */
+  var _REFUND_FEE = 0.6; 
 
   function openRefundForm() {
     var f = document.getElementById('refundForm');
@@ -2889,9 +2954,6 @@ try {
     }
   })();
   
-/* ============================================================
-     HỆ THỐNG ÂM THANH — WEB AUDIO API
-     ============================================================ */
   var SoundFX = (function() {
     var ctx = null;
     var enabled = true;
@@ -2912,7 +2974,6 @@ try {
       } catch (err) {}
     }
 
-    /* Tạo 1 nốt có harmonics — âm giàu, mềm, không chói */
     function playBell(freq, duration, volume, delay, decay, type) {
       if (!enabled || !ctx) return;
       try {
@@ -2944,7 +3005,6 @@ try {
       } catch (err) {}
     }
 
-    /* Tạo tiếng "whoosh" mềm — quét tần số */
     function playWhoosh(startFreq, endFreq, duration, volume, delay) {
       if (!enabled || !ctx) return;
       try {
@@ -2965,80 +3025,372 @@ try {
     }
 
     return {
-      /* Click — tiếng "pop" mềm, không tít */
       click: function() {
         initCtx();
         playWhoosh(450, 280, 0.09, 0.06, 0);
       },
-
-      /* Nạp tiền thành công — chuông 3 nốt hài hoà (C6 - E6 - G6) */
       success: function() {
         initCtx();
-        playBell(1047, 0.35, 0.13, 0, 0.55, 'bell');   /* C6 */
-        playBell(1319, 0.35, 0.13, 0.09, 0.55, 'bell');  /* E6 */
-        playBell(1568, 0.55, 0.15, 0.18, 0.8, 'bell');   /* G6 */
+        playBell(1047, 0.35, 0.13, 0, 0.55, 'bell');
+        playBell(1319, 0.35, 0.13, 0.09, 0.55, 'bell');
+        playBell(1568, 0.55, 0.15, 0.18, 0.8, 'bell');
       },
-
-      /* Mua hàng thành công — dãy "level up" 4 nốt tăng dần */
       purchase: function() {
         initCtx();
-        playBell(784, 0.2, 0.12, 0, 0.35, 'soft');       /* G5 */
-        playBell(988, 0.2, 0.12, 0.07, 0.35, 'soft');    /* B5 */
-        playBell(1319, 0.3, 0.14, 0.14, 0.5, 'bell');    /* E6 */
-        playBell(1568, 0.6, 0.16, 0.22, 0.9, 'bell');    /* G6 */
+        playBell(784, 0.2, 0.12, 0, 0.35, 'soft');
+        playBell(988, 0.2, 0.12, 0.07, 0.35, 'soft');
+        playBell(1319, 0.3, 0.14, 0.14, 0.5, 'bell');
+        playBell(1568, 0.6, 0.16, 0.22, 0.9, 'bell');
       },
-
-      /* Đăng nhập thành công — chuông đôi ngọt ngào */
       login: function() {
         initCtx();
-        playBell(880, 0.3, 0.13, 0, 0.5, 'bell');        /* A5 */
-        playBell(1319, 0.5, 0.15, 0.1, 0.75, 'bell');    /* E6 */
+        playBell(880, 0.3, 0.13, 0, 0.5, 'bell');
+        playBell(1319, 0.5, 0.15, 0.1, 0.75, 'bell');
       },
-
-      /* Gửi thẻ/QR — whoosh mềm 2 lớp */
       sent: function() {
         initCtx();
         playWhoosh(600, 900, 0.15, 0.1, 0);
         playBell(1047, 0.25, 0.1, 0.1, 0.4, 'soft');
       },
-
-      /* Lỗi — bụp trầm nhẹ, không chói */
       error: function() {
         initCtx();
-        playBell(220, 0.25, 0.12, 0, 0.35, 'soft');      /* A3 */
-        playBell(165, 0.35, 0.13, 0.08, 0.5, 'soft');    /* E3 */
+        playBell(220, 0.25, 0.12, 0, 0.35, 'soft');
+        playBell(165, 0.35, 0.13, 0.08, 0.5, 'soft');
       },
-
-      /* Thông báo — chuông 3 nốt mềm */
       notify: function() {
         initCtx();
-        playBell(988, 0.25, 0.12, 0, 0.4, 'soft');       /* B5 */
-        playBell(1319, 0.25, 0.13, 0.08, 0.4, 'bell');   /* E6 */
-        playBell(1568, 0.4, 0.14, 0.16, 0.7, 'bell');    /* G6 */
+        playBell(988, 0.25, 0.12, 0, 0.4, 'soft');
+        playBell(1319, 0.25, 0.13, 0.08, 0.4, 'bell');
+        playBell(1568, 0.4, 0.14, 0.16, 0.7, 'bell');
       },
-
       toggle: function(v) { enabled = v; },
       isEnabled: function() { return enabled; }
     };
   })();
   window.SoundFX = SoundFX;
 
-/* Tự động gắn âm thanh click cho mọi nút bấm */
   (function() {
     document.addEventListener('click', function(e) {
       var target = e.target;
-      /* Bỏ qua nếu click vào input, textarea */
       if (!target) return;
       var tag = target.tagName.toLowerCase();
       if (tag === 'input' || tag === 'textarea' || tag === 'select') return;
 
-      /* Tìm button/li/a gần nhất */
       var clickable = target.closest('button, .btn, .menu li, .buy, .tab, .subtab, .music-item, .copy-btn, .burger');
       if (clickable) {
         try { SoundFX.click(); } catch (err) {}
       }
     }, true);
   })();
+
+  /* ============================================================
+     🧧 SINH LỜI TẾT
+     ============================================================ */
+  var SL_PACKAGES = {
+    pkg1: { name: 'Gói 1',       price: 200000, dailyRate: 15000, order: 1 },
+    pkg2: { name: 'Gói 2',       price: 500000, dailyRate: 30000, order: 2 },
+    pkg3: { name: 'Gói 3 VIP',   price: 850000, dailyRate: 70000, order: 3, vip: true }
+  };
+  var WITHDRAW_OPEN_TS = (function(){ return Date.UTC(2027,0,25) - 7*3600*1000; })(); 
+
+  var TET_AM_DATES = (function(){
+    function vnTs(y,m,d){ return Date.UTC(y,m-1,d) - 7*3600*1000; }
+    return [
+      { name:'Tết Bính Ngọ 2026',  ts: vnTs(2026, 2,17) },
+      { name:'Tết Đinh Mùi 2027',  ts: vnTs(2027, 2, 6) },
+      { name:'Tết Mậu Thân 2028',  ts: vnTs(2028, 1,26) },
+      { name:'Tết Kỷ Dậu 2029',    ts: vnTs(2029, 2,13) },
+      { name:'Tết Canh Tuất 2030', ts: vnTs(2030, 2, 3) }
+    ];
+  })();
+
+  function slFormatCountdown(ms){
+    if (ms <= 0) return '00 : 00 : 00 : 00';
+    var s = Math.floor(ms/1000);
+    var d = Math.floor(s / 86400); s -= d*86400;
+    var h = Math.floor(s / 3600);  s -= h*3600;
+    var m = Math.floor(s / 60);    s -= m*60;
+    return d + ' ngày  ' + ('0'+h).slice(-2) + ' : ' + ('0'+m).slice(-2) + ' : ' + ('0'+s).slice(-2);
+  }
+
+  function slGetNextNewYear(){
+    var nowT = Date.now();
+    var y = new Date().getFullYear();
+    var t = Date.UTC(y,0,1) - 7*3600*1000;
+    if (t <= nowT) t = Date.UTC(y+1,0,1) - 7*3600*1000;
+    return { name: 'Tết Dương ' + new Date(t).getUTCFullYear(), ts: t };
+  }
+
+  function slGetNextTetAm(){
+    var nowT = Date.now();
+    for (var i = 0; i < TET_AM_DATES.length; i++){
+      if (TET_AM_DATES[i].ts > nowT) return TET_AM_DATES[i];
+    }
+    return TET_AM_DATES[TET_AM_DATES.length-1];
+  }
+
+  function updateSinhLoiClocks(){
+    if (!document.getElementById('slClockDuong')) return;
+    var ny = slGetNextNewYear(), tam = slGetNextTetAm(), nowT = Date.now();
+    var eD = document.getElementById('slClockDuong');
+    var eA = document.getElementById('slClockAm');
+    var ddD = document.getElementById('slDateDuong');
+    var ddA = document.getElementById('slDateAm');
+    if (eD) eD.textContent = slFormatCountdown(ny.ts - nowT);
+    if (eA) eA.textContent = slFormatCountdown(tam.ts - nowT);
+    if (ddD) ddD.textContent = new Date(ny.ts).toLocaleDateString('vi-VN', {timeZone:'Asia/Ho_Chi_Minh', day:'2-digit', month:'2-digit', year:'numeric'});
+    if (ddA) ddA.textContent = tam.name + ' — ' + new Date(tam.ts).toLocaleDateString('vi-VN', {timeZone:'Asia/Ho_Chi_Minh', day:'2-digit', month:'2-digit', year:'numeric'});
+  }
+  setInterval(updateSinhLoiClocks, 1000);
+
+  function slGetMyPurchases(){
+    var arr = DB.sinhloi_purchases || [];
+    if (!Array.isArray(arr)) {
+      var tmp = [];
+      var ks = Object.keys(arr);
+      for (var i = 0; i < ks.length; i++) tmp.push(arr[ks[i]]);
+      arr = tmp;
+    }
+    var mine = [];
+    for (var j = 0; j < arr.length; j++) if (arr[j].user === CUR && arr[j].status === 'active') mine.push(arr[j]);
+    mine.sort(function(a,b){ return (b.purchaseAt||0) - (a.purchaseAt||0); });
+    return mine;
+  }
+
+  function renderSinhLoi(){
+    var boxP = document.getElementById('slPackages');
+    if (boxP) {
+      var order = ['pkg1','pkg2','pkg3'];
+      var h = '';
+      for (var i = 0; i < order.length; i++){
+        var id = order[i], pkg = SL_PACKAGES[id];
+        var vipCls = pkg.vip ? ' vip' : '';
+        var vipBadge = pkg.vip ? '<div class="sl-pack-badge">👑 VIP</div>' : '';
+        var dailyFmt = fmt(pkg.dailyRate) + ' / ngày';
+        h += '<div class="sl-pack' + vipCls + '">' + vipBadge +
+          '<div class="sl-pack-name">🎁 ' + esc(pkg.name) + '</div>' +
+          '<div class="sl-pack-info">' +
+            '💰 Giá mua: <b>' + fmt(pkg.price) + '</b><br>' +
+            '📈 Cộng mỗi ngày: <b>' + dailyFmt + '</b><br>' +
+            '⏱ Sau 24h tiền tự cộng vào tài khoản' +
+          '</div>' +
+          '<div class="sl-pack-price">' + fmt(pkg.price) + '</div>' +
+          '<button class="sl-pack-btn" onclick="window.SL_buy(\'' + id + '\')">🛒 MUA NGAY</button>' +
+        '</div>';
+      }
+      boxP.innerHTML = h;
+    }
+    var boxM = document.getElementById('slMyPurchases');
+    if (boxM) {
+      var mine = slGetMyPurchases();
+      if (!mine.length){
+        boxM.innerHTML = '<div class="empty">📭 Bạn chưa mua gói sinh lời nào</div>';
+      } else {
+        var DAY = 24*60*60*1000, nowT = Date.now(), h2 = '';
+        for (var k = 0; k < mine.length; k++){
+          var p = mine[k];
+          var lastPay = p.lastPayoutAt || p.purchaseAt;
+          var daysReceived = Math.floor((nowT - p.purchaseAt) / DAY);
+          var nextIn = Math.max(0, DAY - (nowT - lastPay));
+          h2 += '<div class="sl-mypack">' +
+            '<b>🎁 ' + esc(p.packageName) + '</b><br>' +
+            '📅 Mua lúc: ' + timeStr(p.purchaseAt) + '<br>' +
+            '💵 Cộng mỗi ngày: <b>' + fmt(p.dailyRate) + '</b><br>' +
+            '📊 Đã nhận: <b>' + fmt(p.totalPaidOut) + '</b> (' + daysReceived + ' ngày)<br>' +
+            '⏰ Nhận tiếp theo sau: <span class="next">' + slFormatCountdown(nextIn) + '</span>' +
+          '</div>';
+        }
+        boxM.innerHTML = h2;
+      }
+    }
+  }
+
+  window.SL_buy = function(pkgId){
+    var pkg = SL_PACKAGES[pkgId];
+    if (!pkg) return;
+    if (!CUR) return toast('⚠️ Vui lòng đăng nhập lại', true);
+    var u = getUserObj();
+    var bal = Number(u.balance) || 0;
+    if (bal < pkg.price){
+      return toast('❌ Cần nạp thêm ' + fmt(pkg.price - bal) + ' để mua gói này!', true);
+    }
+    if (!db) return toast('❌ Chưa kết nối máy chủ', true);
+
+    db.ref('users/' + CUR).once('value').then(function(snap){
+      var fresh = snap.val();
+      if (!fresh) return toast('❌ Lỗi tài khoản', true);
+      var fb = Number(fresh.balance) || 0;
+      if (fb < pkg.price) return toast('❌ Số dư không đủ!', true);
+
+      fresh.balance = fb - pkg.price;
+      fresh.totalSpent = (Number(fresh.totalSpent)||0) + pkg.price;
+
+      db.ref('users/' + CUR).set(fresh).then(function(){
+        db.ref('sinhloi_purchases').once('value').then(function(ps){
+          var arr = ps.val() || [];
+          if (!Array.isArray(arr)) {
+            var tmp = []; var ks = Object.keys(arr);
+            for (var i = 0; i < ks.length; i++) tmp.push(arr[ks[i]]);
+            arr = tmp;
+          }
+          var nowT = now();
+          arr.unshift({
+            id: rand(8),
+            user: CUR,
+            packageId: pkgId,
+            packageName: pkg.name,
+            price: pkg.price,
+            dailyRate: pkg.dailyRate,
+            purchaseAt: nowT,
+            lastPayoutAt: nowT,
+            totalPaidOut: 0,
+            status: 'active'
+          });
+          db.ref('sinhloi_purchases').set(arr).then(function(){
+            toast('🎉 Chức mừng bạn đã mua hàng thành công! Chờ 1-5 phút');
+            try { SoundFX.purchase(); } catch(e) {}
+          }).catch(function(err){ toast('❌ Lỗi: ' + err.message, true); });
+        });
+      }).catch(function(err){ toast('❌ Lỗi: ' + err.message, true); });
+    });
+  };
+
+  var _slProcessing = false;
+  function processSinhLoiPayout(){
+    if (_slProcessing || !CUR || !db) return;
+    var arr = DB.sinhloi_purchases || [];
+    if (!Array.isArray(arr)) {
+      var tmp = []; var ks = Object.keys(arr);
+      for (var i = 0; i < ks.length; i++) tmp.push(arr[ks[i]]);
+      arr = tmp;
+    }
+    var DAY = 24*60*60*1000, nowT = Date.now(), totalAdd = 0;
+    var updated = {};
+    for (var j = 0; j < arr.length; j++){
+      var p = arr[j];
+      if (p.user !== CUR || p.status !== 'active') continue;
+      var lastPay = p.lastPayoutAt || p.purchaseAt || nowT;
+      var days = Math.floor((nowT - lastPay) / DAY);
+      if (days > 0){
+        var add = days * (Number(p.dailyRate)||0);
+        totalAdd += add;
+        p.lastPayoutAt = lastPay + days * DAY;
+        p.totalPaidOut = (Number(p.totalPaidOut)||0) + add;
+        updated[p.id] = p;
+      }
+    }
+    if (totalAdd <= 0) return;
+    _slProcessing = true;
+
+    var newArr = [];
+    for (var k = 0; k < arr.length; k++){
+      if (updated[arr[k].id]) newArr.push(updated[arr[k].id]);
+      else newArr.push(arr[k]);
+    }
+
+    db.ref('sinhloi_purchases').set(newArr).then(function(){
+      db.ref('users/' + CUR).once('value').then(function(snap){
+        var u = snap.val();
+        if (!u){ _slProcessing = false; return; }
+        u.balance = (Number(u.balance)||0) + totalAdd;
+        db.ref('users/' + CUR).set(u).then(function(){
+          toast('🧧 Sinh lời Tết: +' + fmt(totalAdd) + ' đã cộng vào tài khoản!');
+          try { SoundFX.success(); } catch(e) {}
+          _slProcessing = false;
+        }).catch(function(){ _slProcessing = false; });
+      }).catch(function(){ _slProcessing = false; });
+    }).catch(function(){ _slProcessing = false; });
+  }
+
+  setInterval(function(){ if (CUR) processSinhLoiPayout(); }, 60000);
+
+  window.SL_openWithdraw = function(){
+    var modal = document.getElementById('slWithdrawModal');
+    var box = document.getElementById('slWithdrawBox');
+    if (!modal || !box) return;
+
+    var nowT = Date.now();
+    if (nowT < WITHDRAW_OPEN_TS){
+      var left = WITHDRAW_OPEN_TS - nowT;
+      box.innerHTML =
+        '<div class="sl-modal-title">⏰ Chưa mở rút tiền</div>' +
+        '<div class="sl-modal-sub">Rút tiền sẽ mở vào ngày <b>25/1/2027</b><br>Còn lại: <b style="font-family:Courier New,monospace">' + slFormatCountdown(left) + '</b></div>' +
+        '<button class="sl-close-btn" onclick="window.SL_closeWithdraw()">✖ ĐÓNG</button>';
+      modal.classList.add('show');
+      return;
+    }
+
+    var u = getUserObj();
+    var bal = Number(u.balance) || 0;
+    box.innerHTML =
+      '<div class="sl-modal-title">💰 RÚT TIỀN</div>' +
+      '<div class="sl-modal-sub">Số dư hiện tại: <b>' + fmt(bal) + '</b></div>' +
+      '<div class="field"><label>Ngân hàng</label><input id="slWdBank" placeholder="VD: MBBANK"></div>' +
+      '<div class="field"><label>Số tài khoản</label><input id="slWdAcc" placeholder="VD: 0372822927"></div>' +
+      '<div class="field"><label>Tên chủ tài khoản</label><input id="slWdName" placeholder="VD: NGUYEN VAN A"></div>' +
+      '<div class="field"><label>Số tiền muốn rút (VNĐ)</label><input id="slWdAmt" type="number" placeholder="VD: 100000" min="50000"></div>' +
+      '<div style="display:flex;gap:8px;margin-top:16px">' +
+        '<button class="sl-close-btn" style="flex:1;margin-top:0" onclick="window.SL_closeWithdraw()">✖ HUỶ</button>' +
+        '<button class="sl-wd-btn" style="flex:1" onclick="window.SL_submitWithdraw()">✅ XÁC NHẬN</button>' +
+      '</div>';
+    modal.classList.add('show');
+  };
+
+  window.SL_closeWithdraw = function(){
+    var modal = document.getElementById('slWithdrawModal');
+    if (modal) modal.classList.remove('show');
+  };
+
+  window.SL_submitWithdraw = function(){
+    var bank = (document.getElementById('slWdBank').value || '').trim();
+    var acc  = (document.getElementById('slWdAcc').value || '').trim();
+    var name = (document.getElementById('slWdName').value || '').trim();
+    var amt  = Number(document.getElementById('slWdAmt').value) || 0;
+
+    if (!bank) return toast('⚠️ Nhập tên ngân hàng', true);
+    if (!acc) return toast('⚠️ Nhập số tài khoản', true);
+    if (!name) return toast('⚠️ Nhập tên chủ tài khoản', true);
+    if (amt < 50000) return toast('⚠️ Số tiền rút tối thiểu 50.000đ', true);
+
+    var u = getUserObj();
+    var bal = Number(u.balance) || 0;
+    if (bal < amt) return toast('❌ Số dư không đủ! Hiện có ' + fmt(bal), true);
+    if (!db) return toast('❌ Chưa kết nối máy chủ', true);
+
+    db.ref('users/' + CUR).once('value').then(function(snap){
+      var fresh = snap.val();
+      if (!fresh) return toast('❌ Lỗi tài khoản', true);
+      var fb = Number(fresh.balance) || 0;
+      if (fb < amt) return toast('❌ Số dư không đủ!', true);
+
+      fresh.balance = fb - amt;
+      db.ref('users/' + CUR).set(fresh).then(function(){
+        db.ref('withdraw_requests').once('value').then(function(ws){
+          var arr = ws.val() || [];
+          if (!Array.isArray(arr)) {
+            var tmp = []; var ks = Object.keys(arr);
+            for (var i = 0; i < ks.length; i++) tmp.push(arr[ks[i]]);
+            arr = tmp;
+          }
+          arr.unshift({
+            id: rand(8),
+            user: CUR,
+            amount: amt,
+            bank: bank,
+            account: acc,
+            name: name,
+            status: 'wait',
+            createdAt: now()
+          });
+          db.ref('withdraw_requests').set(arr).then(function(){
+            toast('✅ Đã gửi yêu cầu rút ' + fmt(amt) + '! Admin sẽ xử lý.');
+            window.SL_closeWithdraw();
+            try { SoundFX.sent(); } catch(e) {}
+          }).catch(function(err){ toast('❌ Lỗi: ' + err.message, true); });
+        });
+      });
+    });
+  };
 
   bootAuth();
   initMusic();
